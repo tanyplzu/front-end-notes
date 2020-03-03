@@ -1,30 +1,32 @@
 const nav = [
-  { text: '首页', link: '/' },
-  // { text: 'JavaScript', link: '/JavaScript/' },
+  { text: '首页', link: '/index.html' },
+  { text: 'JavaScript', link: '/JavaScript/JS基础/' },
   // { text: 'Html&&Css', link: '/css&html/css' },
-  { text: 'Vue', link: '/vue/vue/' },
+  { text: 'Vue', link: '/vue/vue基础/' },
   { text: 'Webpack', link: '/Webpack/' }
 ];
 const sidebar = {
-  // '/JavaScript/': [
-  //   {
-  //     title: 'JavaScript',
-  //     collapsable: true,
-  //     children: [
-  //       ['JavaScript/', 'Introduction'],
-  //       'JavaScript/前端参考资料',
-  //       'JavaScript/router'
-  //     ]
-  //   },
-  //   {
-  //     title: 'css&html',
-  //     collapsable: true,
-  //     children: ['css&html/清除浮动']
-  //   }
-  // ],
+  '/JavaScript/': [
+    {
+      title: 'JS基础',
+      collapsable: true,
+      children: [
+        ['JS基础/', 'Introduction'],
+        'JS基础/前端参考资料',
+      ]
+    },
+    {
+      title: 'JS-WEB-API',
+      collapsable: true,
+      children: [
+        ['JS-WEB-API/', 'Introduction'],
+        'JS-WEB-API/router',
+      ]
+    }
+  ],
   '/vue/': [
     {
-      title: 'vue',
+      title: 'vue基础语法',
       collapsable: true,
       children: [
         ['vue基础/', 'Introduction'],
