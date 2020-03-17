@@ -1,6 +1,6 @@
 const pluginConf = require('./config/pluginConf');
 const path = require('path');
-const { nav, sidebar } = require('./menu');
+const { getNav, getSidebar } = require('./menu');
 const { plugins } = require('./plugins');
 module.exports = {
   base: '/front-end/',
@@ -28,8 +28,8 @@ module.exports = {
     docsDir: 'docs',
     editLinkText: '编辑此页',
     lastUpdated: '上次更新',
-    nav: nav,
-    sidebar: sidebar
+    nav: getNav(),
+    sidebar: getSidebar()
   },
   markdown: {
     lineNumbers: false
