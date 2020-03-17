@@ -1,5 +1,7 @@
 ## Html&&Css
 
+[[toc]]
+
 ### 如何理解 html 标签语义化？
 
 html5 新出的标签，每个标签都有自己语义，什么标签做什么事。让人看的懂，也让机器可以看的懂，利于 SEO。
@@ -7,9 +9,7 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 ### css 权重是什么？	
 
 - 设置节点样式的方式有很多种，不同的方式它们的权重并不相同，当它们给一个节点设置同一个样式时，谁的权重高谁就生效。
-
 - important：无限高
-
 - 行内样式：权重值为1000
 - id选择器：权重值为100
 - 类、伪类、属性选择器：权重值为10
@@ -112,10 +112,8 @@ fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱
 
 ![](./imgs/css-position2.jpg)
 
-
 ### 介绍下 flex 布局？
 
-```css
 主轴方向：水平排列（默认） | 水平反向排列 | 垂直排列 | 垂直反向排列
 flex-direction: row | row-reverse | column | column-reverse;
 
@@ -123,7 +121,7 @@ flex-direction: row | row-reverse | column | column-reverse;
 flex-wrap: nowrap | wrap | wrap-reverse;
 
 flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap
-flex-flow: <flex-direction> || <flex-wrap>;
+flex-flow: `<flex-direction> `|| `<flex-wrap>`;
 
 主轴对齐方式：起点对齐（默认） | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
 justify-content: flex-start | flex-end | center | space-between | space-around;
@@ -133,33 +131,98 @@ align-items: stretch | flex-start | flex-end | center | baseline;
 
 多根轴线对齐方式(说的是多根轴线在竖轴上的分布)：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
 align-content: stretch | flex-start | flex-end | center | space-between | space-around;
+
+### 垂直水平居中的实现方式有哪些？
+
+父级设置text-align: center和line-height等同高度。
+
+子节点绝对定位，设置position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);
+
+子节点绝对定位，需要设置宽度和高度。设置position: absolute;top:0;left:0;right:0;bottom:0;margin:auto;
+
+父级设置display: table，子节点设置display:table-cell;text-align:center;vertical-align:middle;
+
+父级设置 display: flex; justify-content:center; align-items:center;
+
+父节点设置display: grid;，子节点设置：align-self:center;justify-self: center;
+
+> 百分比 transform 会让 IOS 微信闪退。需要避免 table 布局，推荐使用 position 和 margin 的组合。（张鑫旭 css 世界202页）
+
+### 你知道的左右宽度固定，中间自适应的三栏布局方案有哪些？
+
+```html
+<div class='parent'>
+  <div class='left'></div>
+  <div class='center'></div>
+  <div class='right'></div>
+</div>
 ```
 
+- 浮动
 
+```css
+.parent {overflow: hidden;}
+.left {float: left; width: 100px;}
+.right: {float: right; width: 100px;}
+```
 
+> 兼容性好，简单；脱离文档流；撑开两边，下面也会变形。创建bfc解决，如overflow: hidden;
 
+- 定位1：
 
+```css
+.parent {postion: relative}
+.left {position: absolute; left: 0; width: 100px}
+.right {position: absolute; right: 0; width: 100px}
+.center {position: absolute; left: 100px; right: 100px}
+```
 
+- 定位2
 
+```css
+.parent {postion: relative}
+.left {position: absolute; left: 0; width: 100px}
+.right {position: absolute; right: 0; top: 0; width: 100px}
+.center {margin: 0 100px 0 100px};
+```
 
+- 表格
 
+```css
+.parent {dispaly: table; width: 100%;}
+.left {display: table-cell; width: 100px;}
+.center {display: table-cell;}
+.right {display: table-cell; width: 100px;}
+```
 
+- 弹性
 
+```css
+.parent {display: flex;}
+.left {width: 100px;}
+.center {flex: 1;}
+.right {width: 100px;}
+```
 
+> 移动端很完美；且撑开两边
 
+- 网格
 
+```css
+.parent {
+  display: grid; 
+  width: 100%; 
+  grid-template-rows: 100px; 
+  grid-template-columns: 100px auto 100px;
+}
+```
 
+### 重绘和回流
 
+- **重绘**：指的是当页面中的元素不脱离文档流，而简单地进行样式的变化，比如修改颜色、背景等，浏览器重新绘制样式
+- **回流**：指的是处于文档流中 DOM 的尺寸大小、位置或者某些属性发生变化时，导致浏览器重新渲染部分或全部文档的情况
 
-
-
-
-
-
-
-
-
-
+相比之下，**回流要比重绘消耗性能开支更大**。另外，一些属性的读取也会引起回流，比如读取某个 DOM 的高度和宽度，或者使用 `getComputedStyle` 方法。在写代码的时候要避免回流和重绘。
 
 
 

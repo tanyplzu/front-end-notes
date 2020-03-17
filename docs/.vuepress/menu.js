@@ -22,16 +22,23 @@ const getSidebar = () => {
       // }
     ],
     '/FrontEnd/': [
-      'Html&&Css', 
-      'JavaScript'
+      'Html&&Css',
+      'JavaScript',
+      'Network',
+      'Node',
+      'Webpack',
+      'DesignPattern',
+      'Algorithms',
+      'Git'
     ],
     '/vue/': [
-      {
-        title: 'vue基础语法',
-        collapsable: true,
-        children: [['vue基础/', 'Introduction'], 'vue基础/响应式原理']
-      }
-    ]
+    {
+      title: 'vue基础语法',
+      collapsable: true,
+      children: [
+        ['vue基础/', 'Introduction'], 'vue基础/响应式原理'
+      ]
+    }]
   };
 };
 
