@@ -84,7 +84,7 @@ fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱
 
 ### relative
 
-![](F:\02-oschina\front-end\docs\FrontEnd\imgs\css-position.jpg)
+![](./imgs/css-position.jpg)
 
 - 第三个 `<p>` 发生了位置变化，分别向右向下移动了10px；
 - 其他的三个`<p>`位置没有发生变化，第四个都没有下移，这一点也很重要。
@@ -94,11 +94,8 @@ fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱
 ### absolute
 
 - absolute 元素脱离了文档结构。和 relative 不同，其他三个元素的位置重新排列了。只要元素会脱离文档结构，它就会产生破坏性，导致父元素坍塌。（此时你应该能立刻想起来，float 元素也会脱离文档结构。）
-
 - absolute 元素具有“包裹性”。之前`<p>`的宽度是撑满整个屏幕的，而此时`<p>`的宽度刚好是内容的宽度。
-
 - absolute 元素具有“跟随性”。虽然 absolute 元素脱离了文档结构，但是它的位置并没有发生变化，还是老老实实地呆在它原本的位置，因为我们此时没有设置 top、left 的值。
-
 - absolute 元素会悬浮在页面上方，会遮挡住下方的页面内容。
 
 通过给 absolute元素设置 top、left 值，可自定义其内容，这个都是平时比较常用的了。这里需要注意的是，设置了 top、left 值时，元素是相对于最近的定位上下文来定位的，而不是相对于浏览器定位。
@@ -113,8 +110,7 @@ fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱
 - fixed 元素的定位是相对于 window （或者 iframe）边界的，和其他元素没有关系。但是它具有破坏性，会导致其他元素位置的变化。
 - absolute 的定位相对于前两者要复杂许多。如果为 absolute 设置了 top、left，浏览器会根据什么去确定它的纵向和横向的偏移量呢？答案是浏览器会递归查找该元素的所有父元素，如果找到一个设置了`position:relative/absolute/fixed`的元素，就以该元素为基准定位，如果没找到，就以浏览器边界定位。
 
-![](F:\02-oschina\front-end\docs\FrontEnd\imgs\css-position2.jpg)
-
+![](./imgs/css-position2.jpg)
 
 
 ### 介绍下 flex 布局？
