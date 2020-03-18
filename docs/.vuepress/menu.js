@@ -1,38 +1,38 @@
 const getNav = () => {
   return [
     { text: '首页', link: '/index.html' },
-    // { text: 'JavaScript', link: '/JavaScript/JS基础/' },
-    { text: '前端知识点', link: '/FrontEnd/JavaScript' },
+    {
+      text: '前端知识点',
+      ariaLabel: 'Language Menu',
+      items: [
+        { text: 'JavaScript', link: '/FrontEnd/JavaScript/01-JavaScript基础' },
+        { text: '数据结构与算法', link: '/FrontEnd/DSA/DesignPattern' },
+        { text: 'Vue', link: '/vue/vue基础/' },
+      ]
+    },
     { text: 'Vue', link: '/vue/vue基础/' },
     { text: 'Webpack', link: '/Webpack/' }
   ];
 };
 const getSidebar = () => {
   return {
-    '/JavaScript/': [
-      // {
-      //   title: 'JS基础',
-      //   collapsable: true,
-      //   children: [['JS基础/', 'Introduction'], 'JS基础/前端参考资料']
-      // },
-      // {
-      //   title: 'JS-WEB-API',
-      //   collapsable: true,
-      //   children: [['JS-WEB-API/', 'Introduction'], 'JS-WEB-API/router']
-      // }
-    ],
     '/FrontEnd/': [
-      {
-        title: 'JS基础',
-        collapsable: true,
-        children: ['JavaScript/JavaScript基础']
-      },
-      {
-        title: '数据结构与算法',
-        collapsable: true,
-        children: ['DSA/DesignPattern']
-      }
-    ],
+    {
+      title: 'JS基础',
+      collapsable: true,
+      children: [
+        'JavaScript/01-JavaScript基础', 
+        'JavaScript/JavaScript的执行机制'
+      ]
+    },
+    {
+      title: '数据结构与算法',
+      collapsable: true,
+      children: [
+        'DSA/DesignPattern', 
+        'DSA/Algorithms'
+      ]
+    }],
     '/vue/': [
     {
       title: 'vue基础语法',
