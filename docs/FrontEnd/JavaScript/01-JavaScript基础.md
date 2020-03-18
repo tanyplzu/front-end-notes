@@ -1,5 +1,6 @@
 ---
-sidebarDepth: 1
+title: "- JavaScript 基础"
+sidebarDepth: 2
 ---
 ## JavaScript 基础
 
@@ -40,6 +41,22 @@ if (obj.a == null) {}
 ```
 
 编程是需要绝对严谨的态度，我们只在这一个地方让它进行类型转换，来简化我们的写法，因为这个场景非常简单和固定。而其他场景下，我们都必须使用`===`，除非有特殊的业务需要。
+
+### 是否`===`就完全靠谱？
+
+也是不一定的，例如`0 === -0`就为`true`，`NaN === NaN`为`false`，判断两个变量是否完全相等可以使用`ES6`新增的`API`，`Object.is(0, -0)`，`Object.is(NaN, NaN)`就可以准确区分。
+
+### 在类型转换中哪些值会被转为`true`？
+
+除了`undefined`、`null`、`false`、`NaN`、`''`、`0`、`-0`以外的值都会被转为`true`，包括所有引用类型，即使是空的。
+
+### toString()和valueOf的区别？
+- null和undefined没有以上两个方法。
+- toString：值类型时返回自身的字符串形式；当是引用类型时，无论是一维或多维数组，将他们拍平成一个字符串，里面的null和undefined转为空字符串''，对象转为[object Object]，函数的原样返回字符串形式。
+- valueOf无论是值类型还是引用类型，大部分情况下都是原样返回，当是Date类型时，返回时间戳。
+- 在进行字符串强转的时候，toString会优先于valueOf；在进行数值运算时，valueOf会优先于toString。
+- 当执行toString的变量是一个整数类型时，支持传参，表示需要转为多少进制的字符串。
+
 
 ### JS中有哪些内置函数 —— 数据封装类对象
 
@@ -164,9 +181,56 @@ function unique(arr) {
 }
 ```
 
+### 字符串的`test`、`match`、`search` 之间的区别？
+
+```js
+// test 是检测字符串是否匹配某个正则，返回布尔值
+/[a-z]/.test(1);  // false
+
+// match 是返回检测字符匹配正则的数组结果集合，没有返回 null
+'1AbC2d'.match(/[a-z]/ig);  // ['A', 'b', 'C', 'd']
+
+// search 是返回正则匹配到的下标，没有返回-1
+'1AbC2d'.search(/[a-z]/);  // 2
+```
+
+### 字符串的`slice`、`substring`、`substr `之间的区别？
+
+```js
+//  slice 是返回字符串开始至结束下标减去开始下标个数的新字符串，下标是负数为倒数；
+'abcdefg'.slice(2,3);  // c  // 3 - 2
+'abcdefg'.slice(3,2);  // ''  // 2 - 3
+'abcdefg'.slice(-2,-1);  // f  // -1 - -2
+
+// substring 和 slice 正常截取字符串时相同，负数为0，且下标值小的为开始下标；
+'abcdefg'.substring(2,3);  //c  // 3 - 2
+'abcdefg'.substring(3,2);  // c  // 3 - 2 
+'abcdefg'.substring(3,-3);  // abc  // 3 - 0
+
+// substr 返回开始下标开始加第二个参数(不能为负数)个数的新字符串。
+'abcdefg'.substr(2, 3);  // cde
+'abcdefg'.substr(3, 2);  // de
+'abcdefg'.substr(-3, 2); // ef
+
+```
+
+### `Number('123')`和`new Number('123')`有什么区别？
+
+- `Number('123')`是一个转换函数，会尝试把参数转为整数类型；而`new Number('123')`则不同，这是一个构造函数，它的结果是实例化出来一个对象。
+- 同样的情况也适用用`String`和`new String`；`Boolean`和`new Boolean`的情况。
+
+```js
+typeof Number('123') // number
+typeof new Number('123') // object
+```
 
 
-## DOM事件
+
+## DOM API
+
+
+
+
 
 ### DOM事件的级别
 
@@ -177,6 +241,21 @@ function unique(arr) {
 2. 事件到达注册的目标上
 3. 目标元素通过冒泡返回到window，沿途触发相同类型的事件
 
+### DOM 节点的 Attribute 和 property 有何区别
+
+- property 只是一个 JS 属性的修改。prototype不是一个api，只是一种操作形式；不会添加本身没有的属性。
+- attr 是对 html 标签属性的修改。可以添加新的属性；
+
+### DOM 树操作（api）
+
+- 查找元素：querySelector、querySelectorAll、getElementById、getElementsByTagName、getElementsByClassName
+- parentElement、childNodes、firstChild、lastChild
+- createElement、removeChild、appendChild、insertBefore
+- getElementById、getElementsByName、getElementsByTagName、getElementsByClassName，这几个 API 的性能高于 querySelector。
+- getElementsByName、getElementsByTagName、getElementsByClassName 获取的集合并非数组，而是一个能够动态更新的集合。
+- 虚拟DOM中最后还是通过以上api创建、和更新了DOM。
+
+### document load 和 ready 的区别
 
 
 ## 原型和面向对象
@@ -313,6 +392,10 @@ Child5.prototype = Object.create(Parent5.prototype);
 - 变量定义
 - 函数声明
 
+### 谈谈对 this 的理解？
+
+this表示为当前的函数调用方，在运行时才能决定。如谁调用了某个方法，谁就是这个方法执行时的this。
+
 ### 说明 this 几种不同的使用场景
 
 - 作为构造函数执行
@@ -320,11 +403,34 @@ Child5.prototype = Object.create(Parent5.prototype);
 - 作为普通函数执行
 - call apply bind
 
-### 实际开发中闭包的应用
+### 改变当前调用this的方式
 
-闭包的实际应用，主要是用来封装变量。即把变量隐藏起来，不让外面拿到和修改。
+- call：会立即执行调用call方法的函数，不过是以第一个参数为this的情况下调用，方法内可以传递不等的参数，作为调用call方法的参数。
+- apply：运行方式和call是一致的，只是接受的参数不同，不能是不定参数，得是一个数组。
+- bind：会改变当前的this，接受不定参数，不过不会马上执行调用bind方法的函数，而是返回一个函数作为结果，执行后才是调用函数的结果。
+
+### 谈谈对闭包的理解？
+
+### 什么是垃圾回收机制？
+
+- 在程序执行的过程中，解释器会为创建出来的变量分配内存来存储这些变量的实体，执行环境会负责管理代码执行过程中使用到的内存，而何时划出新的内存以及何时把占用的内存释放出来的这样一套内存自动管理机制就是垃圾回收机制。这种周期性的回收策略主要有两种。
+- 标记清除：当变量进入环境时，就将这个变量标记为'进入环境'，而当这个变量离开环境时，则将其标记为'离开环境'。垃圾收集器会给内存中的每个变量都做上标记，然后它会去掉环境中的变量以及被环境中变量引用的变量的标记。而在此之后再被加上标记的变量将被视为准备删除的变量，最后垃圾收集器完成内存清除工作。
+- 引用计数：追踪记录每个值被引用的次数，当声明了一个变量并将一个引用类型赋给该变量时，这个变量的引用次数就是1。相反如果包含这个值引用的变量又取得了另外一个值，则这个值的引用次数减1。当为0时，这说明没有办法再访问这个值了，因此垃圾收集器下次运行时，就会释放该值占用的内存。
+
+
+
+
 
 ## 页面循环系统
+
+
+
+### 函数防抖和节流的区别？
+
+- 函数防抖指一定时间内没有再次触发函数，就执行该函数，否则重新计时；节流是规定某个时间内只能执行一次函数。以wow为例：
+- 函数防抖：2.5s施法的寒冰箭，再读条的过程中，你身子抖动打断了施法，再次触发技能时麻烦您重新读条。
+- 函数节流：火冲为瞬发技能，不过你规定cd为8s，所以即使8s内按了10次，也只能来1发，节省点体力吧。
+
 
 ## V8工作原理
 

@@ -1,6 +1,7 @@
 const getNav = () => {
   return [
     { text: '首页', link: '/index.html' },
+    { text: '前端知识点', link: '/FrontEnd/JavaScript/01-JavaScript基础' },
     {
       text: '前端知识点',
       ariaLabel: 'Language Menu',
@@ -17,22 +18,27 @@ const getNav = () => {
 const getSidebar = () => {
   return {
     '/FrontEnd/': [
-    {
-      title: 'JS基础',
-      collapsable: true,
-      children: [
-        'JavaScript/01-JavaScript基础', 
-        'JavaScript/JavaScript的执行机制'
-      ]
-    },
-    {
-      title: '数据结构与算法',
-      collapsable: true,
-      children: [
-        'DSA/DesignPattern', 
-        'DSA/Algorithms'
-      ]
-    }],
+      {
+        title: 'JS基础',
+        collapsable: true,
+        children: [
+          'JavaScript/01-JavaScript基础',
+          'JavaScript/JavaScript的执行机制',
+          'JavaScript/V8'
+        ]
+      },
+      {
+        title: '数据结构与算法',
+        collapsable: true,
+        children: [
+          'DSA/Algorithms'
+        ]
+      },
+      'Html&Css',
+      'Node',
+      'Webpack',
+      'DesignPattern',
+    ],
     '/vue/': [
     {
       title: 'vue基础语法',
