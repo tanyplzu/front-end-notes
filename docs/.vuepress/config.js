@@ -1,5 +1,5 @@
-const pluginConf = require('./config/pluginConf');
-const path = require('path');
+// const pluginConf = require('./config/pluginConf');
+// const path = require('path');
 const { getNav, getSidebar } = require('./menu');
 const { plugins } = require('./plugins');
 module.exports = {
@@ -24,12 +24,11 @@ module.exports = {
     repoLabel: 'Gitee',
     editLinks: true,
     sidebarDepth: 0,
-    sidebar: true,
     docsDir: 'docs',
     editLinkText: '编辑此页',
     lastUpdated: '上次更新',
     nav: getNav(),
-    sidebar: getSidebar()
+    sidebar: getSidebar(),
   },
   markdown: {
     lineNumbers: false

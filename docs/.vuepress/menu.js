@@ -2,15 +2,15 @@ const getNav = () => {
   return [
     { text: '首页', link: '/index.html' },
     { text: '前端知识点', link: '/FrontEnd/JavaScript/01-JavaScript基础' },
-    {
-      text: '前端知识点',
-      ariaLabel: 'Language Menu',
-      items: [
-        { text: 'JavaScript', link: '/FrontEnd/JavaScript/01-JavaScript基础' },
-        { text: '数据结构与算法', link: '/FrontEnd/DSA/DesignPattern' },
-        { text: 'Vue', link: '/vue/vue基础/' },
-      ]
-    },
+    // {
+    //   text: '前端知识点',
+    //   ariaLabel: 'Language Menu',
+    //   items: [
+    //     { text: 'JavaScript', link: '/FrontEnd/JavaScript/01-JavaScript基础' },
+    //     { text: '数据结构与算法', link: '/FrontEnd/DSA/DesignPattern' },
+    //     { text: 'Vue', link: '/vue/vue基础/' },
+    //   ]
+    // },
     { text: 'Vue', link: '/vue/vue基础/' },
     { text: 'Webpack', link: '/Webpack/' }
   ];
@@ -27,6 +27,11 @@ const getSidebar = () => {
           'JavaScript/V8'
         ]
       },
+      'Html&Css',
+      'Node',
+      'Webpack',
+      'Network',
+      'DesignPattern',
       {
         title: '数据结构与算法',
         collapsable: true,
@@ -34,10 +39,6 @@ const getSidebar = () => {
           'DSA/Algorithms'
         ]
       },
-      'Html&Css',
-      'Node',
-      'Webpack',
-      'DesignPattern',
     ],
     '/vue/': [
     {

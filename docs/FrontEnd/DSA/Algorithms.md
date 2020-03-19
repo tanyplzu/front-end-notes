@@ -1,4 +1,10 @@
-# 数据结构与算法
+---
+title: "- 数据结构与算法"
+sidebarDepth: 2
+---
+## 目录
+
+[[toc]]
 
 ## 常见数据结构
 
@@ -109,6 +115,37 @@ trim() 方法用于删除字符串的头尾空格。trim() 方法不会改变原
 // jQuery中封装有trim()
 String.prototype.trim=function(){
 	return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+```
+
+### 请实现plus(1)(2)(3)(4)等于8？
+```js
+// 方法1：
+function plus(n) {
+  let sum = n;
+  const _plus = function (n) {
+    sum += n;
+    return _plus;
+  };
+  _plus.toString = function () {
+    return sum;
+  };
+  return _plus;
+}
+
+// 方法2：
+function multi() {
+  const args = [].slice.call(arguments);
+  const fn = function () {
+    const newArgs = args.concat([].slice.call(arguments));
+    return multi.apply(this, newArgs);
+  }
+  fn.toString = function () {
+    return args.reduce(function (a, b) {
+      return a + b;
+    })
+  }
+  return fn;
 }
 ```
 
