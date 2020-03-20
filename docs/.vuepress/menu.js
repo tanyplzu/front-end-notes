@@ -24,7 +24,6 @@ const getSidebar = () => {
         collapsable: true,
         children: [
           'JavaScript/01-JavaScript基础',
-          'JavaScript/01-JavaScript进阶',
           'JavaScript/JavaScript的执行机制',
           'JavaScript/V8'
         ]

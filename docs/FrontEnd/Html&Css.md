@@ -56,13 +56,6 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 - `em`：如果父级有设置字体大小，1em 就是父级的大小，没有 1em 等于自身默认的字体大小。
 - `rem`：相对于`html`标签的字体大小。
 
-项目中曾用过的一段代码：
-
-```js
-let clientWidth = document.body.clientWidth >= 600 ? 600 : document.body.clientWidth;
-document.querySelector('html').style.fontSize = (clientWidth / 16) + 'px';
-```
-
 ### 不使用`border`属性画一条`1px`的线
 
 ```html
@@ -72,9 +65,9 @@ document.querySelector('html').style.fontSize = (clientWidth / 16) + 'px';
 
 ### 定位的方式有哪几种，它们的区别是什么
 
-relative：相较于自身定位，设置的位置相对于自己进行位移。不脱离文档流。
-absolute：相较于最近有定位的父节点定位，设置的位置相较于父节点。会脱离文档流，导致父节点高度塌陷。
-fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱离文档流。
+- relative：相较于自身定位，设置的位置相对于自己进行位移。不脱离文档流。
+- absolute：相较于最近有定位的父节点定位，设置的位置相较于父节点。会脱离文档流，导致父节点高度塌陷。
+- fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱离文档流。
 
 ### relative
 
@@ -241,16 +234,18 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 }
 ```
 
-* .block 代表了更高级别的抽象或组件。
-* .block__element 代表。block 的后代，用于形成一个完整的。block 的整体。
-* .block--modifier 代表。block 的不同状态或不同版本。一般是外观或行为
+.block 代表了更高级别的抽象或组件。
+.block__element 代表。block 的后代，用于形成一个完整的。block 的整体。
+.block--modifier 代表。block 的不同状态或不同版本。一般是外观或行为
 
 ## 响应式页面开发
 
-### PageSpeed
+### viewport 设置
+
+网页应在 head 标签内添加 viewport meta 标签，以便优化在移动设备上的展示效果，其推荐的设置为：
 
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;">
 ```
 
 ### Media Queries
@@ -279,74 +274,67 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 | widescreen | 宽屏电脑断点，视窗宽度 ≥ 1216 px     |
 | fullhd     | 高清宽屏电脑断点，视窗宽度 ≥ 1408 px  |
 
-### 使用 Viewport 单位及 rem
+### 如何适配
 
-在仅使用 vw 单位作为唯一 CSS 单位时，我们需遵守：
+**1. 使用 rem 适配：**
 
-利用 Sass 函数将设计稿元素尺寸的像素单位转换为 vw 单位
+```js
+// set 1rem = viewWidth / 10
+function setRemUnit () {
+    var rem = docEl.clientWidth / 10
+    docEl.style.fontSize = rem + 'px'
+}
+setRemUnit();
+```
 
-```css
-// iPhone 6尺寸作为设计稿基准
-$vw_base: 375;
-@function vw($px) {
-    @return ($px / $vm_base) * 100vw;
+在之前的项目中是这样使用的：
+
+```js
+let clientWidth = document.body.clientWidth >= 600 ? 600 : document.body.clientWidth;
+document.querySelector('html').style.fontSize = (clientWidth / 16) + 'px';
+```
+
+有 vs code 中有计算 rem 的插件
+
+::: danger Note
+
+阻塞渲染，和重新计算的问题
+
+缺点：本质上，**用户使用更大的屏幕，是想看到更多的内容，而不是更大的字。**
+
+:::
+
+**2. 使用 vw，vh 布局：**
+
+vh、vw 方案即将视觉视口宽度 window.innerWidth 和视觉视口高度 window.innerHeight 等分为 100 份。
+
+vh 和 vw 方案和 rem 类似也是相当麻烦需要做单位转化，而且 px 转换成 vw 不一定能完全整除，因此有一定的像素差。
+
+不过在工程化的今天，webpack 解析 css 的时候用 postcss-loader 有个 postcss-px-to-viewport 能自动实现 px 到 vw 的转化
+
+```js
+{
+  loader: 'postcss-loader',
+  options: {
+    plugins: ()=>[
+        require('autoprefixer')({
+          browsers: ['last 5 versions']
+        }),
+        require('postcss-px-to-viewport')({
+          viewportWidth: 375, //视口宽度（数字)
+          viewportHeight: 1334, //视口高度（数字）
+          unitPrecision: 3, //设置的保留小数位数（数字）
+          viewportUnit: 'vw', //设置要转换的单位（字符串）
+          selectorBlackList: ['.ignore', '.hairlines'], //不需要进行转换的类名（数组）
+              minPixelValue: 1, //设置要替换的最小像素值（数字）
+              mediaQuery: false//允许在媒体查询中转换px（true/false）
+        })
+    ]
+  }
 }
 ```
 
-无论是文本字号大小还是布局高宽、间距、留白等都使用 vw 作为 CSS 单位
-
-```css
-.mod_nav {
-    background-color: #fff;
-    &_list {
-        display: flex;
-        padding: vw(15) vw(10) vw(10); // 内间距
-        &_item {
-            flex: 1;
-            text-align: center;
-            font-size: vw(10); // 字体大小
-            &_logo {
-                display: block;
-                margin: 0 auto;
-                width: vw(40); // 宽度
-                height: vw(40); // 高度
-                img {
-                    display: block;
-                    margin: 0 auto;
-                    max-width: 100%;
-                }
-            }
-            &_name {
-                margin-top: vw(2);
-            }
-        }
-    }
-}
-```
-
-对于需要保持高宽比的图，应改用 padding-top 实现
-
-```css
-.mod_banner {
-    position: relative;
-    // 使用padding-top 实现宽高比为 100:750 的图片区域
-    padding-top: percentage(100/750);
-    height: 0;
-    overflow: hidden;
-    img {
-        width: 100%;
-        height: auto;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
-}
-
-```
-
-由此，我们不需要增加其他任何额外的脚本代码就能够轻易实现一个常见布局的响应式页面，效果如下：
-
-方法 2 - vw 搭配 rem，寻找最优解
+**3.vw 搭配 rem，寻找最优解**
 
 ```css
 // rem 单位换算：定为 75px 只是方便运算，750px-75px、640-64px、1080px-108px，如此类推
@@ -441,3 +429,15 @@ css 根据设备像素比媒体查询后的解决方案
     ...
 }
 ```
+
+移动端适配流程
+
+1. 在 head 设置 width=device-width 的 viewport
+
+2. 在 css 中使用 px
+
+3. 在适当的场景使用 flex 布局，或者配合 vw 进行自适应
+
+4. 在跨设备类型的时候（pc <-> 手机 <-> 平板）使用媒体查询
+
+5. 在跨设备类型如果交互差异太大的情况，考虑分开项目开发

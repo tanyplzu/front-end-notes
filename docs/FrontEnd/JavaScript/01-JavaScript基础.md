@@ -237,6 +237,12 @@ typeof new Number('123') // object
 
 ### DOM 事件的级别
 
+- DOM0 element.onclick = function(){};
+- DOM2 element.addEventListener('click',function(){},false);
+- DOM3 element.addEventListener('keyup',function(){},false);
+
+有 DOM1 级标准，但没有事件；DOM3 只是增加了一些事件类型。
+
 ### 什么是事件流 / 模型
 
 当某一个事件被触发时，分为三个阶段：
@@ -244,6 +250,30 @@ typeof new Number('123') // object
 1. 事件通过捕获从 window => document => body => 目标元素
 2. 事件到达注册的目标上
 3. 目标元素通过冒泡返回到 window，沿途触发相同类型的事件
+
+### Event 对象常见的应用
+
+- event.preventDefault() 阻止默认事件
+- event.stopPropagation() 阻止冒泡
+- event.stopImmediatePropagation() 事件的优先级
+- event.currentTaget 当前绑定事件，就是那个父级元素
+- event.target 当前被点击的元素
+
+后面两种是事件委托。
+
+### 自定义事件 ---
+
+```js
+var eve = new Event('custome');
+ev.addEventListener('custome',function(){
+  console.log(custome)
+})
+ev.dispathEvent(eve)
+```
+
+addEventListener 最后一个参数：
+true 为捕获；
+false 为冒泡。
 
 ### DOM 节点的 Attribute 和 property 有何区别
 
@@ -525,12 +555,14 @@ var load = function (module) {
 另外虽然 exports 和 module.exports 用法相似，但是不能对 exports 直接赋值。因为 var exports = module.exports 这句代码表明了 exports 和 module.exports 享有相同地址，通过改变对象的属性值会对两者都起效，但是如果直接对 exports 赋值就会导致两者不再指向同一个内存地址，修改并不会对 module.exports 起效。
 
 **ES Module：**
-ES Module 是原生实现的模块化方案，与 CommonJS 有以下几个区别：
 
-- CommonJS 支持动态导入，也就是 require(${path}/xx.js)，后者目前不支持，但是已有提案
-- CommonJS 是同步导入，因为用于服务端，文件都在本地，同步导入即使卡住主线程影响也不大。而后者是异步导入，因为用于浏览器，需要下载文件，如果也采用同步导入会对渲染有很大影响
-- CmmonJS 在导出时都是值拷贝，就算导出的值变了，导入的值也不会改变，所以如果想更新值，必须重新导入一次。但是 ES Module 采用实时绑定的方式，导入导出的值都指向同一个内存地址，所以导入值会跟随导出值变化
-- ES Module 会编译成 require/exports 来执行的
+自 ES6 起，引入了一套新的 ES6 Module 规范，在语言标准的层面上实现了模块功能，而且实现得相当简单，有望成为浏览器和服务器通用的模块解决方案。但目前浏览器对 ES6 Module 兼容还不太好，我们平时在 Webpack 中使用的 export 和 import，会经过 Babel 转换为 CommonJS 规范。与 CommonJS 有以下几个区别：
+
+1. CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。
+2. CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。
+3. CommonJs 是单个值导出，ES6 Module 可以导出多个
+4. CommonJs 是动态语法可以写在判断里，ES6 Module 静态语法只能写在顶层
+5. CommonJs 的 this 是当前模块，ES6 Module 的 this 是 undefined
 
 ```js
 // 引入模块 API
@@ -540,6 +572,20 @@ import { XXX } from './a.js'
 export function a() {}
 export default function() {}
 ```
+
+> 1.CmmonJS 在导出时可能是值的引用，不是拷贝。有待进一步确定。
+>
+> 2.CmmonJS require 的时候才去执行，而 ES Module 在 import 时会去构建依赖树。
+
+### Proxy 可以实现什么功能
+
+```js
+let p = new Proxy(target, handler)
+```
+
+target 代表需要添加代理的对象，handler 用来自定义对象中的操作，比如可以用来自定义 set 或者 get 函数。
+
+Vue3.0 使用 Proxy 替换原本的 API 原因在于 Proxy 无需一层层递归为每个属性添加代理，一次即可完成以上操作，性能上更好，对数组也不用单独处理，Proxy 可以完美监听到任何方式的数据改变，唯一缺陷可能就是浏览器的兼容性不好了。
 
 ## JavaScript 的执行机制
 
@@ -813,3 +859,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // DOM 渲染完即可执行，此时图片、视频还可能没有加载完
 })
 ```
+
+### 首屏和白屏时间如何计算
+
+首屏时间的计算，可以由 Native WebView 提供的类似 onload 的方法实现，在 ios 下对应的是 webViewDidFinishLoad，在 android 下对应的是 onPageFinished 事件。
+
+白屏的定义有多种。可以认为“没有任何内容”是白屏，可以认为“网络或服务异常”是白屏，可以认为“数据加载中”是白屏，可以认为“图片加载不出来”是白屏。场景不同，白屏的计算方式就不相同。
+
+方法 1：当页面的元素数小于 x 时，则认为页面白屏。比如“没有任何内容”，可以获取页面的 DOM 节点数，判断 DOM 节点数少于某个阈值 X，则认为白屏。
+方法 2：当页面出现业务定义的错误码时，则认为是白屏。比如“网络或服务异常”。 
+方法 3：当页面出现业务定义的特征值时，则认为是白屏。比如“数据加载中”
+
+Google 网页性能分析工具： [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
