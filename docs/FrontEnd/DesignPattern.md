@@ -54,7 +54,7 @@ export function createComponent (
   children: ?Array<VNode>,
   tag?: string
 ): VNode | Array<VNode> | void {
-    
+
   // 逻辑处理...
   const vnode = new VNode(
     `vue-component-${Ctor.cid}${name ? `-${name}` : ''}`,
@@ -112,9 +112,9 @@ SingleDog.getInstance = (function() {
 })()
 ```
 
-应用Vuex
+应用 Vuex
 
-### 实现一个全局唯一的模态框？
+### 实现一个全局唯一的模态框
 
 ```html
 <!DOCTYPE html>
@@ -162,23 +162,21 @@ SingleDog.getInstance = (function() {
 </html>
 ```
 
-### 观察者模式和发布订阅模式的区别？
+### 观察者模式和发布订阅模式的区别
 
 - 如果发布者直接触及到订阅者，就可以说明是观察者模式；
-- 如果发布者不直接触及到订阅者，而是由第三方来完成实际的通信操作，就叫做发布-订阅模式。
-- 简单来说，它们就是解耦的程度不同，vue内的自定义事件的Event Emitter，发布者完全不用感知到订阅者，事件的注册和触发都发生在事件总线上，实现了完全的解耦。
-- 而Dep和Watcher就是观察者模式，Dep直接add以及notify触发watcher的更新。
-
-
+- 如果发布者不直接触及到订阅者，而是由第三方来完成实际的通信操作，就叫做发布 - 订阅模式。
+- 简单来说，它们就是解耦的程度不同，vue 内的自定义事件的 Event Emitter，发布者完全不用感知到订阅者，事件的注册和触发都发生在事件总线上，实现了完全的解耦。
+- 而 Dep 和 Watcher 就是观察者模式，Dep 直接 add 以及 notify 触发 watcher 的更新。
 
 ### 策略模式
 
 >需求：
 >
->prePrice - 处理预热价 
->onSalePrice - 处理大促价 
->backPrice - 处理返场价 
->freshPrice - 处理尝鲜价 
+>prePrice - 处理预热价
+>onSalePrice - 处理大促价
+>backPrice - 处理返场价
+>freshPrice - 处理尝鲜价
 >askPrice - 分发询价逻辑
 
 ```js
@@ -225,11 +223,11 @@ priceProcessor.newUser = function (originPrice) {
 
 ### 迭代器模式
 
-- ES6对迭代器的实现
+- ES6 对迭代器的实现
 
-ES6约定，任何数据结构只要具备Symbol.iterator属性（这个属性就是Iterator的具体实现，它本质上是当前数据结构默认的迭代器生成函数），就可以被遍历——准确地说，是被for...of...循环和迭代器的next方法遍历。 事实上，for...of...的背后正是对next方法的反复调用。
+ES6 约定，任何数据结构只要具备 Symbol.iterator 属性（这个属性就是 Iterator 的具体实现，它本质上是当前数据结构默认的迭代器生成函数），就可以被遍历——准确地说，是被 for...of... 循环和迭代器的 next 方法遍历。 事实上，for...of... 的背后正是对 next 方法的反复调用。
 
-在ES6中，针对Array、Map、Set、String、TypedArray、函数的 arguments 对象、NodeList 对象这些原生的数据结构都可以通过for...of...进行遍历。原理都是一样的，此处我们拿最简单的数组进行举例，当我们用for...of...遍历数组时：
+在 ES6 中，针对 Array、Map、Set、String、TypedArray、函数的 arguments 对象、NodeList 对象这些原生的数据结构都可以通过 for...of... 进行遍历。原理都是一样的，此处我们拿最简单的数组进行举例，当我们用 for...of... 遍历数组时：
 
 ```js
 const arr = [1, 2, 3]
@@ -254,7 +252,7 @@ iterator.next()
 
 ### 装饰器
 
-ES7装饰器
+ES7 装饰器
 
 - 类装饰器
 
@@ -275,7 +273,7 @@ class Button {
 console.log('Button 是否被装饰了：', Button.hasDecorator) // true
 ```
 
-为Button添加了静态属性
+为 Button 添加了静态属性
 
 - 方法装饰器
 
@@ -292,7 +290,7 @@ function funcDecorator(target, name, descriptor) {
 
 class Button {
     @funcDecorator
-    onClick() { 
+    onClick() {
         console.log('我是Func的原有逻辑')
     }
 }

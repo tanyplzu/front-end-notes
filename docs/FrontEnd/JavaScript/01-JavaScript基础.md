@@ -144,7 +144,7 @@ function flatten(arr) {
 
 用递归的话，代码会比较复杂。还可以用以下方法来解决这个问题：
 
-**利用 Array.prototype.toString() 方法**
+**利用 Array.prototype.toString() 方法：**
 
 ```js
 var list = [1,[2,[3]],4,[5]];
@@ -153,7 +153,7 @@ console.log(list.toString()); //1,2,3,4,5
 
 原理：toString 方法返回一个字符串，该字符串由数组中的每个元素的 toString() 返回值经调用 join() 方法连接（由逗号隔开）组成。
 
-**利用 Array.prototype.join() 方法**
+**利用 Array.prototype.join() 方法：**
 
 ```js
 var list = [1,[2,[3]],4,[5]];
@@ -237,7 +237,7 @@ typeof new Number('123') // object
 
 ### DOM 事件的级别
 
-### 什么是事件流 / 模型？
+### 什么是事件流 / 模型
 
 当某一个事件被触发时，分为三个阶段：
 
@@ -324,7 +324,7 @@ var o4 = Object.create(p);
 
 ### 如何实现继承
 
-**1. 借助构造函数实现继承**
+**1. 借助构造函数实现继承：**
 
 ```js
 function Parent1 () {
@@ -341,7 +341,7 @@ console.log(new Child1(), new Child1().say());
 缺点：Parent1 原型链上的东西没有被继承，只实现了部分继承
 :::
 
-**2. 借助原型链实现继承**
+**2. 借助原型链实现继承：**
 
 ```js
 function Parent2 () {
@@ -362,7 +362,7 @@ s1.play.push(4);
 缺点：原型链较长。如果实例化多个对象，修改一个中的属性，另一个也会变化。
 :::
 
-**3. 组合方式**
+**3. 组合方式：**
 
 ```js
 function Parent3 () {
@@ -384,7 +384,7 @@ console.log(s3.play, s4.play);
 缺点：原型链较长，Parent3 执行了两次。`Parent3.call(this)`、`new Parent3()`
 :::
 
-**4. 组合继承的优化 1**
+**4. 组合继承的优化 1：**
 
 ```js
 function Parent4 () {
@@ -398,7 +398,7 @@ function Child4 () {
 Child4.prototype = Parent4.prototype;
 ```
 
-**5. 组合继承的优化 2**
+**5. 组合继承的优化 2：**
 
 ```js
 function Parent5 () {
@@ -414,7 +414,7 @@ Child5.prototype = Object.create(Parent5.prototype);
 
 推荐使用 5。
 
-**6. Class 继承**
+**6. Class 继承：**
 
 ```js
 class Parent {
@@ -439,7 +439,7 @@ child instanceof Parent // true
 
 ## ES6 有关
 
-### 为什么要使用模块化？
+### 为什么要使用模块化
 
 - 解决命名冲突
 - 提供复用性
@@ -447,7 +447,7 @@ child instanceof Parent // true
 
 ### 都有哪几种方式可以实现模块化，各有什么特点
 
-**立即执行函数**
+**立即执行函数：**
 
 在早期，使用立即执行函数实现模块化是常见的手段，通过函数作用域解决了命名冲突、污染全局作用域的问题
 
@@ -458,7 +458,7 @@ child instanceof Parent // true
 })(globalVariable)
 ```
 
-**AMD 和 CMD**
+**AMD 和 CMD：**
 
 目前这两种实现方式已经很少见到，不必要关注。
 
@@ -478,7 +478,7 @@ define(function(require, exports, module) {
 })
 ```
 
-**CommonJS**
+**CommonJS：**
 
 CommonJS 最早是 Node 在使用，目前也仍然广泛使用，比如在 Webpack 中你就能见到它，当然目前在 Node 中的模块管理已经和 CommonJS 有一些区别了。
 
@@ -524,7 +524,7 @@ var load = function (module) {
 
 另外虽然 exports 和 module.exports 用法相似，但是不能对 exports 直接赋值。因为 var exports = module.exports 这句代码表明了 exports 和 module.exports 享有相同地址，通过改变对象的属性值会对两者都起效，但是如果直接对 exports 赋值就会导致两者不再指向同一个内存地址，修改并不会对 module.exports 起效。
 
-**ES Module**
+**ES Module：**
 ES Module 是原生实现的模块化方案，与 CommonJS 有以下几个区别：
 
 - CommonJS 支持动态导入，也就是 require(${path}/xx.js)，后者目前不支持，但是已有提案
@@ -575,7 +575,7 @@ this 表示为当前的函数调用方，在运行时才能决定。如谁调用
 
 函数防抖指一定时间内没有再次触发函数，就执行该函数，否则重新计时；节流是规定某个时间内只能执行一次函数。
 
-**防抖的应用场景**
+**防抖的应用场景：**
 
 - 搜索框输入查询，如果用户一直在输入中，没有必要不停地调用去请求服务端接口，等用户停止输入的时候，再调用，设置一个合适的时间间隔，有效减轻服务端压力。
 - 表单验证
@@ -596,7 +596,7 @@ input1.addEventListener('keyup', function() {
 })
 ```
 
-**节流的应用场景**
+**节流的应用场景：**
 
 - 按钮点击事件
 - 拖拽事件
@@ -669,7 +669,9 @@ xhr.send(null);
 
 ### 你知道的解决跨域的方式有几种
 
-**JSONP: 利用 script 标签不受同源策略限制**
+**JSONP：**
+
+利用 script 标签不受同源策略限制。
 
 ```html
 <script src="http://www.abc.com/?data=name&callback=jsonp" charset="utf-8"></script>
@@ -681,7 +683,7 @@ xhr.send(null);
 </script>
 ```
 
-**WebSocket**
+**WebSocket：**
 
 ```js
 var ws = new WebSocket('wss://echo.websocket.org');
@@ -700,7 +702,9 @@ ws.onclose = function (evt) {
 };
 ```
 
-**CORS：新出的通信标准，支持跨域的 Ajax**
+**CORS：**
+
+新出的通信标准，支持跨域的 Ajax
 
 CORS 预请求
 在跨域时允许的方法只有 GET、POST、HEAD；
@@ -715,7 +719,7 @@ Access-Control-Request-Method 自定义方法
 Access-Control-Max-Age 设置时间后，在该时间段里不需要再发请求验证了
 其实 Response Hearders 中设计的一系列属性都是给浏览器解析请求的配置项，告诉浏览器去如何解析。
 
-**fetch**
+**fetch：**
 
 ```js
 fetch('/some/url/', {
@@ -757,7 +761,7 @@ fetch('/some/url/', {
 
 ## 性能优化
 
-**原则**
+**原则：**
 
 - 多使用内存、缓存或者其他方法
 - 减少 CPU 计算、较少网络
