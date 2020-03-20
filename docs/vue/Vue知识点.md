@@ -1,24 +1,26 @@
-## 题目
+---
+title: "vue知识点"
+sidebarDepth: 2
+---
+
+## 目录
+[[toc]]
 
 ### v-show 与 v-if 区别
 
-第一题应该是最简单的，提这个问题，也是想让候选人不那么紧张，因为但凡用过 Vue.js，多少知道 `v-show` 和 `v-if` 的区别，否则就没得聊了。不过这最简单的一道题，有三个层次，我会逐一追问。首先，基本所有人都会说到：
-
 `v-show` 只是 CSS 级别的 `display: none;` 和 `display: block;` 之间的切换，而 `v-if` 决定是否会选择代码块的内容（或组件）。
-
-回答这些，已经可以得到 50 分了，紧接着我会追问，什么时候用 v-show，什么时候用 v-if ？到这里一部分人会比较吞吐，可能是知道，但表达不出来。我比较倾向的回答是：
 
 频繁操作时，使用 `v-show`，一次性渲染完的，使用 `v-if`，只要意思对就好。
 
-第二问可以得到 80 分了，最后一问很少有人能答上：**那使用 `v-if` 在性能优化上有什么经验？**这是一个加分项，要对 Vue.js 的组件编译有一定的理解。说一下期望的答案：
-
 因为当 `v-if="false"` 时，内部组件是不会渲染的，所以在特定条件才渲染部分组件（或内容）时，可以先将条件设置为 `false`，需要时（或异步，比如 $nextTick）再设置为 `true`，这样可以优先渲染重要的其它内容，合理利用，可以进行性能优化。
+
+> 项目中多vue的tab页使用v-if做了优化，避免了一次性请求所有接口
 
 ### 绑定 class 的数组用法
 
 动态绑定 class 应该不陌生吧，这也是最基本的，但是这个问题却有点绕，什么叫**绑定 class 的数组用法？**我们看一下，最常用的绑定 class 怎么写：
 
-```
+```vue
 <template>
   <div :class="{show: isShow}">内容</div>
 </template>
@@ -35,7 +37,7 @@
 
 绑定 class 的对象用法能满足大部分业务需求，不过，在复杂的场景下，会用到**数组**，来看示例：
 
-```
+```vue
 <template>
   <div :class="classes"></div>
 </template>
@@ -65,8 +67,6 @@
 
 ### 计算属性和 watch 的区别
 
-回答该题前，一般都会思考一下。很多人会偏题，直接去答计算属性和 watch 怎么用，这是不得分的，因为题目是问**区别**，并不是用法。
-
 计算属性是自动监听依赖值的变化，从而动态返回内容，监听是一个过程，在监听的值变化时，可以触发一个回调，并做一些事情。
 
 所以区别来源于用法，只是需要动态值，那就用计算属性；需要知道值的改变后执行业务逻辑，才用 watch，用反或混用虽然可行，但都是不正确的用法。
@@ -78,13 +78,13 @@
 3. computed 是否能依赖其它组件的数据？
 4. watch 是一个对象时，它有哪些选项？
 
-问题 1，已经在 16 小节介绍过，有 get 和 set 两个选项。
+问题 1，computed 是一个对象时，有 get 和 set 两个选项。
 
 问题 2，methods 是一个方法，它可以接受参数，而 computed 不能；computed 是可以缓存的，methods 不会；一般在 `v-for` 里，需要根据当前项动态绑定值时，只能用 methods 而不能用 computed，因为 computed 不能传参。
 
 问题 3，computed 可以依赖其它 computed，甚至是其它组件的 data。
 
-问题 4，第 16 小节也有提到，有以下常用的配置：
+问题 4，有以下常用的配置：
 
 - handler 执行的函数
 - deep 是否深度
@@ -94,13 +94,13 @@
 
 这个问题我会先写一段代码：
 
-```
+```vue
 <custom-component>内容</custom-component>
 ```
 
-然后问：**怎样给这个自定义组件 custom-component 绑定一个`原生`的 click 事件？**
+然后问：**怎样给这个自定义组件 custom-component 绑定一个原生的 click 事件？**
 
-我一开始并不会问什么是事件修饰符，但是如果候选人说 ``，就已经错了，说明它对这个没有概念。这里的 `@click` 是自定义事件 click，并不是原生事件 click。绑定原生的 click 是这样的：
+@click 是自定义事件 click，并不是原生事件 click。绑定原生的 click 是这样的：
 
 ```
 <custom-component @click.native="xxx">内容</custom-component>
@@ -136,6 +136,25 @@
 
 因为组件是用来复用的，JS 里对象是引用关系，这样作用域没有隔离，而 new Vue 的实例，是不会被复用的，因此不存在引用对象的问题。
 
+```js
+var Component= function() {
+}
+Component.prototype.data = function() {
+  return {
+     a: 1,
+     b: 2
+  }
+}
+
+// 使用组件
+var component1 = new Component()
+var component2 = new Component()
+component1.data.b = 3
+component2.data.b   // 2
+```
+
+
+
 ### keep-alive 的理解
 
 这是个概念题，主要考察候选人是否知道这个用法。简单说，就是把一个组件的编译缓存起来。在第 14 节有过详细介绍，也可以看看 [Vue.js 的文档](https://cn.vuejs.org/v2/guide/components-dynamic-async.html#在动态组件上使用-keep-alive)。
@@ -151,7 +170,7 @@
 
 在第 16 节已经详细介绍过，这里的 v-model，并不是给普通输入框 `` 用的那种 v-model，而是在自定义组件上使用。既然是语法糖，就能够还原，我们先还原一下：
 
-```
+```vue
 <template>
   <div>
     {{ currentValue }}
@@ -188,7 +207,7 @@
 
 这个组件中，只有一个 props，但是名字叫 `value`，内部还有一个 `currentValue`，当改变 currentValue 时，会触发一个自定义事件 `@input`，并把 currentValue 的值返回。这就是一个 `v-model` 的语法糖，它要求 props 有一个叫 `value` 的项，同时触发的自定义事件必须叫 `input`。这样就可以在自定义组件上用 `v-model` 了：
 
-```
+```vue
 <custom-component v-model="value"></custom-component>
 ```
 
@@ -212,7 +231,7 @@
 
 createElement 是 Render 函数的核心，它构成了 Vue Virtual DOM 的模板，它有 3 个参数：
 
-```
+```js
 createElement () {
   // {String | Object | Function}
   // 一个 HTML 标签，组件选项，或一个函数
@@ -248,31 +267,31 @@ createElement () {
 
 1. 在子组件的 data 中拷贝一份 prop，data 是可以修改的，但 prop 不能：
 
-   ```
-   export default {
-     props: {
-       value: String
-     },
-     data () {
-       return {
-         currentValue: this.value
-       }
-     }
-   }
-   ```
+```js
+export default {
+  props: {
+    value: String
+  },
+  data () {
+    return {
+      currentValue: this.value
+    }
+  }
+}
+```
 
 2. 如果是对 prop 值的转换，可以使用计算属性：
 
-   ```
-   export default {
-     props: ['size'],
-     computed: {
-       normalizedSize: function () {
-         return this.size.trim().toLowerCase();
-       }
-     }
-   }
-   ```
+```js
+export default {
+  props: ['size'],
+  computed: {
+    normalizedSize: function () {
+      return this.size.trim().toLowerCase();
+    }
+  }
+}
+```
 
 如果你能提到 v-model 实现数据的双向绑定、.sync 用法，会大大加分的，这些在第 16 节已经详细介绍过。
 
@@ -293,15 +312,15 @@ createElement () {
 
 1. 父子通信：
 
-   父向子传递数据是通过 props，子向父是通过 events（$emit）；通过父链 / 子链也可以通信（$parent / $children）；`ref` 也可以访问组件实例；provide / inject API。
+父向子传递数据是通过 props，子向父是通过 events（$emit）；通过父链 / 子链也可以通信（$parent / $children）；`ref` 也可以访问组件实例；provide / inject API。
 
 2. 兄弟通信：
 
-   Bus；Vuex；
+Bus；Vuex；
 
 3. 跨级通信：
 
-   Bus；Vuex；provide / inject API。
+Bus；Vuex；provide / inject API。
 
 除了常规的通信方法，本册介绍的 dispatch / broadcast 和 findComponents 系列方法也可以说的，如果能说到这些，说明你对 Vue.js 组件已经有较深入的研究。
 
@@ -323,3 +342,75 @@ Vue.js 文档已经对 [深入响应式原理](https://cn.vuejs.org/v2/guide/rea
 MVVM 模式是由经典的软件架构 MVC 衍生来的。当 View（视图层）变化时，会自动更新到 ViewModel（视图模型），反之亦然。View 和 ViewModel 之间通过双向绑定（data-binding）建立联系。与 MVC 不同的是，它没有 Controller 层，而是演变为 ViewModel。
 
 ViewModel 通过双向数据绑定把 View 层和 Model 层连接了起来，而 View 和 Model 之间的同步工作是由 Vue.js 完成的，我们不需要手动操作 DOM，只需要维护好数据状态。
+
+### v-model
+
+```vue
+<template>
+    <!-- 例如：vue 颜色选择 -->
+    <input type="text"
+        :value="text1"
+        @input="$emit('change1', $event.target.value)"
+    >
+    <!--
+        1. 上面的 input 使用了 :value 而不是 v-model
+        2. 上面的 change1 和 model.event1 要对应起来
+        3. text1 属性对应起来
+    -->
+</template>
+
+<script>
+export default {
+    model: {
+        prop: 'text1', // 对应 props text1
+        event: 'change1'
+    },
+    props: {
+        text1: String,
+        default() {
+            return ''
+        }
+    }
+}
+</script>
+```
+
+### Vue.config 全局配置 API 
+
+performance：我们可以使用它来进行网页性能的追踪，配置如下：
+
+```js
+if (process.env.NODE_ENV !== 'production') {
+    Vue.config.performance = true;
+}
+```
+
+开启后我们可以下载 [Vue Performance Devtool](https://chrome.google.com/webstore/search/vue performance devtool) 这一 chrome 插件来看查看各个组件的加载情况，如图：
+
+![](C:\Users\Administrator\Desktop\复习笔记\img\performance.png)
+
+从中我们可以清晰的看到页面组件在每个阶段的耗时情况，而针对耗时比较久的组件，我们便可以对其进行相应优化。
+
+errorHandler ：在浏览器异常捕获的方法上，我们熟知的一般有：`try ... catch` 和 `window.onerror`，这也是原生 JavaScript 提供给我们处理异常的方式。但是在 Vue 2.x 中如果你一如既往的想使用 window.onerror 来捕获异常，那么其实你是捕获不到的，因为异常信息被框架自身的异常机制捕获了，你可以使用 `errorHandler` 来进行异常信息的获取：
+
+```js
+Vue.config.errorHandler = function (err, vm, info) {
+    let { 
+        message, // 异常信息
+        name, // 异常名称
+        stack  // 异常堆栈信息
+    } = err;
+    // vm 为抛出异常的 Vue 实例
+    // info 为 Vue 特定的错误信息，比如错误所在的生命周期钩子
+}
+```
+### 生命周期
+
+[Vue.js 生命周期](https://cn.vuejs.org/v2/api/#选项-生命周期钩子) 主要有 8 个阶段：
+
+- 创建前 / 后（beforeCreate / created）：在 beforeCreate 阶段，Vue 实例的挂载元素 el 和数据对象 data 都为 undefined，还未初始化。在 created 阶段，Vue 实例的数据对象 data 有了，el 还没有。
+- 载入前 / 后（beforeMount / mounted）：在 beforeMount 阶段，Vue 实例的 $el 和 data 都初始化了，但还是挂载之前为虚拟的 DOM 节点，data 尚未替换。在 mounted 阶段，Vue 实例挂载完成，data 成功渲染。
+- 更新前 / 后（beforeUpdate / updated）：当 data 变化时，会触发 beforeUpdate 和 updated 方法。这两个不常用，且不推荐使用。
+- 销毁前 / 后（beforeDestroy / destroyed）：beforeDestroy 是在 Vue 实例销毁前触发，一般在这里要通过 removeEventListener 解除手动绑定的事件。实例销毁后，触发 destroyed。
+
+如果有父子组件，创建阶段是由外到内，渲染阶段是由内到外的；updated、destroyed和mounted是一样的。

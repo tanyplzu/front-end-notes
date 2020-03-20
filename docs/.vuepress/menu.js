@@ -11,8 +11,8 @@ const getNav = () => {
     //     { text: 'Vue', link: '/vue/vue基础/' },
     //   ]
     // },
-    { text: 'Vue', link: '/vue/vue基础/' },
-    { text: 'Webpack', link: '/Webpack/' }
+    { text: 'Vue', link: '/Vue/index' },
+    { text: 'Notes', link: '/Notes/vuepress' }
   ];
 };
 const getSidebar = () => {
@@ -28,10 +28,25 @@ const getSidebar = () => {
         ]
       },
       'Html&Css',
-      'Node',
-      'Webpack',
       'Network',
+      {
+        title: 'vue基础',
+        collapsable: true,
+        children: [
+          '/Vue/Vue知识点',
+        ]
+      },
+      'Webpack',
       'DesignPattern',
+      {
+        title: 'Node基础',
+        collapsable: true,
+        children: [
+          'Node/Node基础',
+          'Node/Koa',
+          'Node/Nest.js入门',
+        ]
+      },
       {
         title: '数据结构与算法',
         collapsable: true,
@@ -40,14 +55,17 @@ const getSidebar = () => {
         ]
       },
     ],
-    '/vue/': [
-    {
-      title: 'vue基础语法',
-      collapsable: true,
-      children: [
-        ['vue基础/', 'Introduction'], 'vue基础/响应式原理'
-      ]
-    }]
+    '/Vue/': [
+      'Vue知识点',
+      '响应式原理',
+      'Vue组件通信',
+    ],
+    '/Notes/': [
+      ['./', '前端资料'],
+      'vuepress',
+      'router',
+      '密码学',
+    ],
   };
 };
 

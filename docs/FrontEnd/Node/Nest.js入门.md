@@ -1,3 +1,11 @@
+---
+title: "Nest.js入门"
+sidebarDepth: 1
+---
+### 目录
+
+[[toc]]
+
 ### 前言
 Nest是一套基于Node.js的强大的Web框架，可帮助你轻松构建出高效的、可扩展的应用程序。它是通过结合 OOP （面向对象编程）和 FP （函数式编程）的最佳理念，采用现代化 JavaScript(ES6+)，使用 TypeScript 构建的。
 
@@ -6,29 +14,28 @@ Nest不仅仅只是一套框架，因为它是基于著名的流行库Express和
 
 **（1）创建项目**
 
-```
+```sh
 $ npm i -g @nestjs/cli
 $ nest new project-name
-
 ```
 **（2）启动**
 
-```
+```sh
 $ cd project-name
 $ npm start
-// 打开http://localhost:3000/
-
 ```
 
 
 
 ### 控制器（Controller）
 控制器负责处理传入的请求并将响应返回给客户端。
+
 ![image](https://docs.nestjs.com/assets/Controllers_1.png)
 
 控制器的目的是接收应用程序的特定请求。路由策略控制着哪些控制器接收哪些请求。通常，每个控制器具有多个路由，并且不同的路由可以执行不同的动作。
 
 为了创建一个基本的控制器，我们使用类和装饰器。装饰器将类与所需的元数据相关联，并使Nest能够创建路由映射（将请求绑定到相应的控制器）。
+
 ```
  nest g co users //使用 CLI 提供的 generate （别名：g） 命令生成一个基本的 users Controller （别名： co）：
 ```
@@ -51,7 +58,8 @@ $ npm start
 @Headers(name?: string) | res.headers
 
 #### 路由
-```
+
+```js
 import { Controller, Get, Post } from '@nestjs/common';
 
 @Controller('cats')
@@ -67,8 +75,10 @@ export class CatsController {
   }
 }
 ```
+
 #### 路由参数
-```
+
+```js
 import { Controller, Get, Post } from '@nestjs/common';
 //路由名称
 @Controller('cats')
@@ -95,10 +105,14 @@ export class CatsController {
   }
 }
 ```
+
 需要注意的是路由匹配也有顺序
+
 #### 状态码
+
 更改请求的状态码
-```
+
+```js
 @Post()
 @HttpCode(204)
 create() {
@@ -107,7 +121,8 @@ create() {
 ```
 #### 响应头
 要指定自定义响应标头，您可以使用@Header()装饰器或特定于库的响应对象（并res.header()直接调用）。
-```
+
+```js
 @Post()
 @Header('Cache-Control', 'none')
 // Access-Control-Allow-Origin :*
@@ -119,7 +134,8 @@ create() {
 #### 异步
 我们可以使用async / await
 或者使用RxJS (Nest将自动订阅下面的源并获取最后一个发射值)
-```
+
+```js
 @Get()
 findAll(): Observable<any[]> {
   return of([]);
@@ -127,7 +143,8 @@ findAll(): Observable<any[]> {
 ```
 #### DTO
 DTO是一个定义网络发送的对象,相当于请求方法的接口，但是 nest 最后会转成 js, 在转换的过程中 interface 会被删除，所以这里推荐使用 class ,类是 javascript ES6 的一部分。
-```
+
+```js
 // 创建Dto类
 export class CreateCatDto {
   readonly name: string;
@@ -150,7 +167,8 @@ Provider 是 Nest 的基本概念。许多基本的Nest类可以被视为提供�
 
 #### 服务（Service）
 service 负责业务逻辑，核心是如何将业务逻辑抽象成接口及其粒度。service层应该尽量提供功能相对单一的基础方法，更多的场景和变化可以在controller层实现。这样设计有利于service层的复用和稳定。主要实现业务逻辑。
-```
+
+```js
 import { Injectable } from '@nestjs/common';
 import { Cat } from './interfaces/cat.interface';
 
@@ -168,8 +186,10 @@ export class CatsService {
 }
 //要使用CLI创建服务，只需执行$ nest g service cats命令即可。
 ```
+
 此时的Controller
-```
+
+```js
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { CatsService } from './cats.service';
@@ -191,8 +211,10 @@ export class CatsController {
   }
 }
 ```
+
 #### 依赖注入
 依赖注入（Dependency Injection，简称DI） 是实现 控制反转（Inversion of Control，缩写为IoC） 的一种常见方式。
+
 ##### 什么是控制反转呢？
 控制反转，是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。通过控制反转，对象在被创建的时候，由一个调控系统内所有对象的外界实体，将其所依赖的对象的引用传递给它。也可以说，依赖被注入到对象。
 我们看一个例子
@@ -211,7 +233,8 @@ nest 就是建立在依赖注入这种设计模式之上的，所以它在框架
 #### 注册提供者
 
 现在我们已经定义了一个provider（CatsService），并且我们有了该service（CatsController）的使用者，我们需要使用Nest注册该服务，以便它可以执行注入。我们通过编辑模块文件（app.module.ts）并将服务添加到装饰器的providers数组来完成此操作@Module()。
-```
+
+```js
 app.module.ts JS
 
 import { Module } from '@nestjs/common';
@@ -230,7 +253,8 @@ export class AppModule {}
 ![image](https://docs.nestjs.com/assets/Modules_1.png)
 
 在CatsController与CatsService属于同一功能。由于它们密切相关，因此将它们移动到模块中。功能模块只是组织与特定功能相关的代码，保持代码建立清晰的边界。这有助于我们管理复杂性并使用 SOLID 原则进行开发，尤其是随着应用程序或团队规模的增长。
-```
+
+```js
 import { Module } from '@nestjs/common';
 import { CatsController } from './cats.controller';
 import { CatsService } from './cats.service';
@@ -243,7 +267,8 @@ export class CatsModule {}
 //要使用CLI创建模块，只需执行$ nest g module cats命令即可。
 ```
 最后是将此模块导入根模块
-```
+
+```js
 app.module.ts JS
 
 import { Module } from '@nestjs/common';
@@ -255,6 +280,7 @@ import { CatsModule } from './cats/cats.module';
 export class AppModule {}
 ```
 ### 中间件（Middleware ）
+
 中间件是在路由处理程序之前调用的函数。中间件功能可以访问请求和响应对象，以及应用程序请求-响应周期中的下一个中间件功能。下一个中间件函数通常由一个名为next的变量表示。
 - 执行任何代码。
 - 对请求和响应对象进行更改。
@@ -289,9 +315,10 @@ export class AppModule {}
 - remove({id:123}); // 根据id删除指定对象
 - findOne({id:123}) // 根据id查出指定对象
 - ...
+
 #### 新建实体类
 
-```
+```js
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -308,7 +335,8 @@ export class Users {
 ```
 
 #### 创建 database 提供者
-```
+
+```js
 import { createConnection } from 'typeorm';
 
 export const databaseProviders = [
@@ -329,8 +357,10 @@ export const databaseProviders = [
   },
 ];
 ```
+
 创建 Module 模块
-```
+
+```js
 import { Module } from '@nestjs/common';
 import { databaseProviders } from './database.providers';
 
@@ -340,8 +370,10 @@ import { databaseProviders } from './database.providers';
 })
 export class DatabaseModule {}
 ```
+
 连接实体类，并且创建对应业务的 Provide
-```
+
+```js
 import { Connection, Repository } from 'typeorm';
 import { Users } from './users.entity';
 
@@ -355,7 +387,8 @@ export const usersProviders = [
 ```
 
 具体使用
-```
+
+```js
 import { Injectable, Inject } from '@nestjs/common';
 import { TravelDay } from './user.interface';
 import { Users } from './users.entity';
@@ -406,3 +439,5 @@ NestJS 使用现代 JavaScript，使用 Typescript （保留与纯 JavaScript �
 - [nestJS文档](https://docs.nestjs.com/)
 - [nodeJS文档](http://nodejs.cn/api/fs.html)
 - [SOLID原则](https://www.imooc.com/article/51098)
+ 
+> 此文来自内部同事的分享

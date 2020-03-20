@@ -1,6 +1,6 @@
 ---
 title: "Webpack"
-sidebarDepth: 0
+sidebarDepth: 2
 ---
 
 ## 目录

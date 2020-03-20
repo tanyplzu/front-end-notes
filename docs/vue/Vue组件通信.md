@@ -1,24 +1,31 @@
+---
+title: "vue 组件通信"
+sidebarDepth: 2
+---
+
+## 目录
+[[toc]]
+
 ## vue 组件通信
-####  父子组件传值
 
-1.通过props和$emit传值；	
+###  父子组件传值
 
-2.使用$attrs，父作用域中不作为 prop 被识别 (且获取) 的特性绑定 。使用 `v-bind="$attrs"` 绑定，使用`this.$attrs` 获取。
+1. 通过`props`和`$emit`传值；
+2. 使用`$attrs`，父作用域中不作为 prop 识别 (且获取) 的特性绑定 。使用 `v-bind="$attrs"` 绑定，使用`this.$attrs` 获取。
+3. 使用ref，用`this.$refs`访问，直接获取子组件下data中的值。
+4. 还有一些小众的传值方式，将父组件的方法直接传给子组件。在子组件中直接使用父组件的方法。
 
-3.使用 ref，用`this.$refs`访问，直接获取子组件下data中的值。
 
-还有一些小众的传值方式，将父组件的方法直接传给子组件。在子组件中直接使用父组件的方法。
+### 兄弟组件传值
 
-#### 兄弟组件传值
-
-4.兄弟组件中通信，自定义事件。$emit其实是一种自定义事件的方式。$emit在当前组件使用较多，用来将组件的值传递给父组件。如果使用vue实例上的自定义组件，就可以实现兄弟组件之间的传参。并且使用$emit， $on， $off 分别来分发、监听、取消监听事件，这种写法就是eventBus的写法。
+5. 兄弟组件中通信，自定义事件。`$emit`其实是一种自定义事件的方式。`$emit`在当前组件使用较多，用来将组件的值传递给父组件。如果使用vue实例上的自定义组件，就可以实现兄弟组件之间的传参。并且使用`$emit`、`$on`、`$off` 分别来分发、监听、取消监听事件，这种写法就是eventBus的写法。
 
 （1）绑定自定义事件：
 
 ````js
 mounted() {
-    // 绑定自定义事件
-    event.$on('onAddTitle', this.addTitleHandler)
+  // 绑定自定义事件
+  event.$on('onAddTitle', this.addTitleHandler)
 },
 ````
 
@@ -28,7 +35,7 @@ mounted() {
 event.$emit('onAddTitle', this.title)
 ```
 
-（3）需要一个vue实例，vue实例可以有export default 导出，也可以将vue实例挂在到根节点的data下面。如果放data中，可以使用this.$root获取到。
+（3）需要一个vue实例，vue实例可以有export default导出，也可以将vue实例挂在到根节点的data下面。如果放data中，可以使用`this.$root`获取到。
 
 ```js
 import Vue from 'vue'

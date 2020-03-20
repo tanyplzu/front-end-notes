@@ -10,7 +10,7 @@ sidebarDepth: 2
 
 html5 新出的标签，每个标签都有自己语义，什么标签做什么事。让人看的懂，也让机器可以看的懂，利于 SEO。
 
-### css 权重是什么？	
+### css 权重是什么？
 
 - 设置节点样式的方式有很多种，不同的方式它们的权重并不相同，当它们给一个节点设置同一个样式时，谁的权重高谁就生效。
 - important：无限高
@@ -69,17 +69,6 @@ document.querySelector('html').style.fontSize = (clientWidth / 16) + 'px';
 <hr size='1'></hr>
 ```
 
-### 移动端`1px`问题？
-
-```css
-box-shadow: 
-  0  -1px 1px -1px #e5e5e5,   //上边线
-  1px  0  1px -1px #e5e5e5,   //右边线
-  0  1px  1px -1px #e5e5e5,   //下边线
-  -1px 0  1px -1px #e5e5e5;   //左边线
-  0 0 0 1px #e5e5e5;   //四条线
-```
-
 ### 定位的方式有哪几种，它们的区别是什么？
 
 relative：相较于自身定位，设置的位置相对于自己进行位移。不脱离文档流。
@@ -88,7 +77,7 @@ fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱
 
 ### relative
 
-![](./imgs/css-position.jpg)
+![position](./imgs/css-position.jpg)
 
 - 第三个 `<p>` 发生了位置变化，分别向右向下移动了10px；
 - 其他的三个`<p>`位置没有发生变化，第四个都没有下移，这一点也很重要。
@@ -114,7 +103,7 @@ fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱
 - fixed 元素的定位是相对于 window （或者 iframe）边界的，和其他元素没有关系。但是它具有破坏性，会导致其他元素位置的变化。
 - absolute 的定位相对于前两者要复杂许多。如果为 absolute 设置了 top、left，浏览器会根据什么去确定它的纵向和横向的偏移量呢？答案是浏览器会递归查找该元素的所有父元素，如果找到一个设置了`position:relative/absolute/fixed`的元素，就以该元素为基准定位，如果没找到，就以浏览器边界定位。
 
-![](./imgs/css-position2.jpg)
+![position](./imgs/css-position2.jpg)
 
 ### 介绍下 flex 布局？
 
@@ -221,6 +210,8 @@ align-content: stretch | flex-start | flex-end | center | space-between | space-
 }
 ```
 
+
+
 ### 重绘和回流
 
 - **重绘**：指的是当页面中的元素不脱离文档流，而简单地进行样式的变化，比如修改颜色、背景等，浏览器重新绘制样式
@@ -230,21 +221,235 @@ align-content: stretch | flex-start | flex-end | center | space-between | space-
 
 
 
+### BEM 命名规范
+
+BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier），使用这种命名方式可以让 CSS 的类名变得有实际意义且能自我解释，具有更高的开发友好性。
+
+```html
+<!-- S Search Bar 模块 -->
+<div class="search-bar">
+  <input class="search-form__input"/>
+  <!-- / input 输入框子元素 -->
+  <button class="search-form__button"></button>
+  <!-- / button 搜索按钮子元素 -->
+</div>
+<!-- E Search Bar 模块 -->
+```
+
+```SCSS
+// 以下是 SCSS 代码
+.search-bar {
+  &__input { ... }
+  &__button { ... }
+}
+```
+
+* .block 代表了更高级别的抽象或组件。
+* .block__element 代表.block的后代，用于形成一个完整的.block的整体。
+* .block--modifier代表.block的不同状态或不同版本。一般是外观或行为
 
 
 
+## 响应式页面开发
+
+### PageSpeed 
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1">
+```
 
 
 
+### Media Queries
+
+方法 1，使用 link 标签，根据指定特性引入特定的外部样式文件
+```html
+<link rel="stylesheet" media="(max-width: 640px)" href="max-640px.css">
+```
+方法 2，直接在 style 标签或 样式文件内使用 @media 规则
+```css
+@media (max-width: 640px) {
+  /*当视窗宽度小于或等于 640px 时，这里的样式将生效*/
+}
+```
+
+常用的样式断点（参考）
+
+| 断点名称   | 断点描述）                           |
+| :--------- | :----------------------------------- |
+| mobile     | 移动设备断点，视窗宽度 ≤ 768 px      |
+| tablet     | 平板电脑设备断点，视窗宽度 ≥ 769 px  |
+| desktop    | 桌面电脑断点，视窗宽度 ≥ 1024 px     |
+| widescreen | 宽屏电脑断点，视窗宽度 ≥ 1216 px     |
+| fullhd     | 高清宽屏电脑断点，视窗宽度 ≥ 1408 px |
 
 
 
+### 使用 Viewport 单位及 rem
+
+在仅使用 vw 单位作为唯一 CSS 单位时，我们需遵守：
+
+利用 Sass 函数将设计稿元素尺寸的像素单位转换为 vw 单位
+
+```css
+// iPhone 6尺寸作为设计稿基准
+$vw_base: 375; 
+@function vw($px) {
+    @return ($px / $vm_base) * 100vw;
+}
+```
+
+无论是文本字号大小还是布局高宽、间距、留白等都使用 vw 作为 CSS 单位
+
+```css
+.mod_nav {
+    background-color: #fff;
+    &_list {
+        display: flex;
+        padding: vw(15) vw(10) vw(10); // 内间距
+        &_item {
+            flex: 1;
+            text-align: center;
+            font-size: vw(10); // 字体大小
+            &_logo {
+                display: block;
+                margin: 0 auto;
+                width: vw(40); // 宽度
+                height: vw(40); // 高度
+                img {
+                    display: block;
+                    margin: 0 auto;
+                    max-width: 100%;
+                }
+            }
+            &_name {
+                margin-top: vw(2);
+            }
+        }
+    }
+}
+```
+
+对于需要保持高宽比的图，应改用 padding-top 实现
+
+```css
+.mod_banner {
+    position: relative;
+    // 使用padding-top 实现宽高比为 100:750 的图片区域
+    padding-top: percentage(100/750);
+    height: 0;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        left: 0;
+        top: 0; 
+    }
+}
+
+```
+由此，我们不需要增加其他任何额外的脚本代码就能够轻易实现一个常见布局的响应式页面，效果如下：
+
+方法 2 - vw 搭配 rem，寻找最优解
+
+```css
+// rem 单位换算：定为 75px 只是方便运算，750px-75px、640-64px、1080px-108px，如此类推
+$vw_fontsize: 75; // iPhone 6尺寸的根元素大小基准值
+@function rem($px) {
+     @return ($px / $vw_fontsize ) * 1rem;
+}
+// 根元素大小使用 vw 单位
+$vw_design: 750;
+html {
+    font-size: ($vw_fontsize / ($vw_design / 2)) * 100vw; 
+    // 同时，通过Media Queries 限制根元素最大最小值
+    @media screen and (max-width: 320px) {
+        font-size: 64px;
+    }
+    @media screen and (min-width: 540px) {
+        font-size: 108px;
+    }
+}
+// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
+body {
+    max-width: 540px;
+    min-width: 320px;
+}
+```
 
 
 
+### 设备像素比
+
+设备像素比device pixel ratio简称dpr，即物理像素和设备独立像素的比值。
+
+物理像素也叫设备像素，设备独立像素也叫逻辑分辨率。一般说的2k屏都是物理像素。苹果6的物理分辨率为750x1334，而逻辑分辨率为375x667。
+
+在web中，浏览器为我们提供了`window.devicePixelRatio`来帮助我们获取dpr。在css中，可以使用媒体查询`min-device-pixel-ratio`，区分dpr。
 
 
 
+### 1像素线边框问题
+
+往往说的1像素边框问题就是如何实现1物理像素的问题。
+
+解决方案1：**transform: scaleY(0.5) 方案**
+
+```css
+div {
+    height:1px;
+    background:#000;
+    -webkit-transform: scaleY(0.5);
+    -webkit-transform-origin:0 0;
+    overflow: hidden;
+}
+```
+
+css根据设备像素比媒体查询后的解决方案
+
+```css
+/* 2倍屏 */
+@media only screen and (-webkit-min-device-pixel-ratio: 2.0) {
+    .border-bottom::after {
+        -webkit-transform: scaleY(0.5);
+        transform: scaleY(0.5);
+    }
+}
+
+/* 3倍屏 */
+@media only screen and (-webkit-min-device-pixel-ratio: 3.0) {
+    .border-bottom::after {
+        -webkit-transform: scaleY(0.33);
+        transform: scaleY(0.33);
+    }
+}
+```
+
+也可以采用下面的形式的封装：
+
+```css
+.mod_grid {
+    position: relative;
+    &::after {
+        // 实现1物理像素的下边框线
+        content: '';
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+        background-color: #ddd;
+        height: 1px;
+        left: 0;
+        right: 0;
+        top: 0;
+        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+            -webkit-transform: scaleY(0.5);
+            -webkit-transform-origin: 50% 0%;
+        }
+    }
+    ...
+}
+```
 
 
 
