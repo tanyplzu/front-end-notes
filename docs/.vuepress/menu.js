@@ -1,17 +1,18 @@
 const getNav = () => {
   return [
-    { text: '首页', link: '/index.html' },
+    { text: '首页', link: '/Introduction' },
     { text: '前端知识点', link: '/FrontEnd/JavaScript/01-JavaScript基础' },
-    // {
-    //   text: '前端知识点',
-    //   ariaLabel: 'Language Menu',
-    //   items: [
-    //     { text: 'JavaScript', link: '/FrontEnd/JavaScript/01-JavaScript基础' },
-    //     { text: '数据结构与算法', link: '/FrontEnd/DSA/DesignPattern' },
-    //     { text: 'Vue', link: '/vue/vue基础/' },
-    //   ]
-    // },
-    { text: 'Vue', link: '/Vue/index' },
+    {
+      text: '前端框架',
+      ariaLabel: 'Language Menu',
+      items: [
+        { text: 'Vue', link: '/Vue/Vue知识点' },
+        { text: 'React', link: '' },
+        { text: 'react Native', link: '' },
+        { text: 'AngularJS', link: '' },
+      ]
+    },
+    // { text: 'Vue', link: '/Vue/index' },
     { text: 'Notes', link: '/Notes/vuepress' }
   ];
 };
@@ -23,19 +24,13 @@ const getSidebar = () => {
         collapsable: true,
         children: [
           'JavaScript/01-JavaScript基础',
+          'JavaScript/01-JavaScript进阶',
           'JavaScript/JavaScript的执行机制',
           'JavaScript/V8'
         ]
       },
       'Html&Css',
       'Network',
-      {
-        title: 'vue基础',
-        collapsable: true,
-        children: [
-          '/Vue/Vue知识点',
-        ]
-      },
       'Webpack',
       'DesignPattern',
       {
@@ -61,7 +56,6 @@ const getSidebar = () => {
       'Vue组件通信',
     ],
     '/Notes/': [
-      ['./', '前端资料'],
       'vuepress',
       'router',
       '密码学',

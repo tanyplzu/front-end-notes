@@ -1,24 +1,23 @@
-## 前端参考资料
+## 前端资料
 
 ### 前端文档
 
+[30 seconds of code](https://30secondsofcode.org/#top)  
 [npm 中文文档](https://www.npmjs.cn/ "npm 中文文档")  
 [ECMAScript 6 入门](http://es6.ruanyifeng.com/)  
 [Typescript 中文指南](https://www.tslang.cn/docs/home.html)  
 [TypeScript 实践](https://juejin.im/post/5a9c004a6fb9a028b92c9e91)  
 [TypeScript体系调研报告](https://juejin.im/post/59c46bc86fb9a00a4636f939)  
 [你不知道的前端SDK开发技巧](https://juejin.im/post/5a278d2a6fb9a044fd11a245)  
-[30 seconds of code](https://30secondsofcode.org/#top)  
 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)  
 
 ### JavaScript基础
 
-[web/fundamentals](https://time.geekbang.org/column/article/116572)  ：浏览器渲染的一些知识，有特别详细的说明
+[Web Fundamentals](https://developers.google.com/web/fundamentals/)
 
+### Vue
 
-
-
-
+[vue-analysis](https://ustbhuangyi.github.io/vue-analysis/)
 
 ### css
 
@@ -53,3 +52,10 @@
 [IEEE754](https://www.h-schmidt.net/FloatConverter/IEEE754.html)  
 [在线正则](https://regexper.com/)  
 [Git Pro Book](https://git-scm.com/book/zh/v2)  
+
+
+---------------
+
+::: tip 说明
+此笔记为个人笔记，笔记中多数例子来源于网络，该只供个人学习使用。
+:::

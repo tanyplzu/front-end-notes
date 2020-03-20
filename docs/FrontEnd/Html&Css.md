@@ -1,44 +1,45 @@
 ---
-title: "Html和Css"
+title: "Html 和 Css"
 sidebarDepth: 2
 ---
 
 ## 目录
+
 [[toc]]
 
-### 如何理解 html 标签语义化？
+### 如何理解 html 标签语义化
 
 html5 新出的标签，每个标签都有自己语义，什么标签做什么事。让人看的懂，也让机器可以看的懂，利于 SEO。
 
-### css 权重是什么？
+### css 权重是什么
 
 - 设置节点样式的方式有很多种，不同的方式它们的权重并不相同，当它们给一个节点设置同一个样式时，谁的权重高谁就生效。
 - important：无限高
-- 行内样式：权重值为1000
-- id选择器：权重值为100
-- 类、伪类、属性选择器：权重值为10
-- 元素选择器：权重值为1
+- 行内样式：权重值为 1000
+- id 选择器：权重值为 100
+- 类、伪类、属性选择器：权重值为 10
+- 元素选择器：权重值为 1
 
-### 盒模型有几种，它们区别是什么？
+### 盒模型有几种，它们区别是什么
 
 - 标准盒模型：设置的宽高只是包括内容区，`content-box`
-- IE盒模型：设置的宽高包含了内边距和边框，`border-box`
-- 使用`box-sizing`属性设置：`border-box`：IE盒模型、`content-box`：标准盒模型。
+- IE 盒模型：设置的宽高包含了内边距和边框，`border-box`
+- 使用`box-sizing`属性设置：`border-box`：IE 盒模型、`content-box`：标准盒模型。
 
-### 什么是 BFC？-------------------
+### 什么是 BFC
 
-块级格式上下文，一句话来说就是让块级元素有块级元素该有的样子，触发`BFC`可以清除浮动、让`margin`不重叠。张鑫旭称"css世界的结界"，主要的作用是会形成一个封闭空间。
+块级格式上下文，一句话来说就是让块级元素有块级元素该有的样子，触发`BFC`可以清除浮动、让`margin`不重叠。张鑫旭称"css 世界的结界"，主要的作用是会形成一个封闭空间。
 
-### 如何触发 BFC？---------------------
+### 如何触发 BFC
 
 - `float`的值不为`none`。
-- `overflow`的值不为 auto、scroll或hidden。
+- `overflow`的值不为 auto、scroll 或 hidden。
 - `display`的值为 table-cell、table-caption 和 inline-block 中的任何一个。
 - `position`的值不为 static 或 releative 中的任何一个。
 
 最佳结界：`overflow`
 
-### 你常用的清除浮动方式是什么？
+### 你常用的清除浮动方式是什么
 
 ```css
 .clear:after, .clear:before {
@@ -50,9 +51,9 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 }
 ```
 
-### em、rem的区别？
+### em、rem 的区别
 
-- `em`：如果父级有设置字体大小，1em就是父级的大小，没有1em等于自身默认的字体大小。
+- `em`：如果父级有设置字体大小，1em 就是父级的大小，没有 1em 等于自身默认的字体大小。
 - `rem`：相对于`html`标签的字体大小。
 
 项目中曾用过的一段代码：
@@ -62,14 +63,14 @@ let clientWidth = document.body.clientWidth >= 600 ? 600 : document.body.clientW
 document.querySelector('html').style.fontSize = (clientWidth / 16) + 'px';
 ```
 
-### 不使用`border`属性画一条`1px`的线？
+### 不使用`border`属性画一条`1px`的线
 
 ```html
 <div style='height: 1px; background: #666; overflow: hidden;'></div>
 <hr size='1'></hr>
 ```
 
-### 定位的方式有哪几种，它们的区别是什么？
+### 定位的方式有哪几种，它们的区别是什么
 
 relative：相较于自身定位，设置的位置相对于自己进行位移。不脱离文档流。
 absolute：相较于最近有定位的父节点定位，设置的位置相较于父节点。会脱离文档流，导致父节点高度塌陷。
@@ -79,7 +80,7 @@ fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱
 
 ![position](./imgs/css-position.jpg)
 
-- 第三个 `<p>` 发生了位置变化，分别向右向下移动了10px；
+- 第三个 `<p>` 发生了位置变化，分别向右向下移动了 10px；
 - 其他的三个`<p>`位置没有发生变化，第四个都没有下移，这一点也很重要。
 
 **relative 会导致自身位置的相对变化，而不会影响其他元素的位置、大小**。这是 relative 的要点之一。还有第二个要点，就是 relative 产生一个新的定位上下文。
@@ -91,7 +92,7 @@ fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱
 - absolute 元素具有“跟随性”。虽然 absolute 元素脱离了文档结构，但是它的位置并没有发生变化，还是老老实实地呆在它原本的位置，因为我们此时没有设置 top、left 的值。
 - absolute 元素会悬浮在页面上方，会遮挡住下方的页面内容。
 
-通过给 absolute元素设置 top、left 值，可自定义其内容，这个都是平时比较常用的了。这里需要注意的是，设置了 top、left 值时，元素是相对于最近的定位上下文来定位的，而不是相对于浏览器定位。
+通过给 absolute 元素设置 top、left 值，可自定义其内容，这个都是平时比较常用的了。这里需要注意的是，设置了 top、left 值时，元素是相对于最近的定位上下文来定位的，而不是相对于浏览器定位。
 
 ### fixed
 
@@ -105,16 +106,16 @@ fixed：相较于当前窗口进行定位，设置的位置相较于窗口。脱
 
 ![position](./imgs/css-position2.jpg)
 
-### 介绍下 flex 布局？
+### 介绍下 flex 布局
 
 主轴方向：水平排列（默认） | 水平反向排列 | 垂直排列 | 垂直反向排列
 flex-direction: row | row-reverse | column | column-reverse;
 
-换行：不换行（默认） | 换行 | 反向换行(第一行在最后面)
+换行：不换行（默认） | 换行 | 反向换行（第一行在最后面）
 flex-wrap: nowrap | wrap | wrap-reverse;
 
-flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap
-flex-flow: `<flex-direction> `|| `<flex-wrap>`;
+flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap
+flex-flow: `<flex-direction>` || `<flex-wrap>`;
 
 主轴对齐方式：起点对齐（默认） | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
 justify-content: flex-start | flex-end | center | space-between | space-around;
@@ -122,26 +123,26 @@ justify-content: flex-start | flex-end | center | space-between | space-around;
 交叉轴对齐方式：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 第一行文字的基线对齐
 align-items: stretch | flex-start | flex-end | center | baseline;
 
-多根轴线对齐方式(说的是多根轴线在竖轴上的分布)：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
+多根轴线对齐方式（说的是多根轴线在竖轴上的分布）：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
 align-content: stretch | flex-start | flex-end | center | space-between | space-around;
 
-### 垂直水平居中的实现方式有哪些？
+### 垂直水平居中的实现方式有哪些
 
-父级设置text-align: center和line-height等同高度。
+父级设置 text-align: center 和 line-height 等同高度。
 
-子节点绝对定位，设置position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);
+子节点绝对定位，设置 position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);
 
-子节点绝对定位，需要设置宽度和高度。设置position: absolute;top:0;left:0;right:0;bottom:0;margin:auto;
+子节点绝对定位，需要设置宽度和高度。设置 position: absolute;top:0;left:0;right:0;bottom:0;margin:auto;
 
-父级设置display: table，子节点设置display:table-cell;text-align:center;vertical-align:middle;
+父级设置 display: table，子节点设置 display:table-cell;text-align:center;vertical-align:middle;
 
 父级设置 display: flex; justify-content:center; align-items:center;
 
-父节点设置display: grid;，子节点设置：align-self:center;justify-self: center;
+父节点设置 display: grid;，子节点设置：align-self:center;justify-self: center;
 
-> 百分比 transform 会让 IOS 微信闪退。需要避免 table 布局，推荐使用 position 和 margin 的组合。（张鑫旭 css 世界202页）
+> 百分比 transform 会让 IOS 微信闪退。需要避免 table 布局，推荐使用 position 和 margin 的组合。（张鑫旭 css 世界 202 页）
 
-### 你知道的左右宽度固定，中间自适应的三栏布局方案有哪些？
+### 左右宽度固定，中间自适应的三栏布局方案有哪些
 
 ```html
 <div class='parent'>
@@ -159,9 +160,9 @@ align-content: stretch | flex-start | flex-end | center | space-between | space-
 .right: {float: right; width: 100px;}
 ```
 
-> 兼容性好，简单；脱离文档流；撑开两边，下面也会变形。创建bfc解决，如overflow: hidden;
+> 兼容性好，简单；脱离文档流；撑开两边，下面也会变形。创建 bfc 解决，如 overflow: hidden;
 
-- 定位1：
+- 定位 1：
 
 ```css
 .parent {postion: relative}
@@ -170,7 +171,7 @@ align-content: stretch | flex-start | flex-end | center | space-between | space-
 .center {position: absolute; left: 100px; right: 100px}
 ```
 
-- 定位2
+- 定位 2
 
 ```css
 .parent {postion: relative}
@@ -203,14 +204,12 @@ align-content: stretch | flex-start | flex-end | center | space-between | space-
 
 ```css
 .parent {
-  display: grid; 
-  width: 100%; 
-  grid-template-rows: 100px; 
+  display: grid;
+  width: 100%;
+  grid-template-rows: 100px;
   grid-template-columns: 100px auto 100px;
 }
 ```
-
-
 
 ### 重绘和回流
 
@@ -218,8 +217,6 @@ align-content: stretch | flex-start | flex-end | center | space-between | space-
 - **回流**：指的是处于文档流中 DOM 的尺寸大小、位置或者某些属性发生变化时，导致浏览器重新渲染部分或全部文档的情况
 
 相比之下，**回流要比重绘消耗性能开支更大**。另外，一些属性的读取也会引起回流，比如读取某个 DOM 的高度和宽度，或者使用 `getComputedStyle` 方法。在写代码的时候要避免回流和重绘。
-
-
 
 ### BEM 命名规范
 
@@ -245,28 +242,27 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 ```
 
 * .block 代表了更高级别的抽象或组件。
-* .block__element 代表.block的后代，用于形成一个完整的.block的整体。
-* .block--modifier代表.block的不同状态或不同版本。一般是外观或行为
-
-
+* .block__element 代表。block 的后代，用于形成一个完整的。block 的整体。
+* .block--modifier 代表。block 的不同状态或不同版本。一般是外观或行为
 
 ## 响应式页面开发
 
-### PageSpeed 
+### PageSpeed
 
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1">
 ```
 
-
-
 ### Media Queries
 
 方法 1，使用 link 标签，根据指定特性引入特定的外部样式文件
+
 ```html
 <link rel="stylesheet" media="(max-width: 640px)" href="max-640px.css">
 ```
+
 方法 2，直接在 style 标签或 样式文件内使用 @media 规则
+
 ```css
 @media (max-width: 640px) {
   /*当视窗宽度小于或等于 640px 时，这里的样式将生效*/
@@ -275,15 +271,13 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 
 常用的样式断点（参考）
 
-| 断点名称   | 断点描述）                           |
-| :--------- | :----------------------------------- |
+| 断点名称    | 断点描述）                         |
+| :--------- | :------------------------------- |
 | mobile     | 移动设备断点，视窗宽度 ≤ 768 px      |
 | tablet     | 平板电脑设备断点，视窗宽度 ≥ 769 px  |
 | desktop    | 桌面电脑断点，视窗宽度 ≥ 1024 px     |
 | widescreen | 宽屏电脑断点，视窗宽度 ≥ 1216 px     |
-| fullhd     | 高清宽屏电脑断点，视窗宽度 ≥ 1408 px |
-
-
+| fullhd     | 高清宽屏电脑断点，视窗宽度 ≥ 1408 px  |
 
 ### 使用 Viewport 单位及 rem
 
@@ -293,7 +287,7 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 
 ```css
 // iPhone 6尺寸作为设计稿基准
-$vw_base: 375; 
+$vw_base: 375;
 @function vw($px) {
     @return ($px / $vm_base) * 100vw;
 }
@@ -344,11 +338,12 @@ $vw_base: 375;
         height: auto;
         position: absolute;
         left: 0;
-        top: 0; 
+        top: 0;
     }
 }
 
 ```
+
 由此，我们不需要增加其他任何额外的脚本代码就能够轻易实现一个常见布局的响应式页面，效果如下：
 
 方法 2 - vw 搭配 rem，寻找最优解
@@ -362,7 +357,7 @@ $vw_fontsize: 75; // iPhone 6尺寸的根元素大小基准值
 // 根元素大小使用 vw 单位
 $vw_design: 750;
 html {
-    font-size: ($vw_fontsize / ($vw_design / 2)) * 100vw; 
+    font-size: ($vw_fontsize / ($vw_design / 2)) * 100vw;
     // 同时，通过Media Queries 限制根元素最大最小值
     @media screen and (max-width: 320px) {
         font-size: 64px;
@@ -378,23 +373,19 @@ body {
 }
 ```
 
-
-
 ### 设备像素比
 
-设备像素比device pixel ratio简称dpr，即物理像素和设备独立像素的比值。
+设备像素比 device pixel ratio 简称 dpr，即物理像素和设备独立像素的比值。
 
-物理像素也叫设备像素，设备独立像素也叫逻辑分辨率。一般说的2k屏都是物理像素。苹果6的物理分辨率为750x1334，而逻辑分辨率为375x667。
+物理像素也叫设备像素，设备独立像素也叫逻辑分辨率。一般说的 2k 屏都是物理像素。苹果 6 的物理分辨率为 750x1334，而逻辑分辨率为 375x667。
 
-在web中，浏览器为我们提供了`window.devicePixelRatio`来帮助我们获取dpr。在css中，可以使用媒体查询`min-device-pixel-ratio`，区分dpr。
+在 web 中，浏览器为我们提供了`window.devicePixelRatio`来帮助我们获取 dpr。在 css 中，可以使用媒体查询`min-device-pixel-ratio`，区分 dpr。
 
+### 1 像素线边框问题
 
+往往说的 1 像素边框问题就是如何实现 1 物理像素的问题。
 
-### 1像素线边框问题
-
-往往说的1像素边框问题就是如何实现1物理像素的问题。
-
-解决方案1：**transform: scaleY(0.5) 方案**
+解决方案 1：**transform: scaleY() 方案**
 
 ```css
 div {
@@ -406,7 +397,7 @@ div {
 }
 ```
 
-css根据设备像素比媒体查询后的解决方案
+css 根据设备像素比媒体查询后的解决方案
 
 ```css
 /* 2倍屏 */
@@ -450,32 +441,3 @@ css根据设备像素比媒体查询后的解决方案
     ...
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
