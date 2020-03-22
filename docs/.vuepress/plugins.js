@@ -10,16 +10,16 @@ module.exports = {
     ['@vuepress/active-header-links', {
       sidebarLinkSelector: '.sidebar-link',
       headerAnchorSelector: '.header-anchor'
-    }]
+    }],
     ['@vuepress/medium-zoom', {
       selector: '.theme-default-content:not(.custom) img',
       options: {
         margin: 30,
-        background: 'rgb(33, 37, 48, 0.9)',
+        background: 'rgba(33, 37, 48, 0.9)',
       }
     }],
     // ['copyright', {
-    //   noCopy: false, // 选中的文字将无法被复制
+    //   noCopy: true, // 选中的文字将无法被复制
     //   minLength: 20, // 如果长度超过 100 个字符
     // }],
   ]

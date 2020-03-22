@@ -103,7 +103,7 @@ sidebarDepth: 2
 
 @click 是自定义事件 click，并不是原生事件 click。绑定原生的 click 是这样的：
 
-```
+```html
 <custom-component @click.native="xxx">内容</custom-component>
 ```
 
@@ -111,7 +111,6 @@ sidebarDepth: 2
 
 > .exact 是 Vue.js 2.5.0 新加的，它允许你控制由精确的系统修饰符组合触发的事件，比如：
 >
-> ```
 > <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
 > <button @click.ctrl="onClick">A</button>
 >
@@ -121,6 +120,7 @@ sidebarDepth: 2
 > <!-- 没有任何系统修饰符被按下的时候才触发 -->
 > <button @click.exact="onClick">A</button>
 > ```
+
 
 你可能还需要了解常用的几个事件修饰符：
 
@@ -279,7 +279,7 @@ export default {
 }
 ```
 
-2. 如果是对 prop 值的转换，可以使用计算属性：
+**2. 如果是对 prop 值的转换，可以使用计算属性：**
 
 ```js
 export default {
@@ -313,11 +313,11 @@ export default {
 
 父向子传递数据是通过 props，子向父是通过 events（$emit）；通过父链 / 子链也可以通信（$parent / $children）；`ref` 也可以访问组件实例；provide / inject API。
 
-2. 兄弟通信：
+**2. 兄弟通信：**
 
 Bus；Vuex；
 
-3. 跨级通信：
+**3. 跨级通信：**
 
 Bus；Vuex；provide / inject API。
 
@@ -415,7 +415,8 @@ Vue.config.errorHandler = function (err, vm, info) {
 
 ### Virtual Dom 的优势在哪里
 
-「Virtual Dom 的优势」其实这道题目面试官更想听到的答案不是上来就说「直接操作/频繁操作 DOM 的性能差」，如果 DOM 操作的性能如此不堪，那么 jQuery 也不至于活到今天。所以面试官更想听到 VDOM 想解决的问题以及为什么频繁的 DOM 操作会性能差。
+「Virtual Dom 的优势」其实这道题目面试官更想听到的答案不是上来就说「直接操作 / 频繁操作 DOM 的性能差」，如果 DOM 操作的性能如此不堪，那么 jQuery 也不至于活到今天。所以面试官更想听到 VDOM 想解决的问题以及为什么频繁的 DOM 操作会性能差。
+
 首先我们需要知道：
 DOM 引擎、JS 引擎 相互独立，但又工作在同一线程（主线程）
 JS 代码调用 DOM API 必须 挂起 JS 引擎、转换传入参数数据、激活 DOM 引擎，DOM 重绘后再转换可能有的返回值，最后激活 JS 引擎并继续执行若有频繁的 DOM API 调用，且浏览器厂商不做“批量处理”优化，
@@ -423,5 +424,5 @@ JS 代码调用 DOM API 必须 挂起 JS 引擎、转换传入参数数据、激
 其次是 VDOM 和真实 DOM 的区别和优化：
 
 - 虚拟 DOM 不会立马进行排版与重绘操作
-= 虚拟 DOM 进行频繁修改，然后一次性比较并修改真实 DOM 中需要改的部分，最后在真实 DOM 中进行排版与重绘，减少过多DOM节点排版与重绘损耗
+- 虚拟 DOM 进行频繁修改，然后一次性比较并修改真实 DOM 中需要改的部分，最后在真实 DOM 中进行排版与重绘，减少过多 DOM 节点排版与重绘损耗
 - 虚拟 DOM 有效降低大面积真实 DOM 的重绘与排版，因为最终与真实 DOM 比较差异，可以只渲染局部

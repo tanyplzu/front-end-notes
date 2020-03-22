@@ -24,8 +24,10 @@ const getSidebar = () => {
         collapsable: true,
         children: [
           'JavaScript/01-JavaScript基础',
+          'JavaScript/02-JavaScript进阶',
           'JavaScript/JavaScript的执行机制',
-          'JavaScript/V8'
+          'JavaScript/V8',
+          'JavaScript/TS'
         ]
       },
       'Html&Css',
@@ -50,9 +52,14 @@ const getSidebar = () => {
       },
     ],
     '/Vue/': [
+      ['./','Vue相关'],
       'Vue知识点',
+      'Vue的启动',
       '响应式原理',
       'Vue组件通信',
+      '插件的注册原理',
+      'Vue路由',
+      'Vue组件',
     ],
     '/Notes/': [
       'vuepress',

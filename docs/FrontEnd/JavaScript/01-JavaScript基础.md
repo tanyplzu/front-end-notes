@@ -11,10 +11,10 @@ sidebarDepth: 2
 
 ### JavaScript 的变量有哪些类型
 
-- 分为两种：基础类型和引用类型。基础类型目前有六种，分别是`boolean`、`null`、`undefined`、`number`、`string`、`symbol`。
+- 分为两种：基础类型和引用类型。基础类型目前有六种，分别是`boolean`、`null`、`undefined`、`number`、`string`、`symbol`、`bigint`
 - 除了以上的基础类型之外，其他就是引用类型了，有`Array`、`Object`、`Function`。
 
-### typeo 和 instanceof 的区别
+### typeof 和 instanceof 的区别
 
 - typeof 对于基础类型除了 null 以外都可以显示正确的类型，对于数组和对象都会显示 object，对于函数会显示 function。
 - instanceof 主要是用来判断引用类型，它的原理是根据原型链来查找。
@@ -232,6 +232,61 @@ function unique(arr) {
 typeof Number('123') // number
 typeof new Number('123') // object
 ```
+
+### JS 精度丢失问题
+
+浮点数的精度丢失不仅仅是js的问题， java 也会出现精度丢失的问题，主要是因为数值在内存是由二进制存储的，而某些值在转换成二进制的时候会出现无限循环，由于位数限制，无限循环的值就会采用“四舍五入法”截取，成为一个计算机内部很接近数字，即使很接近，但是误差已经出现了。
+
+```js
+0.1 + 0.2  = 0.30000000000000004
+// 0.1 转成二进制会无限循环
+// "0.000110011001100110011001100110011001100110011001100..."
+```
+
+那么如何避免这问题呢？解决办法：可在操作前，放大一定的倍数，然后再除以相同的倍数
+
+```js
+(0.1 *100 + 0.2*100) / 100 = 0.3
+```
+
+> js 的 number 采用 64位双精度存储 JS 中能精准表示的最大整数是 Math.pow(2, 53)
+
+推荐一个开源工具 [[number-precision](https://github.com/nefe/number-precision)]
+
+### toFixed 可以做到四舍五入吗
+
+`toFixed` 对于四舍六入没问题，但对于尾数是 `5` 的处理就非常诡异
+
+```js
+// 使用 Math.round 可以四舍五入的特性，把数组放大一定的倍数处理
+function round(number, precision) {
+    return Math.round(+number + 'e' + precision) / Math.pow(10, precision);
+}
+```
+
+原理是，`Math.round` 是可以做到四舍五入的，但是仅限于正整数，那么我们可以放大至保留一位小数，计算完成后再缩小倍数。
+
+### js中不同进制怎么转换
+
+10 进制转其他进制：`Number(val).toString([2,8,10,16])`
+
+其他进制转成10进制：`Number.parseInt("1101110",[2,8,10,16])`
+
+其他进制互转：先将其他进制转成 10 进制，在把 10 进制转成其他进制
+
+### 对js处理二进制有了解吗
+
+ArrayBuffer: 用来表示通用的、固定长度的原始二进制数据缓冲区，作为内存区域，可以存放多种类型的数据，它不能直接读写，只能通过视图来读写。
+
+同一段内存，不同数据有不同的解读方式，这就叫做“视图”（view），视图的作用是以指定格式解读二进制数据。目前有两种视图，一种是 `TypedArray` 视图，另一种是 `DataView` 视图，两者的区别主要是字节序，前者的数组成员都是同一个数据类型，后者的数组成员可以是不同的数据类型。
+
+Blob: 也是存放二进制的容器，通过 `FileReader` 进行转换。
+
+之前有做过简单的总结，大家可以看看：[nodejs 二进制与Buffer](https://juejin.im/post/5d188e1fe51d454fd8057bc9)
+
+毕竟对这块应用的比较少，推荐一篇文章给大家 [二进制数组](http://javascript.ruanyifeng.com/stdlib/arraybuffer.html)
+
+
 
 ## DOM API
 
