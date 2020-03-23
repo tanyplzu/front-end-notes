@@ -11,7 +11,8 @@ sidebarDepth: 2
 
 ### JavaScript 的变量有哪些类型
 
-- 分为两种：基础类型和引用类型。基础类型目前有六种，分别是`boolean`、`null`、`undefined`、`number`、`string`、`symbol`、`bigint`
+- 分为两种：基础类型和引用类型。基础类型目前有六种，
+分别是`boolean`、`null`、`undefined`、`number`、`string`、`symbol`、`bigInt`
 - 除了以上的基础类型之外，其他就是引用类型了，有`Array`、`Object`、`Function`。
 
 ### typeof 和 instanceof 的区别
@@ -305,6 +306,12 @@ Blob: 也是存放二进制的容器，通过 `FileReader` 进行转换。
 1. 事件通过捕获从 window => document => body => 目标元素
 2. 事件到达注册的目标上
 3. 目标元素通过冒泡返回到 window，沿途触发相同类型的事件
+
+### JS 事件的几种绑定方式
+
+- 在 dom 元素中直接绑定，`<div class="an" onclick="aa()">aaaa</div>`
+- js 中绑定 document.getElementById("demo").οnclick=function(){}
+- 添加监听事件 document.addEventListener('name',()=>{})
 
 ### Event 对象常见的应用
 
@@ -743,6 +750,81 @@ dev.addEventListener('click', throttle(function() {
 ```
 
 ## 浏览器渲染
+
+### URL 输入到渲染的过程
+
+1. 域名解析，找到服务地址
+2. 构建 TCP 连接，若有 https，则多一层 TLS 握手，
+3. 特殊响应码处理 301 302
+4. 解析文档
+5. 构建 dom 树和 csscom
+6. 生成渲染树：从DOM树的根节点开始遍历每个可见节点，对于每个可见的节点，找到CSSOM树中对应的规则，并应用它们，根据每个可见节点以及其对应的样式，组合生成渲染树
+7. Layout（回流）：根据生成的渲染树，进行回流（Layout），得到节点的集合信息
+8. Painting（重绘）：根据渲染树及其回流得到的集合信息，得到节点的绝对像素。
+9. 绘制，在页面上展示，这一步还涉及到绘制层级、GPU相关的知识点
+10. 加载js脚本，加载完成解析js脚本
+
+### 触发回流的场景
+
+- 添加或删除可见的DOM元素
+- 元素的位置发生变化
+- 元素的尺寸发生变化（包括外边距、内边框、边框大小、高度和宽度等）
+- 内容发生变化，比如文本变化或图片被另一个不同尺寸的图片所替代。
+- 页面一开始渲染的时候（这肯定避免不了）
+- 浏览器的窗口尺寸变化（因为回流是根据视口的大小来计算元素的位置和大小的）
+- 获取位置信息，因为需要回流计算最新的值
+
+**获取位置信息相关属性**
+- offsetTop offsetLeft offsetWidth offsetHeight 相对于父级容器的偏移量
+- scrollTop scrollLeft scrollWidth scrollHeight 相对于父级容器滚动上去的距离
+- clientTop clientLeft clientWidth clientHeight 元素边框的厚度
+- getComputedStyle()
+- getBoundingClientRect
+
+### 回流的优化
+
+对树的局部甚至全局重新生成是非常耗性能的，所以要避免频繁触发回流
+
+- 现代浏览器已经帮我们做了优化，采用队列存储多次的回流操作，然后批量执行，但获取布局信息例外，因为要获取到实时的数值，浏览器就必须要清空队列，立即执行回流。
+- 编码上，避免连续多次修改，可通过合并修改，一次触发
+- 对于大量不同的 dom 修改，可以先将其脱离文档流，比如使用绝对定位，或者 display:none ，在文档流外修改完成后再放回文档里中
+- 通过节流和防抖控制触发频率
+- css3 硬件加速，transform、opacity、filters，开启后，会新建渲染层
+
+### 开启GPU加速的方法
+
+开启后，会将 dom 元素提升为独立的渲染层，它的变化不会再影响文档流中的布局。
+
+- transform: translateZ(0)
+- opacity
+- filters
+- Will-change
+
+### CSS加载问题
+
+- css加载不会阻塞DOM树的解析;
+- css加载会阻塞DOM树的渲染；
+- css加载会阻塞后面js语句的执行
+
+### 介绍下资源预加载 prefetch/preload async/defer
+
+**prefetch：** 其利用浏览器空闲时间来下载或预取用户在不久的将来可能访问的文档。
+
+```html
+<link href="/js/xx.js" rel="prefetch">
+```
+
+**preload：** 可以指明哪些资源是在页面加载完成后即刻需要的，浏览器在主渲染机制介入前就进行预加载，这一机制使得资源可以更早的得到加载并可用，且更不易阻塞页面的初步渲染，进而提升性能。
+
+```html
+<link href="/js/xxx.js" rel="preload" as="script"> 
+```
+
+**async：** 加载脚本和渲染后续文档元素并行进行，脚本加载完成后，暂停html解析，立即解析js脚本
+
+**defer：** 加载脚本和渲染后续文档元素并行进行，但脚本的执行会等到 html 解析完成后执行
+
+![js异步](./imgs/js_async.jpg)
 
 ## 通信类
 

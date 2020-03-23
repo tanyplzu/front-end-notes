@@ -56,4 +56,10 @@ new Vue({
 不推荐在子组件中修改`props`
 修改组件中`props`的方法
 
-其实.vue文件是Vue局部组件的形式。`vue-loader` 会解析文件，提取每个语言块，如有必要会通过其它 loader 处理，最后将他们组装成一个 ES Module，它的默认导出是一个 Vue.js 组件选项的对象。都是JS。
+其实。vue 文件是 Vue 局部组件的形式。`vue-loader` 会解析文件，提取每个语言块，如有必要会通过其它 loader 处理，最后将他们组装成一个 ES Module，它的默认导出是一个 Vue.js 组件选项的对象。都是 JS。
+
+### vue 可以定义函数式组件么
+
+函数式组件：没有状态 (data)，没有生命周期，只接受传递的 props , 常用于纯 UI 组件
+定义：通过 Vue.component 构建组件时，添加 functional: true; 需要通过调用 render 函数来渲染，常用包裹组建或者构建高阶组件
+对于单文件组件，在 template 上添加 functional `<template functional>`

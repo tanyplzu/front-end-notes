@@ -119,8 +119,10 @@ sidebarDepth: 2
 >
 > <!-- 没有任何系统修饰符被按下的时候才触发 -->
 > <button @click.exact="onClick">A</button>
+>
 > ```
-
+>
+> ```
 
 你可能还需要了解常用的几个事件修饰符：
 
@@ -294,15 +296,6 @@ export default {
 
 如果你能提到 v-model 实现数据的双向绑定、.sync 用法，会大大加分的，这些在第 16 节已经详细介绍过。
 
-### 生命周期
-
-[Vue.js 生命周期](https://cn.vuejs.org/v2/api/#选项-生命周期钩子) 主要有 8 个阶段：
-
-- 创建前 / 后（beforeCreate / created）：在 beforeCreate 阶段，Vue 实例的挂载元素 el 和数据对象 data 都为 undefined，还未初始化。在 created 阶段，Vue 实例的数据对象 data 有了，el 还没有。
-- 载入前 / 后（beforeMount / mounted）：在 beforeMount 阶段，Vue 实例的 $el 和 data 都初始化了，但还是挂载之前为虚拟的 DOM 节点，data 尚未替换。在 mounted 阶段，Vue 实例挂载完成，data 成功渲染。
-- 更新前 / 后（beforeUpdate / updated）：当 data 变化时，会触发 beforeUpdate 和 updated 方法。这两个不常用，且不推荐使用。
-- 销毁前 / 后（beforeDestroy / destroyed）：beforeDestroy 是在 Vue 实例销毁前触发，一般在这里要通过 removeEventListener 解除手动绑定的事件。实例销毁后，触发 destroyed。
-
 ### 组件间通信
 
 本小册一半的篇幅都在讲组件的通信，如果能把这些都吃透，基本上 Vue.js 的面试就稳了。
@@ -341,6 +334,12 @@ Vue.js 文档已经对 [深入响应式原理](https://cn.vuejs.org/v2/guide/rea
 MVVM 模式是由经典的软件架构 MVC 衍生来的。当 View（视图层）变化时，会自动更新到 ViewModel（视图模型），反之亦然。View 和 ViewModel 之间通过双向绑定（data-binding）建立联系。与 MVC 不同的是，它没有 Controller 层，而是演变为 ViewModel。
 
 ViewModel 通过双向数据绑定把 View 层和 Model 层连接了起来，而 View 和 Model 之间的同步工作是由 Vue.js 完成的，我们不需要手动操作 DOM，只需要维护好数据状态。
+
+### vue 有几种构建版本
+
+1. 有生成版本和开发版本的区分；
+2. 完整版和运行时版本的区分，完整版包含编译器（用于生成渲染函数）；
+3. 构建环境的区分，支持 UMD(AMD和commonjs)、commonjs、ES Module(用于构建工具的)、ES Module(用于浏览器的)
 
 ### v-model
 
@@ -426,3 +425,19 @@ JS 代码调用 DOM API 必须 挂起 JS 引擎、转换传入参数数据、激
 - 虚拟 DOM 不会立马进行排版与重绘操作
 - 虚拟 DOM 进行频繁修改，然后一次性比较并修改真实 DOM 中需要改的部分，最后在真实 DOM 中进行排版与重绘，减少过多 DOM 节点排版与重绘损耗
 - 虚拟 DOM 有效降低大面积真实 DOM 的重绘与排版，因为最终与真实 DOM 比较差异，可以只渲染局部
+
+### 虚拟 dom 与直接操作 dom 相比哪个更快
+
+以下是根据尤大在知乎的回答，做的总结：
+
+1. 首先是没有任何一个框架可以比纯手动优化操作 dom 快，因为框架的 dom 操作层需要应对上层 API 可能发生的操作，所以它的实现是普适性的，所以不可能对每个场景做优化，这就是个性能和可维护性的取舍。各大框架可以给到即使不需要手动优化，也可以提供较优秀的性能。
+2. 我们看看两者的重绘性能消耗：
+
+- innerHTML:  render html string O(template size) + 重新创建所有 DOM 元素 O(DOM size)
+- Virtual DOM: render Virtual DOM + diff O(template size) + 必要的 DOM 更新 O(DOM change) render Virtual DOM + diff O 显然比渲染 html string 要慢，但我们知道，这是纯 js 层面的计算相比， 与 DOM 层面的操作的开销相比要小很多。 所以直接操作 dom 的开销就和整个页面相关，而虚拟 dom 的开销就是 js 层面的计算和计算后的 dom 的开销，所以虚拟 dom 就可以保证，不管页面数据变化多少，每次计算后的重绘的性能都在可接受范围内。
+
+1. 因为机制不一样，那么比较的时候就要看场合，比如是大量数据的更新还是小量数据的更新。举个例子，如果一个非常大的列表，数据全都发生了变化，那么直接操作 dom 肯定是更快的，那如果只是其中的几行发生了变化，直接全量替换 dom 的开销可就大了，而虚拟 dom 在计算后，只需要替换个别 dom 即可
+2. 虚拟 dom 提供给开发者的价值不是性能，而是 1. 为函数式的 UI 编程打开大门 2. 扩展性强，可以渲染到 DOM 意外的其他平台
+3. 那如果开发中遇到特殊的情况导致虚拟 dom 的更新效率不满足，那么可以牺牲一定的维护性来自己手动进行优化
+
+参考文档： [www.zhihu.com/question/31…](https://www.zhihu.com/question/31809713/answer/53544875)
