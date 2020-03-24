@@ -1,6 +1,6 @@
 ---
-title: "Nest.js 入门"
-sidebarDepth: 1
+title: "- Nest.js 入门"
+sidebarDepth: 2
 ---
 
 ### 目录

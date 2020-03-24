@@ -16,6 +16,10 @@
 - [Web Fundamentals](https://developers.google.com/web/fundamentals/)
 - [cookie和session](https://github.com/mqyqingfeng/Blog/issues/157)
 - [CommonJS规范](https://javascript.ruanyifeng.com/nodejs/module.html#toc2)
+- [浏览器的 Event Loop](https://mp.weixin.qq.com/s/N5G3RKTkEG4CMtOwBWkm3g)
+- [从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理](https://juejin.im/post/5a6547d0f265da3e283a1df7#heading-11)
+- [浏览器和NodeJS中不同的Event Loop](https://github.com/kaola-fed/blog/issues/234#phase)
+- [谈谈观察者模式和发布订阅模式](https://juejin.im/post/5bb1bb616fb9a05d2b6dccfa)
 
 ### Vue
 

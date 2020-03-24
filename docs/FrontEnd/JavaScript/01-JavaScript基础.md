@@ -677,6 +677,8 @@ this 表示为当前的函数调用方，在运行时才能决定。如谁调用
 
 ### 谈谈对闭包的理解
 
+
+
 ## 页面循环系统
 
 ### 函数防抖和节流的区别
@@ -748,6 +750,22 @@ dev.addEventListener('click', throttle(function() {
   // 执行事件
 }))
 ```
+
+### 浏览器的 Event Loop
+
+3 个异步队列是:
+
+- Tasks (in `setTimeout`)
+- Animation callbacks (in `requestAnimationFrame`)
+- Microtasks (in `Promise.then`)
+
+他们的执行特点是：
+
+- Tasks 只执行一个。执行完了就进入主进程，主进程可能决定进入其他两个异步队列，也可能自己执行到空了再回来。 补充：对于“只执行一个”的理解，可以考虑设置 2 个相同时间的 `timeout`，两个并不会一起执行，而依然是分批的。
+- Animation callbacks 执行队列里的全部任务，但如果任务本身又新增 Animation callback 就不会当场执行了，因为那是下一个循环补充：同 Tasks，可以考虑连续调用两句 `requestAnimationFrame`，它们会在同一次事件循环内执行，有别于 Tasks
+- Microtasks 直接执行到空队列才继续。因此如果任务本身又新增 Microtasks，也会一直执行下去。所以上面的例子才会产生阻塞。 补充：因为是当次执行，因此如果既设置了 `setTimeout(0)` 又设置了 `Promise.then()`，优先执行 Microtasks。
+
+> 连接：[浏览器的 Event Loop](https://mp.weixin.qq.com/s/N5G3RKTkEG4CMtOwBWkm3g)
 
 ## 浏览器渲染
 
@@ -913,6 +931,12 @@ fetch('/some/url/', {
   // 出错了，等价于 then 的第二个参数，但这样更好用更直观
 });
 ```
+
+### document.domain
+
+该方式只能用于**二级域名相同**的情况下，比如 `a.test.com` 和 `b.test.com` 适用于该方式。
+
+只需要给页面添加 `document.domain = 'test.com'` 表示二级域名都相同就可以实现跨域
 
 ### cookie 和 session 分别是什么
 
