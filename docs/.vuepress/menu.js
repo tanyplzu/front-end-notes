@@ -66,7 +66,7 @@ const getSidebar = () => {
       'router',
       '密码学',
       {
-        title: '文档：',
+        title: '文档1：',
         collapsable: false,
         children: [
           'docs1/对象静态方法总结分享',
@@ -74,14 +74,9 @@ const getSidebar = () => {
           'docs1/array',
           'docs1/数组操作方法',
           'docs1/javascript-regexp',
-          'docs1/跨域',
-          'docs1/axios',
-          'docs1/XMLHttpRequest',
-          'docs1/事件',
           'docs1/RN踩坑',
           'docs1/RN开发踩坑',
           'docs1/Vue虚拟DOM和渲染流程',
-          'docs1/adb',
         ]
       }
     ],
