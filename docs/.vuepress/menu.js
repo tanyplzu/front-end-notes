@@ -74,8 +74,6 @@ const getSidebar = () => {
           'docs1/array',
           'docs1/数组操作方法',
           'docs1/javascript-regexp',
-          'docs1/RN踩坑',
-          'docs1/RN开发踩坑',
           'docs1/Vue虚拟DOM和渲染流程',
         ]
       }

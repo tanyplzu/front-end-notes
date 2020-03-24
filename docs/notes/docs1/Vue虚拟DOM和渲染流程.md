@@ -8,38 +8,39 @@ VNode 其实是对真实 DOM 的一种抽象描述，它的核心包括标签名
 
 下面是 Vnode 的结构：
 
-```
-	  tag: string | void;
-    data: VNodeData | void;
-    children: ?Array<VNode>;
-    text: string | void;
-    elm: Node | void;
-    ns: string | void;
-    context: Component | void; // rendered in this component's scope
-    key: string | number | void;
-    componentOptions: VNodeComponentOptions | void;
-    componentInstance: Component | void; // component instance
-    parent: VNode | void; // component placeholder node
+```ts
+{
+  tag: string | void;
+  data: VNodeData | void;
+  children: ?Array<VNode>;
+  text: string | void;
+  elm: Node | void;
+  ns: string | void;
+  context: Component | void; // rendered in this component's scope
+  key: string | number | void;
+  componentOptions: VNodeComponentOptions | void;
+  componentInstance: Component | void; // component instance
+  parent: VNode | void; // component placeholder node
 
-    raw: boolean; // contains raw HTML? (server only)
-    isStatic: boolean; // hoisted static node
-    isRootInsert: boolean; // necessary for enter transition check
-    isComment: boolean; // empty comment placeholder?
-    isCloned: boolean; // is a cloned node?
-    isOnce: boolean; // is a v-once node?
-    asyncFactory: Function | void; // async component factory function
-    asyncMeta: Object | void;
-    isAsyncPlaceholder: boolean;
-    ssrContext: Object | void;
-    fnContext: Component | void; // real context vm for functional nodes
-    fnOptions: ?ComponentOptions; // for SSR caching
-    devtoolsMeta: ?Object; // used to store functional render context for devtools
-    fnScopeId: ?string; // functional scope id support
+  raw: boolean; // contains raw HTML? (server only)
+  isStatic: boolean; // hoisted static node
+  isRootInsert: boolean; // necessary for enter transition check
+  isComment: boolean; // empty comment placeholder?
+  isCloned: boolean; // is a cloned node?
+  isOnce: boolean; // is a v-once node?
+  asyncFactory: Function | void; // async component factory function
+  asyncMeta: Object | void;
+  isAsyncPlaceholder: boolean;
+  ssrContext: Object | void;
+  fnContext: Component | void; // real context vm for functional nodes
+  fnOptions: ?ComponentOptions; // for SSR caching
+  devtoolsMeta: ?Object; // used to store functional render context for devtools
+  fnScopeId: ?string; // functional scope id support
+}
 ```
 
 ### VNode 生成及渲染流程
 
-![](file:///C:/Users/Administrator/Desktop/%E5%93%8D%E5%BA%94%E5%BC%8F/img/liuchengtu.png)
 
 #### VNode 的生成
 
@@ -50,41 +51,41 @@ VNode 其实是对真实 DOM 的一种抽象描述，它的核心包括标签名
 一种是在 new Vue 实例的时候传入 render() 方法；
 
 ```js
-    new Vue({
-	  el: '#app',
-	  router,
-	  components: { App },
-	  render(createElement) {
-	    return createElement('div', [
-	      'div'
-	    ])
-	  },
-	})
+new Vue({
+  el: '#app',
+  router,
+  components: { App },
+  render(createElement) {
+    return createElement('div', [
+      'div'
+    ])
+  },
+})
 ```
 
 另一种是 compiler 会根据传入的 template 自动生成
 
-```
-    <template>
-	    <div class="box">
-	      <p>...</p>
-	    </div>
-	</template>
-	<script>
-	 // ...
-	</script>
+```vue
+<template>
+  <div class="box">
+    <p>...</p>
+  </div>
+</template>
+<script>
+// ...
+</script>
 ```
 
 或者是
 
-```
-	<script>
-	  export default {
-		template: `
-		  <div>...</div>
-		`
-	  }
-	</script>
+```vue
+<script>
+  export default {
+  template: `
+    <div>...</div>
+  `
+  }
+</script>
 ```
 
 需要注意的是，这两种方式是有优先级的：el < template < render。只有 el 的时候，会直接渲染 el 里面的内容，只有 template 或者只有 render 是不行的，Vue 并不知道要把结果渲染在什么地方，需要配合 el 或者 手动挂载（$mount）时指定位置。如果 el 中有内容，但又存在 template 或者 render 的时候，会按优先级进行覆盖。（在 Vue 的单文件组件下，会优先判断有没有 `<template>` 标签，如果有会选择优先编译 `<template>` 生成  	`render` 函数。）
@@ -110,30 +111,30 @@ VNode 其实是对真实 DOM 的一种抽象描述，它的核心包括标签名
 
 相似节点的判断如下：
 
-```
-    function sameVnode (a, b) {
-      return (
-	    a.key === b.key && (
-	      (
-	    a.tag === b.tag &&
-	    a.isComment === b.isComment &&
-	    isDef(a.data) === isDef(b.data) &&
-	    sameInputType(a, b)
-	      ) || (
-	    isTrue(a.isAsyncPlaceholder) &&
-	    a.asyncFactory === b.asyncFactory &&
-	    isUndef(b.asyncFactory.error)
-	      )
-	    )
-      )
-    }
+```js
+function sameVnode (a, b) {
+  return (
+  a.key === b.key && (
+    (
+  a.tag === b.tag &&
+  a.isComment === b.isComment &&
+  isDef(a.data) === isDef(b.data) &&
+  sameInputType(a, b)
+    ) || (
+  isTrue(a.isAsyncPlaceholder) &&
+  a.asyncFactory === b.asyncFactory &&
+  isUndef(b.asyncFactory.error)
+    )
+  )
+  )
+}
 ```
 
 ### patchVnode
 
 `patchVnode`在比较两个节点时候，大致把 VNode 分为 3 类：普通文本 VNode，存在 children 的 VNode，不存在 children 的 VNode。多种 if else 情况用表格总结为：
 
-```
+```html
 <table>
     <tr>
         <th></th>
@@ -176,7 +177,7 @@ VNode 其实是对真实 DOM 的一种抽象描述，它的核心包括标签名
 
 因为子节点是数组类型，所以需要循环更新，在比较的过程中，指针位置会往中间靠，循环结束的条件是：
 
-    oldStartIdx > oldEndIdx || newStartIdx > newEndIdx
+oldStartIdx > oldEndIdx || newStartIdx > newEndIdx
 
 ### 项目中渲染相关的问题
 
@@ -188,16 +189,16 @@ VNode 其实是对真实 DOM 的一种抽象描述，它的核心包括标签名
 
 有些时候，需要在列表渲染的时候按条件显示数据。例如
 
-```
-    <ul>
-	  <li
-	    v-for="user in users"
-	    v-if="!user.disabled"
-	    :key="user.id"
-	  >
-	    {{ user.name }}
-	  </li>
-	</ul>
+```html
+<ul>
+  <li
+    v-for="user in users"
+    v-if="!user.disabled"
+    :key="user.id"
+  >
+    {{ user.name }}
+  </li>
+</ul>
 ```
 
 从性能上来讲，这样其实是不太好的，当数据发生变化的需要重新渲染的时候，也会遍历整个列表。但是如果把`users`通过一个计算属性返回，这样会显得更高效。这样每次重新渲染的时候只用遍历当前计算属性中的数据就可以了。
