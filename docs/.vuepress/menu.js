@@ -9,7 +9,7 @@ const getNav = () => {
         { text: 'Vue', link: '/Vue/Vue知识点' },
         { text: 'React', link: '' },
         { text: 'react Native', link: '' },
-        { text: 'AngularJS', link: '' },
+        { text: 'AngularJS', link: '/AngularJS/Scope和Digest' },
       ]
     },
     // { text: 'Vue', link: '/Vue/index' },
@@ -52,7 +52,7 @@ const getSidebar = () => {
       },
     ],
     '/Vue/': [
-      ['./','Vue相关'],
+      ['./', 'Vue相关'],
       'Vue知识点',
       'Vue的启动',
       '响应式原理',
@@ -65,6 +65,21 @@ const getSidebar = () => {
       'vuepress',
       'router',
       '密码学',
+      {
+        title: '文档：',
+        collapsable: false,
+        children: [
+          'docs1/对象静态方法总结分享',
+          'docs1/数字',
+          'docs1/array',
+          'docs1/数组操作方法',
+        ]
+      }
+    ],
+    '/AngularJS/': [
+      'Scope和Digest',
+      '指令',
+      'parse和eval'
     ],
   };
 };

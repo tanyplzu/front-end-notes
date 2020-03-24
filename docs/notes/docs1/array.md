@@ -34,11 +34,7 @@ while (ary.some(Array.isArray)) {
 }
 ```
 
-
-
-
-
-concat的使用：
+concat 的使用：
 
 例子：[1], [2, 3], 4] -> [1, 2, 3, 4]
 
@@ -69,7 +65,7 @@ const chunk = (arr, size) =>
   );
 ```
 
-创建一个长为100的数组
+创建一个长为 100 的数组
 
 ```js
 Array.from({ length:100})
@@ -81,20 +77,16 @@ a.length=100;
 // (100) [empty × 100]
 ```
 
-
-
 ```js
 const initializeArrayWithValues = (n, val = 0) => Array(n).fill(val);
 initializeArrayWithValues(5, 2); // [2, 2, 2, 2, 2]
 ```
 
-
-
 empty:  **空语句**用来表明没有语句，尽管 JavaScript 语法希望有语句。
 
 ```js
 const compact = arr => arr.filter(Boolean);
-compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34]); 
+compact([0, 1, false, 2, '', 3, 'a', 'e' * 23, NaN, 's', 34]);
 // [ 1, 2, 3, 'a', 's', 34 ]
 ```
 
@@ -154,17 +146,15 @@ const partition = (arr, fn) => arr.reduce( (acc, val, i, arr) => {
     [[], []]
   );
 const users = [{ user: 'barney', age: 36, active: false }, { user: 'fred', age: 40, active: true }];
-partition(users, o => o.active); 
+partition(users, o => o.active);
 // [[{ 'user': 'fred', 'age': 40, 'active': true }],[{ 'user': 'barney',  'age': 36, 'active': false }]]
 ```
 
-reduce之所以强大，一是可以记录他前一步的值，二是可以不用重新定义变量，三是可以初始化多个变量，四是具有遍历器的各种特性
+reduce 之所以强大，一是可以记录他前一步的值，二是可以不用重新定义变量，三是可以初始化多个变量，四是具有遍历器的各种特性
 
 ```
 [...'asdas'] //["a", "s", "d", "a", "s"]
 ```
-
-
 
 ```
 null >>> 0  //0
@@ -180,8 +170,6 @@ var a = {}; a >>> 0  //0
 -1 >>> 0  //4294967295
 -1212 >>> 0  //4294966084
 ```
-
-
 
 ## 能不能实现一个 call/apply 函数？
 
@@ -205,7 +193,7 @@ Function.prototype.call = function (context) {
 }
 ```
 
-不过我认为换成 ES6 的语法会更精炼一些:
+不过我认为换成 ES6 的语法会更精炼一些：
 
 ```js
 Function.prototype.call = function (context, ...args) {
@@ -220,7 +208,7 @@ Function.prototype.call = function (context, ...args) {
 }
 ```
 
-类似的，有apply的对应实现:
+类似的，有 apply 的对应实现：
 
 ```js
 Function.prototype.apply = function (context, args) {
@@ -232,24 +220,3 @@ Function.prototype.apply = function (context, args) {
   return result;
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
