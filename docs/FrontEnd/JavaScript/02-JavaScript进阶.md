@@ -1,9 +1,8 @@
 ---
-title: "- JavaScript 进阶"
 sidebarDepth: 2
 ---
 
-## 目录
+# JavaScript 进阶
 
 [[toc]]
 

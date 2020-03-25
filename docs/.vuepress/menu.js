@@ -53,7 +53,7 @@ const getSidebar = () => {
     ],
     '/Vue/': [
       ['./', 'Vue相关'],
-      'Vue知识点',
+      ['Vue知识点', 'Vue 知识点'],
       'Vue的启动',
       '响应式原理',
       'Vue组件通信',
@@ -75,6 +75,13 @@ const getSidebar = () => {
           'docs1/数组操作方法',
           'docs1/javascript-regexp',
           'docs1/Vue虚拟DOM和渲染流程',
+        ]
+      },
+      {
+        title: '文档2：',
+        collapsable: false,
+        children: [
+          'docs2/面向对象01',
         ]
       }
     ],

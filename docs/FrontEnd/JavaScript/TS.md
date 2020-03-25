@@ -1,9 +1,4 @@
----
-title: "- TS 基础"
-sidebarDepth: 2
----
-
-## 目录
+# TS 基础
 
 [[toc]]
 

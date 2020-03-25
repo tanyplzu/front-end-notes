@@ -1,11 +1,8 @@
----
-title: "Html 和 Css"
-sidebarDepth: 2
----
-
-## 目录
+# Html 和 Css
 
 [[toc]]
+
+## 基础知识
 
 ### 如何理解 html 标签语义化
 
@@ -107,37 +104,43 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 
 ### 介绍下 flex 布局
 
-主轴方向：水平排列（默认） | 水平反向排列 | 垂直排列 | 垂直反向排列
+#### 父级属性
+
+**主轴方向：** 水平排列（默认） | 水平反向排列 | 垂直排列 | 垂直反向排列
 flex-direction: row | row-reverse | column | column-reverse;
 
-换行：不换行（默认） | 换行 | 反向换行（第一行在最后面）
+**换行：** 不换行（默认） | 换行 | 反向换行（第一行在最后面）
 flex-wrap: nowrap | wrap | wrap-reverse;
 
-flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap
+**flex-flow：** flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap
 flex-flow: `<flex-direction>` || `<flex-wrap>`;
 
-主轴对齐方式：起点对齐（默认） | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
+**主轴对齐方式：** 起点对齐（默认） | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
 justify-content: flex-start | flex-end | center | space-between | space-around;
 
-交叉轴对齐方式：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 第一行文字的基线对齐
+**交叉轴对齐方式：** 拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 第一行文字的基线对齐
 align-items: stretch | flex-start | flex-end | center | baseline;
 
-多根轴线对齐方式（说的是多根轴线在竖轴上的分布）：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
+**多根轴线对齐方式（说的是多根轴线在竖轴上的分布）**：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
 align-content: stretch | flex-start | flex-end | center | space-between | space-around;
+
+#### 子级属性
+
+- order：项目的排列顺序。数值越小，排列越靠前，默认为0。
+- flex-grow：项目的放大比例，默认为`0`，即如果存在剩余空间，也不放大。
+- flex-shrink：项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+- flex-basis：在分配多余空间之前，项目占据的主轴空间。
+- flex：是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
+- align-self：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性
 
 ### 垂直水平居中的实现方式有哪些
 
-父级设置 text-align: center 和 line-height 等同高度。
-
-子节点绝对定位，设置 position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);
-
-子节点绝对定位，需要设置宽度和高度。设置 position: absolute;top:0;left:0;right:0;bottom:0;margin:auto;
-
-父级设置 display: table，子节点设置 display:table-cell;text-align:center;vertical-align:middle;
-
-父级设置 display: flex; justify-content:center; align-items:center;
-
-父节点设置 display: grid;，子节点设置：align-self:center;justify-self: center;
+- 父级设置 text-align: center 和 line-height 等同高度。
+- 子节点绝对定位，设置 position: absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);
+- 子节点绝对定位，需要设置宽度和高度。设置 position: absolute; top:0; left:0; right:0; bottom:0; margin:auto;
+- 父级设置 display: table，子节点设置 display:table-cell;text-align:center;vertical-align:middle;
+- 父级设置 display: flex; justify-content:center; align-items:center;
+- 父节点设置 display: grid;，子节点设置：align-self:center;justify-self: center;
 
 > 百分比 transform 会让 IOS 微信闪退。需要避免 table 布局，推荐使用 position 和 margin 的组合。（张鑫旭 css 世界 202 页）
 

@@ -1,9 +1,4 @@
----
-title: "- JavaScript 基础"
-sidebarDepth: 2
----
-
-## 目录
+# JavaScript 基础知识
 
 [[toc]]
 

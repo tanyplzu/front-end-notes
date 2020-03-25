@@ -20,10 +20,14 @@
 - [从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理](https://juejin.im/post/5a6547d0f265da3e283a1df7#heading-11)
 - [浏览器和NodeJS中不同的Event Loop](https://github.com/kaola-fed/blog/issues/234#phase)
 - [谈谈观察者模式和发布订阅模式](https://juejin.im/post/5bb1bb616fb9a05d2b6dccfa)
+- [Jake Archibald: In The Loop - JSConf.Asia 2018](https://www.youtube.com/watch?reload=9&v=cCOL7MC4Pl0&feature=youtu.be)
+- [https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context](https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context)
+- [https://html.spec.whatwg.org/#event-loop-processing-model](https://html.spec.whatwg.org/#event-loop-processing-model)
 
 ### Vue
 
 - [vue-analysis](https://ustbhuangyi.github.io/vue-analysis/)
+- [组件](http://hcysun.me/vue-design/zh/essence-of-comp.html)
 
 ### css
 

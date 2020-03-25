@@ -1,13 +1,8 @@
----
-title: "设计模式"
-sidebarDepth: 3
----
-
-### 目录
+# 设计模式
 
 [[toc]]
 
-### 设计原则
+## 设计原则
 
 - 单一职责原则（Single Responsibility Principle）
 - 开放封闭原则（Opened Closed Principle）
@@ -15,13 +10,13 @@ sidebarDepth: 3
 - 接口隔离原则（Interface Segregation Principle）
 - 依赖反转原则（Dependency Inversion Principle）
 
-### 设计模式的分类
+## 设计模式的分类
 
 - 创建型模式，共五种：工厂方法模式、抽象工厂模式、单例模式、建造者模式、原型模式。
 - 结构型模式，共七种：适配器模式、装饰器模式、代理模式、外观模式、桥接模式、组合模式、享元模式。
 - 行为型模式，共十一种：策略模式、模板方法模式、观察者模式、迭代子模式、责任链模式、命令模式、备忘录模式、状态模式、访问者模式、中介者模
 
-### 工厂模式
+## 工厂模式
 
 主要作用就是把创建对象的过程进行更进一层的封装，相同的部分进行提取，不同的地方传递参数即可。
 
@@ -69,7 +64,7 @@ export function createComponent (
 
 在上述代码中，我们可以看到我们只需要调用 `createComponent` 传入参数就能创建一个组件实例，但是创建这个实例是很复杂的一个过程，工厂帮助我们隐藏了这个复杂的过程，只需要一句代码调用就能实现功能。
 
-### 单例模式
+## 单例模式
 
 单例模式很常用，比如全局缓存、全局状态管理等等这些只需要一个对象，就可以使用单例模式。
 
@@ -114,7 +109,7 @@ SingleDog.getInstance = (function() {
 
 应用 Vuex
 
-### 实现一个全局唯一的模态框
+## 实现一个全局唯一的模态框
 
 ```html
 <!DOCTYPE html>
@@ -162,14 +157,63 @@ SingleDog.getInstance = (function() {
 </html>
 ```
 
-### 观察者模式和发布订阅模式的区别
+## 观察者模式和发布订阅模式的区别
 
 - 如果发布者直接触及到订阅者，就可以说明是观察者模式；
 - 如果发布者不直接触及到订阅者，而是由第三方来完成实际的通信操作，就叫做发布 - 订阅模式。
 - 简单来说，它们就是解耦的程度不同，vue 内的自定义事件的 Event Emitter，发布者完全不用感知到订阅者，事件的注册和触发都发生在事件总线上，实现了完全的解耦。
 - 而 Dep 和 Watcher 就是观察者模式，Dep 直接 add 以及 notify 触发 watcher 的更新。
 
-### 策略模式
+下面是一个观察者模式
+
+```js
+// 主题，接收状态变化，触发每个观察者
+class Subject {
+    constructor() {
+        this.state = 0
+        this.observers = []
+    }
+    getState() {
+        return this.state
+    }
+    setState(state) {
+        this.state = state
+        this.notifyAllObservers()
+    }
+    attach(observer) {
+        this.observers.push(observer)
+    }
+    notifyAllObservers() {
+        this.observers.forEach(observer => {
+            observer.update()
+        })
+    }
+}
+
+// 观察者，等待被触发
+class Observer {
+    constructor(name, subject) {
+        this.name = name
+        this.subject = subject
+        this.subject.attach(this)
+    }
+    update() {
+        console.log(`${this.name} update, state: ${this.subject.getState()}`)
+    }
+}
+
+// 测试代码
+let s = new Subject()
+let o1 = new Observer('o1', s)
+let o2 = new Observer('o2', s)
+let o3 = new Observer('o3', s)
+
+s.setState(1)
+s.setState(2)
+s.setState(3)
+```
+
+## 策略模式
 
 >需求：
 >
@@ -221,7 +265,7 @@ priceProcessor.newUser = function (originPrice) {
 }
 ```
 
-### 迭代器模式
+## 迭代器模式
 
 - ES6 对迭代器的实现
 
@@ -250,7 +294,7 @@ iterator.next()
 
 > 有迭代器属性的是有序集合，object 是无序的，没有迭代器属性；map 是有序列表
 
-### 装饰器
+## 装饰器
 
 ES7 装饰器
 
@@ -304,9 +348,9 @@ button.onClick()
 
 > 装饰器不能用于函数
 
-### 代理模式
+## 代理模式
 
-**事件代理：**
+**事件代理（事件委托）：**
 
 用代理模式实现多个子元素的事件监听，代码会简单很多：
 
@@ -317,7 +361,7 @@ const father = document.getElementById('father')
 // 给父元素安装一次监听函数
 father.addEventListener('click', function(e) {
     // 识别是否是目标子元素
-    if(e.target.tagName === 'A') {
+    if(e.target && e.target.tagName === 'A') {
         // 以下是监听函数的函数体
         e.preventDefault()
         alert(`我是${e.target.innerText}`)
@@ -367,18 +411,15 @@ class ProxyImage {
 }
 ```
 
-### 适配器
+## 适配器
 
 经典例子：axios
 
 所有关于 http 模块、关于 xhr 的实现细节，全部被 Adapter 封装进了自己复杂的底层逻辑里，暴露给用户的都是十分简单的统一的东西——统一的接口，统一的入参，统一的出参，统一的规则。
 
-### 学习设计模式
+## 学习设计模式
 
 - 应对面试中的设计模式相关问题
-
 - 告别写被人吐槽的烂代码
-
 - 提高复杂代码的设计和开发能力
-
 - 让读源码、学框架事半功倍

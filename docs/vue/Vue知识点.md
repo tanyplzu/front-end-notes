@@ -1,9 +1,8 @@
 ---
-title: "vue 知识点"
-sidebarDepth: 2
+sidebarDepth: 4
 ---
 
-## 目录
+# Vue 知识点
 
 [[toc]]
 
