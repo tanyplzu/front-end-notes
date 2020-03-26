@@ -1,4 +1,4 @@
-## 前端资料
+# 前端资料
 
 ### 前端文档
 
@@ -28,6 +28,10 @@
 
 - [vue-analysis](https://ustbhuangyi.github.io/vue-analysis/)
 - [组件](http://hcysun.me/vue-design/zh/essence-of-comp.html)
+- [inferno](https://github.com/infernojs/inferno)
+- [diff](https://neil.fraser.name/writing/diff/)
+- [AST](https://mp.weixin.qq.com/s/fH2xYo_Bad0mgvo0OdYRZQ)
+- [snabbdom](https://github.com/snabbdom/snabbdom)
 
 ### css
 
@@ -36,6 +40,8 @@
 ### 博客
 
 - [阮一峰的网络日志](http://www.ruanyifeng.com/blog/javascript/)
+- [神三元](https://juejin.im/user/5c45ddf06fb9a04a006f5491/posts)
+- [木易杨说](https://juejin.im/user/56dea4aa7664bf00559f002d/posts)
 
 ### 趋势
 
@@ -56,6 +62,10 @@
 - [深入理解 React 高阶组件](https://zhuanlan.zhihu.com/p/24776678)
 - [精读《React Hooks》](https://zhuanlan.zhihu.com/p/49408348)
 - [React Context 的理解以及应用](https://juejin.im/post/5a90e0545188257a63112977)
+
+### 前端工具
+
+- [玩转 webpack，使你的打包速度提升 90%](https://juejin.im/post/5e53dbbc518825494905c45f)
 
 ### 在线工具
 

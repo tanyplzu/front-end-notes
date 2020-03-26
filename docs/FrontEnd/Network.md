@@ -20,7 +20,7 @@ TCP（Transmission Control Protocol，传输控制协议）是一种面向连接
 
 虽然 HTTP/2 解决了应用层面的队头阻塞问题，不过和 HTTP/1.1 一样，HTTP/2 依然是基于 TCP 协议的，而 TCP 最初就是为了单连接而设计的。你可以把 TCP 连接看成是两台计算机之前的一个虚拟管道，计算机的一端将要传输的数据按照顺序放入管道，最终数据会以相同的顺序出现在管道的另外一头。
 
-<img src="./imgs/http_tcp.png" alt="http-1" style="zoom:60%;" />
+<img src="./imgs/http_tcp.png" alt="http-1"/>
 
 从一端发送给另外一端的数据会被拆分为一个个按照顺序排列的数据包，这些数据包通过网络传输到了接收端，接收端再按照顺序将这些数据包组合成原始数据，这样就完成了数据传输。
 
@@ -107,11 +107,11 @@ HTTP/1.1 的请求头中增加了 Host 字段，用来表示当前的域名地�
 
 在 HTTP/1 中，因为队头阻塞的原因，你会发现发送请求是长这样的
 
-<img src="./imgs/http-1.jpg" alt="http-1" style="zoom:50%;" />
+<img src="./imgs/http-1.jpg" alt="http-1"/>
 
 在 HTTP/2 中，因为可以复用同一个 TCP 连接，你会发现发送请求是长这样的
 
-<img src="./imgs/http-2.jpg" alt="http-1" style="zoom:50%;" />
+<img src="./imgs/http-2.jpg" alt="http-1"/>
 
 #### 1. 多路复用
 
@@ -129,7 +129,7 @@ HTTP/2 中所有加强性能的核心点在于此。在之前的 HTTP 版本中�
 
 数据经过二进制分帧层处理之后，会被转换为一个个带有请求 ID 编号的帧，通过协议栈将这些帧发送给服务器。反向也是如此。
 
-<img src="./imgs/http_二级制分帧.jpg" alt="http_二级制分帧" style="zoom: 33%;" />
+<img src="./imgs/http_二级制分帧.jpg" alt="http_二级制分帧"/>
 
 #### 3.Header 压缩
 
@@ -157,7 +157,7 @@ HTTP/3 中的 QUIC 协议集合了以下几点功能：
 
 **实现了 HTTP/2 中的多路复用功能。**和 TCP 不同，QUIC 实现了在同一物理连接上可以有多个独立的逻辑数据流（如下图）。实现了数据流的单独传输，就解决了 TCP 中队头阻塞的问题。
 
-<img src="./imgs/http_QUIC.png" alt="http_二级制分帧" style="zoom: 50%;" />
+<img src="./imgs/http_QUIC.png" alt="http_二级制分帧" />
 
 **实现了快速握手功能。**由于 QUIC 是基于 UDP 的，所以 QUIC 可以实现使用 0-RTT 或者 1-RTT 来建立连接，这意味着 QUIC 可以用最快的速度来发送和接收数据，这样可以大大提升首次打开页面的速度。
 

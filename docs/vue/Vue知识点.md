@@ -1,7 +1,3 @@
----
-sidebarDepth: 4
----
-
 # Vue 知识点
 
 [[toc]]
