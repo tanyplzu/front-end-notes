@@ -1,0 +1,297 @@
+# 前端响应式和 vue 响应式原理
+
+## 一、前端响应式
+
+### 1.命令式和声明式
+
+命令式：大部分编程语言以及内库都是命令式的，程序员告诉代码先做什么再做什么，命令式的好处就是很直观，如`JQuery`。
+
+```html
+<span class="cell b1"></span>
+```
+
+```js
+$(document).ready(function() {
+  var state = {
+    a: 10
+  };
+  $(".cell.b1").html(state.a);
+});
+```
+
+声明式：主要思想是告诉计算机应该做什么，但不指定具体要怎么做。 如果将 state 作为输入，view 作为渲染输出的结果，会有这种关系：**_`view = render(state)`_**，类似于 react 的写法，是一种映射关系，并不告诉系统具体怎么做，具体做法由 render()方法完成。
+
+```js
+class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+```
+
+vue 和 AngularJS 的写法也是类似，都是一种映射关系。
+
+vue 例子：
+
+```html
+<div id="app">
+  {{ message }}
+</div>
+```
+
+```js
+var app = new Vue({
+  el: "#app",
+  data: {
+    message: "Hello Vue!"
+  }
+});
+```
+
+AngularJS 例子：
+
+```html
+<div ng-app="myApp" ng-controller="myCtrl">
+  {{message}}
+</div>
+```
+
+```js
+var app = angular.module("myApp", []);
+app.controller("myCtrl", function($scope) {
+  $scope.message = "Hello Vue!";
+});
+```
+
+### 2.变化侦测
+
+**_`view = render(state)`_** 不只是将 state 渲染到视图中，如果视图中绑定的 state 发生变化时，系统需要自动更新视图。系统是如何感知绑定的值发生变化的，这就要对 state 做变化侦测，现在的前端的处理变化侦测方式主要有两种模式， pull 模式和 push 模式。
+
+**pull 模式：**
+
+React 的 setState 和 AngularJS 的脏检查都属于 pull 模式，数据变化后，框架并不知道哪些数据发生了变化，需要系统做 diff 判断，在 React 中是 dom diff，在 AngularJS 中是脏检查，其实是一种暴力比对，能够这样做是现在浏览器执行 javaScript 足够快，虽然性能有所浪费，但整体还是可以接受。而且框架本身也作了一些优化，比如 React 中的`shouldComponentUpdate`可以提前设置哪些组件不需要更新，AngularJS 中的单次绑定等。
+
+**push 模式：**
+
+Vue1 就是这种模式，当数据改变后，系统明确知道那些数据变了，然后将消息推出去，触发对应的更新，是一种更细粒度的控制。但这么做也有代价，视图中绑定的值都有个 watcher，会带来内存开销。
+
+Vue2 采用中等粒度的方案，在组件级别是 push，每一个组件是一个响应式的 watcher，当数据变动之后可以直接知道哪些组件变了，在组件内部使用 virtual dom 做比对。
+
+具体来讲，两个模式的区别就是，如果单纯的改变 state 的值，比如在`setTimeout`中改变 state 的值，看视图会不会发生变化。  
+在 React 和 AngularJS 中其实是不会自动变化的，React 需要使用`setState()`方法更新视图，而 AngularJS 需要`$scope.$apply()`方法去触发更新。
+在 vue 中改变 state 的值，视图会直接发生变化，至于 vue 为什么会这样，下面会讲到。
+
+熟悉 AngularJS 人可能会很奇怪，改变 state 的值时自己并没有调用`$scope.$apply()`方法，视图也变化了。其实 AngularJS 在这块有个巧妙的设计，对所有的事件都绑定了`$apply()` 这个方法，不需要你单独去调用。
+
+## 二、vue 响应式
+
+![运行机制](./imgs/vue_run.png)
+
+在了解 vue 响应式系统前，先看一下对象的两类属性：
+
+第一类属性数据属性。它比较接近于其它语言的属性概念。数据属性具有四个特征。
+
+- value：就是属性的值。
+- writable：决定属性能否被赋值。
+- enumerable：决定 for in 能否枚举该属性。
+- configurable：决定该属性能否被删除或者改变特征值。
+
+第二类属性是访问器（getter/setter）属性，它也有四个特征。
+
+- getter：函数或 undefined，在取属性值时被调用。
+- setter：函数或 undefined，在设置属性值时被调用。
+- enumerable：决定 for in 能否枚举该属性。
+- configurable：决定该属性能否被删除或者改变特征值。
+
+这两类属性需要`Object.defineProperty`定义对象属性。  
+需要注意的是 descriptor 不能同时具有 value、 writable 特性或 getter、setter 特性。  
+该方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回这个对象。  
+vue 的「**响应式系统**」就是基于对象的访问器属性实现的。
+
+```js
+/*
+obj: 目标对象
+prop: 需要操作的目标对象的属性名
+descriptor: 描述符
+return value 传入对象
+*/
+Object.defineProperty(obj, prop, descriptor);
+```
+
+### 响应式处理
+
+先用 defineProperty 定义一个响应式对象，给一个属性动态添加 getter 和 setter
+
+```js
+function defineReactive(obj, key, val) {
+  Object.defineProperty(obj, key, {
+    enumerable: true /* 属性可枚举 */,
+    configurable: true /* 属性可被修改或删除 */,
+    get: function reactiveGetter() {
+      return val; /* 实际上会依赖收集 */
+    },
+    set: function reactiveSetter(newVal) {
+      if (newVal === val) return;
+      cb(newVal); /* 通知变化 */
+    }
+  });
+}
+```
+
+observer 给 vue 中传入对象属性添加 getter 和 setter，用于依赖收集和派发更新
+
+```js
+function observer(value) {
+  if (!value || typeof value !== "object") {
+    return;
+  }
+
+  Object.keys(value).forEach(key => {
+    defineReactive(value, key, value[key]);
+  });
+}
+```
+
+实现一个 vue 构造函数。
+
+```js
+class Vue {
+  /* Vue构造类 */
+  constructor(options) {
+    this._data = options.data;
+    observer(this._data);
+  }
+}
+```
+
+这样我们只要 new 一个 Vue 对象，就会将 `data` 中的数据进行「**响应式**」处理。
+
+```js
+let o = new Vue({
+  data: {
+    test: "I am test."
+  }
+});
+```
+
+### 依赖收集
+
+vue 的依赖收集主要是一个观察者模式。首先我们来实现一个主题对象 Dep ，它的主要作用是用来存放 Watcher 观察者对象。
+
+```js
+class Dep {
+  constructor() {
+    /* 用来存放Watcher对象的数组 */
+    this.subs = [];
+  }
+
+  /* 在subs中添加一个Watcher对象 */
+  addSub(sub) {
+    this.subs.push(sub);
+  }
+
+  /* 通知所有Watcher对象更新视图 */
+  notify() {
+    this.subs.forEach(sub => {
+      sub.update();
+    });
+  }
+}
+```
+
+- 用 addSub 方法可以在目前的 Dep 对象中增加一个 Watcher；
+- 用 notify 方法通知目前 Dep 对象的 subs 中的所有 Watcher 对象触发更新操作。
+
+创建观察者 Watcher
+
+```js
+class Watcher {
+  constructor() {
+    /* 在new一个Watcher对象时将该对象赋值给Dep.target，在get中会用到 */
+    Dep.target = this;
+  }
+
+  /* 更新视图的方法 */
+  update() {
+    console.log("视图更新啦～");
+  }
+}
+```
+
+观察者创建后，下面我们结合上面的响应式过程，完成依赖收集的过程。
+
+在对象被「读」的时候，会触发 reactiveGetter 函数把当前的 Watcher 对象（存放在 Dep.target 中）收集到 Dep 类中去。之后如果当该对象被「写」的时候，则会触发 reactiveSetter 方法，通知 Dep 类调用 notify 来触发所有 Watcher 对象的 update 方法更新对应视图。
+
+```js
+function defineReactive(obj, key, val) {
+  /* 一个Dep类对象 */
+  const dep = new Dep();
+
+  Object.defineProperty(obj, key, {
+    enumerable: true,
+    configurable: true,
+    get: function reactiveGetter() {
+      /* 将Dep.target（即当前的Watcher对象存入dep的subs中） */
+      dep.addSub(Dep.target);
+      return val;
+    },
+    set: function reactiveSetter(newVal) {
+      if (newVal === val) return;
+      /* 在set的时候触发dep的notify来通知所有的Watcher对象更新视图 */
+      dep.notify();
+    }
+  });
+}
+
+class Vue {
+  constructor(options) {
+    this._data = options.data;
+    observer(this._data);
+    /* 新建一个Watcher观察者对象，这时候Dep.target会指向这个Watcher对象 */
+    new Watcher();
+    /* 在这里模拟render的过程，为了触发test属性的get函数 */
+    console.log("render时依赖收集", this._data.test);
+  }
+}
+// 在真实的运行过程中，一个组件对应一个渲染 watcher，watcher 渲染成 VNode时，会对 vm 上的数据访问，这个时候就触发了数据对象的 getter。
+```
+
+## 三、 Proxy 和 Proxy 的其它优势
+
+由于`Object.defineProperty`的一些缺点和性能问题，Vue3.0 数据侦测由`Proxy`来实现。
+
+`Object.defineProperty`的第一个缺陷是无法监听数组变化。 为了实现数组的侦测，vue 对数组的其中一部分方法进行了重写。像`vm.items[indexOfItem] = newValue`这种操作依然是无法检测的。
+
+```js
+// vue中重写的数组方法
+push();
+pop();
+shift();
+unshift();
+splice();
+sort();
+reverse();
+```
+
+`Object.defineProperty`的第二个缺陷是性能问题。对 JavaScript 引擎而言，一个对象越稳定越好，Proxy 返回的是一个新对象，我们可以只操作新的对象达到目的，而`Object.defineProperty`只能遍历对象的每个属性直接修改，如果属性值也是对象那么需要深度遍历,显然如果能劫持一个完整的对象是才是更好的选择。
+
+Proxy 有多达 13 种拦截方法，不限于`apply`、`ownKeys`、`deleteProperty`、`has`等等，操作对象更加灵活。
+
+Proxy 的劣势就是兼容性问题，而且无法用`polyfill`磨平，就时说无法用于 js 实现浏览器并不支持的原生 API。
+
+**参考**
+
+[《Vue.js 技术揭秘》](https://ustbhuangyi.github.io/vue-analysis/)
+[Reactivity in Frontend JavaScript Frameworks](https://docs.google.com/presentation/d/1_BlJxudppfKmAtfbNIcqNwzrC5vLrR_h1e09apcpdNY/edit)
+尤雨溪《不吹不黑聊聊前端框架》
+尤雨溪《VueConf 2019》
+染陌《剖析 Vue.js 内部运行机制》
