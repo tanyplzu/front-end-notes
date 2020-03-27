@@ -32,6 +32,7 @@ const getSidebar = () => {
       },
       'Html&Css',
       'Network',
+      '网络协议进阶',
       'Webpack',
       'DesignPattern',
       {
@@ -55,7 +56,7 @@ const getSidebar = () => {
       ['./', 'Vue相关'],
       ['Vue知识点', 'Vue 知识点'],
       'Vue的启动',
-      '前端响应式和vue响应式原理',
+      '有关响应式原理',
       'Vue组件通信',
       '插件的注册原理',
       'Vue路由',

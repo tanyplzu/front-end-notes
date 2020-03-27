@@ -1,3 +1,7 @@
+---
+sidebarDepth: 1
+---
+
 # Vue 的运行过程
 
 Vue 的启动流程图
