@@ -1,3 +1,6 @@
+---
+sidebarDepth: 1
+---
 # JavaScript 基础知识
 
 [[toc]]
@@ -6,8 +9,7 @@
 
 ### JavaScript 的变量有哪些类型
 
-- 分为两种：基础类型和引用类型。基础类型目前有六种，
-分别是`boolean`、`null`、`undefined`、`number`、`string`、`symbol`、`bigInt`
+- 分为两种：基础类型和引用类型。基础类型目前有六种，分别是`boolean`、`null`、`undefined`、`number`、`string`、`symbol`、`bigInt`
 - 除了以上的基础类型之外，其他就是引用类型了，有`Array`、`Object`、`Function`。
 
 ### typeof 和 instanceof 的区别
@@ -16,7 +18,7 @@
 - instanceof 主要是用来判断引用类型，它的原理是根据原型链来查找。
 
 ::: tip
-函数也是一个对象，有 prototype 属性；函数实例的 instanceof 可以是构造函数本身；也可以是 Object 对象；
+函数也是一个对象，有 prototype 属性；函数实例的 instanceof 可以是构造函数本身；也可以是 Object 对象
 :::
 
 ### 何时使用 === 何时使用 ==
@@ -24,18 +26,19 @@
 首先得明白两者的区别，`==`会先试图类型转换，然后再比较，而`===`不会类型转换，直接比较。如下例子：
 
 ```javascript
-1 == '1' // true
-1 === '1' // false
-0 == false // true
-0 === false // false
-null == undefined // true
-null === undefined // false
+1 == '1'; // true
+1 === '1'; // false
+0 == false; // true
+0 === false; // false
+null == undefined; // true
+null === undefined; // false
 ```
 
 根据 jQuery 源码中的写法，只推荐在一个地方用`==`，其他地方都必须用`===`。这个用`==`的地方就是：
 
 ```javascript
-if (obj.a == null) {}
+if (obj.a == null) {
+}
 // 这里相当于 obj.a === null || obj.a === undefined ，简写形式
 ```
 
@@ -76,11 +79,11 @@ if (obj.a == null) {}
 ### 如何判断一个变量是否是数组
 
 ```js
-arr instanceof Array
-Array.prototype.isPrototypeOf(arr)
-Array.isArray(arr)
-Object.prototype.toString.call(arr) === '[object Array]'
-arr.constructor === Array
+arr instanceof Array;
+Array.prototype.isPrototypeOf(arr);
+Array.isArray(arr);
+Object.prototype.toString.call(arr) === '[object Array]';
+arr.constructor === Array;
 ```
 
 ### Array.prototype 的类型是什么吗
@@ -99,23 +102,29 @@ Array.from(arguments)
 
 ```js
 function flatten(arr) {
-  return [].concat(...arr.map(v => {
-    return Array.isArray(v) ? flatten(v) : v;
-  }))
+  return [].concat(
+    ...arr.map(v => {
+      return Array.isArray(v) ? flatten(v) : v;
+    })
+  );
 }
 
 function flatten(arr) {
   return arr.reduce((pre, cur) => {
     return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
-  }, [])
+  }, []);
 }
 
 function flatten(arr) {
   return arr.flat(Infinity);
 }
 
-function flatten(arr) {  // 纯数字
-  return arr.toString().split(',').map(Number);
+function flatten(arr) {
+  // 纯数字
+  return arr
+    .toString()
+    .split(',')
+    .map(Number);
 }
 
 function flatten(arr) {
@@ -143,7 +152,7 @@ function flatten(arr) {
 **利用 Array.prototype.toString() 方法：**
 
 ```js
-var list = [1,[2,[3]],4,[5]];
+var list = [1, [2, [3]], 4, [5]];
 console.log(list.toString()); //1,2,3,4,5
 ```
 
@@ -152,7 +161,7 @@ console.log(list.toString()); //1,2,3,4,5
 **利用 Array.prototype.join() 方法：**
 
 ```js
-var list = [1,[2,[3]],4,[5]];
+var list = [1, [2, [3]], 4, [5]];
 console.log(list.join()); //1,2,3,4,5
 ```
 
@@ -168,14 +177,14 @@ function unique(arr) {
 function unique(arr) {
   return arr.filter((v, i, a) => {
     return a.indexOf(v) === i;
-  })
+  });
 }
 
 function unique(arr) {
   const tmp = new Map();
   return arr.filter(v => {
     return !tmp.has(v) && tmp.set(v);
-  })
+  });
 }
 ```
 
@@ -190,33 +199,32 @@ function unique(arr) {
 
 ```js
 // test 是检测字符串是否匹配某个正则，返回布尔值
-/[a-z]/.test(1);  // false
+/[a-z]/.test(1); // false
 
 // match 是返回检测字符匹配正则的数组结果集合，没有返回 null
-'1AbC2d'.match(/[a-z]/ig);  // ['A', 'b', 'C', 'd']
+'1AbC2d'.match(/[a-z]/gi); // ['A', 'b', 'C', 'd']
 
 // search 是返回正则匹配到的下标，没有返回-1
-'1AbC2d'.search(/[a-z]/);  // 2
+'1AbC2d'.search(/[a-z]/); // 2
 ```
 
 ### 字符串的 slice、substring、substr 之间的区别
 
 ```js
 //  slice 是返回字符串开始至结束下标减去开始下标个数的新字符串，下标是负数为倒数；
-'abcdefg'.slice(2,3);  // c  // 3 - 2
-'abcdefg'.slice(3,2);  // ''  // 2 - 3
-'abcdefg'.slice(-2,-1);  // f  // -1 - -2
+'abcdefg'.slice(2, 3); // c  // 3 - 2
+'abcdefg'.slice(3, 2); // ''  // 2 - 3
+'abcdefg'.slice(-2, -1); // f  // -1 - -2
 
 // substring 和 slice 正常截取字符串时相同，负数为0，且下标值小的为开始下标；
-'abcdefg'.substring(2,3);  //c  // 3 - 2
-'abcdefg'.substring(3,2);  // c  // 3 - 2
-'abcdefg'.substring(3,-3);  // abc  // 3 - 0
+'abcdefg'.substring(2, 3); //c  // 3 - 2
+'abcdefg'.substring(3, 2); // c  // 3 - 2
+'abcdefg'.substring(3, -3); // abc  // 3 - 0
 
 // substr 返回开始下标开始加第二个参数(不能为负数)个数的新字符串。
-'abcdefg'.substr(2, 3);  // cde
-'abcdefg'.substr(3, 2);  // de
+'abcdefg'.substr(2, 3); // cde
+'abcdefg'.substr(3, 2); // de
 'abcdefg'.substr(-3, 2); // ef
-
 ```
 
 ### Number('123') 和 new Number('123') 有什么区别
@@ -225,16 +233,16 @@ function unique(arr) {
 - 同样的情况也适用用`String`和`new String`；`Boolean`和`new Boolean`的情况。
 
 ```js
-typeof Number('123') // number
-typeof new Number('123') // object
+typeof Number('123'); // number
+typeof new Number('123'); // object
 ```
 
 ### JS 精度丢失问题
 
-浮点数的精度丢失不仅仅是js的问题， java 也会出现精度丢失的问题，主要是因为数值在内存是由二进制存储的，而某些值在转换成二进制的时候会出现无限循环，由于位数限制，无限循环的值就会采用“四舍五入法”截取，成为一个计算机内部很接近数字，即使很接近，但是误差已经出现了。
+浮点数的精度丢失不仅仅是 js 的问题， java 也会出现精度丢失的问题，主要是因为数值在内存是由二进制存储的，而某些值在转换成二进制的时候会出现无限循环，由于位数限制，无限循环的值就会采用“四舍五入法”截取，成为一个计算机内部很接近数字，即使很接近，但是误差已经出现了。
 
 ```js
-0.1 + 0.2  = 0.30000000000000004
+0.1 + 0.2 = 0.30000000000000004;
 // 0.1 转成二进制会无限循环
 // "0.000110011001100110011001100110011001100110011001100..."
 ```
@@ -242,10 +250,10 @@ typeof new Number('123') // object
 那么如何避免这问题呢？解决办法：可在操作前，放大一定的倍数，然后再除以相同的倍数
 
 ```js
-(0.1 *100 + 0.2*100) / 100 = 0.3
+(0.1 * 100 + 0.2 * 100) / 100 = 0.3;
 ```
 
-> js 的 number 采用 64位双精度存储 JS 中能精准表示的最大整数是 Math.pow(2, 53)
+> js 的 number 采用 64 位双精度存储 JS 中能精准表示的最大整数是 Math.pow(2, 53)
 
 推荐一个开源工具 [[number-precision](https://github.com/nefe/number-precision)]
 
@@ -256,21 +264,21 @@ typeof new Number('123') // object
 ```js
 // 使用 Math.round 可以四舍五入的特性，把数组放大一定的倍数处理
 function round(number, precision) {
-    return Math.round(+number + 'e' + precision) / Math.pow(10, precision);
+  return Math.round(+number + 'e' + precision) / Math.pow(10, precision);
 }
 ```
 
 原理是，`Math.round` 是可以做到四舍五入的，但是仅限于正整数，那么我们可以放大至保留一位小数，计算完成后再缩小倍数。
 
-### js中不同进制怎么转换
+### js 中不同进制怎么转换
 
 10 进制转其他进制：`Number(val).toString([2,8,10,16])`
 
-其他进制转成10进制：`Number.parseInt("1101110",[2,8,10,16])`
+其他进制转成 10 进制：`Number.parseInt("1101110",[2,8,10,16])`
 
 其他进制互转：先将其他进制转成 10 进制，在把 10 进制转成其他进制
 
-### 对js处理二进制有了解吗
+### 对 js 处理二进制有了解吗
 
 ArrayBuffer: 用来表示通用的、固定长度的原始二进制数据缓冲区，作为内存区域，可以存放多种类型的数据，它不能直接读写，只能通过视图来读写。
 
@@ -278,11 +286,9 @@ ArrayBuffer: 用来表示通用的、固定长度的原始二进制数据缓冲�
 
 Blob: 也是存放二进制的容器，通过 `FileReader` 进行转换。
 
-之前有做过简单的总结，大家可以看看：[nodejs 二进制与Buffer](https://juejin.im/post/5d188e1fe51d454fd8057bc9)
+之前有做过简单的总结，大家可以看看：[nodejs 二进制与 Buffer](https://juejin.im/post/5d188e1fe51d454fd8057bc9)
 
 毕竟对这块应用的比较少，推荐一篇文章给大家 [二进制数组](http://javascript.ruanyifeng.com/stdlib/arraybuffer.html)
-
-
 
 ## DOM API
 
@@ -318,19 +324,17 @@ Blob: 也是存放二进制的容器，通过 `FileReader` 进行转换。
 
 后面两种是事件委托。
 
-### 自定义事件 ---
+### 自定义事件
 
 ```js
-var eve = new Event('custome');
-ev.addEventListener('custome',function(){
-  console.log(custome)
-})
-ev.dispathEvent(eve)
+var event = new Event('custome');
+ev.addEventListener('custome', function() {
+  console.log(custome);
+});
+ev.dispathEvent(event);
 ```
 
-addEventListener 最后一个参数：
-true 为捕获；
-false 为冒泡。
+addEventListener 最后一个参数： true 为捕获； false 为冒泡。
 
 ### DOM 节点的 Attribute 和 property 有何区别
 
@@ -349,12 +353,12 @@ false 为冒泡。
 ### document load 和 ready 的区别
 
 ```js
-window.addEventListener('load', function () {
-    // 页面的全部资源加载完才会执行，包括图片、视频等
-})
-document.addEventListener('DOMContentLoaded', function () {
-    // DOM 渲染完即可执行，此时图片、视频还可能没有加载完
-})
+window.addEventListener('load', function() {
+  // 页面的全部资源加载完才会执行，包括图片、视频等
+});
+document.addEventListener('DOMContentLoaded', function() {
+  // DOM 渲染完即可执行，此时图片、视频还可能没有加载完
+});
 ```
 
 原生中没有 ready 这 api，jQuery 中有 ready
@@ -383,10 +387,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ```javascript
 function Foo(name) {
-    this.name = name
-    this.type = 'foo'
+  this.name = name;
+  this.type = 'foo';
 }
-var foo = new Foo('beijing')
+var foo = new Foo('beijing');
 ```
 
 - 创建一个新对象，继承 Foo.prototype
@@ -395,17 +399,17 @@ var foo = new Foo('beijing')
 - 返回 `this`
 
 ```js
-var newFunc = function (func) {
-    var o = Object.create(func.prototype);
-    var k = func.call(o);   // 执行func  *****
-    if (typeof k === 'object') {
-      return k;
-    } else {
-      return o;
-    }
+var newFunc = function(func) {
+  var o = Object.create(func.prototype);
+  var k = func.call(o); // 执行func  *****
+  if (typeof k === 'object') {
+    return k;
+  } else {
+    return o;
+  }
 };
 
-var p = {name: 'p'};
+var p = { name: 'p' };
 var o4 = Object.create(p);
 ```
 
@@ -414,10 +418,10 @@ var o4 = Object.create(p);
 **1. 借助构造函数实现继承：**
 
 ```js
-function Parent1 () {
+function Parent1() {
   this.name = 'parent1';
 }
-function Child1 () {
+function Child1() {
   Parent1.call(this);
   this.type = 'child1';
 }
@@ -431,11 +435,11 @@ console.log(new Child1(), new Child1().say());
 **2. 借助原型链实现继承：**
 
 ```js
-function Parent2 () {
+function Parent2() {
   this.name = 'parent2';
   this.play = [1, 2, 3];
 }
-function Child2 () {
+function Child2() {
   this.type = 'child2';
 }
 Child2.prototype = new Parent2();
@@ -452,11 +456,11 @@ s1.play.push(4);
 **3. 组合方式：**
 
 ```js
-function Parent3 () {
+function Parent3() {
   this.name = 'parent3';
   this.play = [1, 2, 3];
 }
-function Child3 () {
+function Child3() {
   Parent3.call(this); // 执行1次
   this.type = 'child3';
 }
@@ -474,11 +478,11 @@ console.log(s3.play, s4.play);
 **4. 组合继承的优化 1：**
 
 ```js
-function Parent4 () {
+function Parent4() {
   this.name = 'parent4';
   this.play = [1, 2, 3];
 }
-function Child4 () {
+function Child4() {
   Parent4.call(this);
   this.type = 'child4';
 }
@@ -488,11 +492,11 @@ Child4.prototype = Parent4.prototype;
 **5. 组合继承的优化 2：**
 
 ```js
-function Parent5 () {
+function Parent5() {
   this.name = 'parent5';
   this.play = [1, 2, 3];
 }
-function Child5 () {
+function Child5() {
   Parent5.call(this);
   this.type = 'child5';
 }
@@ -506,20 +510,20 @@ Child5.prototype = Object.create(Parent5.prototype);
 ```js
 class Parent {
   constructor(value) {
-    this.val = value
+    this.val = value;
   }
   getValue() {
-    console.log(this.val)
+    console.log(this.val);
   }
 }
 class Child extends Parent {
   constructor(value) {
-    super(value)
+    super(value);
   }
 }
-let child = new Child(1)
-child.getValue() // 1
-child instanceof Parent // true
+let child = new Child(1);
+child.getValue(); // 1
+child instanceof Parent; // true
 ```
 
 `class` 实现继承的核心在于使用 `extends` 表明继承自哪个父类，并且在子类构造函数中必须调用 `super`，因为这段代码可以看成 `Parent.call(this, value)`。
@@ -539,10 +543,10 @@ child instanceof Parent // true
 在早期，使用立即执行函数实现模块化是常见的手段，通过函数作用域解决了命名冲突、污染全局作用域的问题
 
 ```js
-(function(globalVariable){
-   globalVariable.test = function() {}
-   // ... 声明各种变量、函数都不会污染全局作用域
-})(globalVariable)
+(function(globalVariable) {
+  globalVariable.test = function() {};
+  // ... 声明各种变量、函数都不会污染全局作用域
+})(globalVariable);
 ```
 
 **AMD 和 CMD：**
@@ -553,16 +557,16 @@ child instanceof Parent // true
 // AMD
 define(['./a', './b'], function(a, b) {
   // 加载模块完毕可以使用
-  a.do()
-  b.do()
-})
+  a.do();
+  b.do();
+});
 // CMD
 define(function(require, exports, module) {
   // 加载模块
   // 可以把 require 写在函数体的任意地方实现延迟加载
-  var a = require('./a')
-  a.doSomething()
-})
+  var a = require('./a');
+  a.doSomething();
+});
 ```
 
 **CommonJS：**
@@ -572,38 +576,38 @@ CommonJS 最早是 Node 在使用，目前也仍然广泛使用，比如在 Webp
 ```js
 // a.js
 module.exports = {
-    a: 1
-}
+  a: 1
+};
 // or
-exports.a = 1
+exports.a = 1;
 
 // b.js
-var module = require('./a.js')
-module.a // -> log 1
+var module = require('./a.js');
+module.a; // -> log 1
 ```
 
 require 函数
 
 ```js
-var module = require('./a.js')
-module.a
+var module = require('./a.js');
+module.a;
 // 这里其实就是包装了一层立即执行函数，这样就不会污染全局变量了，
 // 重要的是 module 这里，module 是 Node 独有的一个变量
 module.exports = {
-    a: 1
-}
+  a: 1
+};
 // module 基本实现
 var module = {
   id: 'xxxx', // 我总得知道怎么去找到他吧
   exports: {} // exports 就是个空对象
-}
+};
 // 这个是为什么 exports 和 module.exports 用法相似的原因
-var exports = module.exports
-var load = function (module) {
-    // 导出的东西
-    var a = 1
-    module.exports = a
-    return module.exports
+var exports = module.exports;
+var load = function(module) {
+  // 导出的东西
+  var a = 1;
+  module.exports = a;
+  return module.exports;
 };
 // 然后当我 require 的时候去找到独特的
 // id，然后将要使用的东西用立即执行函数包装下，over
@@ -623,8 +627,8 @@ var load = function (module) {
 
 ```js
 // 引入模块 API
-import XXX from './a.js'
-import { XXX } from './a.js'
+import XXX from './a.js';
+import { XXX } from './a.js';
 // 导出模块 API
 export function a() {}
 export default function() {}
@@ -637,7 +641,7 @@ export default function() {}
 ### Proxy 可以实现什么功能
 
 ```js
-let p = new Proxy(target, handler)
+let p = new Proxy(target, handler);
 ```
 
 target 代表需要添加代理的对象，handler 用来自定义对象中的操作，比如可以用来自定义 set 或者 get 函数。
@@ -672,8 +676,6 @@ this 表示为当前的函数调用方，在运行时才能决定。如谁调用
 
 ### 谈谈对闭包的理解
 
-
-
 ## 页面循环系统
 
 ### 函数防抖和节流的区别
@@ -688,7 +690,7 @@ this 表示为当前的函数调用方，在运行时才能决定。如谁调用
 - 浏览器窗口缩放，resize 事件（如窗口停止改变大小之后重新计算布局）等。
 
 ```js
-let input1 = document.getElementById('inputId')
+let input1 = document.getElementById('inputId');
 let timeoutId = null;
 input1.addEventListener('keyup', function() {
   if (timeoutId) {
@@ -696,9 +698,9 @@ input1.addEventListener('keyup', function() {
   }
   timeoutId = setTimeout(() => {
     // 执行操作
-    timeoutId = null
-  }, 500)
-})
+    timeoutId = null;
+  }, 500);
+});
 ```
 
 **节流的应用场景：**
@@ -718,12 +720,15 @@ function throttle(fn, deley = 100) {
     timeoutId = setTimeout(() => {
       fn.apply(this, arguments);
       timeoutId = null;
-    }, deley)
-  }
+    }, deley);
+  };
 }
-dev.addEventListener('drag', throttle(function() {
-  // 执行事件
-}))
+dev.addEventListener(
+  'drag',
+  throttle(function() {
+    // 执行事件
+  })
+);
 ```
 
 不管是防抖还是节流，上面方法都有个问题，就是延时执行，有些场景下需要的不是延时，比如对于提交数据，需要的是防连击，不重复提交数据。对上面代码修改如下：
@@ -738,17 +743,20 @@ function throttle(fn, deley = 100) {
     fn.apply(this, arguments);
     timeoutId = setTimeout(() => {
       timeoutId = null;
-    }, deley)
-  }
+    }, deley);
+  };
 }
-dev.addEventListener('click', throttle(function() {
-  // 执行事件
-}))
+dev.addEventListener(
+  'click',
+  throttle(function() {
+    // 执行事件
+  })
+);
 ```
 
 ### 浏览器的 Event Loop
 
-3 个异步队列是:
+3 个异步队列是：
 
 - Tasks (in `setTimeout`)
 - Animation callbacks (in `requestAnimationFrame`)
@@ -771,15 +779,15 @@ dev.addEventListener('click', throttle(function() {
 3. 特殊响应码处理 301 302
 4. 解析文档
 5. 构建 dom 树和 csscom
-6. 生成渲染树：从DOM树的根节点开始遍历每个可见节点，对于每个可见的节点，找到CSSOM树中对应的规则，并应用它们，根据每个可见节点以及其对应的样式，组合生成渲染树
+6. 生成渲染树：从 DOM 树的根节点开始遍历每个可见节点，对于每个可见的节点，找到 CSSOM 树中对应的规则，并应用它们，根据每个可见节点以及其对应的样式，组合生成渲染树
 7. Layout（回流）：根据生成的渲染树，进行回流（Layout），得到节点的集合信息
 8. Painting（重绘）：根据渲染树及其回流得到的集合信息，得到节点的绝对像素。
-9. 绘制，在页面上展示，这一步还涉及到绘制层级、GPU相关的知识点
-10. 加载js脚本，加载完成解析js脚本
+9. 绘制，在页面上展示，这一步还涉及到绘制层级、GPU 相关的知识点
+10. 加载 js 脚本，加载完成解析 js 脚本
 
 ### 触发回流的场景
 
-- 添加或删除可见的DOM元素
+- 添加或删除可见的 DOM 元素
 - 元素的位置发生变化
 - 元素的尺寸发生变化（包括外边距、内边框、边框大小、高度和宽度等）
 - 内容发生变化，比如文本变化或图片被另一个不同尺寸的图片所替代。
@@ -788,6 +796,7 @@ dev.addEventListener('click', throttle(function() {
 - 获取位置信息，因为需要回流计算最新的值
 
 **获取位置信息相关属性**
+
 - offsetTop offsetLeft offsetWidth offsetHeight 相对于父级容器的偏移量
 - scrollTop scrollLeft scrollWidth scrollHeight 相对于父级容器滚动上去的距离
 - clientTop clientLeft clientWidth clientHeight 元素边框的厚度
@@ -804,7 +813,7 @@ dev.addEventListener('click', throttle(function() {
 - 通过节流和防抖控制触发频率
 - css3 硬件加速，transform、opacity、filters，开启后，会新建渲染层
 
-### 开启GPU加速的方法
+### 开启 GPU 加速的方法
 
 开启后，会将 dom 元素提升为独立的渲染层，它的变化不会再影响文档流中的布局。
 
@@ -813,27 +822,27 @@ dev.addEventListener('click', throttle(function() {
 - filters
 - Will-change
 
-### CSS加载问题
+### CSS 加载问题
 
-- css加载不会阻塞DOM树的解析;
-- css加载会阻塞DOM树的渲染；
-- css加载会阻塞后面js语句的执行
+- css 加载不会阻塞 DOM 树的解析；
+- css 加载会阻塞 DOM 树的渲染；
+- css 加载会阻塞后面 js 语句的执行
 
 ### 介绍下资源预加载 prefetch/preload async/defer
 
 **prefetch：** 其利用浏览器空闲时间来下载或预取用户在不久的将来可能访问的文档。
 
 ```html
-<link href="/js/xx.js" rel="prefetch">
+<link href="/js/xx.js" rel="prefetch" />
 ```
 
 **preload：** 可以指明哪些资源是在页面加载完成后即刻需要的，浏览器在主渲染机制介入前就进行预加载，这一机制使得资源可以更早的得到加载并可用，且更不易阻塞页面的初步渲染，进而提升性能。
 
 ```html
-<link href="/js/xxx.js" rel="preload" as="script"> 
+<link href="/js/xxx.js" rel="preload" as="script" />
 ```
 
-**async：** 加载脚本和渲染后续文档元素并行进行，脚本加载完成后，暂停html解析，立即解析js脚本
+**async：** 加载脚本和渲染后续文档元素并行进行，脚本加载完成后，暂停 html 解析，立即解析 js 脚本
 
 **defer：** 加载脚本和渲染后续文档元素并行进行，但脚本的执行会等到 html 解析完成后执行
 
@@ -844,19 +853,18 @@ dev.addEventListener('click', throttle(function() {
 ### 如何创建一个 Ajax
 
 ```js
-var xhr = XMLHttpRequest
-  ? new XMLHttpRequest()
-  : new ActiveXObject('Microsoft.XMLHTTP');
-xhr.onreadystatechange = function(){
+var xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+xhr.onreadystatechange = function() {
   // 通信成功时，状态值为4
-  if (xhr.readyState === 4){
-    if (xhr.status === 200||304||206){
+  if (xhr.readyState === 4) {
+    if (xhr.status === 200 || 304 || 206) {
       console.log(xhr.responseText);
     } else {
       console.error(xhr.statusText);
     }
-  }};
-xhr.onerror = function (e) {
+  }
+};
+xhr.onerror = function(e) {
   console.error(xhr.statusText);
 };
 xhr.open('GET', '/endpoint', true);
@@ -872,10 +880,9 @@ xhr.send(null);
 ```html
 <script src="http://www.abc.com/?data=name&callback=jsonp" charset="utf-8"></script>
 <script type="text/javascript">
-    jsonp({
-        data: {
-        },
-    });
+  jsonp({
+    data: {}
+  });
 </script>
 ```
 
@@ -883,17 +890,17 @@ xhr.send(null);
 
 ```js
 var ws = new WebSocket('wss://echo.websocket.org');
-ws.onopen = function (evt) {
+ws.onopen = function(evt) {
   console.log('Connection open ...');
   ws.send('Hello WebSockets!');
 };
 
 // 接收
-ws.onmessage = function (evt) {
+ws.onmessage = function(evt) {
   console.log('Received Message: ', evt.data);
   ws.close();
 };
-ws.onclose = function (evt) {
+ws.onclose = function(evt) {
   console.log('Connection closed.');
 };
 ```
@@ -902,29 +909,18 @@ ws.onclose = function (evt) {
 
 新出的通信标准，支持跨域的 Ajax
 
-CORS 预请求
-在跨域时允许的方法只有 GET、POST、HEAD；
-允许的 Content-Type 也是有限制的，只允许
-text-plain：
-multipart/form-data:
-application/x-www-form-urlencoded:
-其他限制：请求头的限制
-对于跨域请求的限制，在跨域时需要做预请求，options
-Access-Control-Expose-Headers 可以自定义头
-Access-Control-Request-Method 自定义方法
-Access-Control-Max-Age 设置时间后，在该时间段里不需要再发请求验证了
-其实 Response Hearders 中设计的一系列属性都是给浏览器解析请求的配置项，告诉浏览器去如何解析。
+CORS 预请求在跨域时允许的方法只有 GET、POST、HEAD；允许的 Content-Type 也是有限制的，只允许 text-plain： multipart/form-data: application/x-www-form-urlencoded: 其他限制：请求头的限制对于跨域请求的限制，在跨域时需要做预请求，options Access-Control-Expose-Headers 可以自定义头 Access-Control-Request-Method 自定义方法 Access-Control-Max-Age 设置时间后，在该时间段里不需要再发请求验证了其实 Response Hearders 中设计的一系列属性都是给浏览器解析请求的配置项，告诉浏览器去如何解析。
 
 **fetch：**
 
 ```js
 fetch('/some/url/', {
-  method: 'get',
-}).then(function (response) {
-
-}).catch(function (err) {
-  // 出错了，等价于 then 的第二个参数，但这样更好用更直观
-});
+  method: 'get'
+})
+  .then(function(response) {})
+  .catch(function(err) {
+    // 出错了，等价于 then 的第二个参数，但这样更好用更直观
+  });
 ```
 
 ### document.domain
@@ -949,27 +945,27 @@ fetch('/some/url/', {
 
 浏览器发起第一次请求后服务端会返回一个 sessionID 存储到 cookie 中，当再次发起请求时服务端根据携带的 cookie 里的 sessionID 来查找对应的 session 信息，没有找到就说明没登录或登录失效，找到说明已经登录，可以进行之后的操作。
 
-### Session及第三方Cookie的工作原理
+### Session 及第三方 Cookie 的工作原理
 
 #### Http 请求状态
 
 有状态的请求：服务端保留以前的请求信息，每个请求可以使用以前保留的请求；
 
-- 服务器的session机制
+- 服务器的 session 机制
 
 无状态的请求：服务器不会保留任何请求信息；
 
-- 服务不会保存session
+- 服务不会保存 session
 
-#### 第三方Cookie的工作原理
+#### 第三方 Cookie 的工作原理
 
 ### JWT
 
-JSON Web Token（简称 [JWT](https://mp.weixin.qq.com/s?__biz=Mzg5NjAzMjI0NQ==&mid=2247485345&idx=2&sn=e283bc6e5d06f7eb455eef9072d6c7d6&chksm=c0060b3bf771822d436839c197447ff79c5fa02852234ae52f3649b88b7fc2580faed89ddf92&mpshare=1&scene=1&srcid=&sharer_sharetime=1584990198210&sharer_shareid=795858004e38dcd8f62de82c587a19e9#rd)，其实就是一个token）是目前最流行的跨域认证解决方案。
+JSON Web Token（简称 [JWT](https://mp.weixin.qq.com/s?__biz=Mzg5NjAzMjI0NQ==&mid=2247485345&idx=2&sn=e283bc6e5d06f7eb455eef9072d6c7d6&chksm=c0060b3bf771822d436839c197447ff79c5fa02852234ae52f3649b88b7fc2580faed89ddf92&mpshare=1&scene=1&srcid=&sharer_sharetime=1584990198210&sharer_shareid=795858004e38dcd8f62de82c587a19e9#rd)，其实就是一个 token）是目前最流行的跨域认证解决方案。
 
-JWT 由三部分组成:Header，Payload，Signature 三个部分组成，并且最后由.拼接而成。
+JWT 由三部分组成：Header，Payload，Signature 三个部分组成，并且最后由。拼接而成。
 
-Payload 中包含exp 过期时间等登录信息。
+Payload 中包含 exp 过期时间等登录信息。
 
 Signature 部分是对前两部分的签名，防止数据篡改。
 
@@ -1017,27 +1013,27 @@ Signature 部分是对前两部分的签名，防止数据篡改。
 例如要在文字改变时触发一个 change 事件，通过 keyup 来监听。使用节流。
 
 ```js
-var textarea = document.getElementById('text')
-var timeoutId
-textarea.addEventListener('keyup', function () {
-    if (timeoutId) {
-        clearTimeout(timeoutId)
-    }
-    timeoutId = setTimeout(function () {
-        // 触发 change 事件
-    }, 100)
-})
+var textarea = document.getElementById('text');
+var timeoutId;
+textarea.addEventListener('keyup', function() {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+  timeoutId = setTimeout(function() {
+    // 触发 change 事件
+  }, 100);
+});
 ```
 
 ### 尽早执行操
 
 ```js
-window.addEventListener('load', function () {
-    // 页面的全部资源加载完才会执行，包括图片、视频等
-})
-document.addEventListener('DOMContentLoaded', function () {
-    // DOM 渲染完即可执行，此时图片、视频还可能没有加载完
-})
+window.addEventListener('load', function() {
+  // 页面的全部资源加载完才会执行，包括图片、视频等
+});
+document.addEventListener('DOMContentLoaded', function() {
+  // DOM 渲染完即可执行，此时图片、视频还可能没有加载完
+});
 ```
 
 ### 首屏和白屏时间如何计算
@@ -1046,8 +1042,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 白屏的定义有多种。可以认为“没有任何内容”是白屏，可以认为“网络或服务异常”是白屏，可以认为“数据加载中”是白屏，可以认为“图片加载不出来”是白屏。场景不同，白屏的计算方式就不相同。
 
-方法 1：当页面的元素数小于 x 时，则认为页面白屏。比如“没有任何内容”，可以获取页面的 DOM 节点数，判断 DOM 节点数少于某个阈值 X，则认为白屏。
-方法 2：当页面出现业务定义的错误码时，则认为是白屏。比如“网络或服务异常”。 
-方法 3：当页面出现业务定义的特征值时，则认为是白屏。比如“数据加载中”
+方法 1：当页面的元素数小于 x 时，则认为页面白屏。比如“没有任何内容”，可以获取页面的 DOM 节点数，判断 DOM 节点数少于某个阈值 X，则认为白屏。方法 2：当页面出现业务定义的错误码时，则认为是白屏。比如“网络或服务异常”。方法 3：当页面出现业务定义的特征值时，则认为是白屏。比如“数据加载中”
 
 Google 网页性能分析工具： [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
