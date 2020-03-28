@@ -32,7 +32,8 @@ const getSidebar = () => {
       },
       'Html&Css',
       'Network',
-      '网络协议进阶',
+      // '网络协议进阶',
+      'Security',
       'Webpack',
       'DesignPattern',
       {

@@ -949,6 +949,30 @@ fetch('/some/url/', {
 
 浏览器发起第一次请求后服务端会返回一个 sessionID 存储到 cookie 中，当再次发起请求时服务端根据携带的 cookie 里的 sessionID 来查找对应的 session 信息，没有找到就说明没登录或登录失效，找到说明已经登录，可以进行之后的操作。
 
+### Session及第三方Cookie的工作原理
+
+#### Http 请求状态
+
+有状态的请求：服务端保留以前的请求信息，每个请求可以使用以前保留的请求；
+
+- 服务器的session机制
+
+无状态的请求：服务器不会保留任何请求信息；
+
+- 服务不会保存session
+
+#### 第三方Cookie的工作原理
+
+### JWT
+
+JSON Web Token（简称 [JWT](https://mp.weixin.qq.com/s?__biz=Mzg5NjAzMjI0NQ==&mid=2247485345&idx=2&sn=e283bc6e5d06f7eb455eef9072d6c7d6&chksm=c0060b3bf771822d436839c197447ff79c5fa02852234ae52f3649b88b7fc2580faed89ddf92&mpshare=1&scene=1&srcid=&sharer_sharetime=1584990198210&sharer_shareid=795858004e38dcd8f62de82c587a19e9#rd)，其实就是一个token）是目前最流行的跨域认证解决方案。
+
+JWT 由三部分组成:Header，Payload，Signature 三个部分组成，并且最后由.拼接而成。
+
+Payload 中包含exp 过期时间等登录信息。
+
+Signature 部分是对前两部分的签名，防止数据篡改。
+
 ### 前后端实现登录的方式有哪些
 
 - cookie + session：前端登录后，后端会种一个 httpOnly 的 cookie 在前端，里面就有这个用户对应的 sessionId，以后每一次前端发起请求会携带上这个 cookie，后端从里面解析到 sessionId 后找到对应的 session 信息，就知道是谁再操作了。缺点是后端需要空间存储 session，用户多了，服务器多了都不方便，这种方式基本属于淘汰边缘。

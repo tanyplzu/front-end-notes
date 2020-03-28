@@ -10,6 +10,7 @@
 - [TypeScript体系调研报告](https://juejin.im/post/59c46bc86fb9a00a4636f939)
 - [你不知道的前端SDK开发技巧](https://juejin.im/post/5a278d2a6fb9a044fd11a245)
 - [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
+- [JavaScript 标准参考教程](https://javascript.ruanyifeng.com/#introduction)
 
 ### JavaScript 基础
 
@@ -32,6 +33,10 @@
 - [diff](https://neil.fraser.name/writing/diff/)
 - [AST](https://mp.weixin.qq.com/s/fH2xYo_Bad0mgvo0OdYRZQ)
 - [snabbdom](https://github.com/snabbdom/snabbdom)
+
+### node
+
+- [阮一峰NODE](https://javascript.ruanyifeng.com/nodejs/basic.html)
 
 ### css
 
