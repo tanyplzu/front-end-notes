@@ -20,7 +20,7 @@
 
 开启 CSP 有两种方式：
 
-1. 设置 HTTP-Header 中的 Content-sesurity-Policy。
+1. 后端设置 http-header 中的 Content-sesurity-Policy。
 2. 设置`<meta>`标签的方式`<meta http-equiv="Content-Security-Policy">`。
 
 CSP 的功能：
@@ -35,6 +35,12 @@ CSP 的功能：
 ### 什么是 CSRF
 
 中文的意思是跨站请求伪造。原理是攻击者构造出一个后端请求地址，诱导用户去点击发起请求。如果是登陆状态，服务端就会以为是用户在操作，从而进行相应的逻辑。
+
+### 发起 CSRF 攻击的三个必要条件
+
+- 第一个，目标站点一定要有 CSRF 漏洞；
+- 第二个，用户要登录过目标站点，并且在浏览器上保持有该站点的登录状态；
+- 第三个，需要用户打开一个第三方站点，可以是黑客的站点，也可以是一些论坛。
 
 ### 如何防范 CSRF
 

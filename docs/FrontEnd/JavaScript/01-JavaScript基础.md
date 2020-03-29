@@ -377,6 +377,12 @@ document.addEventListener('DOMContentLoaded', function() {
 - scrollHeight: 当前内部可以滚动区域的高度，如果不能滚动则为自己内容区 + 内边距的高度
 - scrollTop: 当前元素滚动离顶部的距离
 
+```js
+// 判断元素是否超出设定区域
+elm.scrollWidth > elm.offsetWidth
+// 获取盒模型的大小
+```
+
 ### 怎么确定当前浏览器的类型
 
 通过`navigator.userAgent`获取浏览器信息，根据里面的关键字来确定浏览器类型。microMessenger、dingtalk、alipay、qq、iPhone 都可以获取判断。
