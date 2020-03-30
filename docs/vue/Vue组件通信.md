@@ -21,33 +21,33 @@ sidebarDepth: 2
 
 （1）绑定自定义事件：
 
-````js
+```js
 mounted() {
   // 绑定自定义事件
   event.$on('onAddTitle', this.addTitleHandler)
 },
-````
+```
 
 （2）调用自定义事件：
 
 ```js
-event.$emit('onAddTitle', this.title)
+event.$emit('onAddTitle', this.title);
 ```
 
 （3）需要一个 vue 实例，vue 实例可以有 export default 导出，也可以将 vue 实例挂在到根节点的 data 下面。如果放 data 中，可以使用`this.$root`获取到。
 
 ```js
-import Vue from 'vue'
-export default new Vue()
+import Vue from 'vue';
+export default new Vue();
 ```
 
 下面是 eventBus 的写法。
 
 ```js
 var eventBus = {
-    install(Vue,options) {
-        Vue.prototype.$bus = vue
-    }
+  install(Vue, options) {
+    Vue.prototype.$bus = vue;
+  }
 };
 Vue.use(eventBus);
 // 可以这样使用
@@ -84,15 +84,15 @@ export default {
   provide: {
     name: 'Aresn'
   }
-}
+};
 
 // B.vue
 export default {
   inject: ['name'],
-  mounted () {
-    console.log(this.name);  // Aresn
+  mounted() {
+    console.log(this.name); // Aresn
   }
-}
+};
 ```
 
 > provide 和 inject 绑定并**不是可响应**的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。

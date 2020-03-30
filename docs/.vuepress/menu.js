@@ -67,7 +67,7 @@ const getSidebar = () => {
       'router',
       '密码学',
       {
-        title: '文档1：',
+        title: '文档(一)：',
         collapsable: false,
         children: [
           'docs1/对象静态方法总结分享',
@@ -79,10 +79,19 @@ const getSidebar = () => {
         ]
       },
       {
-        title: '文档2：',
+        title: '文档(二)：',
         collapsable: false,
         children: [
           'docs2/面向对象01',
+        ]
+      },
+      {
+        title: '文档(三)：',
+        collapsable: false,
+        children: [
+          'reading/Vue 项目构建',
+          'reading/WebGL 基础',
+          'reading/数学',
         ]
       }
     ],

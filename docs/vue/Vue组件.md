@@ -1,17 +1,18 @@
 ---
-title: "vue 知识点"
+title: 'vue 知识点'
 ---
 
 ## 组件
 
 ```js
 const compoent = {
-  props: { // 组件可配置的行为
+  props: {
+    // 组件可配置的行为
     active: {
       // type: Boolean,
       // required: true,
-      validator (value) {
-        return typeof value === 'boolean'
+      validator(value) {
+        return typeof value === 'boolean';
       }
     },
     propOne: String
@@ -24,23 +25,23 @@ const compoent = {
     </div>
   `,
   // data一定是一个function使用return形成一个闭包,这样每个组件中的数据是独立的。
-  data () {
+  data() {
     return {
       text: 0
-    }
+    };
   },
   methods: {
-    handleChange () {
-      this.$emit('change')
+    handleChange() {
+      this.$emit('change');
     }
   }
-}
+};
 ```
 
 全局组件
 
 ```js
-Vue.component('CompOne', compoent)
+Vue.component('CompOne', compoent);
 ```
 
 局部组件
@@ -50,16 +51,13 @@ new Vue({
   components: {
     CompOne: compoent
   }
-})
+});
 ```
 
-不推荐在子组件中修改`props`
-修改组件中`props`的方法
+不推荐在子组件中修改`props` 修改组件中`props`的方法
 
 其实。vue 文件是 Vue 局部组件的形式。`vue-loader` 会解析文件，提取每个语言块，如有必要会通过其它 loader 处理，最后将他们组装成一个 ES Module，它的默认导出是一个 Vue.js 组件选项的对象。都是 JS。
 
 ### vue 可以定义函数式组件么
 
-函数式组件：没有状态 (data)，没有生命周期，只接受传递的 props , 常用于纯 UI 组件
-定义：通过 Vue.component 构建组件时，添加 functional: true; 需要通过调用 render 函数来渲染，常用包裹组建或者构建高阶组件
-对于单文件组件，在 template 上添加 functional `<template functional>`
+函数式组件：没有状态 (data)，没有生命周期，只接受传递的 props , 常用于纯 UI 组件定义：通过 Vue.component 构建组件时，添加 functional: true; 需要通过调用 render 函数来渲染，常用包裹组建或者构建高阶组件对于单文件组件，在 template 上添加 functional `<template functional>`

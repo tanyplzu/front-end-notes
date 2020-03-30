@@ -1,4 +1,4 @@
-## 数组的一些操作方法：
+# 数组的一些操作方法
 
 ### 打平数组
 
@@ -6,9 +6,9 @@
 // flat
 ary = ary.flat(Infinity);
 // replace
-ary = str.replace(/(\[|\])/g, '').split(',')
+ary = str.replace(/(\[|\])/g, '').split(',');
 // concat
-arr = Array.prototype.concat.apply([], arr)
+arr = Array.prototype.concat.apply([], arr);
 ```
 
 ```js
@@ -19,12 +19,12 @@ ary = JSON.parse(str);
 
 ```js
 function flatten(ary) {
-    return ary.reduce((pre, cur) => {
-        return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
-    }, []);
+  return ary.reduce((pre, cur) => {
+    return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
+  }, []);
 }
-let ary = [1, 2, [3, 4], [5, [6, 7]]]
-console.log(flatten(ary))
+let ary = [1, 2, [3, 4], [5, [6, 7]]];
+console.log(flatten(ary));
 ```
 
 ```js
@@ -39,8 +39,8 @@ concat 的使用：
 例子：[1], [2, 3], 4] -> [1, 2, 3, 4]
 
 ```js
-function flatten (arr) {
-  return Array.prototype.concat.apply([], arr)
+function flatten(arr) {
+  return Array.prototype.concat.apply([], arr);
 }
 ```
 
@@ -68,7 +68,7 @@ const chunk = (arr, size) =>
 创建一个长为 100 的数组
 
 ```js
-Array.from({ length:100})
+Array.from({ length: 100 });
 ```
 
 ```
@@ -82,7 +82,7 @@ const initializeArrayWithValues = (n, val = 0) => Array(n).fill(val);
 initializeArrayWithValues(5, 2); // [2, 2, 2, 2, 2]
 ```
 
-empty:  **空语句**用来表明没有语句，尽管 JavaScript 语法希望有语句。
+empty: **空语句**用来表明没有语句，尽管 JavaScript 语法希望有语句。
 
 ```js
 const compact = arr => arr.filter(Boolean);
@@ -139,13 +139,18 @@ const longestItem = (...vals) => vals.reduce((a, x) => (x.length > a.length ? x 
 ```
 
 ```js
-const partition = (arr, fn) => arr.reduce( (acc, val, i, arr) => {
+const partition = (arr, fn) =>
+  arr.reduce(
+    (acc, val, i, arr) => {
       acc[fn(val, i, arr) ? 0 : 1].push(val);
       return acc;
     },
     [[], []]
   );
-const users = [{ user: 'barney', age: 36, active: false }, { user: 'fred', age: 40, active: true }];
+const users = [
+  { user: 'barney', age: 36, active: false },
+  { user: 'fred', age: 40, active: true }
+];
 partition(users, o => o.active);
 // [[{ 'user': 'fred', 'age': 40, 'active': true }],[{ 'user': 'barney',  'age': 36, 'active': false }]]
 ```
@@ -176,47 +181,47 @@ var a = {}; a >>> 0  //0
 引自`冴羽`大佬的代码，可以说比较完整了。
 
 ```js
-Function.prototype.call = function (context) {
-    let context = context || window;
-    let fn = Symbol('fn');
-    context.fn = this;
+Function.prototype.call = function(context) {
+  let context = context || window;
+  let fn = Symbol('fn');
+  context.fn = this;
 
-    let args = [];
-    for(let i = 1, len = arguments.length; i < len; i++) {
-        args.push('arguments[' + i + ']');
-    }
+  let args = [];
+  for (let i = 1, len = arguments.length; i < len; i++) {
+    args.push('arguments[' + i + ']');
+  }
 
-    let result = eval('context.fn(' + args +')');
+  let result = eval('context.fn(' + args + ')');
 
-    delete context.fn
-    return result;
-}
+  delete context.fn;
+  return result;
+};
 ```
 
 不过我认为换成 ES6 的语法会更精炼一些：
 
 ```js
-Function.prototype.call = function (context, ...args) {
+Function.prototype.call = function(context, ...args) {
   let context = context || window;
   let fn = new Symbol('fn');
   context.fn = this;
 
   let result = eval('context.fn(...args)');
 
-  delete context.fn
+  delete context.fn;
   return result;
-}
+};
 ```
 
 类似的，有 apply 的对应实现：
 
 ```js
-Function.prototype.apply = function (context, args) {
+Function.prototype.apply = function(context, args) {
   let context = context || window;
   context.fn = this;
   let result = eval('context.fn(...args)');
 
-  delete context.fn
+  delete context.fn;
   return result;
-}
+};
 ```

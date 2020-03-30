@@ -1,6 +1,6 @@
-## Vue 虚拟 DOM 及渲染流程
+# Vue 虚拟 DOM 及渲染流程
 
-Virtual Dom是Vue2.0开始引入的，也是Vue的核心之一。Virtual Dom其实就是使用Javascript对象来模拟真实DOM结构的树形结构。在Vue里面，用VNode来描述具体的节点信息，Virtual Dom其实就是由Vue组件树建立起来的整个VNode树的称呼。由于VNode只是用来映射到真实DOM的渲染，不需要包含操作DOM的方法，因此它是非常轻量和简单的。最后渲染的时候会根据VNode来渲染成真实的DOM。（其vdom是基于snabbdom库所做的修改[https://github.com/snabbdom/snabbdom](https://github.com/snabbdom/snabbdom)）
+Virtual Dom 是 Vue2.0 开始引入的，也是 Vue 的核心之一。Virtual Dom 其实就是使用 Javascript 对象来模拟真实 DOM 结构的树形结构。在 Vue 里面，用 VNode 来描述具体的节点信息，Virtual Dom 其实就是由 Vue 组件树建立起来的整个 VNode 树的称呼。由于 VNode 只是用来映射到真实 DOM 的渲染，不需要包含操作 DOM 的方法，因此它是非常轻量和简单的。最后渲染的时候会根据 VNode 来渲染成真实的 DOM。（其 vdom 是基于 snabbdom 库所做的修改[https://github.com/snabbdom/snabbdom](https://github.com/snabbdom/snabbdom)）
 
 ### VNode
 
@@ -41,7 +41,6 @@ VNode 其实是对真实 DOM 的一种抽象描述，它的核心包括标签名
 
 ### VNode 生成及渲染流程
 
-
 #### VNode 的生成
 
 生成 VNode 的方法是 **render()** 函数。在`render`函数之前，templete 会经过三步处理，`parse`、`optimize`、`generate`。`optimize`是优化的过程，主要执行两个方法进行优化，分别是标注静态节点（`markStatic`）和静态根节点（`markStaticRoots`），如果是静态的，在之后`patch`的时候会直接跳比对。`generate`会根据 AST 树的一些参数生成对应`render`函数。
@@ -56,11 +55,9 @@ new Vue({
   router,
   components: { App },
   render(createElement) {
-    return createElement('div', [
-      'div'
-    ])
-  },
-})
+    return createElement('div', ['div']);
+  }
+});
 ```
 
 另一种是 compiler 会根据传入的 template 自动生成
@@ -80,20 +77,19 @@ new Vue({
 
 ```vue
 <script>
-  export default {
+export default {
   template: `
     <div>...</div>
   `
-  }
+};
 </script>
 ```
 
-需要注意的是，这两种方式是有优先级的：el < template < render。只有 el 的时候，会直接渲染 el 里面的内容，只有 template 或者只有 render 是不行的，Vue 并不知道要把结果渲染在什么地方，需要配合 el 或者 手动挂载（$mount）时指定位置。如果 el 中有内容，但又存在 template 或者 render 的时候，会按优先级进行覆盖。（在 Vue 的单文件组件下，会优先判断有没有 `<template>` 标签，如果有会选择优先编译 `<template>` 生成  	`render` 函数。）
+需要注意的是，这两种方式是有优先级的：el < template < render。只有 el 的时候，会直接渲染 el 里面的内容，只有 template 或者只有 render 是不行的，Vue 并不知道要把结果渲染在什么地方，需要配合 el 或者 手动挂载（\$mount）时指定位置。如果 el 中有内容，但又存在 template 或者 render 的时候，会按优先级进行覆盖。（在 Vue 的单文件组件下，会优先判断有没有 `<template>` 标签，如果有会选择优先编译 `<template>` 生成 `render` 函数。）
 
 从上面的`render`函数可以看出来，`render` 函数的的核心是 `createElement()`，它是真正创建 VNode 的函数。`createElement`有两个重点的流程是**children 的规范化**和**VNode 的创建**。
 
-`createElement`方法参数：
-[https://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0](https://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0)
+`createElement`方法参数： [https://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0](https://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0)
 
 如果使用 `render` 函数代替 `template` 的话，看起来是很不直观的，在 Vue 中，我们可以通过 `babel-plugin-transform-vue-jsx` 插件，在`.babelrc`中加入配置即可使渲染函数可以支持 JSX 语法。
 
@@ -112,21 +108,17 @@ new Vue({
 相似节点的判断如下：
 
 ```js
-function sameVnode (a, b) {
+function sameVnode(a, b) {
   return (
-  a.key === b.key && (
-    (
-  a.tag === b.tag &&
-  a.isComment === b.isComment &&
-  isDef(a.data) === isDef(b.data) &&
-  sameInputType(a, b)
-    ) || (
-  isTrue(a.isAsyncPlaceholder) &&
-  a.asyncFactory === b.asyncFactory &&
-  isUndef(b.asyncFactory.error)
-    )
-  )
-  )
+    a.key === b.key &&
+    ((a.tag === b.tag &&
+      a.isComment === b.isComment &&
+      isDef(a.data) === isDef(b.data) &&
+      sameInputType(a, b)) ||
+      (isTrue(a.isAsyncPlaceholder) &&
+        a.asyncFactory === b.asyncFactory &&
+        isUndef(b.asyncFactory.error)))
+  );
 }
 ```
 
@@ -136,30 +128,30 @@ function sameVnode (a, b) {
 
 ```html
 <table>
-    <tr>
-        <th></th>
-        <th>oldVnode.text</th>
-        <th>oldVnode.ch</th>
-        <th>!oldVnode.ch</th>
-    </tr>
-    <tr>
-        <th>vnode.text</th>
-        <th>setTextContent</th>
-        <th>setTextContent</th>
-        <th>setTextContent</th>
-    </tr>
-    <tr>
-        <th>vnode.ch</th>
-        <th>addVnodes</th>
-        <th>updateChildren</th>
-        <th>addVnodes</th>
-    </tr>
-    <tr>
-        <th>!vnode.ch</th>
-        <th>setTextContent</th>
-        <th>removeVnodes</th>
-        <th>setTextContent</th>
-    </tr>
+  <tr>
+    <th></th>
+    <th>oldVnode.text</th>
+    <th>oldVnode.ch</th>
+    <th>!oldVnode.ch</th>
+  </tr>
+  <tr>
+    <th>vnode.text</th>
+    <th>setTextContent</th>
+    <th>setTextContent</th>
+    <th>setTextContent</th>
+  </tr>
+  <tr>
+    <th>vnode.ch</th>
+    <th>addVnodes</th>
+    <th>updateChildren</th>
+    <th>addVnodes</th>
+  </tr>
+  <tr>
+    <th>!vnode.ch</th>
+    <th>setTextContent</th>
+    <th>removeVnodes</th>
+    <th>setTextContent</th>
+  </tr>
 </table>
 ```
 
@@ -191,11 +183,7 @@ oldStartIdx > oldEndIdx || newStartIdx > newEndIdx
 
 ```html
 <ul>
-  <li
-    v-for="user in users"
-    v-if="!user.disabled"
-    :key="user.id"
-  >
+  <li v-for="user in users" v-if="!user.disabled" :key="user.id">
     {{ user.name }}
   </li>
 </ul>

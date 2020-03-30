@@ -8,7 +8,7 @@
 
 频繁操作时，使用 `v-show`，一次性渲染完的，使用 `v-if`，只要意思对就好。
 
-因为当 `v-if="false"` 时，内部组件是不会渲染的，所以在特定条件才渲染部分组件（或内容）时，可以先将条件设置为 `false`，需要时（或异步，比如 $nextTick）再设置为 `true`，这样可以优先渲染重要的其它内容，合理利用，可以进行性能优化。
+因为当 `v-if="false"` 时，内部组件是不会渲染的，所以在特定条件才渲染部分组件（或内容）时，可以先将条件设置为 `false`，需要时（或异步，比如 \$nextTick）再设置为 `true`，这样可以优先渲染重要的其它内容，合理利用，可以进行性能优化。
 
 > 项目中多 vue 的 tab 页使用 v-if 做了优化，避免了一次性请求所有接口
 
@@ -18,16 +18,16 @@
 
 ```vue
 <template>
-  <div :class="{show: isShow}">内容</div>
+  <div :class="{ show: isShow }">内容</div>
 </template>
 <script>
-  export default {
-    data () {
-      return {
-        isShow: true
-      }
-    }
+export default {
+  data() {
+    return {
+      isShow: true
+    };
   }
+};
 </script>
 ```
 
@@ -38,24 +38,25 @@
   <div :class="classes"></div>
 </template>
 <script>
-  export default {
-    computed: {
-      classes () {
-        return [
-          `${prefixCls}`,
-          `${prefixCls}-${this.type}`,
-          {
-            [`${prefixCls}-long`]: this.long,
-            [`${prefixCls}-${this.shape}`]: !!this.shape,
-            [`${prefixCls}-${this.size}`]: this.size !== 'default',
-            [`${prefixCls}-loading`]: this.loading != null && this.loading,
-            [`${prefixCls}-icon-only`]: !this.showSlot && (!!this.icon || !!this.customIcon || this.loading),
-            [`${prefixCls}-ghost`]: this.ghost
-          }
-        ];
-      }
+export default {
+  computed: {
+    classes() {
+      return [
+        `${prefixCls}`,
+        `${prefixCls}-${this.type}`,
+        {
+          [`${prefixCls}-long`]: this.long,
+          [`${prefixCls}-${this.shape}`]: !!this.shape,
+          [`${prefixCls}-${this.size}`]: this.size !== 'default',
+          [`${prefixCls}-loading`]: this.loading != null && this.loading,
+          [`${prefixCls}-icon-only`]:
+            !this.showSlot && (!!this.icon || !!this.customIcon || this.loading),
+          [`${prefixCls}-ghost`]: this.ghost
+        }
+      ];
     }
   }
+};
 </script>
 ```
 
@@ -107,12 +108,15 @@
 > .exact 是 Vue.js 2.5.0 新加的，它允许你控制由精确的系统修饰符组合触发的事件，比如：
 >
 > <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+>
 > <button @click.ctrl="onClick">A</button>
 >
 > <!-- 有且只有 Ctrl 被按下的时候才触发 -->
+>
 > <button @click.ctrl.exact="onCtrlClick">A</button>
 >
 > <!-- 没有任何系统修饰符被按下的时候才触发 -->
+>
 > <button @click.exact="onClick">A</button>
 >
 > ```
@@ -135,20 +139,19 @@
 因为组件是用来复用的，JS 里对象是引用关系，这样作用域没有隔离，而 new Vue 的实例，是不会被复用的，因此不存在引用对象的问题。
 
 ```js
-var Component= function() {
-}
+var Component = function() {};
 Component.prototype.data = function() {
   return {
-     a: 1,
-     b: 2
-  }
-}
+    a: 1,
+    b: 2
+  };
+};
 
 // 使用组件
-var component1 = new Component()
-var component2 = new Component()
-component1.data.b = 3
-component2.data.b   // 2
+var component1 = new Component();
+var component2 = new Component();
+component1.data.b = 3;
+component2.data.b; // 2
 ```
 
 ### keep-alive 的理解
@@ -174,30 +177,30 @@ component2.data.b   // 2
   </div>
 </template>
 <script>
-  export default {
-    props: {
-      value: {
-        type: Number,
-        default: 0
-      }
-    },
-    data () {
-      return {
-        currentValue: this.value
-      }
-    },
-    methods: {
-      handleClick () {
-        this.currentValue += 1;
-        this.$emit('input', this.currentValue);
-      }
-    },
-    watch: {
-      value (val) {
-        this.currentValue = val;
-      }
+export default {
+  props: {
+    value: {
+      type: Number,
+      default: 0
+    }
+  },
+  data() {
+    return {
+      currentValue: this.value
+    };
+  },
+  methods: {
+    handleClick() {
+      this.currentValue += 1;
+      this.$emit('input', this.currentValue);
+    }
+  },
+  watch: {
+    value(val) {
+      this.currentValue = val;
     }
   }
+};
 </script>
 ```
 
@@ -268,12 +271,12 @@ export default {
   props: {
     value: String
   },
-  data () {
+  data() {
     return {
       currentValue: this.value
-    }
+    };
   }
-}
+};
 ```
 
 **2. 如果是对 prop 值的转换，可以使用计算属性：**
@@ -282,11 +285,11 @@ export default {
 export default {
   props: ['size'],
   computed: {
-    normalizedSize: function () {
+    normalizedSize: function() {
       return this.size.trim().toLowerCase();
     }
   }
-}
+};
 ```
 
 如果你能提到 v-model 实现数据的双向绑定、.sync 用法，会大大加分的，这些在第 16 节已经详细介绍过。
@@ -299,7 +302,7 @@ export default {
 
 1. 父子通信：
 
-父向子传递数据是通过 props，子向父是通过 events（$emit）；通过父链 / 子链也可以通信（$parent / $children）；`ref` 也可以访问组件实例；provide / inject API。
+父向子传递数据是通过 props，子向父是通过 events（$emit）；通过父链 / 子链也可以通信（$parent / \$children）；`ref` 也可以访问组件实例；provide / inject API。
 
 **2. 兄弟通信：**
 
@@ -334,18 +337,15 @@ ViewModel 通过双向数据绑定把 View 层和 Model 层连接了起来，而
 
 1. 有生成版本和开发版本的区分；
 2. 完整版和运行时版本的区分，完整版包含编译器（用于生成渲染函数）；
-3. 构建环境的区分，支持 UMD(AMD和commonjs)、commonjs、ES Module(用于构建工具的)、ES Module(用于浏览器的)
+3. 构建环境的区分，支持 UMD(AMD 和 commonjs)、commonjs、ES Module(用于构建工具的)、ES Module(用于浏览器的)
 
 ### v-model
 
 ```vue
 <template>
-    <!-- 例如：vue 颜色选择 -->
-    <input type="text"
-        :value="text1"
-        @input="$emit('change1', $event.target.value)"
-    >
-    <!--
+  <!-- 例如：vue 颜色选择 -->
+  <input type="text" :value="text1" @input="$emit('change1', $event.target.value)" />
+  <!--
         1. 上面的 input 使用了 :value 而不是 v-model
         2. 上面的 change1 和 model.event1 要对应起来
         3. text1 属性对应起来
@@ -354,17 +354,17 @@ ViewModel 通过双向数据绑定把 View 层和 Model 层连接了起来，而
 
 <script>
 export default {
-    model: {
-        prop: 'text1', // 对应 props text1
-        event: 'change1'
-    },
-    props: {
-        text1: String,
-        default() {
-            return ''
-        }
+  model: {
+    prop: 'text1', // 对应 props text1
+    event: 'change1'
+  },
+  props: {
+    text1: String,
+    default() {
+      return '';
     }
-}
+  }
+};
 </script>
 ```
 
@@ -374,7 +374,7 @@ performance：我们可以使用它来进行网页性能的追踪，配置如下
 
 ```js
 if (process.env.NODE_ENV !== 'production') {
-    Vue.config.performance = true;
+  Vue.config.performance = true;
 }
 ```
 
@@ -385,15 +385,15 @@ if (process.env.NODE_ENV !== 'production') {
 errorHandler ：在浏览器异常捕获的方法上，我们熟知的一般有：`try ... catch` 和 `window.onerror`，这也是原生 JavaScript 提供给我们处理异常的方式。但是在 Vue 2.x 中如果你一如既往的想使用 window.onerror 来捕获异常，那么其实你是捕获不到的，因为异常信息被框架自身的异常机制捕获了，你可以使用 `errorHandler` 来进行异常信息的获取：
 
 ```js
-Vue.config.errorHandler = function (err, vm, info) {
-    let {
-        message, // 异常信息
-        name, // 异常名称
-        stack  // 异常堆栈信息
-    } = err;
-    // vm 为抛出异常的 Vue 实例
-    // info 为 Vue 特定的错误信息，比如错误所在的生命周期钩子
-}
+Vue.config.errorHandler = function(err, vm, info) {
+  let {
+    message, // 异常信息
+    name, // 异常名称
+    stack // 异常堆栈信息
+  } = err;
+  // vm 为抛出异常的 Vue 实例
+  // info 为 Vue 特定的错误信息，比如错误所在的生命周期钩子
+};
 ```
 
 ### 生命周期
@@ -401,7 +401,7 @@ Vue.config.errorHandler = function (err, vm, info) {
 [Vue.js 生命周期](https://cn.vuejs.org/v2/api/#选项-生命周期钩子) 主要有 8 个阶段：
 
 - 创建前 / 后（beforeCreate / created）：在 beforeCreate 阶段，Vue 实例的挂载元素 el 和数据对象 data 都为 undefined，还未初始化。在 created 阶段，Vue 实例的数据对象 data 有了，el 还没有。
-- 载入前 / 后（beforeMount / mounted）：在 beforeMount 阶段，Vue 实例的 $el 和 data 都初始化了，但还是挂载之前为虚拟的 DOM 节点，data 尚未替换。在 mounted 阶段，Vue 实例挂载完成，data 成功渲染。
+- 载入前 / 后（beforeMount / mounted）：在 beforeMount 阶段，Vue 实例的 \$el 和 data 都初始化了，但还是挂载之前为虚拟的 DOM 节点，data 尚未替换。在 mounted 阶段，Vue 实例挂载完成，data 成功渲染。
 - 更新前 / 后（beforeUpdate / updated）：当 data 变化时，会触发 beforeUpdate 和 updated 方法。这两个不常用，且不推荐使用。
 - 销毁前 / 后（beforeDestroy / destroyed）：beforeDestroy 是在 Vue 实例销毁前触发，一般在这里要通过 removeEventListener 解除手动绑定的事件。实例销毁后，触发 destroyed。
 
@@ -411,11 +411,7 @@ Vue.config.errorHandler = function (err, vm, info) {
 
 「Virtual Dom 的优势」其实这道题目面试官更想听到的答案不是上来就说「直接操作 / 频繁操作 DOM 的性能差」，如果 DOM 操作的性能如此不堪，那么 jQuery 也不至于活到今天。所以面试官更想听到 VDOM 想解决的问题以及为什么频繁的 DOM 操作会性能差。
 
-首先我们需要知道：
-DOM 引擎、JS 引擎 相互独立，但又工作在同一线程（主线程）
-JS 代码调用 DOM API 必须 挂起 JS 引擎、转换传入参数数据、激活 DOM 引擎，DOM 重绘后再转换可能有的返回值，最后激活 JS 引擎并继续执行若有频繁的 DOM API 调用，且浏览器厂商不做“批量处理”优化，
-引擎间切换的单位代价将迅速积累若其中有强制重绘的 DOM API 调用，重新计算布局、重新绘制图像会引起更大的性能消耗。
-其次是 VDOM 和真实 DOM 的区别和优化：
+首先我们需要知道： DOM 引擎、JS 引擎 相互独立，但又工作在同一线程（主线程） JS 代码调用 DOM API 必须 挂起 JS 引擎、转换传入参数数据、激活 DOM 引擎，DOM 重绘后再转换可能有的返回值，最后激活 JS 引擎并继续执行若有频繁的 DOM API 调用，且浏览器厂商不做“批量处理”优化，引擎间切换的单位代价将迅速积累若其中有强制重绘的 DOM API 调用，重新计算布局、重新绘制图像会引起更大的性能消耗。其次是 VDOM 和真实 DOM 的区别和优化：
 
 - 虚拟 DOM 不会立马进行排版与重绘操作
 - 虚拟 DOM 进行频繁修改，然后一次性比较并修改真实 DOM 中需要改的部分，最后在真实 DOM 中进行排版与重绘，减少过多 DOM 节点排版与重绘损耗
@@ -428,7 +424,7 @@ JS 代码调用 DOM API 必须 挂起 JS 引擎、转换传入参数数据、激
 1. 首先是没有任何一个框架可以比纯手动优化操作 dom 快，因为框架的 dom 操作层需要应对上层 API 可能发生的操作，所以它的实现是普适性的，所以不可能对每个场景做优化，这就是个性能和可维护性的取舍。各大框架可以给到即使不需要手动优化，也可以提供较优秀的性能。
 2. 我们看看两者的重绘性能消耗：
 
-- innerHTML:  render html string O(template size) + 重新创建所有 DOM 元素 O(DOM size)
+- innerHTML: render html string O(template size) + 重新创建所有 DOM 元素 O(DOM size)
 - Virtual DOM: render Virtual DOM + diff O(template size) + 必要的 DOM 更新 O(DOM change) render Virtual DOM + diff O 显然比渲染 html string 要慢，但我们知道，这是纯 js 层面的计算相比， 与 DOM 层面的操作的开销相比要小很多。 所以直接操作 dom 的开销就和整个页面相关，而虚拟 dom 的开销就是 js 层面的计算和计算后的 dom 的开销，所以虚拟 dom 就可以保证，不管页面数据变化多少，每次计算后的重绘的性能都在可接受范围内。
 
 1. 因为机制不一样，那么比较的时候就要看场合，比如是大量数据的更新还是小量数据的更新。举个例子，如果一个非常大的列表，数据全都发生了变化，那么直接操作 dom 肯定是更快的，那如果只是其中的几行发生了变化，直接全量替换 dom 的开销可就大了，而虚拟 dom 在计算后，只需要替换个别 dom 即可
