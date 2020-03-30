@@ -6,7 +6,7 @@ sidebarDepth: 2
 
 [[toc]]
 
-### 手写 promise
+## 手写 promise
 
 实现一个简易版 Promise
 
@@ -27,7 +27,6 @@ sidebarDepth: 2
             if (that.state === PENDING) {
                 that.state = RESOLVED;
                 that.value = value;
-                console.log(33, that.resolvedCallbacks);
                 that.resolvedCallbacks.map(cb => cb(that.value));
             }
         }
@@ -55,17 +54,14 @@ sidebarDepth: 2
                     throw r;
                 };
         if (that.state === PENDING) {
-            console.log('cccc')
             that.resolvedCallbacks.push(onFulfilled);
             that.rejectedCallbacks.push(onRejected);
         }
         // 下面两个if是为了实现透传
         if (that.state === RESOLVED) {
-            console.log('aaaa')
             onFulfilled(that.value);
         }
         if (that.state === REJECTED) {
-            console.log('bbbb')
             onRejected(that.value);
         }
     };
@@ -74,7 +70,7 @@ sidebarDepth: 2
 })();
 ```
 
-### 手写 call、apply 及 bind 函数
+## 手写 call、apply 及 bind 函数
 
 ```js
 Function.prototype.myCall = function(context) {
@@ -90,5 +86,7 @@ Function.prototype.myCall = function(context) {
 }
 ```
 
-### 函数式编程
+## 函数式编程
 
+[函数式编程入门教程](http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html)
+[JS 函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)

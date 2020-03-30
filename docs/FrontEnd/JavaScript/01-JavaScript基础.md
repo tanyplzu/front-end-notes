@@ -923,7 +923,8 @@ ws.onclose = function(evt) {
 
 新出的通信标准，支持跨域的 Ajax
 
-CORS 预请求在跨域时允许的方法只有 GET、POST、HEAD；允许的 Content-Type 也是有限制的，只允许 text-plain： multipart/form-data: application/x-www-form-urlencoded: 其他限制：请求头的限制对于跨域请求的限制，在跨域时需要做预请求，options Access-Control-Expose-Headers 可以自定义头 Access-Control-Request-Method 自定义方法 Access-Control-Max-Age 设置时间后，在该时间段里不需要再发请求验证了其实 Response Hearders 中设计的一系列属性都是给浏览器解析请求的配置项，告诉浏览器去如何解析。
+CORS 预请求在跨域时允许的方法只有 GET、POST、HEAD；
+允许的 Content-Type 也是有限制的，只允许 text-plain： multipart/form-data: application/x-www-form-urlencoded: 其他限制：请求头的限制对于跨域请求的限制，在跨域时需要做预请求，options Access-Control-Expose-Headers 可以自定义头 Access-Control-Request-Method 自定义方法 Access-Control-Max-Age 设置时间后，在该时间段里不需要再发请求验证了其实 Response Hearders 中设计的一系列属性都是给浏览器解析请求的配置项，告诉浏览器去如何解析。
 
 **fetch：**
 
@@ -1056,7 +1057,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 白屏的定义有多种。可以认为“没有任何内容”是白屏，可以认为“网络或服务异常”是白屏，可以认为“数据加载中”是白屏，可以认为“图片加载不出来”是白屏。场景不同，白屏的计算方式就不相同。
 
-方法 1：当页面的元素数小于 x 时，则认为页面白屏。比如“没有任何内容”，可以获取页面的 DOM 节点数，判断 DOM 节点数少于某个阈值 X，则认为白屏。方法 2：当页面出现业务定义的错误码时，则认为是白屏。比如“网络或服务异常”。方法 3：当页面出现业务定义的特征值时，则认为是白屏。比如“数据加载中”
+- 方法 1：当页面的元素数小于 x 时，则认为页面白屏。比如“没有任何内容”，可以获取页面的 DOM 节点数，判断 DOM 节点数少于某个阈值 X，则认为白屏。
+- 方法 2：当页面出现业务定义的错误码时，则认为是白屏。比如“网络或服务异常”。
+- 方法 3：当页面出现业务定义的特征值时，则认为是白屏。比如“数据加载中”
 
 Google 网页性能分析工具： [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 
@@ -1091,7 +1094,6 @@ script 标签页可以添加标签
 ### 上报错误的原理
 
 1. 采用 ajax 通信上报；
-
 2. 利用 Image 对象上报。
 
 ```js
