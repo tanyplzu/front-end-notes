@@ -1,13 +1,12 @@
 ---
-title: "Webpack"
 sidebarDepth: 2
 ---
 
-## 目录
+# Webpack
 
 [[toc]]
 
-### 有哪些方式可以提升 webpack 的打包速度
+## 有哪些方式可以提升 webpack 的打包速度
 
 - loader：使用 include 和 exclude 指定搜索文件的范围。
 - babel-loader: 配置后面加上 loader:'babel-loader?cacheDirectory=true'将编译过的文件缓存起来，下次只需要编译更改过的代码文件即可。
@@ -16,7 +15,7 @@ sidebarDepth: 2
 - resolve.alias：配置别名，更快找到路径。
 - module.noParse：确定这个文件没有其他依赖时，让 webpack 打包时不扫描该文件。
 
-### 有哪些方式可以减小 webpack 的打包后的体积
+## 有哪些方式可以减小 webpack 的打包后的体积
 
 - Scope Hoisting：分析模块之间的依赖关系，尽可能的把打包出来的模块合并到一个函数里。
 - Tree Shaking：删除项目中未被引用的代码。

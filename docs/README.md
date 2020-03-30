@@ -6,7 +6,7 @@ actionText: 进入空间
 actionLink: /Introduction
 features:
 - title: 
-  details: Beautiful is better than ugly.Explicit is better than implicit. Simple is better than complex.
+  details: Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex.
 - title:
   details: Although that way may not be obvious at first unless you're Dutch. Now is better than never.
 - title: 

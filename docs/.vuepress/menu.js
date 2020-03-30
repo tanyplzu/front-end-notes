@@ -19,21 +19,26 @@ const getNav = () => {
 const getSidebar = () => {
   return {
     '/FrontEnd/': [
-      {
-        title: 'JS基础',
-        collapsable: true,
-        children: [
-          'JavaScript/01-JavaScript基础',
-          'JavaScript/02-JavaScript进阶',
-          'JavaScript/JavaScript的执行机制',
-          'JavaScript/V8',
-          'JavaScript/TS'
-        ]
-      },
+      // {
+      //   title: 'JS基础',
+      //   collapsable: true,
+      //   children: [
+      //     'JavaScript/01-JavaScript基础',
+      //     'JavaScript/02-JavaScript进阶',
+      //     'JavaScript/JavaScript的执行机制',
+      //     'JavaScript/V8',
+      //     'JavaScript/TS'
+      //   ]
+      // },
+      'JavaScript/01-JavaScript基础',
+      'JavaScript/02-JavaScript进阶',
+      'JavaScript/JavaScript的执行机制',
+      'JavaScript/V8',
+      'JavaScript/TS',
       'Html&Css',
-      'Network',
-      // '网络协议进阶',
-      'Security',
+      'NetworkAndSecurity/Network',
+      'NetworkAndSecurity/网络协议进阶',
+      'NetworkAndSecurity/Security',
       'Webpack',
       'DesignPattern',
       {
@@ -45,13 +50,7 @@ const getSidebar = () => {
           'Node/Nest.js入门',
         ]
       },
-      {
-        title: '数据结构与算法',
-        collapsable: true,
-        children: [
-          'DSA/Algorithms'
-        ]
-      },
+      'DSA/Algorithms'
     ],
     '/Vue/': [
       ['./', 'Vue相关'],
