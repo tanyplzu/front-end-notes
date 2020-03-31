@@ -83,6 +83,7 @@ const getSidebar = () => {
         collapsable: false,
         children: [
           'docs2/面向对象01',
+          'docs2/编译型语言和解释型语言',
         ]
       },
       {
