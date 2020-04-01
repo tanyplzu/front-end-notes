@@ -1,6 +1,7 @@
 ---
 sidebarDepth: 1
 ---
+
 # JavaScript 基础知识
 
 [[toc]]
@@ -18,7 +19,9 @@ sidebarDepth: 1
 - instanceof 主要是用来判断引用类型，它的原理是根据原型链来查找。
 
 ::: tip
+
 函数也是一个对象，有 prototype 属性；函数实例的 instanceof 可以是构造函数本身；也可以是 Object 对象
+
 :::
 
 ### 何时使用 === 何时使用 ==
@@ -379,7 +382,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ```js
 // 判断元素是否超出设定区域
-elm.scrollWidth > elm.offsetWidth
+elm.scrollWidth > elm.offsetWidth;
 // 获取盒模型的大小
 ```
 
@@ -434,8 +437,10 @@ function Child1() {
 console.log(new Child1(), new Child1().say());
 ```
 
-::: danger Note
-缺点：Parent1 原型链上的东西没有被继承，只实现了部分继承
+::: danger 缺点：
+
+Parent1 原型链上的东西没有被继承，只实现了部分继承 
+
 :::
 
 **2. 借助原型链实现继承：**
@@ -455,8 +460,10 @@ console.log(s1.play, s2.play);
 s1.play.push(4);
 ```
 
-::: danger Note
-缺点：原型链较长。如果实例化多个对象，修改一个中的属性，另一个也会变化。
+::: danger 缺点：
+
+原型链较长。如果实例化多个对象，修改一个中的属性，另一个也会变化。
+
 :::
 
 **3. 组合方式：**
@@ -477,8 +484,10 @@ s3.play.push(4);
 console.log(s3.play, s4.play);
 ```
 
-::: danger Note
-缺点：原型链较长，Parent3 执行了两次。`Parent3.call(this)`、`new Parent3()`
+::: danger 缺点：
+
+原型链较长，Parent3 执行了两次。`Parent3.call(this)`、`new Parent3()` 
+
 :::
 
 **4. 组合继承的优化 1：**
@@ -685,10 +694,8 @@ this 表示为当前的函数调用方，在运行时才能决定。如谁调用
 ### 闭包的应用场景
 
 - 封装，将与外部无关的变量封装在函数自身内部。如 function 中 return 一个 function，将变量私有化。如函数防抖的例子。
-- 模块设计，使用立即执行函数实现，将变量私有化，只开放必要的api。
+- 模块设计，使用立即执行函数实现，将变量私有化，只开放必要的 api。
 - 函数柯里化
-
-
 
 ## 页面循环系统
 
@@ -923,8 +930,16 @@ ws.onclose = function(evt) {
 
 新出的通信标准，支持跨域的 Ajax
 
-CORS 预请求在跨域时允许的方法只有 GET、POST、HEAD；
-允许的 Content-Type 也是有限制的，只允许 text-plain： multipart/form-data: application/x-www-form-urlencoded: 其他限制：请求头的限制对于跨域请求的限制，在跨域时需要做预请求，options Access-Control-Expose-Headers 可以自定义头 Access-Control-Request-Method 自定义方法 Access-Control-Max-Age 设置时间后，在该时间段里不需要再发请求验证了其实 Response Hearders 中设计的一系列属性都是给浏览器解析请求的配置项，告诉浏览器去如何解析。
+CORS 预请求在跨域时允许的方法只有 GET、POST、HEAD；允许的 Content-Type 也是有限制的，只允许 text-plain： multipart/form-data: application/x-www-form-urlencoded: 其他限制：请求头的限制对于跨域请求的限制，在跨域时需要做预请求，options Access-Control-Expose-Headers 可以自定义头 Access-Control-Request-Method 自定义方法 Access-Control-Max-Age 设置时间后，在该时间段里不需要再发请求验证了其实 Response Hearders 中设计的一系列属性都是给浏览器解析请求的配置项，告诉浏览器去如何解析。
+
+```js
+Access-Control-Allow-Origin: http://api.bob.com
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: FooBar
+Content-Type: text/html; charset=utf-8
+```
+
+> [阮一峰 跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
 
 **fetch：**
 
@@ -989,6 +1004,8 @@ Signature 部分是对前两部分的签名，防止数据篡改。
 - cookie + session：前端登录后，后端会种一个 httpOnly 的 cookie 在前端，里面就有这个用户对应的 sessionId，以后每一次前端发起请求会携带上这个 cookie，后端从里面解析到 sessionId 后找到对应的 session 信息，就知道是谁再操作了。缺点是后端需要空间存储 session，用户多了，服务器多了都不方便，这种方式基本属于淘汰边缘。
 - jwt + token：前端登录后，后端会返回一个包括用户信息加密的 token 字符串（可能还有过期时间，手机端有设备唯一码等信息），客户端自己保存了，将这个 token 设置到 header 里的 Authorization，之后每次请求都带上，服务器解码这个 token 之后就知道是谁在访问了。优点是不占存储空间，后端解码即可。
 
+## 浏览器存储
+
 ### 浏览器实现本地存储的方式有哪几种
 
 - cookie：存储大小 4kb，会随请求发送到服务端，可设置过期时间。
@@ -998,10 +1015,12 @@ Signature 部分是对前两部分的签名，防止数据篡改。
 
 ## 性能优化
 
-**原则：**
+::: tip 原则:
 
 - 多使用内存、缓存或者其他方法
 - 减少 CPU 计算、较少网络
+
+:::
 
 ### 加载资源优化
 
@@ -1010,9 +1029,7 @@ Signature 部分是对前两部分的签名，防止数据篡改。
 - 使用 CND 让资源加载更快
 - 使用 SSR 后端渲染，数据直接突出到 HTML 中
 
-> 雪碧图现在基本没有用了
->
-> CDN 加载的原理
+> http2 采用多路复用后，雪碧图现在基本没有用了
 
 ### 渲染优化
 
@@ -1063,6 +1080,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 Google 网页性能分析工具： [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 
+### 如何系统地优化页面
+
+通常一个页面有三个阶段：加载阶段、交互阶段和关闭阶段。
+
+加载阶段：总的优化原则就是减少关键资源个数，降低关键资源大小，降低关键资源的 RTT 次数。
+
 ## 错误监控
 
 ### 前端错误分类
@@ -1080,7 +1103,7 @@ Google 网页性能分析工具： [PageSpeed Insights](https://developers.googl
 #### Object.onerror
 
 ```html
-<image onerror="myErrFonc()"/>
+<image onerror="myErrFonc()" />
 ```
 
 script 标签页可以添加标签
@@ -1097,7 +1120,7 @@ script 标签页可以添加标签
 2. 利用 Image 对象上报。
 
 ```js
-(new Image()).src = 'http://baidu.com/tesjk?r=tksjk'
+new Image().src = 'http://baidu.com/tesjk?r=tksjk';
 ```
 
 ### Vue 中的错误捕获机制
