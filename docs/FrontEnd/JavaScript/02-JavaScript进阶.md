@@ -63,7 +63,13 @@ Last-modified: 服务器端资源的最后修改时间，响应头部会带上�
 
 ![explorer_cache](./imgs/explorer_cache.png)
 
-max-age 时会显示 200 (form memory cache) s-maxage 返回 304
+- max-age 时会显示 200 (form memory cache) 从浏览器缓存读取，耗时 0
+- s-maxage 返回 304
+
+### from disk cache 和 form memory cache
+
+- from memory cache：chrome cache中查找
+- from disk cache 不访问服务器，直接读缓存，从磁盘中读取缓存，当kill进程时，数据还是存在。
 
 > [HTTP 缓存机制一二三](https://zhuanlan.zhihu.com/p/29750583)
 >

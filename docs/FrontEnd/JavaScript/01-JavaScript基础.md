@@ -868,7 +868,6 @@ dev.addEventListener(
 **defer：** 加载脚本和渲染后续文档元素并行进行，但脚本的执行会等到 html 解析完成后执行
 
 ```html
-<script src="/front-end/assets/js/3.efb9cd95.js" async></script>
 <script src="/front-end/assets/js/3.efb9cd95.js" defer></script>
 ```
 
