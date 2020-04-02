@@ -10,7 +10,7 @@ sidebarDepth: 1
 
 ### JavaScript 的变量有哪些类型
 
-- 分为两种：基础类型和引用类型。基础类型目前有六种，分别是`boolean`、`null`、`undefined`、`number`、`string`、`symbol`、`bigInt`
+- 分为两种：基础类型和引用类型。基础类型目前有 7 种，分别是`boolean`、`null`、`undefined`、`number`、`string`、`symbol`、`bigInt`
 - 除了以上的基础类型之外，其他就是引用类型了，有`Array`、`Object`、`Function`。
 
 ### typeof 和 instanceof 的区别
@@ -63,11 +63,24 @@ if (obj.a == null) {
 - 在进行字符串强转的时候，toString 会优先于 valueOf；在进行数值运算时，valueOf 会优先于 toString。
 - 当执行 toString 的变量是一个整数类型时，支持传参，表示需要转为多少进制的字符串。
 
+### 计算机中原码，反码，补码之间的关系
+
+- **原码**就是早期用来表示数字的一种方式: 一个正数，转换为二进制位就是这个正数的原码。
+- **负数**的绝对值转换成二进制位然后在**高位补 1**就是这个负数的原码
+- 正数的**反码**就是原码，负数的反码等于**原码除符号位以外**所有的位**取反**
+- 正数的**补码**与原码相同，负数的补码为 其原码除符号位外所有位取反（得到反码了），然后最低位加 1.
+
+总的来说：
+
+- 正数的反码和补码都与原码相同。
+- 负数的反码为对该数的原码除符号位外各位取反。
+- 负数的补码为对该数的原码除符号位外各位取反，然后在最后一位加 1
+
+> 黄申：[我们为什么需要反码和补码？](https://time.geekbang.org/column/article/74296)
+
 ### JS 中有哪些内置函数
 
 `Object` `Array` `Boolean` `Number` `String` `Function` `Date` `RegExp` `Error`
-
-对于这种问题，回复时能把基本常用的回答上来就可以，没必要背书把所有的都写上。
 
 ### 创建对象有几种方法
 
@@ -197,6 +210,12 @@ function unique(arr) {
 - array.includes()
 - array.find()
 - array.findeIndex()
+
+### 打出数组中的所有方法
+
+```js
+Object.getOwnPropertyNames([].__proto__);
+```
 
 ### 字符串的 test、match、search 之间的区别
 
@@ -649,9 +668,9 @@ export function a() {}
 export default function() {}
 ```
 
-> 1.CmmonJS 在导出时可能是值的引用，不是拷贝。有待进一步确定。
+> CmmonJS 在导出时可能是值的引用，不是拷贝。有待进一步确定。
 >
-> 2.CmmonJS require 的时候才去执行，而 ES Module 在 import 时会去构建依赖树。
+> CmmonJS require 的时候才去执行，而 ES Module 在 import 时会去构建依赖树。
 
 ### Proxy 可以实现什么功能
 
@@ -682,6 +701,10 @@ this 表示为当前的函数调用方，在运行时才能决定。如谁调用
 - 作为对象属性执行
 - 作为普通函数执行
 - call apply bind
+
+> 李兵 [从 JavaScript 执行上下文的视角讲清楚 this](https://time.geekbang.org/column/article/128427)
+>
+> 阮一峰 [Javascript 的 this 用法](http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html)
 
 ### 改变当前调用 this 的方式
 
@@ -911,6 +934,12 @@ xhr.send(null);
 </script>
 ```
 
+**CORS：**
+
+浏览器将 CORS 请求分成两类：简单请求（simple request）和非简单请求（not-so-simple request）。
+
+> [阮一峰 跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+
 **WebSocket：**
 
 ```js
@@ -930,38 +959,19 @@ ws.onclose = function(evt) {
 };
 ```
 
-**CORS：**
-
-新出的通信标准，支持跨域的 Ajax
-
-CORS 预请求在跨域时允许的方法只有 GET、POST、HEAD；允许的 Content-Type 也是有限制的，只允许 text-plain： multipart/form-data: application/x-www-form-urlencoded: 其他限制：请求头的限制对于跨域请求的限制，在跨域时需要做预请求，options Access-Control-Expose-Headers 可以自定义头 Access-Control-Request-Method 自定义方法 Access-Control-Max-Age 设置时间后，在该时间段里不需要再发请求验证了其实 Response Hearders 中设计的一系列属性都是给浏览器解析请求的配置项，告诉浏览器去如何解析。
-
-```js
-Access-Control-Allow-Origin: http://api.bob.com
-Access-Control-Allow-Credentials: true
-Access-Control-Expose-Headers: FooBar
-Content-Type: text/html; charset=utf-8
-```
-
-> [阮一峰 跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
-
-**fetch：**
-
-```js
-fetch('/some/url/', {
-  method: 'get'
-})
-  .then(function(response) {})
-  .catch(function(err) {
-    // 出错了，等价于 then 的第二个参数，但这样更好用更直观
-  });
-```
-
-### document.domain
+**document.domain：**
 
 该方式只能用于**二级域名相同**的情况下，比如 `a.test.com` 和 `b.test.com` 适用于该方式。
 
 只需要给页面添加 `document.domain = 'test.com'` 表示二级域名都相同就可以实现跨域
+
+**niginx 反向代理：**
+
+**postmessage：**
+
+### Vue 中跨域
+
+vue-cli 使用 `http-proxy-middleware` 插件执行跨域。原理是基于 node 服务器代理转发。
 
 ### cookie 和 session 分别是什么
 

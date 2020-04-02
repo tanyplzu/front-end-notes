@@ -50,7 +50,8 @@ const getSidebar = () => {
           'Node/Nest.js入门',
         ]
       },
-      'DSA/Algorithms'
+      'DSA/Algorithms',
+      'Git'
     ],
     '/Vue/': [
       ['./', 'Vue相关'],
@@ -71,6 +72,7 @@ const getSidebar = () => {
         collapsable: false,
         children: [
           // 'docs1/对象静态方法总结分享',
+          'docs1/数组的方法',
           'docs1/数字',
           'docs1/array',
           'docs1/数组操作方法',
