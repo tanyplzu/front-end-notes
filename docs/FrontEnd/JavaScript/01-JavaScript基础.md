@@ -439,7 +439,7 @@ console.log(new Child1(), new Child1().say());
 
 ::: danger 缺点：
 
-Parent1 原型链上的东西没有被继承，只实现了部分继承 
+Parent1 原型链上的东西没有被继承，只实现了部分继承
 
 :::
 
@@ -486,7 +486,7 @@ console.log(s3.play, s4.play);
 
 ::: danger 缺点：
 
-原型链较长，Parent3 执行了两次。`Parent3.call(this)`、`new Parent3()` 
+原型链较长，Parent3 执行了两次。`Parent3.call(this)`、`new Parent3()`
 
 :::
 
@@ -866,6 +866,11 @@ dev.addEventListener(
 **async：** 加载脚本和渲染后续文档元素并行进行，脚本加载完成后，暂停 html 解析，立即解析 js 脚本
 
 **defer：** 加载脚本和渲染后续文档元素并行进行，但脚本的执行会等到 html 解析完成后执行
+
+```html
+<script src="/front-end/assets/js/3.efb9cd95.js" async></script>
+<script src="/front-end/assets/js/3.efb9cd95.js" defer></script>
+```
 
 ![js异步](./imgs/js_async.jpg)
 

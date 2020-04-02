@@ -70,7 +70,7 @@ const getSidebar = () => {
         title: '文档(一)：',
         collapsable: false,
         children: [
-          'docs1/对象静态方法总结分享',
+          // 'docs1/对象静态方法总结分享',
           'docs1/数字',
           'docs1/array',
           'docs1/数组操作方法',

@@ -3,23 +3,23 @@
 ### 前端文档
 
 - [30 seconds of code](https://30secondsofcode.org/#top)
-- [npm 中文文档](https://www.npmjs.cn/ "npm 中文文档")
+- [npm 中文文档](https://www.npmjs.cn/ 'npm 中文文档')
 - [ECMAScript 6 入门](http://es6.ruanyifeng.com/)
 - [Typescript 中文指南](https://www.tslang.cn/docs/home.html)
 - [TypeScript 实践](https://juejin.im/post/5a9c004a6fb9a028b92c9e91)
-- [TypeScript体系调研报告](https://juejin.im/post/59c46bc86fb9a00a4636f939)
-- [你不知道的前端SDK开发技巧](https://juejin.im/post/5a278d2a6fb9a044fd11a245)
+- [TypeScript 体系调研报告](https://juejin.im/post/59c46bc86fb9a00a4636f939)
+- [你不知道的前端 SDK 开发技巧](https://juejin.im/post/5a278d2a6fb9a044fd11a245)
 - [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
 - [JavaScript 标准参考教程](https://javascript.ruanyifeng.com/#introduction)
 
 ### JavaScript 基础
 
 - [Web Fundamentals](https://developers.google.com/web/fundamentals/)
-- [cookie和session](https://github.com/mqyqingfeng/Blog/issues/157)
-- [CommonJS规范](https://javascript.ruanyifeng.com/nodejs/module.html#toc2)
+- [cookie 和 session](https://github.com/mqyqingfeng/Blog/issues/157)
+- [CommonJS 规范](https://javascript.ruanyifeng.com/nodejs/module.html#toc2)
 - [浏览器的 Event Loop](https://mp.weixin.qq.com/s/N5G3RKTkEG4CMtOwBWkm3g)
-- [从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理](https://juejin.im/post/5a6547d0f265da3e283a1df7#heading-11)
-- [浏览器和NodeJS中不同的Event Loop](https://github.com/kaola-fed/blog/issues/234#phase)
+- [从浏览器多进程到 JS 单线程，JS 运行机制最全面的一次梳理](https://juejin.im/post/5a6547d0f265da3e283a1df7#heading-11)
+- [浏览器和 NodeJS 中不同的 Event Loop](https://github.com/kaola-fed/blog/issues/234#phase)
 - [谈谈观察者模式和发布订阅模式](https://juejin.im/post/5bb1bb616fb9a05d2b6dccfa)
 - [Jake Archibald: In The Loop - JSConf.Asia 2018](https://www.youtube.com/watch?reload=9&v=cCOL7MC4Pl0&feature=youtu.be)
 - [https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context](https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context)
@@ -36,7 +36,7 @@
 
 ### node
 
-- [阮一峰NODE](https://javascript.ruanyifeng.com/nodejs/basic.html)
+- [阮一峰 NODE](https://javascript.ruanyifeng.com/nodejs/basic.html)
 
 ### css
 
@@ -53,17 +53,17 @@
 - [Stack Overflow Trends](https://insights.stackoverflow.com/trends?tags=npm%2Cgulp%2Cgruntjs%2Cwebpack)
 - [精读《极客公园 2019》](https://juejin.im/post/5c4e51ae518825253806592b)
 - [前端开发 2018 回顾及 2019 展望](https://www.html.cn/archives/10384)
-- [给2019前端的5个建议](https://zhuanlan.zhihu.com/p/55357377)
+- [给 2019 前端的 5 个建议](https://zhuanlan.zhihu.com/p/55357377)
 
 ### lerna
 
-- [使用lerna优雅地管理多个package](https://zhuanlan.zhihu.com/p/35237759)
-- [lerna管理前端packages的最佳实践](https://juejin.im/post/5a989fb451882555731b88c2)
+- [使用 lerna 优雅地管理多个 package](https://zhuanlan.zhihu.com/p/35237759)
+- [lerna 管理前端 packages 的最佳实践](https://juejin.im/post/5a989fb451882555731b88c2)
 
 ### React
 
 - [React 官方文档](https://react.docschina.org/docs/hello-world.html)
-- [React Hooks官方中文文档](https://react.docschina.org/docs/hooks-intro.html)
+- [React Hooks 官方中文文档](https://react.docschina.org/docs/hooks-intro.html)
 - [深入理解 React 高阶组件](https://zhuanlan.zhihu.com/p/24776678)
 - [精读《React Hooks》](https://zhuanlan.zhihu.com/p/49408348)
 - [React Context 的理解以及应用](https://juejin.im/post/5a90e0545188257a63112977)
@@ -79,8 +79,12 @@
 - [Git Pro Book](https://git-scm.com/book/zh/v2)
 - Google 网页性能分析工具： [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 
----------------
+---
 
 ::: tip 说明
-此笔记为个人笔记，笔记中多数例子来源于网络，该只供个人学习使用。
+
+此笔记为个人笔记，只供个人学习使用，笔记中多数例子来源于网络。
+
 :::
+
+<img src="./.vuepress/public/WechatIMG4.jpeg" width="300" height="300" align="middle" />
