@@ -2,19 +2,17 @@
 
 [[toc]]
 
-### v-show 与 v-if 区别
+## v-show 与 v-if 区别
 
-`v-show` 只是 CSS 级别的 `display: none;` 和 `display: block;` 之间的切换，而 `v-if` 决定是否会选择代码块的内容（或组件）。
-
-频繁操作时，使用 `v-show`，一次性渲染完的，使用 `v-if`，只要意思对就好。
+`v-show` 只是 CSS 级别的 `display: none;` 和 `display: block;`，而 `v-if` 决定是否会渲染代码块的内容（或组件）。频繁操作时，使用 `v-show`，一次性渲染完的，使用 `v-if`。
 
 因为当 `v-if="false"` 时，内部组件是不会渲染的，所以在特定条件才渲染部分组件（或内容）时，可以先将条件设置为 `false`，需要时（或异步，比如 \$nextTick）再设置为 `true`，这样可以优先渲染重要的其它内容，合理利用，可以进行性能优化。
 
 > 项目中多 vue 的 tab 页使用 v-if 做了优化，避免了一次性请求所有接口
 
-### 绑定 class 的数组用法
+## 绑定 class 的数组用法
 
-动态绑定 class 应该不陌生吧，这也是最基本的，但是这个问题却有点绕，什么叫**绑定 class 的数组用法？**我们看一下，最常用的绑定 class 怎么写：
+最常用的绑定 class 怎么写：
 
 ```vue
 <template>
@@ -62,40 +60,38 @@ export default {
 
 示例来自 iView 的 Button 组件，可以看到，数组里，可以是固定的值，还有动态值（对象）的混合。
 
-### 计算属性和 watch 的区别
+## 计算属性和 watch 的区别
 
 计算属性是自动监听依赖值的变化，从而动态返回内容，监听是一个过程，在监听的值变化时，可以触发一个回调，并做一些事情。
 
-所以区别来源于用法，只是需要动态值，那就用计算属性；需要知道值的改变后执行业务逻辑，才用 watch，用反或混用虽然可行，但都是不正确的用法。
+只是需要动态值，那就用计算属性；需要知道值的改变后执行业务逻辑，才用 watch，用反或混用虽然可行，但都是不正确的用法。
 
 这个问题会延伸出几个问题：
 
-1. computed 是一个对象时，它有哪些选项？
-2. computed 和 methods 有什么区别？
-3. computed 是否能依赖其它组件的数据？
-4. watch 是一个对象时，它有哪些选项？
+- **computed 是一个对象时，它有哪些选项？**
 
-问题 1，computed 是一个对象时，有 get 和 set 两个选项。
+有 get 和 set 两个选项
 
-问题 2，methods 是一个方法，它可以接受参数，而 computed 不能；computed 是可以缓存的，methods 不会；一般在 `v-for` 里，需要根据当前项动态绑定值时，只能用 methods 而不能用 computed，因为 computed 不能传参。
+- **computed 和 methods 有什么区别？**
 
-问题 3，computed 可以依赖其它 computed，甚至是其它组件的 data。
+methods 是一个方法，它可以接受参数，而 computed 不能；computed 是可以缓存的，methods 不会；一般在 `v-for` 里，需要根据当前项动态绑定值时，只能用 methods 而不能用 computed，因为 computed 不能传参。
 
-问题 4，有以下常用的配置：
+- **computed 是否能依赖其它组件的数据？**
 
-- handler 执行的函数
-- deep 是否深度
-- immediate 是否立即执行
+computed 可以依赖其它 computed，甚至是其它组件的 data。
 
-### 事件修饰符
+- **watch 是一个对象时，它有哪些选项？**
+  - handler 执行的函数
+  - deep 是否深度
+  - immediate 是否立即执行
 
-这个问题我会先写一段代码：
+## 事件修饰符
+
+**怎样给这个自定义组件 custom-component 绑定一个原生的 click 事件？**
 
 ```vue
 <custom-component>内容</custom-component>
 ```
-
-然后问：**怎样给这个自定义组件 custom-component 绑定一个原生的 click 事件？**
 
 @click 是自定义事件 click，并不是原生事件 click。绑定原生的 click 是这样的：
 
@@ -103,27 +99,22 @@ export default {
 <custom-component @click.native="xxx">内容</custom-component>
 ```
 
-该问题会引申很多，比如常见的事件修饰符有哪些？如果你能说上 `.exact`，说明你是个很爱探索的人，会大大加分哦。
+比如常见的事件修饰符有哪些？
 
-> .exact 是 Vue.js 2.5.0 新加的，它允许你控制由精确的系统修饰符组合触发的事件，比如：
->
-> <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
->
-> <button @click.ctrl="onClick">A</button>
->
-> <!-- 有且只有 Ctrl 被按下的时候才触发 -->
->
-> <button @click.ctrl.exact="onCtrlClick">A</button>
->
-> <!-- 没有任何系统修饰符被按下的时候才触发 -->
->
-> <button @click.exact="onClick">A</button>
->
-> ```
->
-> ```
+.exact 是 Vue.js 2.5.0 新加的，它允许你控制由精确的系统修饰符组合触发的事件，比如：
 
-你可能还需要了解常用的几个事件修饰符：
+```html
+<!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+<button @click.ctrl="onClick">A</button>
+
+<!-- 有且只有 Ctrl 被按下的时候才触发 -->
+<button @click.ctrl.exact="onCtrlClick">A</button>
+
+<!-- 没有任何系统修饰符被按下的时候才触发 -->
+<button @click.exact="onClick">A</button>
+```
+
+其它的事件修饰符：
 
 - `.stop`
 - `.prevent`
