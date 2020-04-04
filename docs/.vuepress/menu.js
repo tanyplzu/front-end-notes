@@ -52,18 +52,18 @@ const getSidebar = () => {
       'Vue组件',
     ],
     '/Notes/': [
-      'vuepress',
-      'router',
-      '密码学',
       {
         title: '文档(一)：',
         collapsable: false,
         children: [
           'docs1/数组的方法',
           'docs1/javascript-regexp',
+          'docs1/性能优化',
+          'docs1/router',
           'docs1/Vue虚拟DOM和渲染流程',
           'docs1/编译型语言和解释型语言',
           'docs1/面向对象01',
+          'docs1/前端面试'
         ]
       },
       {
@@ -84,7 +84,9 @@ const getSidebar = () => {
           'docs3/WebGL 基础',
           'docs3/数学',
         ]
-      }
+      },
+      '密码学',
+      'vuepress',
     ],
     '/AngularJS/': [
       'Scope和Digest',

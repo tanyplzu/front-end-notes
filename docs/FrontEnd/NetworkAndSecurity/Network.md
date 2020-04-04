@@ -377,6 +377,22 @@ options 通常用于，在跨域请求前发起预检请求，以检测请求是
 
 参考资料： [跨域请求](https://cloud.tencent.com/developer/news/397683)
 
+## WebSocket
+
+### 过滤器
+
+- WS
+- is:running
+
+### 长连接的心跳保持
+
+- HTTP 长连接只能基于简单的超时（常见为 65 秒）
+- WebSocket 连接基于 ping/pong 心跳机制维持
+
+### 设计哲学
+
+在 Web 约束下暴露 TCP 给上层
+
 ## 相关参考
 
 - 《Web 性能权威指南》
