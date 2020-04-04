@@ -22,8 +22,8 @@
 - [浏览器和 NodeJS 中不同的 Event Loop](https://github.com/kaola-fed/blog/issues/234#phase)
 - [谈谈观察者模式和发布订阅模式](https://juejin.im/post/5bb1bb616fb9a05d2b6dccfa)
 - [Jake Archibald: In The Loop - JSConf.Asia 2018](https://www.youtube.com/watch?reload=9&v=cCOL7MC4Pl0&feature=youtu.be)
-- [https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context](https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context)
-- [https://html.spec.whatwg.org/#event-loop-processing-model](https://html.spec.whatwg.org/#event-loop-processing-model)
+- [event-loop](https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context)
+- [event-loop-processing-model](https://html.spec.whatwg.org/#event-loop-processing-model)
 
 ### Vue
 

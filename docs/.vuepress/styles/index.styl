@@ -20,9 +20,52 @@
   }
 }
 
-@media (max-width: 419px) {
+@media (max-width: 500px) {
+  // 手机端样式优化
   .theme-default-content:not(.custom) {
     padding: 1rem;
+  }
+
+  pre {
+    font-size: 10px !important;
+  }
+  pre span {
+    line-height: 1.6;
+  }
+
+  p {
+    font-size: 15px !important;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  .sidebar-button {
+    left:0.5rem !important;
+  }
+
+  .sidebar .nav-links .nav-item {
+    padding-left: 1rem !important;
+  }
+
+  .theme-container {
+    width: 100%;
+    overflow-x: hidden;
   }
 }
 

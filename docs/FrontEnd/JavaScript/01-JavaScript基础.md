@@ -333,7 +333,7 @@ Blob: 也是存放二进制的容器，通过 `FileReader` 进行转换。
 ### JS 事件的几种绑定方式
 
 - 在 dom 元素中直接绑定，`<div class="an" onclick="aa()">aaaa</div>`
-- js 中绑定 document.getElementById("demo").οnclick=function(){}
+- js 中绑定 document.getElementById("demo").οnclick = function(){}
 - 添加监听事件 document.addEventListener('name',()=>{})
 
 ### Event 对象常见的应用
@@ -806,7 +806,7 @@ dev.addEventListener(
 - Animation callbacks (in `requestAnimationFrame`)
 - Microtasks (in `Promise.then`)
 
-他们的执行特点是：
+他们的执行特点是:fire:：
 
 - Tasks 只执行一个。执行完了就进入主进程，主进程可能决定进入其他两个异步队列，也可能自己执行到空了再回来。 补充：对于“只执行一个”的理解，可以考虑设置 2 个相同时间的 `timeout`，两个并不会一起执行，而依然是分批的。
 - Animation callbacks 执行队列里的全部任务，但如果任务本身又新增 Animation callback 就不会当场执行了，因为那是下一个循环补充：同 Tasks，可以考虑连续调用两句 `requestAnimationFrame`，它们会在同一次事件循环内执行，有别于 Tasks
