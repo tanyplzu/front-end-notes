@@ -5,6 +5,7 @@ module.exports = {
       serviceWorker: true,
       updatePopup: {
         message: "New content is available.",
+        popupComponent: 'MySWUpdatePopup',
         buttonText: "Refresh"
       }
     }],

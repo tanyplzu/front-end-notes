@@ -12,24 +12,12 @@ const getNav = () => {
         { text: 'AngularJS', link: '/AngularJS/Scope和Digest' },
       ]
     },
-    // { text: 'Vue', link: '/Vue/index' },
     { text: 'Notes', link: '/Notes/vuepress' }
   ];
 };
 const getSidebar = () => {
   return {
     '/FrontEnd/': [
-      // {
-      //   title: 'JS基础',
-      //   collapsable: true,
-      //   children: [
-      //     'JavaScript/01-JavaScript基础',
-      //     'JavaScript/02-JavaScript进阶',
-      //     'JavaScript/JavaScript的执行机制',
-      //     'JavaScript/V8',
-      //     'JavaScript/TS'
-      //   ]
-      // },
       'JavaScript/01-JavaScript基础',
       'JavaScript/02-JavaScript进阶',
       'JavaScript/JavaScript的执行机制',
@@ -71,30 +59,30 @@ const getSidebar = () => {
         title: '文档(一)：',
         collapsable: false,
         children: [
-          // 'docs1/对象静态方法总结分享',
           'docs1/数组的方法',
-          'docs1/数字',
-          'docs1/array',
-          'docs1/数组操作方法',
           'docs1/javascript-regexp',
           'docs1/Vue虚拟DOM和渲染流程',
+          'docs1/编译型语言和解释型语言',
+          'docs1/面向对象01',
         ]
       },
       {
         title: '文档(二)：',
         collapsable: false,
         children: [
-          'docs2/面向对象01',
-          'docs2/编译型语言和解释型语言',
+          'docs2/对象静态方法总结分享',
+          'docs2/数组操作方法',
+          'docs2/数字',
+          'docs2/array',
         ]
       },
       {
         title: '文档(三)：',
         collapsable: false,
         children: [
-          'reading/Vue 项目构建',
-          'reading/WebGL 基础',
-          'reading/数学',
+          'docs3/Vue 项目构建',
+          'docs3/WebGL 基础',
+          'docs3/数学',
         ]
       }
     ],

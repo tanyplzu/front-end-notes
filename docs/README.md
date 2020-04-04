@@ -11,5 +11,5 @@ features:
   details: Although that way may not be obvious at first unless you're Dutch. Now is better than never.
 - title: 
   details: If the implementation is hard to explain, it's a bad idea.
-footer: MIT Licensed | Copyright © 2019-2020
+footer: MIT Licensed | Copyright © 2019-present
 ---
