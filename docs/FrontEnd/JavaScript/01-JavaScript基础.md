@@ -10,8 +10,8 @@ sidebarDepth: 1
 
 ### JavaScript 的变量有哪些类型
 
-- 分为两种：基础类型和引用类型。基础类型目前有 7 种，分别是`boolean`、`null`、`undefined`、`number`、`string`、`symbol`、`bigInt`
-- 除了以上的基础类型之外，其他就是引用类型了，有`Array`、`Object`、`Function`。
+- 分为两种：基础类型和引用类型。基础类型目前有 7 种，分别是`boolean` `null` `undefined` `number` `string` `symbol` `bigInt`
+- 除了以上的基础类型之外，其他就是引用类型了，有`Array` `Object` `Function`。
 
 ### typeof 和 instanceof 的区别
 
@@ -53,7 +53,7 @@ if (obj.a == null) {
 
 ### 在类型转换中哪些值会被转为 true
 
-除了`undefined`、`null`、`false`、`NaN`、`''`、`0`、`-0`以外的值都会被转为`true`，包括所有引用类型，即使是空的。
+除了`undefined` `null` `false` `NaN` `''` `0` `-0`以外的值都会被转为`true`，包括所有引用类型，即使是空的。
 
 ### toString() 和 valueOf 的区别
 
