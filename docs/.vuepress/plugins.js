@@ -1,12 +1,7 @@
 module.exports = {
   plugins: [
     '@vuepress/back-to-top',
-    // [
-    //   '@vuepress/pwa',
-    //   {
-    //     serviceWorker: true,
-    //   }
-    // ],
+    '@vuepress/pwa',
     ['@vuepress/active-header-links', {
       sidebarLinkSelector: '.sidebar-link',
       headerAnchorSelector: '.header-anchor'
