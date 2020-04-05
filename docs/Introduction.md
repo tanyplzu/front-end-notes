@@ -14,6 +14,7 @@
 
 ### JavaScript 基础
 
+- [v8.dev](https://v8.dev/)
 - [Web Fundamentals](https://developers.google.com/web/fundamentals/)
 - [cookie 和 session](https://github.com/mqyqingfeng/Blog/issues/157)
 - [CommonJS 规范](https://javascript.ruanyifeng.com/nodejs/module.html#toc2)

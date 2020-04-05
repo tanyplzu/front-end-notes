@@ -12,7 +12,7 @@ const getNav = () => {
         { text: 'AngularJS', link: '/AngularJS/Scope和Digest' },
       ]
     },
-    { text: 'Reading', link: '/Reading/浏览器中的页面' },
+    { text: 'Reading', link: '/Reading/浏览器工作原理与实践/浏览器中的页面' },
     { text: 'Notes', link: '/Notes/vuepress' }
   ];
 };
@@ -56,16 +56,17 @@ const getSidebar = () => {
       title: '浏览器工作原理与实践',
       collapsable: false,
       children: [
-        '浏览器中的页面',
-        '从输入 URL 到页面展示',
-        'JavaScript的执行机制'
+        '浏览器工作原理与实践/浏览器中的页面',
+        '浏览器工作原理与实践/从输入 URL 到页面展示',
+        '浏览器工作原理与实践/JavaScript的执行机制'
       ]
     },
     {
       title: '图解 Google V8',
       collapsable: false,
       children: [
-        'JavaScript设计思想',
+        'v8/JavaScript设计思想',
+        'v8/V8编译流水线'
       ]
     },
     {
