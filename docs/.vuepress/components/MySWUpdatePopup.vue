@@ -33,5 +33,7 @@ export default {
   color: #fff;
   background-color: #3eaf7c;
   border-bottom: 1px solid #389d70;
+  transition: background-color .1s ease;
+  border-radius: 4px;
 }
 </style>
