@@ -21,7 +21,6 @@ const getSidebar = () => {
     '/FrontEnd/': [
       'JavaScript/01-JavaScript基础',
       'JavaScript/02-JavaScript进阶',
-      'JavaScript/JavaScript的执行机制',
       'JavaScript/V8',
       'JavaScript/TS',
       'Html&Css',
@@ -53,22 +52,29 @@ const getSidebar = () => {
       'Vue组件',
     ],
     '/Reading/': [
-      {
-        title: '浏览器工作原理与实践',
-        collapsable: false,
-        children: [
-          '浏览器中的页面',
-          '从输入 URL 到页面展示',
-        ]
-      },
-      {
-        title: '玩转webpack',
-        collapsable: false,
-        children: [
-          '玩转webpack'
-        ]
-      }
-    ],
+    {
+      title: '浏览器工作原理与实践',
+      collapsable: false,
+      children: [
+        '浏览器中的页面',
+        '从输入 URL 到页面展示',
+        'JavaScript的执行机制'
+      ]
+    },
+    {
+      title: '图解 Google V8',
+      collapsable: false,
+      children: [
+        'JavaScript设计思想',
+      ]
+    },
+    {
+      title: '玩转webpack',
+      collapsable: false,
+      children: [
+        '玩转webpack'
+      ]
+    }],
     '/Notes/': [
       {
         title: '文档(一)：',
