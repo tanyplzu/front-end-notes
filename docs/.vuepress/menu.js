@@ -12,6 +12,7 @@ const getNav = () => {
         { text: 'AngularJS', link: '/AngularJS/Scope和Digest' },
       ]
     },
+    { text: 'Reading', link: '/Reading/浏览器中的页面' },
     { text: 'Notes', link: '/Notes/vuepress' }
   ];
 };
@@ -51,6 +52,23 @@ const getSidebar = () => {
       'Vue路由',
       'Vue组件',
     ],
+    '/Reading/': [
+      {
+        title: '浏览器工作原理与实践',
+        collapsable: false,
+        children: [
+          '浏览器中的页面',
+          '从输入 URL 到页面展示',
+        ]
+      },
+      {
+        title: '玩转webpack',
+        collapsable: false,
+        children: [
+          '玩转webpack'
+        ]
+      }
+    ],
     '/Notes/': [
       {
         title: '文档(一)：',
@@ -63,6 +81,7 @@ const getSidebar = () => {
           'docs1/Vue虚拟DOM和渲染流程',
           'docs1/编译型语言和解释型语言',
           'docs1/面向对象01',
+          'docs1/手机端开发问题汇总',
           'docs1/前端面试'
         ]
       },
