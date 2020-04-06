@@ -16,7 +16,6 @@ module.exports = {
     ['@vuepress/medium-zoom', {
       selector: '.theme-default-content:not(.custom) img',
       options: {
-        margin: 30,
         background: 'rgba(33, 37, 48, 0.9)',
       }
     }],
