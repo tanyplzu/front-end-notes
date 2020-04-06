@@ -82,63 +82,63 @@ Last-modified: 服务器端资源的最后修改时间，响应头部会带上�
 实现一个简易版 Promise
 
 ```js
-(function() {
-  const PENDING = 'pending';
-  const RESOLVED = 'resolved';
-  const REJECTED = 'rejected';
+;(function() {
+  const PENDING = 'pending'
+  const RESOLVED = 'resolved'
+  const REJECTED = 'rejected'
 
   function MyPromise(fn) {
-    const that = this;
-    that.state = PENDING;
-    that.value = null;
-    that.resolvedCallbacks = [];
-    that.rejectedCallbacks = [];
+    const that = this
+    that.state = PENDING
+    that.value = null
+    that.resolvedCallbacks = []
+    that.rejectedCallbacks = []
 
     function resolve(value) {
       if (that.state === PENDING) {
-        that.state = RESOLVED;
-        that.value = value;
-        that.resolvedCallbacks.map(cb => cb(that.value));
+        that.state = RESOLVED
+        that.value = value
+        that.resolvedCallbacks.map(cb => cb(that.value))
       }
     }
     function reject(value) {
       if (that.state === PENDING) {
-        that.state = REJECTED;
-        that.value = value;
-        that.rejectedCallbacks.map(cb => cb(that.value));
+        that.state = REJECTED
+        that.value = value
+        that.rejectedCallbacks.map(cb => cb(that.value))
       }
     }
     try {
-      fn(resolve, reject);
+      fn(resolve, reject)
     } catch (e) {
-      reject(e);
+      reject(e)
     }
   }
 
   MyPromise.prototype.then = function(onFulfilled, onRejected) {
-    const that = this;
-    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : v => v;
+    const that = this
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : v => v
     onRejected =
       typeof onRejected === 'function'
         ? onRejected
         : r => {
-            throw r;
-          };
+            throw r
+          }
     if (that.state === PENDING) {
-      that.resolvedCallbacks.push(onFulfilled);
-      that.rejectedCallbacks.push(onRejected);
+      that.resolvedCallbacks.push(onFulfilled)
+      that.rejectedCallbacks.push(onRejected)
     }
     // 下面两个if是为了实现透传
     if (that.state === RESOLVED) {
-      onFulfilled(that.value);
+      onFulfilled(that.value)
     }
     if (that.state === REJECTED) {
-      onRejected(that.value);
+      onRejected(that.value)
     }
-  };
+  }
 
-  window.Promise = MyPromise;
-})();
+  window.Promise = MyPromise
+})()
 ```
 
 ```js
@@ -149,16 +149,46 @@ Last-modified: 服务器端资源的最后修改时间，响应头部会带上�
 ```js
 Function.prototype.myCall = function(context) {
   if (typeof this !== 'function') {
-    throw new TypeError('Error');
+    throw new TypeError('Error')
   }
-  context = context || window;
-  context.fn = this;
-  const args = [...arguments].slice(1);
-  const result = context.fn(...args);
-  delete context.fn;
-  return result;
-};
+  context = context || window
+  context.fn = this
+  const args = [...arguments].slice(1)
+  const result = context.fn(...args)
+  delete context.fn
+  return result
+}
 ```
+
+## Lazy-Load
+
+```js
+<script>
+    // 获取所有的图片标签
+    const imgs = document.getElementsByTagName('img')
+    // 获取可视区域的高度
+    const viewHeight = window.innerHeight || document.documentElement.clientHeight
+    // num用于统计当前显示到了哪一张图片，避免每次都从第一张图片开始检查是否露出
+    let num = 0
+    function lazyload(){
+        for(let i=num; i<imgs.length; i++) {
+            // 用可视区域高度减去元素顶部距离可视区域顶部的高度
+            let distance = viewHeight - imgs[i].getBoundingClientRect().top
+            // 如果可视区域高度大于等于元素顶部距离可视区域顶部的高度，说明元素露出
+            if(distance >= 0 ){
+                // 给元素写入真实的src，展示图片
+                imgs[i].src = imgs[i].getAttribute('data-src')
+                // 前i张图片已经加载完毕，下次从第i+1张开始检查是否露出
+                num = i + 1
+            }
+        }
+    }
+    // 监听Scroll事件
+    window.addEventListener('scroll', lazyload, false);
+</script>
+```
+
+这个 scroll 事件，是一个危险的事件——它太容易被触发了。
 
 ## 函数式编程
 

@@ -25,7 +25,7 @@ const getSidebar = () => {
       'JavaScript/TS',
       'Html&Css',
       'NetworkAndSecurity/Network',
-      'NetworkAndSecurity/网络协议进阶',
+      // 'NetworkAndSecurity/网络协议进阶',
       'NetworkAndSecurity/Security',
       'Webpack',
       'DesignPattern',
