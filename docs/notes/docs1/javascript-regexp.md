@@ -351,7 +351,14 @@ console.log(result);        // => "#h#ell#o#"
 
 二者的学名分别是 positive lookahead 和 negative lookahead。中文翻译分别是正向先行断言和负向先行断言。 ES6 中，还支持 positive lookbehind 和 negative lookbehind。具体是 (?<=p) 和 (?<!p)。比如 (?=p)，一般都理解成：要求接下来的字符与 p 匹配，但不能包括 p 的那些字符。而在个人看来 (?=p) 就与 ^ 一样好理解，就是 p 前面的那个位置。
 
-> `x(?=y)` 仅匹配被 y 跟随的 x。 例如，`/Jack(?=Sprat)/` 只有在 'Jack' 后面紧跟着 'Sprat' 时，才会匹配它。`/Jack(?=Sprat|Frost)/` 只有在 'Jack' 后面紧跟着 'Sprat' 或 'Frost' 时，才会匹配它。然而，'Sprat' 或 'Frost' 都不是匹配结果的一部分。 `x(?!y)` 仅匹配不被 y 跟随的 x。举个例子，`/\d+(?!\.)/` 只会匹配不被点（.）跟随的数字。`/\d+(?!\.)/.exec('3.141')` 匹配"141"，而不是"3.141" 相关断言（Assertions）学习资料可以看看这里：[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp#assertions)、[博客](https://www.cnblogs.com/whaozl/p/5462865.html)、[百科](https://baike.baidu.com/item/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F?fr=aladdin#7)
+::: tip
+
+- `x(?=y)` 仅匹配被 y 跟随的 x。 例如，`/Jack(?=Sprat)/` 只有在 'Jack' 后面紧跟着 'Sprat' 时，才会匹配它。`/Jack(?=Sprat|Frost)/` 只有在 'Jack' 后面紧跟着 'Sprat' 或 'Frost' 时，才会匹配它。然而，'Sprat' 或 'Frost' 都不是匹配结果的一部分。
+- `x(?!y)` 仅匹配不被 y 跟随的 x。举个例子，`/\d+(?!\.)/` 只会匹配不被点（.）跟随的数字。`/\d+(?!\.)/.exec('3.141')` 匹配"141"，而不是"3.141"
+
+:::
+
+相关断言（Assertions）学习资料可以看看这里：[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp#assertions)、[博客](https://www.cnblogs.com/whaozl/p/5462865.html)、[百科](https://baike.baidu.com/item/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F?fr=aladdin#7)
 
 ### 位置的特性
 

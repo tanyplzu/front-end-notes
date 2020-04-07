@@ -1,6 +1,6 @@
 # Vue 虚拟 DOM 及渲染流程
 
-Virtual Dom 是 Vue2.0 开始引入的，也是 Vue 的核心之一。Virtual Dom 其实就是使用 Javascript 对象来模拟真实 DOM 结构的树形结构。在 Vue 里面，用 VNode 来描述具体的节点信息，Virtual Dom 其实就是由 Vue 组件树建立起来的整个 VNode 树的称呼。由于 VNode 只是用来映射到真实 DOM 的渲染，不需要包含操作 DOM 的方法，因此它是非常轻量和简单的。最后渲染的时候会根据 VNode 来渲染成真实的 DOM。（其 vdom 是基于 snabbdom 库所做的修改[https://github.com/snabbdom/snabbdom](https://github.com/snabbdom/snabbdom)）
+Virtual Dom 是 Vue2.0 开始引入的，也是 Vue 的核心之一。Virtual Dom 其实就是使用 Javascript 对象来模拟真实 DOM 结构的树形结构。在 Vue 里面，用 VNode 来描述具体的节点信息，Virtual Dom 其实就是由 Vue 组件树建立起来的整个 VNode 树的称呼。由于 VNode 只是用来映射到真实 DOM 的渲染，不需要包含操作 DOM 的方法，因此它是非常轻量和简单的。最后渲染的时候会根据 VNode 来渲染成真实的 DOM。（其 vdom 是基于 snabbdom 库所做的修改[snabbdom](https://github.com/snabbdom/snabbdom)）
 
 ## VNode
 
@@ -89,7 +89,7 @@ export default {
 
 从上面的`render`函数可以看出来，`render` 函数的的核心是 `createElement()`，它是真正创建 VNode 的函数。`createElement`有两个重点的流程是**children 的规范化**和**VNode 的创建**。
 
-`createElement`方法参数： [https://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0](https://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0)
+`createElement`方法参数： [createElement](https://cn.vuejs.org/v2/guide/render-function.html#createElement-%E5%8F%82%E6%95%B0)
 
 如果使用 `render` 函数代替 `template` 的话，看起来是很不直观的，在 Vue 中，我们可以通过 `babel-plugin-transform-vue-jsx` 插件，在`.babelrc`中加入配置即可使渲染函数可以支持 JSX 语法。
 
