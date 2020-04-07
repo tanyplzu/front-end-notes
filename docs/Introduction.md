@@ -1,8 +1,14 @@
 # 前端资料
 
-### 前端文档
+### 常用地址
 
 - [30 seconds of code](https://30secondsofcode.org/#top)
+- [LeetCode 探索](https://leetcode-cn.com/explore/)
+- [JavaScript 标准参考教程](https://javascript.ruanyifeng.com/#introduction)
+- [v8.dev](https://v8.dev/)
+
+### 前端文档
+
 - [npm 中文文档](https://www.npmjs.cn/ 'npm 中文文档')
 - [ECMAScript 6 入门](http://es6.ruanyifeng.com/)
 - [Typescript 中文指南](https://www.tslang.cn/docs/home.html)
@@ -10,11 +16,9 @@
 - [TypeScript 体系调研报告](https://juejin.im/post/59c46bc86fb9a00a4636f939)
 - [你不知道的前端 SDK 开发技巧](https://juejin.im/post/5a278d2a6fb9a044fd11a245)
 - [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
-- [JavaScript 标准参考教程](https://javascript.ruanyifeng.com/#introduction)
 
 ### JavaScript 基础
 
-- [v8.dev](https://v8.dev/)
 - [Web Fundamentals](https://developers.google.com/web/fundamentals/)
 - [cookie 和 session](https://github.com/mqyqingfeng/Blog/issues/157)
 - [CommonJS 规范](https://javascript.ruanyifeng.com/nodejs/module.html#toc2)

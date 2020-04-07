@@ -36,27 +36,27 @@ sidebarDepth: 2
 
 ```js
 function deepCopy(p, c) {
-  var c = c || {};
+  var c = c || {}
   for (var i in p) {
     if (typeof p[i] === 'object' && p[i] !== null) {
-      c[i] = p[i].constructor === Array ? [] : {};
-      deepCopy(p[i], c[i]);
+      c[i] = p[i].constructor === Array ? [] : {}
+      deepCopy(p[i], c[i])
     } else {
-      c[i] = p[i];
+      c[i] = p[i]
     }
   }
-  return c;
+  return c
 }
 ```
 
 判断数组的方法：
 
 ```js
-arr instanceof Array;
-Array.prototype.isPrototypeOf(arr);
-Array.isArray(arr);
-Object.prototype.toString.call(arr) === '[object Array]';
-arr.constructor === Array;
+arr instanceof Array
+Array.prototype.isPrototypeOf(arr)
+Array.isArray(arr)
+Object.prototype.toString.call(arr) === '[object Array]'
+arr.constructor === Array
 ```
 
 ### 尾递归
@@ -67,21 +67,21 @@ arr.constructor === Array;
 function trampoline(res) {
   // while会一直循环res，条件是typeof res == 'function'
   while (typeof res == 'function') {
-    res = res();
+    res = res()
   }
-  return res;
+  return res
 }
 
 function _foo(acc, x) {
-  if (x <= 1) return acc;
+  if (x <= 1) return acc
   return function partial() {
-    return _foo(x / 2 + acc, x - 1);
-  };
+    return _foo(x / 2 + acc, x - 1)
+  }
 }
 
 var foo = function(x) {
-  return trampoline(_foo(1, x));
-};
+  return trampoline(_foo(1, x))
+}
 ```
 
 ### 如何用正则实现 string.trim()
@@ -91,8 +91,8 @@ trim() 方法用于删除字符串的头尾空格。trim() 方法不会改变原
 ```js
 // jQuery中封装有trim()
 String.prototype.trim = function() {
-  return this.replace(/(^\s*)|(\s*$)/g, '');
-};
+  return this.replace(/(^\s*)|(\s*$)/g, '')
+}
 ```
 
 ### 请实现 plus(1)(2)(3)(4)等于 10
@@ -100,35 +100,35 @@ String.prototype.trim = function() {
 ```js {8}
 // 方法1：
 function plus(n) {
-  let sum = n;
+  let sum = n
   const _plus = function(n) {
-    sum += n;
-    return _plus;
-  };
+    sum += n
+    return _plus
+  }
   _plus.toString = function() {
-    return sum;
-  };
-  return _plus;
+    return sum
+  }
+  return _plus
 }
 
-let num = plus(1)(2)(3)(4);
-typeof num; // 'function'
+let num = plus(1)(2)(3)(4)
+typeof num // 'function'
 ```
 
 ```js
 // 方法2：
 function multi() {
-  const args = [].slice.call(arguments);
+  const args = [].slice.call(arguments)
   const fn = function() {
-    const newArgs = args.concat([].slice.call(arguments));
-    return multi.apply(this, newArgs);
-  };
+    const newArgs = args.concat([].slice.call(arguments))
+    return multi.apply(this, newArgs)
+  }
   fn.toString = function() {
     return args.reduce(function(a, b) {
-      return a + b;
-    });
-  };
-  return fn;
+      return a + b
+    })
+  }
+  return fn
 }
 ```
 
@@ -139,17 +139,17 @@ function multi() {
 2.利用 Math 的 max 方法
 
 ```js
-var list = [1, 100, 23, 65, 43, 2, 9];
-Math.max.apply(null, list); //[1, 2, 9, 23, 43, 65, 100]
+var list = [1, 100, 23, 65, 43, 2, 9]
+Math.max.apply(null, list) //[1, 2, 9, 23, 43, 65, 100]
 ```
 
 3.利用 Array 的 sort 方法先排序再取值
 
 ```js
-var list = [1, 100, 23, 65, 43, 2, 9];
+var list = [1, 100, 23, 65, 43, 2, 9]
 list.sort((a, b) => {
-  return a - b;
-}); //[1, 2, 9, 23, 43, 65, 100]
+  return a - b
+}) //[1, 2, 9, 23, 43, 65, 100]
 ```
 
 4.使用 reduce()方法，记录每次比较的最大值
@@ -185,23 +185,23 @@ class Stack {
 
 ```js
 function swap(array, left, right) {
-  let rightValue = array[right];
-  array[right] = array[left];
-  array[left] = rightValue;
+  let rightValue = array[right]
+  array[right] = array[left]
+  array[left] = rightValue
   // [array[left], array[right]] = [array[right], array[left]];  // ES6 解构
 }
 // 从小到大
 function bubbleSort(array) {
-  let lenth = array.length;
+  let lenth = array.length
   for (let i = lenth - 1; i > 0; i--) {
     // 从 0 到 `length - 1` 遍历
     for (let j = 0; j < i; j++) {
       if (array[j] > array[j + 1]) {
-        swap(array, j, j + 1); // 也可以直接用解构
+        swap(array, j, j + 1) // 也可以直接用解构
       }
     }
   }
-  return array;
+  return array
 }
 ```
 
@@ -230,39 +230,39 @@ function selectSort(array) {}
 
 ```js{4}
 function mergeSort(array) {
-  var length = array.length;
+  var length = array.length
   // 终止拆分，开始合并
   if (length === 1) {
-    return array;
+    return array
   }
-  var mad = Math.floor(length / 2);
-  var left = array.slice(0, mad);
-  var right = array.slice(mad, length);
-  return merge(mergeSort(left), mergeSort(right));
+  var mad = Math.floor(length / 2)
+  var left = array.slice(0, mad)
+  var right = array.slice(mad, length)
+  return merge(mergeSort(left), mergeSort(right))
 }
 
 function merge(left, right) {
-  var result = [];
+  var result = []
   var il = 0,
-    ir = 0;
+    ir = 0
   while (il < left.length && ir < right.length) {
     if (left[il] < right[ir]) {
-      result.push(left[il]);
-      il++;
+      result.push(left[il])
+      il++
     } else {
-      result.push(right[ir]);
-      ir++;
+      result.push(right[ir])
+      ir++
     }
   }
   while (il < left.length) {
-    result.push(left[il]);
-    il++;
+    result.push(left[il])
+    il++
   }
   while (ir < right.length) {
-    result.push(right[ir]);
-    ir++;
+    result.push(right[ir])
+    ir++
   }
-  return result;
+  return result
 }
 ```
 
@@ -274,47 +274,47 @@ function merge(left, right) {
 
 ```js
 var quickSort = function(array) {
-  quick(array, 0, array.length - 1);
-  return array;
-};
+  quick(array, 0, array.length - 1)
+  return array
+}
 
 function quick(array, left, right) {
-  var index;
+  var index
   if (array.length > 1) {
-    index = partition(array, left, right);
+    index = partition(array, left, right)
     if (left < index - 1) {
-      quick(array, left, index - 1);
+      quick(array, left, index - 1)
     }
     if (index < right) {
-      quick(array, index, right);
+      quick(array, index, right)
     }
   }
 }
 
 function partition(array, left, right) {
-  var pivot = array[Math.floor((right + left) / 2)];
-  var i = left;
-  var j = right;
+  var pivot = array[Math.floor((right + left) / 2)]
+  var i = left
+  var j = right
   while (i <= j) {
     while (array[i] < pivot) {
-      i++;
+      i++
     }
     while (array[j] > pivot) {
-      j--;
+      j--
     }
     if (i <= j) {
-      swap(array, i, j);
-      i++;
-      j--;
+      swap(array, i, j)
+      i++
+      j--
     }
   }
-  return i;
+  return i
 }
 
 function swap(array, left, right) {
-  let rightValue = array[right];
-  array[right] = array[left];
-  array[left] = rightValue;
+  let rightValue = array[right]
+  array[right] = array[left]
+  array[left] = rightValue
   // [array[left], array[right]] = [array[right], array[left]];  // ES6 解构
 }
 ```
@@ -327,16 +327,16 @@ function swap(array, left, right) {
 
 ```js
 function show(arr, randomNum) {
-  let first = 0;
-  let last = arr.length - 1;
+  let first = 0
+  let last = arr.length - 1
   while (first <= last) {
-    let oindex = Math.floor((first + last) / 2);
+    let oindex = Math.floor((first + last) / 2)
     if (randomNum < oindex) {
-      last = randomNum;
+      last = randomNum
     } else if (randomNum > oindex) {
-      first = randomNum;
+      first = randomNum
     } else {
-      return arr[oindex];
+      return arr[oindex]
     }
   }
 }
@@ -349,65 +349,65 @@ function show(arr, randomNum) {
 ```js
 class Node {
   constructor(key) {
-    this.key = key;
-    this.left = undefined;
-    this.right = undefined;
+    this.key = key
+    this.left = undefined
+    this.right = undefined
   }
   toString() {
-    return `${this.key}`;
+    return `${this.key}`
   }
 }
 class BinarySearchTree {
   constructor() {
-    this.root = undefined;
+    this.root = undefined
   }
   insert(key) {}
   getRoot() {
-    return this.root;
+    return this.root
   }
   search(key) {}
   inOrderTraverse(callback) {
-    this.inOrderTraverseNode(this.root, callback);
+    this.inOrderTraverseNode(this.root, callback)
   }
   inOrderTraverseNode(node, callback) {
     if (node != null) {
-      this.inOrderTraverseNode(node.left, callback);
-      callback(node.key);
-      this.inOrderTraverseNode(node.right, callback);
+      this.inOrderTraverseNode(node.left, callback)
+      callback(node.key)
+      this.inOrderTraverseNode(node.right, callback)
     }
   }
   preOrderTraverse(callback) {
-    this.preOrderTraverseNode(this.root, callback);
+    this.preOrderTraverseNode(this.root, callback)
   }
   preOrderTraverseNode(node, callback) {
     if (node != null) {
-      callback(node.key);
-      this.preOrderTraverseNode(node.left, callback);
-      this.preOrderTraverseNode(node.right, callback);
+      callback(node.key)
+      this.preOrderTraverseNode(node.left, callback)
+      this.preOrderTraverseNode(node.right, callback)
     }
   }
   postOrderTraverse(callback) {
-    this.postOrderTraverseNode(this.root, callback);
+    this.postOrderTraverseNode(this.root, callback)
   }
   postOrderTraverseNode(node, callback) {
     if (node != null) {
-      this.postOrderTraverseNode(node.left, callback);
-      this.postOrderTraverseNode(node.right, callback);
-      callback(node.key);
+      this.postOrderTraverseNode(node.left, callback)
+      this.postOrderTraverseNode(node.right, callback)
+      callback(node.key)
     }
   }
   min() {
-    return this.minNode(this.root);
+    return this.minNode(this.root)
   }
   minNode(node) {
-    let current = node;
+    let current = node
     while (current != null && current.left != null) {
-      current = current.left;
+      current = current.left
     }
-    return current;
+    return current
   }
   max() {
-    return this.maxNode(this.root);
+    return this.maxNode(this.root)
   }
   remove(key) {}
 }
@@ -417,4 +417,39 @@ class BinarySearchTree {
 
 - 中序遍历 inOrderTraverseNode;
 - 先序遍历 preOrderTraverseNode;
-- 后序遍历 postOrderTraverseNode。
+- 后序遍历 postOrderTraverseNode
+
+## 算法题
+
+> [LeetCode](https://leetcode-cn.com/explore/)
+
+- [爬楼梯](https://leetcode-cn.com/explore/interview/card/tencent/226/dynamic-programming/921/)
+
+```js
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function(n) {
+    if (n == 1) {
+        return 1;
+    }
+    if (n == 2) {
+        return 2;
+    }
+    const arr = [];
+    arr[1] = 1;
+    arr[2] = 2;
+    for(let i = 3; i <= n; i++) {
+        arr[i] = arr[i - 1] + arr[i - 2];
+    }
+    return arr[n];
+```
+
+- 标签：动态规划
+- 本问题其实常规解法可以分成多个子问题，爬第 n 阶楼梯的方法数量，等于 2 部分之和
+- 倒数第二步爬上 n-1 阶楼梯的方法数量。因为再爬 1 阶就能到第 n 阶
+- 倒数第二步爬上 n-2 阶楼梯的方法数量，因为再爬 2 阶就能到第 n 阶
+- 所以我们得到公式 arr[n] = arr[n-1] + arr[n-2]
+- 同时需要初始化 arr[1]=1 和 arr[2]=2
+- 时间复杂度：O(n)
