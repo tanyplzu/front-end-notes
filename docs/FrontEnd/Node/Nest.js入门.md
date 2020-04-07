@@ -1,5 +1,5 @@
 ---
-title: "- Nest.js 入门"
+title: "Nest.js 入门"
 sidebarDepth: 2
 ---
 
