@@ -157,6 +157,8 @@ function sameVnode(a, b) {
 
 ## updateChildren
 
+> [updateChildren](./updateChildren.html)
+
 在对新、旧 VNode 节点进行 `patchVnode` 的时候，如果两个节点都有子节点，并且不相似的时候，就调用 `updateChildren` 来对比子节点。因为`createElement`在 children 规范时会把子节点处理成数组类型，所以这里相当于是同层级的两个 VNode 的列表进行分析比较。比较原则为，对新旧两个节点分别头和头、尾和尾、头和尾、尾和头这样交叉比较，如果都不满足，再判断此时对比的两个节点是否有相同的 key，根据不同的情况进行不同操作。
 
 比较开始前，会初始化一些数据：
