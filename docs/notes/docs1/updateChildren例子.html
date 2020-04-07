@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 80%;
+      margin-top:50px;
+      margin-left: 10%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <p id="tip"></p>
+    <img width="100%" height="450" id="img" src="./img/0.png"/>
+  </div>
+  <div style="text-align: center">
+    <button type="button" id="prevBtn"><<</button>
+    <button type="button" id="nextBtn">>></button>
+  </div>
+</body>
+  <script>
+    const tips = [
+      '1.例如，原有的oldCh的顺序是 A 、B、C、D、E、F、G，更新后成ch的顺序 F、D、A、H、E、C、B、G。',
+      '2.按顺序比对头和尾，尾和尾相似，对G执行patchVnode更新对应elm，然后指针移动，oldEndIdx--、newEndIdx--',
+      '3.按顺序比对头和尾，oldCh的尾和ch的头相似，对F执行patchVnode更新elm，找到oldStartVnode所在位置前插入F，然后指针移动，oldEndIdx--、newEndIdx++',
+      '4.头尾匹配和交叉匹配都不满足，然后通过D的key，在oldKeyToIdx找，找到了对应的key，对D进行patchVnode，将oldCh中的D设置为undefined，再把D插入到oldStartVnode位置的前面，指针移动newStartIdx++',
+      '5.头和头匹配匹配成功，对A进行patchVnode，然后oldStartIdx++、newStartIdx++',
+      '6.oldCh的头和ch的尾匹配成功，对B进行patchVnode，在oldEndVnode的位置后面插入处理过的B，然后oldStartIdx++、newEndIdx--',
+      '7.和上一步处理相同，对C进行patchVnode，在dom中，找到oldEndVnode，在其位置后面插入处理过的C，然后oldStartIdx++、newEndIdx--',
+      '8.oldStartVnode因为之前设置成了undefined，所以直接移动指针oldStartIdx++',
+      '9.尾和尾匹配成功，对E进行patchVnode，然后oldEndIdx--、newEndIdx--',
+      '10.oldStartIdx > oldEndIdx，循环结束。此时newStartIdx到newEndIdx之间的部分认为是新增部分，直接调用addVnodes插入。相反的，如果newStartIdx > newEndIdx循环结束，则oldStartIdx与oldEndIdx之间的节点认为是需要删除的部分，调用removeVnodes。'
+    ]
+    let stepIndex = 0;
+    const maxStepIndex = 9;
+    function next() {
+      if (stepIndex + 1>= 0 && stepIndex + 1 <= 9) {
+        stepIndex++;
+        change();
+      }
+    }
+    function prev() {
+      if (stepIndex - 1 >= 0 && stepIndex - 1 <= 9) {
+        stepIndex--;
+        change();
+      }
+    }
+    function change () {
+      document.getElementById('img').src = `./img/${stepIndex}.png`;
+      document.getElementById('tip').innerText = tips[stepIndex];
+    }
+    change();
+    document.getElementById('nextBtn').addEventListener('click', next)
+    document.getElementById('prevBtn').addEventListener('click', prev)
+  </script>
+</html>
