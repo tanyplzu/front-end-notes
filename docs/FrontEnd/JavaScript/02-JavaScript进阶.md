@@ -165,6 +165,12 @@ Function.prototype.myCall = function(context) {
 }
 ```
 
+## 手写深度比较
+
+仿Load
+
+
+
 ## Lazy-Load
 
 ```js

@@ -82,6 +82,7 @@ const getSidebar = () => {
         collapsable: false,
         children: [
           'docs1/数组的方法',
+          'docs1/对象静态方法总结分享',
           'docs1/javascript-regexp',
           'docs1/性能优化',
           'docs1/router',
@@ -96,7 +97,6 @@ const getSidebar = () => {
         title: '文档(二)：',
         collapsable: false,
         children: [
-          'docs2/对象静态方法总结分享',
           'docs2/数组操作方法',
           'docs2/数字',
           'docs2/array',

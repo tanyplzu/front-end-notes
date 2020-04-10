@@ -47,7 +47,7 @@ if (obj.a == null) {
 
 编程是需要绝对严谨的态度，我们只在这一个地方让它进行类型转换，来简化我们的写法，因为这个场景非常简单和固定。而其他场景下，我们都必须使用`===`，除非有特殊的业务需要。
 
-### 是否 === 就完全靠谱
+### Object.is
 
 也是不一定的，例如`0 === -0`就为`true`，`NaN === NaN`为`false`，判断两个变量是否完全相等可以使用`ES6`新增的`API`，`Object.is(0, -0)`，`Object.is(NaN, NaN)`就可以准确区分。
 
@@ -311,6 +311,12 @@ Blob: 也是存放二进制的容器，通过 `FileReader` 进行转换。
 之前有做过简单的总结，大家可以看看：[nodejs 二进制与 Buffer](https://juejin.im/post/5d188e1fe51d454fd8057bc9)
 
 毕竟对这块应用的比较少，推荐一篇文章给大家 [二进制数组](http://javascript.ruanyifeng.com/stdlib/arraybuffer.html)
+
+### 什么是JSON
+
+-  json是一种数据格式，本质是一段字符串；
+- Window.JSON 是一个全局对象：JSON.stringifty，JSON.parse
+- Json 里面要用双引号。
 
 ## DOM API
 
@@ -894,8 +900,6 @@ dev.addEventListener(
 <script src="/front-end/assets/js/3.efb9cd95.js" defer></script>
 ```
 
-![js异步](./imgs/js_async.jpg)
-
 ## 通信类
 
 ### 如何创建一个 Ajax
@@ -927,11 +931,17 @@ xhr.send(null);
 
 ```html
 <script src="http://www.abc.com/?data=name&callback=jsonp" charset="utf-8"></script>
-<script type="text/javascript">
-  jsonp({
-    data: {}
-  });
-</script>
+```
+
+jsonp({"result":"success"});
+
+需要定义一个函数
+
+```js
+function jsonp(data){
+   // data为返回数据 
+   // TODO 解析数据
+}
 ```
 
 **CORS：**
@@ -1038,6 +1048,8 @@ Signature 部分是对前两部分的签名，防止数据篡改。
 
 1. try...catch
 2. Window.onerror，只能捕获运行时的错误。
+
+> Window.onerror 对跨域的js不会有报错。对压缩的js需要配合sourceMap反查。
 
 ### 资源加载错误
 

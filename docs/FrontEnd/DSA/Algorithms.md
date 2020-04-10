@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 2
+sidebarDepth: 1
 ---
 
 # 数据结构与算法
@@ -423,7 +423,17 @@ class BinarySearchTree {
 
 > [LeetCode](https://leetcode-cn.com/explore/)
 
-- [爬楼梯](https://leetcode-cn.com/explore/interview/card/tencent/226/dynamic-programming/921/)
+### 动态规划 DP(dynamic programming)
+
+动态规划比较适合用来求解最优问题，比如求最大值、最小值等等
+
+> 《数学之美》第十二章的例子较简单
+
+#### [0/1背包问题](https://time.geekbang.org/column/article/211549)
+
+0/1 背包问题可以说是所有背包问题的基础，它描述的场景是这样的：假设你有一个背包，载重上限是 W，你面前有 n 个物品，第 i 个物品的重量是 wi，价值是 vi，那么，在不超过背包重量上限的前提下，你能获得的最大物品价值总和是多少？
+
+#### [爬楼梯](https://leetcode-cn.com/explore/interview/card/tencent/226/dynamic-programming/921/)
 
 ```js
 /**
@@ -431,22 +441,22 @@ class BinarySearchTree {
  * @return {number}
  */
 var climbStairs = function(n) {
-    if (n == 1) {
-        return 1;
-    }
-    if (n == 2) {
-        return 2;
-    }
-    const arr = [];
-    arr[1] = 1;
-    arr[2] = 2;
-    for(let i = 3; i <= n; i++) {
-        arr[i] = arr[i - 1] + arr[i - 2];
-    }
-    return arr[n];
+  if (n == 1) {
+    return 1
+  }
+  if (n == 2) {
+    return 2
+  }
+  const arr = []
+  arr[1] = 1
+  arr[2] = 2
+  for (let i = 3; i <= n; i++) {
+    arr[i] = arr[i - 1] + arr[i - 2]
+  }
+  return arr[n]
+}
 ```
 
-- 标签：动态规划
 - 本问题其实常规解法可以分成多个子问题，爬第 n 阶楼梯的方法数量，等于 2 部分之和
 - 倒数第二步爬上 n-1 阶楼梯的方法数量。因为再爬 1 阶就能到第 n 阶
 - 倒数第二步爬上 n-2 阶楼梯的方法数量，因为再爬 2 阶就能到第 n 阶
