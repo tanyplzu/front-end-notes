@@ -7,8 +7,7 @@ const getNav = () => {
       ariaLabel: 'Language Menu',
       items: [
         { text: 'Vue', link: '/Vue/Vue知识点' },
-        { text: 'React', link: '' },
-        { text: 'react Native', link: '' },
+        { text: 'React', link: '/React/index' },
         { text: 'AngularJS', link: '/AngularJS/Scope和Digest' },
       ]
     },
@@ -51,6 +50,11 @@ const getSidebar = () => {
       'Vue路由',
       'Vue组件',
     ],
+    '/React/': [
+      ['./', 'Introduction'],
+      'react基础',
+      'reactNative'
+    ],
     '/Reading/': [
     {
       title: '浏览器工作原理与实践',
@@ -73,7 +77,7 @@ const getSidebar = () => {
       title: '玩转webpack',
       collapsable: false,
       children: [
-        '玩转webpack'
+        'webpack/玩转webpack'
       ]
     }],
     '/Notes/': [
