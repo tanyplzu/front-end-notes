@@ -44,11 +44,12 @@ const getSidebar = () => {
       ['./', 'Vue相关'],
       ['Vue知识点', 'Vue 知识点'],
       'Vue的启动',
-      '有关响应式原理',
-      'Vue组件通信',
+      '响应式原理',
       '插件的注册原理',
       'Vue路由',
-      'Vue组件',
+      'Vue组件通信',
+      'Vue组件进阶',
+      'nextTick'
     ],
     '/React/': [
       ['./', 'Introduction'],

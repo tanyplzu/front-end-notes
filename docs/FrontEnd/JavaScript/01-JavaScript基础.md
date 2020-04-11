@@ -314,7 +314,7 @@ Blob: 也是存放二进制的容器，通过 `FileReader` 进行转换。
 
 ### 什么是JSON
 
--  json是一种数据格式，本质是一段字符串；
+- json是一种数据格式，本质是一段字符串；
 - Window.JSON 是一个全局对象：JSON.stringifty，JSON.parse
 - Json 里面要用双引号。
 
@@ -576,7 +576,7 @@ child instanceof Parent; // true
 - 提供复用性
 - 提高代码可维护性
 
-### 都有哪几种方式可以实现模块化，各有什么特点
+### 模块化
 
 **立即执行函数（IIFE）：**
 
@@ -687,6 +687,20 @@ let p = new Proxy(target, handler);
 target 代表需要添加代理的对象，handler 用来自定义对象中的操作，比如可以用来自定义 set 或者 get 函数。
 
 Vue3.0 使用 Proxy 替换原本的 API 原因在于 Proxy 无需一层层递归为每个属性添加代理，一次即可完成以上操作，性能上更好，对数组也不用单独处理，Proxy 可以完美监听到任何方式的数据改变，唯一缺陷可能就是浏览器的兼容性不好了。
+
+#### Set、Map、WeakSet 和 WeakMap
+
+Set 它类似于数组，但是成员的值都是唯一的，没有重复的值。Set本身是一个构造函数，用来生成 Set 数据结构。
+
+有add，delete、has、clear方法。
+
+Set 的本质还是一个对象，它并不是数组。
+
+JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。
+
+
+
+
 
 ## JavaScript 的执行机制
 

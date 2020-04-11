@@ -269,7 +269,7 @@ priceProcessor.newUser = function (originPrice) {
 
 - ES6 对迭代器的实现
 
-ES6 约定，任何数据结构只要具备 Symbol.iterator 属性（这个属性就是 Iterator 的具体实现，它本质上是当前数据结构默认的迭代器生成函数），就可以被遍历——准确地说，是被 for...of... 循环和迭代器的 next 方法遍历。 事实上，for...of... 的背后正是对 next 方法的反复调用。
+ES6 约定，任何数据结构只要具备 **Symbol.iterator** 属性（这个属性就是 Iterator 的具体实现，它本质上是当前数据结构默认的迭代器生成函数），就可以被遍历——准确地说，是被 for...of... 循环和迭代器的 next 方法遍历。 事实上，for...of... 的背后正是对 next 方法的反复调用。
 
 在 ES6 中，针对 Array、Map、Set、String、TypedArray、函数的 arguments 对象、NodeList 对象这些原生的数据结构都可以通过 for...of... 进行遍历。原理都是一样的，此处我们拿最简单的数组进行举例，当我们用 for...of... 遍历数组时：
 

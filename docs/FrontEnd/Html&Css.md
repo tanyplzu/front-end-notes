@@ -8,10 +8,10 @@
 
 html5 新出的标签，每个标签都有自己语义，什么标签做什么事。让人看的懂，也让机器可以看的懂，利于 SEO。
 
-### 举几个h5的新特性
+### 举几个 h5 的新特性
 
 - 新增语义化标签
-- 新增api、本地存储
+- 新增 api、本地存储
 - css 边框、背景、动画
 
 ### css 权重是什么
@@ -45,7 +45,8 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 ### 你常用的清除浮动方式是什么
 
 ```css
-.clear:after, .clear:before {
+.clear:after,
+.clear:before {
   content: ' ';
   display: table;
 }
@@ -106,32 +107,26 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 
 #### 父级属性
 
-**主轴方向：** 水平排列（默认） | 水平反向排列 | 垂直排列 | 垂直反向排列
-flex-direction: row | row-reverse | column | column-reverse;
+**主轴方向：** 水平排列（默认） | 水平反向排列 | 垂直排列 | 垂直反向排列 flex-direction: row | row-reverse | column | column-reverse;
 
-**换行：** 不换行（默认） | 换行 | 反向换行（第一行在最后面）
-flex-wrap: nowrap | wrap | wrap-reverse;
+**换行：** 不换行（默认） | 换行 | 反向换行（第一行在最后面） flex-wrap: nowrap | wrap | wrap-reverse;
 
-**flex-flow：** flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap
-flex-flow: `<flex-direction>` || `<flex-wrap>`;
+**flex-flow：** flex-direction 属性和 flex-wrap 属性的简写形式，默认值为 row nowrap flex-flow: `<flex-direction>` || `<flex-wrap>`;
 
-**主轴对齐方式：** 起点对齐（默认） | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
-justify-content: flex-start | flex-end | center | space-between | space-around;
+**主轴对齐方式：** 起点对齐（默认） | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐 justify-content: flex-start | flex-end | center | space-between | space-around;
 
-**交叉轴对齐方式：** 拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 第一行文字的基线对齐
-align-items: stretch | flex-start | flex-end | center | baseline;
+**交叉轴对齐方式：** 拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 第一行文字的基线对齐 align-items: stretch | flex-start | flex-end | center | baseline;
 
-**多根轴线对齐方式（说的是多根轴线在竖轴上的分布）**：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
-align-content: stretch | flex-start | flex-end | center | space-between | space-around;
+**多根轴线对齐方式（说的是多根轴线在竖轴上的分布）**：拉伸对齐（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 两端对齐 | 分散对齐 align-content: stretch | flex-start | flex-end | center | space-between | space-around;
 
 #### 子级属性
 
-- order：项目的排列顺序。数值越小，排列越靠前，默认为0。
+- order：项目的排列顺序。数值越小，排列越靠前，默认为 0。
 - flex-grow：项目的放大比例，默认为`0`，即如果存在剩余空间，也不放大。
-- flex-shrink：项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。
+- flex-shrink：项目的缩小比例，默认为 1，即如果空间不足，该项目将缩小。
 - flex-basis：在分配多余空间之前，项目占据的主轴空间。
-- flex：是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。
-- align-self：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性
+- flex：是 flex-grow, flex-shrink 和 flex-basis 的简写，默认值为 0 1 auto。后两个属性可选。
+- align-self：允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性
 
 ### 垂直水平居中的实现方式有哪些
 
@@ -147,19 +142,27 @@ align-content: stretch | flex-start | flex-end | center | space-between | space-
 ### 左右宽度固定，中间自适应的三栏布局方案有哪些
 
 ```html
-<div class='parent'>
-  <div class='left'></div>
-  <div class='center'></div>
-  <div class='right'></div>
+<div class="parent">
+  <div class="left"></div>
+  <div class="center"></div>
+  <div class="right"></div>
 </div>
 ```
 
 - 浮动
 
 ```css
-.parent {overflow: hidden;}
-.left {float: left; width: 100px;}
-.right: {float: right; width: 100px;}
+.parent {
+  overflow: hidden;
+}
+.left {
+  float: left;
+  width: 100px;
+}
+.right: {
+  float: right;
+  width: 100px;
+}
 ```
 
 > 兼容性好，简单；脱离文档流；撑开两边，下面也会变形。创建 bfc 解决，如 overflow: hidden;
@@ -167,37 +170,83 @@ align-content: stretch | flex-start | flex-end | center | space-between | space-
 - 定位 1：
 
 ```css
-.parent {postion: relative}
-.left {position: absolute; left: 0; width: 100px}
-.right {position: absolute; right: 0; width: 100px}
-.center {position: absolute; left: 100px; right: 100px}
+.parent {
+  postion: relative;
+}
+.left {
+  position: absolute;
+  left: 0;
+  width: 100px;
+}
+.right {
+  position: absolute;
+  right: 0;
+  width: 100px;
+}
+.center {
+  position: absolute;
+  left: 100px;
+  right: 100px;
+}
 ```
 
 - 定位 2
 
 ```css
-.parent {postion: relative}
-.left {position: absolute; left: 0; width: 100px}
-.right {position: absolute; right: 0; top: 0; width: 100px}
-.center {margin: 0 100px 0 100px};
+.parent {
+  postion: relative;
+}
+.left {
+  position: absolute;
+  left: 0;
+  width: 100px;
+}
+.right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100px;
+}
+.center {
+  margin: 0 100px 0 100px;
+}
 ```
 
 - 表格
 
 ```css
-.parent {dispaly: table; width: 100%;}
-.left {display: table-cell; width: 100px;}
-.center {display: table-cell;}
-.right {display: table-cell; width: 100px;}
+.parent {
+  dispaly: table;
+  width: 100%;
+}
+.left {
+  display: table-cell;
+  width: 100px;
+}
+.center {
+  display: table-cell;
+}
+.right {
+  display: table-cell;
+  width: 100px;
+}
 ```
 
 - 弹性
 
 ```css
-.parent {display: flex;}
-.left {width: 100px;}
-.center {flex: 1;}
-.right {width: 100px;}
+.parent {
+  display: flex;
+}
+.left {
+  width: 100px;
+}
+.center {
+  flex: 1;
+}
+.right {
+  width: 100px;
+}
 ```
 
 > 移动端很完美；且撑开两边
@@ -227,7 +276,7 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 ```html
 <!-- S Search Bar 模块 -->
 <div class="search-bar">
-  <input class="search-form__input"/>
+  <input class="search-form__input" />
   <!-- / input 输入框子元素 -->
   <button class="search-form__button"></button>
   <!-- / button 搜索按钮子元素 -->
@@ -243,22 +292,18 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 }
 ```
 
-.block 代表了更高级别的抽象或组件。
-.block__element 代表。block 的后代，用于形成一个完整的。block 的整体。
-.block--modifier 代表。block 的不同状态或不同版本。一般是外观或行为
+.block  代表了更高级别的抽象或组件。 .block\_\_element  代表。block 的后代，用于形成一个完整的。block 的整体。 .block--modifier 代表。block 的不同状态或不同版本。一般是外观或行为
 
 ### 如何选择图片格式，例如 png, webp
 
-| 图片格式 | 压缩方式 | 透明度 | 动画   | 浏览器兼容         | 适应场景                       |
-| :------: | :------: | ------ | ------ | ------------------- | ---------------------- |
-| JPEG     | 有损压缩 | 不支持 | 不支持 | 所有                                     | 复杂颜色及形状、尤其是照片                       |
-| GIF      | 无损压缩 | 支持   | 支持   | 所有                                     | 简单颜色，动画                                   |
-| PNG      | 无损压缩 | 支持   | 不支持 | 所有                                     | 需要透明时                                       |
-| APNG     | 无损压缩 | 支持   | 支持   | FirefoxSafariiOS Safari                  | 需要半透明效果的动画                             |
-| WebP     | 有损压缩 | 支持   | 支持   | ChromeOperaAndroid ChromeAndroid Browser | 复杂颜色及形状浏览器平台可预知                   |
-| SVG      | 无损压缩 | 支持   | 支持   | 所有（IE8以上）                          | 简单图形，需要良好的放缩体验需要动态控制图片特效 |
-
-
+| 图片格式 | 压缩方式 | 透明度 | 动画 | 浏览器兼容 | 适应场景 |
+| :-: | :-: | --- | --- | --- | --- |
+| JPEG | 有损压缩 | 不支持 | 不支持 | 所有 | 复杂颜色及形状、尤其是照片 |
+| GIF | 无损压缩 | 支持 | 支持 | 所有 | 简单颜色，动画 |
+| PNG | 无损压缩 | 支持 | 不支持 | 所有 | 需要透明时 |
+| APNG | 无损压缩 | 支持 | 支持 | FirefoxSafariiOS Safari | 需要半透明效果的动画 |
+| WebP | 有损压缩 | 支持 | 支持 | ChromeOperaAndroid ChromeAndroid Browser | 复杂颜色及形状浏览器平台可预知 |
+| SVG | 无损压缩 | 支持 | 支持 | 所有（IE8 以上） | 简单图形，需要良好的放缩体验需要动态控制图片特效 |
 
 ## 响应式页面开发
 
@@ -267,7 +312,10 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 网页应在 head 标签内添加 viewport meta 标签，以便优化在移动设备上的展示效果，其推荐的设置为：
 
 ```html
-<meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;">
+<meta
+  name="viewport"
+  content="width=device-width; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no;"
+/>
 ```
 
 ### Media Queries
@@ -275,7 +323,7 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 方法 1，使用 link 标签，根据指定特性引入特定的外部样式文件
 
 ```html
-<link rel="stylesheet" media="(max-width: 640px)" href="max-640px.css">
+<link rel="stylesheet" media="(max-width: 640px)" href="max-640px.css" />
 ```
 
 方法 2，直接在 style 标签或 样式文件内使用 @media 规则
@@ -288,32 +336,32 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 
 常用的样式断点（参考）
 
-| 断点名称    | 断点描述）                         |
-| :--------- | :------------------------------- |
+| 断点名称   | 断点描述）                           |
+| :--------- | :----------------------------------- |
 | mobile     | 移动设备断点，视窗宽度 ≤ 768 px      |
 | tablet     | 平板电脑设备断点，视窗宽度 ≥ 769 px  |
 | desktop    | 桌面电脑断点，视窗宽度 ≥ 1024 px     |
 | widescreen | 宽屏电脑断点，视窗宽度 ≥ 1216 px     |
-| fullhd     | 高清宽屏电脑断点，视窗宽度 ≥ 1408 px  |
+| fullhd     | 高清宽屏电脑断点，视窗宽度 ≥ 1408 px |
 
 ### 如何适配
 
-**1. 使用 rem 适配：**
+###  1.使用 rem 适配
 
 ```js
 // set 1rem = viewWidth / 10
-function setRemUnit () {
-    var rem = docEl.clientWidth / 10
-    docEl.style.fontSize = rem + 'px'
+function setRemUnit() {
+  var rem = docEl.clientWidth / 10
+  docEl.style.fontSize = rem + 'px'
 }
-setRemUnit();
+setRemUnit()
 ```
 
 在之前的项目中是这样使用的：
 
 ```js
-let clientWidth = document.body.clientWidth >= 600 ? 600 : document.body.clientWidth;
-document.querySelector('html').style.fontSize = (clientWidth / 16) + 'px';
+let clientWidth = document.body.clientWidth >= 600 ? 600 : document.body.clientWidth
+document.querySelector('html').style.fontSize = clientWidth / 16 + 'px'
 ```
 
 有 vs code 中有计算 rem 的插件
@@ -326,7 +374,7 @@ document.querySelector('html').style.fontSize = (clientWidth / 16) + 'px';
 
 :::
 
-**2. 使用 vw，vh 布局：**
+### 2.使用 vw，vh 布局
 
 vh、vw 方案即将视觉视口宽度 window.innerWidth 和视觉视口高度 window.innerHeight 等分为 100 份。
 
@@ -356,32 +404,36 @@ vh 和 vw 方案和 rem 类似也是相当麻烦需要做单位转化，而且 p
 }
 ```
 
-**3.vw 搭配 rem，寻找最优解**
+### 3.vw 搭配 rem，寻找最优解
 
 ```css
-// rem 单位换算：定为 75px 只是方便运算，750px-75px、640-64px、1080px-108px，如此类推
-$vw_fontsize: 75; // iPhone 6尺寸的根元素大小基准值
+/* rem 单位换算：定为 75px 只是方便运算，750px-75px、640-64px、1080px-108px，如此类推 */
+/* iPhone 6尺寸的根元素大小基准值 */
+$vw_fontsize: 75;
 @function rem($px) {
-     @return ($px / $vw_fontsize ) * 1rem;
+  @return ($px / $vw_fontsize) * 1rem;
 }
-// 根元素大小使用 vw 单位
+/* 根元素大小使用 vw 单位 */
 $vw_design: 750;
 html {
-    font-size: ($vw_fontsize / ($vw_design / 2)) * 100vw;
-    // 同时，通过Media Queries 限制根元素最大最小值
-    @media screen and (max-width: 320px) {
-        font-size: 64px;
-    }
-    @media screen and (min-width: 540px) {
-        font-size: 108px;
-    }
+  font-size: ($vw_fontsize / ($vw_design / 2)) * 100vw;
+  /* 同时，通过Media Queries 限制根元素最大最小值 */
+  @media screen and (max-width: 320px) {
+    font-size: 64px;
+  }
+  @media screen and (min-width: 540px) {
+    font-size: 108px;
+  }
 }
-// body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小
+/* body 也增加最大最小宽度限制，避免默认100%宽度的 block 元素跟随 body 而过大过小 */
 body {
-    max-width: 540px;
-    min-width: 320px;
+  max-width: 540px;
+  min-width: 320px;
 }
 ```
+
+- Mozilla[《Length》](https://developer.mozilla.org/en-US/docs/Web/CSS/length)
+- :fire:凹凸实验室 [《利用视口单位实现适配布局》](https://aotu.io/notes/2017/04/28/2017-4-28-CSS-viewport-units/)
 
 ### 设备像素比
 
@@ -399,11 +451,11 @@ body {
 
 ```css
 div {
-    height:1px;
-    background:#000;
-    -webkit-transform: scaleY(0.5);
-    -webkit-transform-origin:0 0;
-    overflow: hidden;
+  height: 1px;
+  background: #000;
+  -webkit-transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  overflow: hidden;
 }
 ```
 
@@ -411,19 +463,19 @@ css 根据设备像素比媒体查询后的解决方案
 
 ```css
 /* 2倍屏 */
-@media only screen and (-webkit-min-device-pixel-ratio: 2.0) {
-    .border-bottom::after {
-        -webkit-transform: scaleY(0.5);
-        transform: scaleY(0.5);
-    }
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .border-bottom::after {
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+  }
 }
 
 /* 3倍屏 */
-@media only screen and (-webkit-min-device-pixel-ratio: 3.0) {
-    .border-bottom::after {
-        -webkit-transform: scaleY(0.33);
-        transform: scaleY(0.33);
-    }
+@media only screen and (-webkit-min-device-pixel-ratio: 3) {
+  .border-bottom::after {
+    -webkit-transform: scaleY(0.33);
+    transform: scaleY(0.33);
+  }
 }
 ```
 
@@ -431,24 +483,24 @@ css 根据设备像素比媒体查询后的解决方案
 
 ```css
 .mod_grid {
-    position: relative;
-    &::after {
-        // 实现1物理像素的下边框线
-        content: '';
-        position: absolute;
-        z-index: 1;
-        pointer-events: none;
-        background-color: #ddd;
-        height: 1px;
-        left: 0;
-        right: 0;
-        top: 0;
-        @media only screen and (-webkit-min-device-pixel-ratio: 2) {
-            -webkit-transform: scaleY(0.5);
-            -webkit-transform-origin: 50% 0%;
-        }
+  position: relative;
+  &::after {
+    // 实现1物理像素的下边框线
+    content: '';
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+    background-color: #ddd;
+    height: 1px;
+    left: 0;
+    right: 0;
+    top: 0;
+    @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+      -webkit-transform: scaleY(0.5);
+      -webkit-transform-origin: 50% 0%;
     }
-    ...
+  }
+  ...;
 }
 ```
 
@@ -460,13 +512,13 @@ css 根据设备像素比媒体查询后的解决方案
 4. 在跨设备类型的时候（pc <-> 手机 <-> 平板）使用媒体查询
 5. 在跨设备类型如果交互差异太大的情况，考虑分开项目开发
 
-### 移动端300ms延时的原因? 如何处理?
+### 移动端 300ms 延时的原因? 如何处理?
 
 因为在以前移动端双击可以缩放或者滑动，所以为了区分是点击还是双击，加了 300ms 的延迟。
 
 解决方案：
 
 - css 的 touch-action，想默为 auto，将其置为 none 即可移除目标元素的 300 毫秒延迟 缺点: 新属性，可能存在浏览器兼容问题
-- 利用touchstart和touchend来模拟click事件，缺点有点击穿透
-- fastclick 原理: 在检测到touchend事件的时候，会通过DOM自定义事件立即出发模拟一个click事件，并把浏览器在300ms之后真正的click事件阻止掉
-- 所有版本的Android Chrome浏览器，如果设置viewport meta的值有user-scalable=no，浏览器也是会马上出发点击事件。
+- 利用 touchstart 和 touchend 来模拟 click 事件，缺点有点击穿透
+- fastclick 原理: 在检测到 touchend 事件的时候，会通过 DOM 自定义事件立即出发模拟一个 click 事件，并把浏览器在 300ms 之后真正的 click 事件阻止掉
+- 所有版本的 Android Chrome 浏览器，如果设置 viewport meta 的值有 user-scalable=no，浏览器也是会马上出发点击事件。
