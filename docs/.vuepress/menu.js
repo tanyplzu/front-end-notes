@@ -41,16 +41,29 @@ const getSidebar = () => {
       'Git'
     ],
     '/Vue/': [
-      ['./', 'Vue相关'],
-      'Vue知识点',
-      'Vue的启动',
-      '响应式原理',
-      '插件的注册原理',
-      'Vue路由',
-      'Vue组件通信',
-      'Vue组件进阶',
-      'nextTick'
-    ],
+    {
+      title: 'Vue基础', // 必要的
+      collapsable: false, // 可选的, 默认值是 true,
+      sidebarDepth: 1, // 可选的, 默认值是 1
+      children: [
+        ['./', 'Vue相关'],
+        'Vue知识点',
+        '插件的注册原理',
+        'Vue路由',
+        'nextTick'
+      ]
+    },
+    {
+      title: 'Vue进阶', // 必要的
+      collapsable: false, // 可选的, 默认值是 true,
+      sidebarDepth: 1, // 可选的, 默认值是 1
+      children: [
+        'Vue的启动',
+        '响应式原理',
+        'Vue组件通信',
+        'Vue组件进阶',
+      ]
+    }],
     '/React/': [
       ['./', 'Introduction'],
       'react基础',
