@@ -6,8 +6,9 @@ const getNav = () => {
       text: '前端框架',
       ariaLabel: 'Language Menu',
       items: [
-        { text: 'Vue', link: '/Vue/Vue知识点' },
         { text: 'React', link: '/React/index' },
+        { text: 'Vue', link: '/Vue/Vue知识点' },
+        { text: 'NodeJS', link: '/NodeJS/Node基础' },
         { text: 'AngularJS', link: '/AngularJS/Scope和Digest' },
       ]
     },
@@ -28,15 +29,6 @@ const getSidebar = () => {
       'NetworkAndSecurity/Security',
       'Webpack',
       'DesignPattern',
-      {
-        title: 'Node基础',
-        collapsable: true,
-        children: [
-          'Node/Node基础',
-          'Node/Koa',
-          'Node/Nest.js入门',
-        ]
-      },
       'DSA/Algorithms',
       'Git'
     ],
@@ -62,12 +54,18 @@ const getSidebar = () => {
         '响应式原理',
         'Vue组件通信',
         'Vue组件进阶',
+        'diff算法'
       ]
     }],
     '/React/': [
       ['./', 'Introduction'],
       'react基础',
       'reactNative'
+    ],
+    '/NodeJS/': [
+      'Node基础',
+      'Koa',
+      'Nest.js入门',
     ],
     '/Reading/': [
     {

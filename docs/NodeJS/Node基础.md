@@ -1,7 +1,8 @@
 ---
-title: 'Node基础'
-sidebarDepth: 2
+sidebarDepth: 1
 ---
+
+# Node基础
 
 ## 怎么看 nodejs 可支持高并发
 
