@@ -67,7 +67,7 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 <hr size='1'></hr>
 ```
 
-### 定位的方式有哪几种，它们的区别是什么
+### 定位的方式有哪几种
 
 - relative：相较于自身定位，设置的位置相对于自己进行位移。不脱离文档流。
 - absolute：相较于最近有定位的父节点定位，设置的位置相较于父节点。会脱离文档流，导致父节点高度塌陷。
@@ -139,7 +139,7 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 
 > 百分比 transform 会让 IOS 微信闪退。需要避免 table 布局，推荐使用 position 和 margin 的组合。（张鑫旭 css 世界 202 页）
 
-### 左右宽度固定，中间自适应的三栏布局方案有哪些
+### 左右宽度固定，中间自适应的三栏布局
 
 ```html
 <div class="parent">
@@ -346,7 +346,7 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 
 ### 如何适配
 
-###  1.使用 rem 适配
+### 1.使用 rem 适配
 
 ```js
 // set 1rem = viewWidth / 10
@@ -356,6 +356,8 @@ function setRemUnit() {
 }
 setRemUnit()
 ```
+
+> 也可以直接引用 [lib-flexible](https://github.com/amfe/lib-flexible)
 
 在之前的项目中是这样使用的：
 
@@ -512,7 +514,26 @@ css 根据设备像素比媒体查询后的解决方案
 4. 在跨设备类型的时候（pc <-> 手机 <-> 平板）使用媒体查询
 5. 在跨设备类型如果交互差异太大的情况，考虑分开项目开发
 
-### 移动端 300ms 延时的原因? 如何处理?
+### 保持高宽比的图
+
+```js
+.mod_banner {
+    position: relative;
+    // 使用padding-top 实现宽高比为 100:750 的图片区域
+    padding-top: percentage(100/750);
+    height: 0;
+    overflow: hidden;
+    img {
+        width: 100%;
+        height: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+```
+
+### 移动端 300ms 延时问题
 
 因为在以前移动端双击可以缩放或者滑动，所以为了区分是点击还是双击，加了 300ms 的延迟。
 

@@ -1,3 +1,7 @@
+---
+sidebarDepth: 1
+---
+
 # Vue 知识点
 
 ::: details 目录
@@ -77,19 +81,15 @@ computed 可以依赖其它 computed，甚至是其它组件的 data。
 
 ## 事件修饰符
 
-**怎样给这个自定义组件 custom-component 绑定一个原生的 click 事件？**
+**native**
 
-```vue
-<custom-component>内容</custom-component>
-```
+在一个组件的根元素上直接监听一个原生事件。这时，你可以使用 v-on 的 .native 修饰符
 
-@click 是自定义事件 click，并不是原生事件 click。绑定原生的 click 是这样的：
+**sync**
 
-```html
-<custom-component @click.native="xxx">内容</custom-component>
-```
+双向绑定。.sync 修饰符的 v-bind 不能和表达式一起使用
 
-比如常见的事件修饰符有哪些？
+**exact**
 
 .exact 是 Vue.js 2.5.0 新加的，它允许你控制由精确的系统修饰符组合触发的事件，比如：
 
@@ -110,6 +110,28 @@ computed 可以依赖其它 computed，甚至是其它组件的 data。
 - `.prevent`
 - `.capture`
 - `.self`
+
+```html
+<!-- 阻止单击事件继续传播 -->
+<a v-on:click.stop="doThis"></a>
+
+<!-- 提交事件不再重载页面 -->
+<form v-on:submit.prevent="onSubmit"></form>
+
+<!-- 修饰符可以串联 -->
+<a v-on:click.stop.prevent="doThat"></a>
+
+<!-- 只有修饰符 -->
+<form v-on:submit.prevent></form>
+
+<!-- 添加事件监听器时使用事件捕获模式 -->
+<!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 -->
+<div v-on:click.capture="doThis">...</div>
+
+<!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+<!-- 即事件不是从内部元素触发的 -->
+<div v-on:click.self="doThat">...</div>
+```
 
 而且，事件修饰符在连用时，是有先后顺序的。
 

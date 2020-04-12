@@ -31,14 +31,14 @@ mounted() {
 （2）调用自定义事件：
 
 ```js
-event.$emit('onAddTitle', this.title);
+event.$emit('onAddTitle', this.title)
 ```
 
 （3）需要一个 vue 实例，vue 实例可以有 export default 导出，也可以将 vue 实例挂在到根节点的 data 下面。如果放 data 中，可以使用`this.$root`获取到。
 
 ```js
-import Vue from 'vue';
-export default new Vue();
+import Vue from 'vue'
+export default new Vue()
 ```
 
 下面是 eventBus 的写法。
@@ -46,12 +46,12 @@ export default new Vue();
 ```js
 var eventBus = {
   install(Vue, options) {
-    Vue.prototype.$bus = vue;
-  }
-};
-Vue.use(eventBus);
+    Vue.prototype.$bus = vue
+  },
+}
+Vue.use(eventBus)
 // 可以这样使用
-this.$bus.$emit('todoSth', params);
+this.$bus.$emit('todoSth', params)
 ```
 
 （4）解绑，不用的自定义事件要及时销毁，否则可能造成内存泄露，因为它是绑在 vue 实例下的。`beforeDestroy ()`
@@ -82,17 +82,17 @@ beforeDestroy() {
 // A.vue
 export default {
   provide: {
-    name: 'Aresn'
-  }
-};
+    name: 'Aresn',
+  },
+}
 
 // B.vue
 export default {
   inject: ['name'],
   mounted() {
-    console.log(this.name); // Aresn
-  }
-};
+    console.log(this.name) // Aresn
+  },
+}
 ```
 
 > provide 和 inject 绑定并**不是可响应**的。这是刻意为之的。然而，如果你传入了一个可监听的对象，那么其对象的属性还是可响应的。
