@@ -11,14 +11,14 @@ const compoent = {
   props: {},
   template: `<div></div>`,
   data() {},
-  methods: {},
-}
+  methods: {}
+};
 ```
 
 全局组件
 
 ```js
-Vue.component('CompOne', compoent)
+Vue.component('CompOne', compoent);
 ```
 
 局部组件
@@ -26,9 +26,9 @@ Vue.component('CompOne', compoent)
 ```js
 new Vue({
   components: {
-    CompOne: compoent,
-  },
-})
+    CompOne: compoent
+  }
+});
 ```
 
 不推荐在子组件中修改`props` 修改组件中`props`的方法
@@ -89,6 +89,58 @@ notification.js 和 alert.vue 是可以复用的，如果还要开发其它同�
 
 本例的 content 只能是字符串，如果要显示自定义的内容，除了用 v-html 指令，也能用 Functional Render
 
+::: detail 项目中的例子
+
+```js
+export const openImgInBody = (id, type) => {
+  const promise = new Promise(function() {
+    const MyModal = Vue.extend({});
+    const modal = new MyModal({
+      template: `<el-dialog :close-on-click-modal="false" :title="title" :visible.sync="dialogVisible">
+                    <div class="ca-p-20 ca-align-center"
+                        style="min-height:300px;"
+                        v-if="type == 'img'">
+                      <img :src="imgSrc" width="80%">
+                    </div>
+                    <div v-else style="min-height:300px;">
+                      {{txt}}
+                    </div>
+                  </el-dialog>`,
+      data() {
+        return {
+          dialogVisible: true,
+          imgSrc:
+            this.baseURL + '/file/' + id + '?X-Token=' + store.state.user.token,
+          type: type, // img or  txt
+          title: type === 'img' ? '图片预览' : 'txt预览',
+          txt: ''
+        };
+      },
+      watch: {},
+      mounted() {
+        if (type === 'txt') {
+          this.getDoc();
+        }
+      },
+      methods: {
+        async getDoc() {
+          let params = {
+            id: id
+          };
+          this.txt = await apiHttp(api.GET_TXT_DOC, params);
+        }
+      }
+    });
+    // 或者，在文档之外渲染并且随后挂载
+    const component = modal.$mount();
+    document.body.appendChild(component.$el);
+  });
+  return promise;
+};
+```
+
+:::
+
 ## 递归组件与动态组件
 
 ## 递归组件
@@ -107,8 +159,8 @@ notification.js 和 alert.vue 是可以复用的，如果还要开发其它同�
 </template>
 <script>
 export default {
-  name: 'my-component',
-}
+  name: 'my-component'
+};
 </script>
 ```
 
