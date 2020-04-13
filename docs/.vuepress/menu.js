@@ -42,6 +42,7 @@ const getSidebar = () => {
         'Vue知识点',
         '插件的注册原理',
         'Vue路由',
+        'Vuex',
         'nextTick'
       ]
     },

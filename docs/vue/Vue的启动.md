@@ -2,7 +2,7 @@
 sidebarDepth: 1
 ---
 
-# Vue 的运行过程
+# Vue 的启动过程
 
 Vue 的启动流程图
 
@@ -12,15 +12,12 @@ Vue 的启动流程图
 
 ## 概述
 
-每一个组件都是 vue.component 的实例；
-
-render() 时会生成 vnode，render() 执行时，主要在执行 createElement() 方法。
-
-update 会将 vnode 生成 Dom，update 的核心是\_pach 方法。
-
-\$mount 会将生成的 dom 挂载到 el 下。启动时挂载，还可以自己手动挂载。
-
-自从有了 VNode ，开发页面的方式就变成了书写 VNode
+- init 阶段，会初始化生命周期，事件，props，method，data,computed,watch 等。
+- 每一个组件都是 vue.component 的实例。
+- render() 时会生成 vnode，render() 执行时，主要在执行 createElement() 方法。
+- update 会将 vnode 生成 Dom，update 的核心是\_pach 方法。
+- `$mount` 会将生成的 dom 挂载到 el 下。启动时挂载，还可以自己手动挂载。
+- getter 时会触发 dep.addsub方法。
 
 ## 解析（Parse）
 
@@ -90,7 +87,7 @@ ast = {
 ## 优化语法树（Optimize）
 
 ```js
-optimize(ast, options);
+optimize(ast, options)
 ```
 
 此阶段会深度遍历生成的 AST 树，检测它的每一颗子树是不是静态节点，如果是静态节点则它们生成 DOM 永远不需要改变，这对运行时对模板的更新起到极大的优化作用。
@@ -100,7 +97,7 @@ optimize(ast, options);
 ## 生成代码 (generate)
 
 ```js
-const code = generate(ast, options);
+const code = generate(ast, options)
 ```
 
 通过 generate 方法，将 ast 生成 render function：
@@ -112,7 +109,7 @@ with (this) {
         'ul',
         {
           staticClass: 'list',
-          class: bindCls
+          class: bindCls,
         },
         _l(data, function(item, index) {
           return _c(
@@ -120,15 +117,15 @@ with (this) {
             {
               on: {
                 click: function($event) {
-                  clickItem(index);
-                }
-              }
+                  clickItem(index)
+                },
+              },
             },
             [_v(_s(item) + ':' + _s(index))]
-          );
+          )
         })
       )
-    : _e();
+    : _e()
 }
 ```
 
@@ -138,10 +135,10 @@ with (this) {
 - 可以使用 `vue-template-compiler` 编译成 render function
 
 ```js
-const compiler = require('vue-template-compiler');
-const template = `<p>{{message}}</p>`;
-const res = compiler.compile(template);
-console.log(res.render);
+const compiler = require('vue-template-compiler')
+const template = `<p>{{message}}</p>`
+const res = compiler.compile(template)
+console.log(res.render)
 // with(this){return createElement('p',[createTextVNode(toString(message))])}
 ```
 
@@ -181,15 +178,15 @@ createElement 根据 tag 的不同，会创建不同的 VNode。
 class VNode {
   constructor(tag, data, children, text, elm) {
     /*当前节点的标签名*/
-    this.tag = tag;
+    this.tag = tag
     /*当前节点的一些数据信息，比如props、attrs等数据*/
-    this.data = data;
+    this.data = data
     /*当前节点的子节点，是一个数组*/
-    this.children = children;
+    this.children = children
     /*当前节点的文本*/
-    this.text = text;
+    this.text = text
     /*当前虚拟节点对应的真实dom节点*/
-    this.elm = elm;
+    this.elm = elm
   }
 }
 ```
@@ -242,36 +239,36 @@ Vue 的 `_update` 是实例的一个私有方法，它被调用的时机有 2 �
 
 ```js{12,15}
 Vue.prototype._update = function(vnode: VNode, hydrating?: boolean) {
-  const vm: Component = this;
-  const prevEl = vm.$el;
-  const prevVnode = vm._vnode;
-  const prevActiveInstance = activeInstance;
-  activeInstance = vm;
-  vm._vnode = vnode;
+  const vm: Component = this
+  const prevEl = vm.$el
+  const prevVnode = vm._vnode
+  const prevActiveInstance = activeInstance
+  activeInstance = vm
+  vm._vnode = vnode
   // Vue.prototype.__patch__ is injected in entry points
   // based on the rendering backend used.
   if (!prevVnode) {
     // initial render
-    vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */);
+    vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */)
   } else {
     // updates
-    vm.$el = vm.__patch__(prevVnode, vnode);
+    vm.$el = vm.__patch__(prevVnode, vnode)
   }
-  activeInstance = prevActiveInstance;
+  activeInstance = prevActiveInstance
   // update __vue__ reference
   if (prevEl) {
-    prevEl.__vue__ = null;
+    prevEl.__vue__ = null
   }
   if (vm.$el) {
-    vm.$el.__vue__ = vm;
+    vm.$el.__vue__ = vm
   }
   // if parent is an HOC, update its $el as well
   if (vm.$vnode && vm.$parent && vm.$vnode === vm.$parent._vnode) {
-    vm.$parent.$el = vm.$el;
+    vm.$parent.$el = vm.$el
   }
   // updated hook is called by the scheduler to ensure that children are
   // updated in a parent's updated hook.
-};
+}
 ```
 
 ### patchVnode
