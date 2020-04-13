@@ -7,7 +7,7 @@ const getNav = () => {
       ariaLabel: 'Language Menu',
       items: [
         { text: 'React', link: '/React/index' },
-        { text: 'Vue', link: '/Vue/Vue知识点' },
+        { text: 'Vue', link: '/Vue/index' },
         { text: 'NodeJS', link: '/NodeJS/Node基础' },
         { text: 'AngularJS', link: '/AngularJS/Scope和Digest' },
       ]

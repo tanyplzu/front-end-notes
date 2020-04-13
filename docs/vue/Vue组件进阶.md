@@ -88,3 +88,54 @@ notification.js 和 alert.vue 是可以复用的，如果还要开发其它同�
 在 notification.js 的 new Vue 时，使用了 Render 函数来渲染 alert.vue，这是因为使用 template 在 runtime 的 Vue.js 版本下是会报错的。
 
 本例的 content 只能是字符串，如果要显示自定义的内容，除了用 v-html 指令，也能用 Functional Render
+
+## 递归组件与动态组件
+
+## 递归组件
+
+实现一个递归组件的必要条件是：
+
+- 要给组件设置 name
+- 要有一个明确的结束条件
+
+```vue
+<template>
+  <div>
+    <my-component></my-component>
+    <!-- 可以在组件上使用v-if来设置结束条件 -->
+  </div>
+</template>
+<script>
+export default {
+  name: 'my-component',
+}
+</script>
+```
+
+### 动态组件
+
+使用 is 动态渲染
+
+```html
+<component v-bind:is="currentTabComponent"></component>
+```
+
+### 树形控件
+
+Tree 是典型的数据驱动型组件，所以节点的配置就是一个 data，里面描述了所有节点的信息
+
+props：data
+
+- title：节点标题（本例为纯文本输出，可参考 Table 的 Render 或 slot-scope 将其扩展）；
+- expand：是否展开直子节点。开启后，其直属子节点将展开；
+- checked：是否选中该节点。开启后，该节点的 Checkbox 将选中；
+- children：子节点属性数组。
+
+events:
+
+- on-toggle-expand：展开和收起子列表时触发；
+- on-check-change：点击复选框时触发。
+
+node.vue 是树组件 Tree 的核心，而一个 tree-node 节点包含 4 个部分：
+
+展开与关闭的按钮（+或-）；多选框；节点标题；递归子节点。
