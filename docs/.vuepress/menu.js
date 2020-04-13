@@ -59,10 +59,23 @@ const getSidebar = () => {
       ]
     }],
     '/React/': [
-      ['./', 'Introduction'],
-      'react基础',
-      'reactNative'
-    ],
+    {
+      title: 'React 基础', // 必要的
+      collapsable: false, // 可选的, 默认值是 true,
+      sidebarDepth: 1, // 可选的, 默认值是 1
+      children: [
+        ['./', 'Introduction'],
+        'react基础',
+      ]
+    },
+    {
+      title: 'reactNative', // 必要的
+      collapsable: false, // 可选的, 默认值是 true,
+      sidebarDepth: 1, // 可选的, 默认值是 1
+      children: [
+        'reactNative'
+      ]
+    }],
     '/NodeJS/': [
       'Node基础',
       'Koa',
