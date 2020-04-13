@@ -40,7 +40,6 @@ const getSidebar = () => {
       children: [
         ['./', 'Vue相关'],
         'Vue知识点',
-        '插件的注册原理',
         'Vue路由',
         'Vuex',
         'nextTick'
@@ -55,7 +54,8 @@ const getSidebar = () => {
         '响应式原理',
         'Vue组件通信',
         'Vue组件进阶',
-        'diff算法'
+        'diff算法',
+        '插件的注册原理',
       ]
     }],
     '/React/': [
