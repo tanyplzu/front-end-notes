@@ -10,14 +10,6 @@ sidebarDepth: 1
 
 :::
 
-## setState
-
-- setState 中接收一个函数，函数返回一个对象；
-- setState 是一个异步过程；
-- setState 可以有接收一个参数，preState，表示修改之前的数据
-
-setState 是一个异步函数，不会立即执行； setState 的第二个参数是回调函数；
-
 ## JSX
 
 - JSX 是一个模板语法，然后转成 js 对象，在变成真实的 DOM；
@@ -39,6 +31,8 @@ TodoItem.propTypes = { content: PropTypes.string }
 PropTypes.oneOfType(PropTypes.string, PropTypes.number)
 ```
 
+> 需要安装 prop-types 插件
+
 ## 规则写法
 
 组件开头必须大写；
@@ -49,7 +43,7 @@ PropTypes.oneOfType(PropTypes.string, PropTypes.number)
 
 ```js
 render(){
-const {content}=this.props.content
+  const {content}=this.props.content
 }
 ```
 
@@ -87,6 +81,13 @@ componentWillMount：也会执行一次，但在写 react native 时可能会�
 
 当在 TodoItem 的 shouldComponentUpdate 生命周期函数中，return false 时,该组件不在变化。子组件重新渲染有三种形式，才有该方法后，只有在 props 和 state 改变后才会渲染；shouldComponentUpdate 会接受两个参数 nextProps 和 nextState，通过这两个参数，可以做到精确控制渲染；提升组件性能；
 
+::: details react-lifecycle
+
+![react-lifecycle](./imgs/react-lifecycle.png)
+> 地址：[react-lifecycle](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+
+:::
+
 ## 事件
 
 ### React 事件为何 bind this
@@ -112,15 +113,33 @@ handleClick =()=>{
 
 JSX 上写的事件并没有绑定在对应的真实 DOM 上，而是通过事件代理的方式，将所有的事件都统一绑定在了 `document` 上。这样的方式不仅减少了内存消耗，还能在组件挂载销毁时统一订阅和移除事件。
 
-另外冒泡到 `document` 上的事件也不是原生浏览器事件，而是 React 自己实现的合成事件（SyntheticEvent）。因此我们如果不想要事件冒泡的话，调用 `event.stopPropagation` 是无效的，而应该调用 `event.preventDefault`。
+另外冒泡到 `document` 上的事件也不是原生浏览器事件，而是 React 自己实现的合成事件 `SyntheticEvent`。并模拟出了 DOM 事件的所有能力。
+
+- event.stopPropagation
+- event.preventDefault
+- event.currentTarget
+- event.target
+
+> 获取原生事件用 event.nativeEvent，用 event.nativeEvent.currentTarget（绑定的事件） 取到的是 document
 
 ### 自定义参数
 
-## 性能优化点总结
+方法中接收参数时，最后可追加一个参数，为 event
 
-- bind()，放到构造函数中 setState 是个异步函数，可以将多次变换合并成一次渲染；前端一个特别重要的性能点就是渲染；
-- 同层比对，key 值比对，提升速度；
-- 生命周期函数的使用。
+## 受控组件和非受控组件
+
+```js
+return (
+  <div>
+    <p>{this.state.name}</p>
+    <label htmlFor='inputName'>姓名：</label> {/* 用 htmlFor 代替 for */}
+    <input id='inputName' value={this.state.name} onChange={this.onInputChange} />
+  </div>
+)
+```
+
+- 受控组件的意思是说，input 中的值受 state 的控制
+- textarea、select 也是基于 value 去写的
 
 ## 通信
 
@@ -191,3 +210,9 @@ class ThemedButton extends React.Component {
 ## React 的高阶组件
 
 HOC（Higher Order Component，高阶组件），它不是 React 的组件，而是一种设计模式。
+
+## 性能优化点总结
+
+- bind()，放到构造函数中 setState 是个异步函数，可以将多次变换合并成一次渲染；前端一个特别重要的性能点就是渲染；
+- 同层比对，key 值比对，提升速度；
+- 生命周期函数的使用。

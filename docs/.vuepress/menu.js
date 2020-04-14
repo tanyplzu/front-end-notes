@@ -65,6 +65,7 @@ const getSidebar = () => {
       sidebarDepth: 1, // 可选的, 默认值是 1
       children: [
         ['./', 'Introduction'],
+        'setState',
         'react基础',
       ]
     },

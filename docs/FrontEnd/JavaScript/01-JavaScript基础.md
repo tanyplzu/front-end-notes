@@ -29,12 +29,12 @@ sidebarDepth: 1
 首先得明白两者的区别，`==`会先试图类型转换，然后再比较，而`===`不会类型转换，直接比较。如下例子：
 
 ```javascript
-1 == '1'; // true
-1 === '1'; // false
-0 == false; // true
-0 === false; // false
-null == undefined; // true
-null === undefined; // false
+1 == '1' // true
+1 === '1' // false
+0 == false // true
+0 === false // false
+null == undefined // true
+null === undefined // false
 ```
 
 根据 jQuery 源码中的写法，只推荐在一个地方用`==`，其他地方都必须用`===`。这个用`==`的地方就是：
@@ -95,11 +95,11 @@ if (obj.a == null) {
 ### 如何判断一个变量是否是数组
 
 ```js
-arr instanceof Array;
-Array.prototype.isPrototypeOf(arr);
-Array.isArray(arr);
-Object.prototype.toString.call(arr) === '[object Array]';
-arr.constructor === Array;
+arr instanceof Array
+Array.prototype.isPrototypeOf(arr)
+Array.isArray(arr)
+Object.prototype.toString.call(arr) === '[object Array]'
+arr.constructor === Array
 ```
 
 ### Array.prototype 的类型是什么吗
@@ -120,19 +120,19 @@ Array.from(arguments)
 function flatten(arr) {
   return [].concat(
     ...arr.map(v => {
-      return Array.isArray(v) ? flatten(v) : v;
+      return Array.isArray(v) ? flatten(v) : v
     })
-  );
+  )
 }
 
 function flatten(arr) {
   return arr.reduce((pre, cur) => {
-    return pre.concat(Array.isArray(cur) ? flatten(cur) : cur);
-  }, []);
+    return pre.concat(Array.isArray(cur) ? flatten(cur) : cur)
+  }, [])
 }
 
 function flatten(arr) {
-  return arr.flat(Infinity);
+  return arr.flat(Infinity)
 }
 
 function flatten(arr) {
@@ -140,20 +140,20 @@ function flatten(arr) {
   return arr
     .toString()
     .split(',')
-    .map(Number);
+    .map(Number)
 }
 
 function flatten(arr) {
-  const ret = [];
+  const ret = []
   while (arr.length) {
-    const item = arr.shift();
+    const item = arr.shift()
     if (Array.isArray(item)) {
-      arr.unshift(...item);
+      arr.unshift(...item)
     } else {
-      ret.push(item);
+      ret.push(item)
     }
   }
-  return ret;
+  return ret
 }
 ```
 
@@ -168,8 +168,8 @@ function flatten(arr) {
 **利用 Array.prototype.toString() 方法：**
 
 ```js
-var list = [1, [2, [3]], 4, [5]];
-console.log(list.toString()); //1,2,3,4,5
+var list = [1, [2, [3]], 4, [5]]
+console.log(list.toString()) //1,2,3,4,5
 ```
 
 原理：toString 方法返回一个字符串，该字符串由数组中的每个元素的 toString() 返回值经调用 join() 方法连接（由逗号隔开）组成。
@@ -177,8 +177,8 @@ console.log(list.toString()); //1,2,3,4,5
 **利用 Array.prototype.join() 方法：**
 
 ```js
-var list = [1, [2, [3]], 4, [5]];
-console.log(list.join()); //1,2,3,4,5
+var list = [1, [2, [3]], 4, [5]]
+console.log(list.join()) //1,2,3,4,5
 ```
 
 原理：join 方法会让所有的数组元素转换成字符串，再用一个分隔符将这些字符串连接起来。如果元素是 undefined 或者 null， 则会转化成空字符串。
@@ -187,20 +187,20 @@ console.log(list.join()); //1,2,3,4,5
 
 ```js
 function unique(arr) {
-  return [...new Set(arr)];
+  return [...new Set(arr)]
 }
 
 function unique(arr) {
   return arr.filter((v, i, a) => {
-    return a.indexOf(v) === i;
-  });
+    return a.indexOf(v) === i
+  })
 }
 
 function unique(arr) {
-  const tmp = new Map();
+  const tmp = new Map()
   return arr.filter(v => {
-    return !tmp.has(v) && tmp.set(v);
-  });
+    return !tmp.has(v) && tmp.set(v)
+  })
 }
 ```
 
@@ -214,39 +214,39 @@ function unique(arr) {
 ### 打出数组中的所有方法
 
 ```js
-Object.getOwnPropertyNames([].__proto__);
+Object.getOwnPropertyNames([].__proto__)
 ```
 
 ### 字符串的 test、match、search 之间的区别
 
 ```js
 // test 是检测字符串是否匹配某个正则，返回布尔值
-/[a-z]/.test(1); // false
+;/[a-z]/.test(1) // false
 
 // match 是返回检测字符匹配正则的数组结果集合，没有返回 null
-'1AbC2d'.match(/[a-z]/gi); // ['A', 'b', 'C', 'd']
+'1AbC2d'.match(/[a-z]/gi) // ['A', 'b', 'C', 'd']
 
 // search 是返回正则匹配到的下标，没有返回-1
-'1AbC2d'.search(/[a-z]/); // 2
+'1AbC2d'.search(/[a-z]/) // 2
 ```
 
 ### 字符串的 slice、substring、substr 之间的区别
 
 ```js
 //  slice 是返回字符串开始至结束下标减去开始下标个数的新字符串，下标是负数为倒数；
-'abcdefg'.slice(2, 3); // c  // 3 - 2
-'abcdefg'.slice(3, 2); // ''  // 2 - 3
-'abcdefg'.slice(-2, -1); // f  // -1 - -2
+'abcdefg'.slice(2, 3) // c  // 3 - 2
+'abcdefg'.slice(3, 2) // ''  // 2 - 3
+'abcdefg'.slice(-2, -1) // f  // -1 - -2
 
 // substring 和 slice 正常截取字符串时相同，负数为0，且下标值小的为开始下标；
-'abcdefg'.substring(2, 3); //c  // 3 - 2
-'abcdefg'.substring(3, 2); // c  // 3 - 2
-'abcdefg'.substring(3, -3); // abc  // 3 - 0
+'abcdefg'.substring(2, 3) //c  // 3 - 2
+'abcdefg'.substring(3, 2) // c  // 3 - 2
+'abcdefg'.substring(3, -3) // abc  // 3 - 0
 
 // substr 返回开始下标开始加第二个参数(不能为负数)个数的新字符串。
-'abcdefg'.substr(2, 3); // cde
-'abcdefg'.substr(3, 2); // de
-'abcdefg'.substr(-3, 2); // ef
+'abcdefg'.substr(2, 3) // cde
+'abcdefg'.substr(3, 2) // de
+'abcdefg'.substr(-3, 2) // ef
 ```
 
 ### Number('123') 和 new Number('123') 有什么区别
@@ -255,8 +255,8 @@ Object.getOwnPropertyNames([].__proto__);
 - 同样的情况也适用用`String`和`new String`；`Boolean`和`new Boolean`的情况。
 
 ```js
-typeof Number('123'); // number
-typeof new Number('123'); // object
+typeof Number('123') // number
+typeof new Number('123') // object
 ```
 
 ### JS 精度丢失问题
@@ -264,7 +264,7 @@ typeof new Number('123'); // object
 浮点数的精度丢失不仅仅是 js 的问题， java 也会出现精度丢失的问题，主要是因为数值在内存是由二进制存储的，而某些值在转换成二进制的时候会出现无限循环，由于位数限制，无限循环的值就会采用“四舍五入法”截取，成为一个计算机内部很接近数字，即使很接近，但是误差已经出现了。
 
 ```js
-0.1 + 0.2 = 0.30000000000000004;
+0.1 + 0.2 = 0.30000000000000004
 // 0.1 转成二进制会无限循环
 // "0.000110011001100110011001100110011001100110011001100..."
 ```
@@ -272,7 +272,7 @@ typeof new Number('123'); // object
 那么如何避免这问题呢？解决办法：可在操作前，放大一定的倍数，然后再除以相同的倍数
 
 ```js
-(0.1 * 100 + 0.2 * 100) / 100 = 0.3;
+;(0.1 * 100 + 0.2 * 100) / 100 = 0.3
 ```
 
 > js 的 number 采用 64 位双精度存储 JS 中能精准表示的最大整数是 Math.pow(2, 53)
@@ -286,7 +286,7 @@ typeof new Number('123'); // object
 ```js
 // 使用 Math.round 可以四舍五入的特性，把数组放大一定的倍数处理
 function round(number, precision) {
-  return Math.round(+number + 'e' + precision) / Math.pow(10, precision);
+  return Math.round(+number + 'e' + precision) / Math.pow(10, precision)
 }
 ```
 
@@ -312,9 +312,9 @@ Blob: 也是存放二进制的容器，通过 `FileReader` 进行转换。
 
 毕竟对这块应用的比较少，推荐一篇文章给大家 [二进制数组](http://javascript.ruanyifeng.com/stdlib/arraybuffer.html)
 
-### 什么是JSON
+### 什么是 JSON
 
-- json是一种数据格式，本质是一段字符串；
+- json 是一种数据格式，本质是一段字符串；
 - Window.JSON 是一个全局对象：JSON.stringifty，JSON.parse
 - Json 里面要用双引号。
 
@@ -355,11 +355,11 @@ Blob: 也是存放二进制的容器，通过 `FileReader` 进行转换。
 ### 自定义事件
 
 ```js
-var event = new Event('custome');
+var event = new Event('custome')
 ev.addEventListener('custome', function() {
-  console.log(custome);
-});
-ev.dispathEvent(event);
+  console.log(custome)
+})
+ev.dispathEvent(event)
 ```
 
 addEventListener 最后一个参数： true 为捕获； false 为冒泡。
@@ -383,10 +383,10 @@ addEventListener 最后一个参数： true 为捕获； false 为冒泡。
 ```js
 window.addEventListener('load', function() {
   // 页面的全部资源加载完才会执行，包括图片、视频等
-});
+})
 document.addEventListener('DOMContentLoaded', function() {
   // DOM 渲染完即可执行，此时图片、视频还可能没有加载完
-});
+})
 ```
 
 原生中没有 ready 这 api，jQuery 中有 ready
@@ -407,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 ```js
 // 判断元素是否超出设定区域
-elm.scrollWidth > elm.offsetWidth;
+elm.scrollWidth > elm.offsetWidth
 // 获取盒模型的大小
 ```
 
@@ -421,10 +421,10 @@ elm.scrollWidth > elm.offsetWidth;
 
 ```javascript
 function Foo(name) {
-  this.name = name;
-  this.type = 'foo';
+  this.name = name
+  this.type = 'foo'
 }
-var foo = new Foo('beijing');
+var foo = new Foo('beijing')
 ```
 
 - 创建一个新对象，继承 Foo.prototype
@@ -434,17 +434,17 @@ var foo = new Foo('beijing');
 
 ```js
 var newFunc = function(func) {
-  var o = Object.create(func.prototype);
-  var k = func.call(o); // 执行func  *****
+  var o = Object.create(func.prototype)
+  var k = func.call(o) // 执行func  *****
   if (typeof k === 'object') {
-    return k;
+    return k
   } else {
-    return o;
+    return o
   }
-};
+}
 
-var p = { name: 'p' };
-var o4 = Object.create(p);
+var p = { name: 'p' }
+var o4 = Object.create(p)
 ```
 
 ### 如何实现继承
@@ -453,13 +453,13 @@ var o4 = Object.create(p);
 
 ```js
 function Parent1() {
-  this.name = 'parent1';
+  this.name = 'parent1'
 }
 function Child1() {
-  Parent1.call(this);
-  this.type = 'child1';
+  Parent1.call(this)
+  this.type = 'child1'
 }
-console.log(new Child1(), new Child1().say());
+console.log(new Child1(), new Child1().say())
 ```
 
 ::: danger 缺点：
@@ -472,17 +472,17 @@ Parent1 原型链上的东西没有被继承，只实现了部分继承
 
 ```js
 function Parent2() {
-  this.name = 'parent2';
-  this.play = [1, 2, 3];
+  this.name = 'parent2'
+  this.play = [1, 2, 3]
 }
 function Child2() {
-  this.type = 'child2';
+  this.type = 'child2'
 }
-Child2.prototype = new Parent2();
-var s1 = new Child2();
-var s2 = new Child2();
-console.log(s1.play, s2.play);
-s1.play.push(4);
+Child2.prototype = new Parent2()
+var s1 = new Child2()
+var s2 = new Child2()
+console.log(s1.play, s2.play)
+s1.play.push(4)
 ```
 
 ::: danger 缺点：
@@ -495,18 +495,18 @@ s1.play.push(4);
 
 ```js
 function Parent3() {
-  this.name = 'parent3';
-  this.play = [1, 2, 3];
+  this.name = 'parent3'
+  this.play = [1, 2, 3]
 }
 function Child3() {
-  Parent3.call(this); // 执行1次
-  this.type = 'child3';
+  Parent3.call(this) // 执行1次
+  this.type = 'child3'
 }
-Child3.prototype = new Parent3(); // 执行2次
-var s3 = new Child3();
-var s4 = new Child3();
-s3.play.push(4);
-console.log(s3.play, s4.play);
+Child3.prototype = new Parent3() // 执行2次
+var s3 = new Child3()
+var s4 = new Child3()
+s3.play.push(4)
+console.log(s3.play, s4.play)
 ```
 
 ::: danger 缺点：
@@ -519,28 +519,28 @@ console.log(s3.play, s4.play);
 
 ```js
 function Parent4() {
-  this.name = 'parent4';
-  this.play = [1, 2, 3];
+  this.name = 'parent4'
+  this.play = [1, 2, 3]
 }
 function Child4() {
-  Parent4.call(this);
-  this.type = 'child4';
+  Parent4.call(this)
+  this.type = 'child4'
 }
-Child4.prototype = Parent4.prototype;
+Child4.prototype = Parent4.prototype
 ```
 
 **5. 组合继承的优化 2：**
 
 ```js
 function Parent5() {
-  this.name = 'parent5';
-  this.play = [1, 2, 3];
+  this.name = 'parent5'
+  this.play = [1, 2, 3]
 }
 function Child5() {
-  Parent5.call(this);
-  this.type = 'child5';
+  Parent5.call(this)
+  this.type = 'child5'
 }
-Child5.prototype = Object.create(Parent5.prototype);
+Child5.prototype = Object.create(Parent5.prototype)
 ```
 
 推荐使用 5。
@@ -550,20 +550,20 @@ Child5.prototype = Object.create(Parent5.prototype);
 ```js
 class Parent {
   constructor(value) {
-    this.val = value;
+    this.val = value
   }
   getValue() {
-    console.log(this.val);
+    console.log(this.val)
   }
 }
 class Child extends Parent {
   constructor(value) {
-    super(value);
+    super(value)
   }
 }
-let child = new Child(1);
-child.getValue(); // 1
-child instanceof Parent; // true
+let child = new Child(1)
+child.getValue() // 1
+child instanceof Parent // true
 ```
 
 `class` 实现继承的核心在于使用 `extends` 表明继承自哪个父类，并且在子类构造函数中必须调用 `super`，因为这段代码可以看成 `Parent.call(this, value)`。
@@ -583,10 +583,10 @@ child instanceof Parent; // true
 在早期，使用立即执行函数实现模块化是常见的手段，通过函数作用域解决了命名冲突、污染全局作用域的问题
 
 ```js
-(function(globalVariable) {
-  globalVariable.test = function() {};
+;(function(globalVariable) {
+  globalVariable.test = function() {}
   // ... 声明各种变量、函数都不会污染全局作用域
-})(globalVariable);
+})(globalVariable)
 ```
 
 **AMD 和 CMD：**
@@ -597,16 +597,16 @@ child instanceof Parent; // true
 // AMD
 define(['./a', './b'], function(a, b) {
   // 加载模块完毕可以使用
-  a.do();
-  b.do();
-});
+  a.do()
+  b.do()
+})
 // CMD
 define(function(require, exports, module) {
   // 加载模块
   // 可以把 require 写在函数体的任意地方实现延迟加载
-  var a = require('./a');
-  a.doSomething();
-});
+  var a = require('./a')
+  a.doSomething()
+})
 ```
 
 **CommonJS：**
@@ -617,38 +617,38 @@ CommonJS 最早是 Node 在使用，目前也仍然广泛使用，比如在 Webp
 // a.js
 module.exports = {
   a: 1
-};
+}
 // or
-exports.a = 1;
+exports.a = 1
 
 // b.js
-var module = require('./a.js');
-module.a; // -> log 1
+var module = require('./a.js')
+module.a // -> log 1
 ```
 
 require 函数
 
 ```js
-var module = require('./a.js');
-module.a;
+var module = require('./a.js')
+module.a
 // 这里其实就是包装了一层立即执行函数，这样就不会污染全局变量了，
 // 重要的是 module 这里，module 是 Node 独有的一个变量
 module.exports = {
   a: 1
-};
+}
 // module 基本实现
 var module = {
   id: 'xxxx', // 我总得知道怎么去找到他吧
   exports: {} // exports 就是个空对象
-};
+}
 // 这个是为什么 exports 和 module.exports 用法相似的原因
-var exports = module.exports;
+var exports = module.exports
 var load = function(module) {
   // 导出的东西
-  var a = 1;
-  module.exports = a;
-  return module.exports;
-};
+  var a = 1
+  module.exports = a
+  return module.exports
+}
 // 然后当我 require 的时候去找到独特的
 // id，然后将要使用的东西用立即执行函数包装下，over
 ```
@@ -667,8 +667,8 @@ var load = function(module) {
 
 ```js
 // 引入模块 API
-import XXX from './a.js';
-import { XXX } from './a.js';
+import XXX from './a.js'
+import { XXX } from './a.js'
 // 导出模块 API
 export function a() {}
 export default function() {}
@@ -681,26 +681,12 @@ export default function() {}
 ### Proxy 可以实现什么功能
 
 ```js
-let p = new Proxy(target, handler);
+let p = new Proxy(target, handler)
 ```
 
 target 代表需要添加代理的对象，handler 用来自定义对象中的操作，比如可以用来自定义 set 或者 get 函数。
 
 Vue3.0 使用 Proxy 替换原本的 API 原因在于 Proxy 无需一层层递归为每个属性添加代理，一次即可完成以上操作，性能上更好，对数组也不用单独处理，Proxy 可以完美监听到任何方式的数据改变，唯一缺陷可能就是浏览器的兼容性不好了。
-
-#### Set、Map、WeakSet 和 WeakMap
-
-Set 它类似于数组，但是成员的值都是唯一的，没有重复的值。Set本身是一个构造函数，用来生成 Set 数据结构。
-
-有add，delete、has、clear方法。
-
-Set 的本质还是一个对象，它并不是数组。
-
-JavaScript 的对象（Object），本质上是键值对的集合（Hash 结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。
-
-
-
-
 
 ## JavaScript 的执行机制
 
@@ -754,17 +740,17 @@ this 表示为当前的函数调用方，在运行时才能决定。如谁调用
 - 浏览器窗口缩放，resize 事件（如窗口停止改变大小之后重新计算布局）等。
 
 ```js
-let input1 = document.getElementById('inputId');
-let timeoutId = null;
+let input1 = document.getElementById('inputId')
+let timeoutId = null
 input1.addEventListener('keyup', function() {
   if (timeoutId) {
-    clearTimeout(timeoutId);
+    clearTimeout(timeoutId)
   }
   timeoutId = setTimeout(() => {
     // 执行操作
-    timeoutId = null;
-  }, 500);
-});
+    timeoutId = null
+  }, 500)
+})
 ```
 
 **节流的应用场景：**
@@ -776,46 +762,46 @@ input1.addEventListener('keyup', function() {
 
 ```js
 function throttle(fn, deley = 100) {
-  let timeoutId = null;
+  let timeoutId = null
   return function() {
     if (timeoutId) {
-      return;
+      return
     }
     timeoutId = setTimeout(() => {
-      fn.apply(this, arguments);
-      timeoutId = null;
-    }, deley);
-  };
+      fn.apply(this, arguments)
+      timeoutId = null
+    }, deley)
+  }
 }
 dev.addEventListener(
   'drag',
   throttle(function() {
     // 执行事件
   })
-);
+)
 ```
 
 不管是防抖还是节流，上面方法都有个问题，就是延时执行，有些场景下需要的不是延时，比如对于提交数据，需要的是防连击，不重复提交数据。对上面代码修改如下：
 
 ```js
 function throttle(fn, deley = 100) {
-  let timeoutId = null;
+  let timeoutId = null
   return function() {
     if (timeoutId) {
-      return;
+      return
     }
-    fn.apply(this, arguments);
+    fn.apply(this, arguments)
     timeoutId = setTimeout(() => {
-      timeoutId = null;
-    }, deley);
-  };
+      timeoutId = null
+    }, deley)
+  }
 }
 dev.addEventListener(
   'click',
   throttle(function() {
     // 执行事件
   })
-);
+)
 ```
 
 ### 浏览器的 Event Loop
@@ -919,22 +905,22 @@ dev.addEventListener(
 ### 如何创建一个 Ajax
 
 ```js
-var xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP')
 xhr.onreadystatechange = function() {
   // 通信成功时，状态值为4
   if (xhr.readyState === 4) {
     if (xhr.status === 200 || 304 || 206) {
-      console.log(xhr.responseText);
+      console.log(xhr.responseText)
     } else {
-      console.error(xhr.statusText);
+      console.error(xhr.statusText)
     }
   }
-};
+}
 xhr.onerror = function(e) {
-  console.error(xhr.statusText);
-};
-xhr.open('GET', '/endpoint', true);
-xhr.send(null);
+  console.error(xhr.statusText)
+}
+xhr.open('GET', '/endpoint', true)
+xhr.send(null)
 ```
 
 ### 你知道的解决跨域的方式有几种
@@ -952,9 +938,9 @@ jsonp({"result":"success"});
 需要定义一个函数
 
 ```js
-function jsonp(data){
-   // data为返回数据 
-   // TODO 解析数据
+function jsonp(data) {
+  // data为返回数据
+  // TODO 解析数据
 }
 ```
 
@@ -967,20 +953,20 @@ function jsonp(data){
 **WebSocket：**
 
 ```js
-var ws = new WebSocket('wss://echo.websocket.org');
+var ws = new WebSocket('wss://echo.websocket.org')
 ws.onopen = function(evt) {
-  console.log('Connection open ...');
-  ws.send('Hello WebSockets!');
-};
+  console.log('Connection open ...')
+  ws.send('Hello WebSockets!')
+}
 
 // 接收
 ws.onmessage = function(evt) {
-  console.log('Received Message: ', evt.data);
-  ws.close();
-};
+  console.log('Received Message: ', evt.data)
+  ws.close()
+}
 ws.onclose = function(evt) {
-  console.log('Connection closed.');
-};
+  console.log('Connection closed.')
+}
 ```
 
 **document.domain：**
@@ -1029,13 +1015,10 @@ vue-cli 使用 `http-proxy-middleware` 插件执行跨域。原理是基于 node
 
 ### JWT
 
-JSON Web Token（简称 [JWT](https://mp.weixin.qq.com/s?__biz=Mzg5NjAzMjI0NQ==&mid=2247485345&idx=2&sn=e283bc6e5d06f7eb455eef9072d6c7d6&chksm=c0060b3bf771822d436839c197447ff79c5fa02852234ae52f3649b88b7fc2580faed89ddf92&mpshare=1&scene=1&srcid=&sharer_sharetime=1584990198210&sharer_shareid=795858004e38dcd8f62de82c587a19e9#rd)，其实就是一个 token）是目前最流行的跨域认证解决方案。
-
-JWT 由三部分组成：Header，Payload，Signature 三个部分组成，并且最后由。拼接而成。
-
-Payload 中包含 exp 过期时间等登录信息。
-
-Signature 部分是对前两部分的签名，防止数据篡改。
+- JSON Web Token（简称 [JWT](https://mp.weixin.qq.com/s?__biz=Mzg5NjAzMjI0NQ==&mid=2247485345&idx=2&sn=e283bc6e5d06f7eb455eef9072d6c7d6&chksm=c0060b3bf771822d436839c197447ff79c5fa02852234ae52f3649b88b7fc2580faed89ddf92&mpshare=1&scene=1&srcid=&sharer_sharetime=1584990198210&sharer_shareid=795858004e38dcd8f62de82c587a19e9#rd)，其实就是一个 token）是目前最流行的跨域认证解决方案。
+- JWT 由三部分组成：Header，Payload，Signature 三个部分组成，并且最后由。拼接而成。
+- Payload 中包含 exp 过期时间等登录信息。
+- Signature 部分是对前两部分的签名，防止数据篡改。
 
 ### 前后端实现登录的方式有哪些
 
@@ -1063,7 +1046,7 @@ Signature 部分是对前两部分的签名，防止数据篡改。
 1. try...catch
 2. Window.onerror，只能捕获运行时的错误。
 
-> Window.onerror 对跨域的js不会有报错。对压缩的js需要配合sourceMap反查。
+> Window.onerror 对跨域的 js 不会有报错。对压缩的 js 需要配合 sourceMap 反查。
 
 ### 资源加载错误
 
@@ -1087,7 +1070,7 @@ script 标签页可以添加标签
 2. 利用 Image 对象上报。
 
 ```js
-new Image().src = 'http://baidu.com/tesjk?r=tksjk';
+new Image().src = 'http://baidu.com/tesjk?r=tksjk'
 ```
 
 ### Vue 中的错误捕获机制
@@ -1098,8 +1081,8 @@ Vue.config.errorHandler = function(err, vm, info) {
     message, // 异常信息
     name, // 异常名称
     stack // 异常堆栈信息
-  } = err;
+  } = err
   // vm 为抛出异常的 Vue 实例
   // info 为 Vue 特定的错误信息，比如错误所在的生命周期钩子
-};
+}
 ```
