@@ -277,6 +277,10 @@ dev.addEventListener(
 )
 ```
 
+## instanceof
+
+instanceof 也可以判断一个实例是否是其父类型或者祖先类型的实例。
+
 ## 函数式编程
 
 [函数式编程入门教程](http://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html) [JS 函数式编程指南](https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/)

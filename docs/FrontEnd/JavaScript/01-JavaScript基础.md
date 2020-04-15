@@ -119,7 +119,7 @@ Array.from(arguments)
 ```js
 function flatten(arr) {
   return [].concat(
-    ...arr.map(v => {
+    ...arr.map((v) => {
       return Array.isArray(v) ? flatten(v) : v
     })
   )
@@ -198,7 +198,7 @@ function unique(arr) {
 
 function unique(arr) {
   const tmp = new Map()
-  return arr.filter(v => {
+  return arr.filter((v) => {
     return !tmp.has(v) && tmp.set(v)
   })
 }
@@ -570,6 +570,12 @@ child instanceof Parent // true
 
 ## ES6 有关
 
+### 箭头函数和普通函数的区别
+
+- 没有自己的 this，使用的是外层函数的 this;
+- 不能使用 call bind 等；
+- 不能 new
+
 ### 为什么要使用模块化
 
 - 解决命名冲突
@@ -616,7 +622,7 @@ CommonJS 最早是 Node 在使用，目前也仍然广泛使用，比如在 Webp
 ```js
 // a.js
 module.exports = {
-  a: 1
+  a: 1,
 }
 // or
 exports.a = 1
@@ -634,12 +640,12 @@ module.a
 // 这里其实就是包装了一层立即执行函数，这样就不会污染全局变量了，
 // 重要的是 module 这里，module 是 Node 独有的一个变量
 module.exports = {
-  a: 1
+  a: 1,
 }
 // module 基本实现
 var module = {
   id: 'xxxx', // 我总得知道怎么去找到他吧
-  exports: {} // exports 就是个空对象
+  exports: {}, // exports 就是个空对象
 }
 // 这个是为什么 exports 和 module.exports 用法相似的原因
 var exports = module.exports
@@ -1080,7 +1086,7 @@ Vue.config.errorHandler = function(err, vm, info) {
   let {
     message, // 异常信息
     name, // 异常名称
-    stack // 异常堆栈信息
+    stack, // 异常堆栈信息
   } = err
   // vm 为抛出异常的 Vue 实例
   // info 为 Vue 特定的错误信息，比如错误所在的生命周期钩子
