@@ -68,25 +68,8 @@ ajax 的模块：axios
 
 ## 生命周期函数
 
-- componentWillMount: 在渲染前调用,在客户端也在服务端。
-- render: 不要在 render 中去发送 ajax 请求，因为 render 在真个页面渲染过程中会执行很多次。
-- componentDidMount: 在第一次渲染后调用，只在客户端。可以通过 this.getDOMNode()来进行访问。可以在这个方法中调用 setTimeout, setInterval 或者发送 AJAX 请求等操作(防止异步操作阻塞 UI)。在整个生命周期中只会执行一次，就是页面刚挂载之后，所有在该阶段可以放一些只想让执行一次的代码，比如有些 ajax 的请求。
-- componentWillReceiveProps: 在组件接收到一个新的 prop (更新后)时被调用。这个方法在初始化 render 时不会被调用。
-- shouldComponentUpdate: 返回一个布尔值。在组件接收到新的 props 或者 state 时被调用。在初始化时或者使用 forceUpdate 时不被调用。 可以在你确认不需要更新组件时使用。
-- componentWillUpdate: 在组件接收到新的 props 或者 state 但还没有 render 时被调用。在初始化时不会被调用。
-- componentDidUpdate: 在组件完成更新后立即调用。在初始化时不会被调用。
-- componentWillUnmount: 在组件从 DOM 中移除之前立刻被调用。
-
-componentWillMount：也会执行一次，但在写 react native 时可能会出一些问题。 ajax 也可以放到 constructor()
-
-当在 TodoItem 的 shouldComponentUpdate 生命周期函数中，return false 时,该组件不在变化。子组件重新渲染有三种形式，才有该方法后，只有在 props 和 state 改变后才会渲染；shouldComponentUpdate 会接受两个参数 nextProps 和 nextState，通过这两个参数，可以做到精确控制渲染；提升组件性能；
-
-::: details react-lifecycle
-
 ![react-lifecycle](./imgs/react-lifecycle.png)
 > 地址：[react-lifecycle](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
-
-:::
 
 ## 事件
 
