@@ -1,19 +1,18 @@
 ---
-title: "Nest.js 入门"
-sidebarDepth: 2
+sidebarDepth: 1
 ---
 
-### 目录
+# Nest.js 入门
 
 [[toc]]
 
-### 前言
+## 前言
 
 Nest 是一套基于 Node.js 的强大的 Web 框架，可帮助你轻松构建出高效的、可扩展的应用程序。它是通过结合 OOP （面向对象编程）和 FP （函数式编程）的最佳理念，采用现代化 JavaScript(ES6+)，使用 TypeScript 构建的。
 
 Nest 不仅仅只是一套框架，因为它是基于著名的流行库 Express 和 Socket.io 构建的（你也可以根据自己的需求选择任何其他库），所以无需等待社区成长，可以直接使用，更无需担心第三方库的缺失。
 
-### Hello world
+## Hello world
 
 **（1）创建项目:**
 
@@ -29,7 +28,7 @@ $ cd project-name
 $ npm start
 ```
 
-### 控制器（Controller）
+## 控制器（Controller）
 
 控制器负责处理传入的请求并将响应返回给客户端。
 
@@ -43,11 +42,11 @@ $ npm start
  nest g co users //使用 CLI 提供的 generate （别名：g） 命令生成一个基本的 users Controller （别名： co）：
 ```
 
-#### 请求方法
+### 请求方法
 
 其中 @Put()，@Delete()，@Patch()，@Options()，@Head() 和 @All()。每个代表其各自的 HTTP 请求方法。
 
-#### http 请求对象
+### http 请求对象
 
 装饰器 | 说明
 ---|---
@@ -60,7 +59,7 @@ $ npm start
 @Query(key?: string) | res.query
 @Headers(name?: string) | res.headers
 
-#### 路由
+### 路由
 
 ```js
 import { Controller, Get, Post } from '@nestjs/common';
@@ -79,7 +78,7 @@ export class CatsController {
 }
 ```
 
-#### 路由参数
+### 路由参数
 
 ```js
 import { Controller, Get, Post } from '@nestjs/common';
@@ -111,7 +110,7 @@ export class CatsController {
 
 需要注意的是路由匹配也有顺序
 
-#### 状态码
+### 状态码
 
 更改请求的状态码
 
@@ -123,7 +122,7 @@ create() {
 }
 ```
 
-#### 响应头
+### 响应头
 
 要指定自定义响应标头，您可以使用 @Header() 装饰器或特定于库的响应对象（并 res.header() 直接调用）。
 
@@ -137,7 +136,7 @@ create() {
 
 ```
 
-#### 异步
+### 异步
 
 我们可以使用 async / await
 或者使用 RxJS (Nest 将自动订阅下面的源并获取最后一个发射值）
@@ -149,7 +148,7 @@ findAll(): Observable<any[]> {
 }
 ```
 
-#### DTO
+### DTO
 
 DTO 是一个定义网络发送的对象，相当于请求方法的接口，但是 nest 最后会转成 js, 在转换的过程中 interface 会被删除，所以这里推荐使用 class , 类是 javascript ES6 的一部分。
 
@@ -168,14 +167,14 @@ async create(@Body() createCatDto: CreateCatDto) {
 
 ```
 
-### 提供者（Provider）
+## 提供者（Provider）
 
 Provider 是 Nest 的基本概念。许多基本的 Nest 类可以被视为提供者 - 服务，存储库，工厂，helper 等。提供者的主要思想是它可以注入依赖关系。
 
 控制器一般只处理 HTTP 请求，并将更复杂的任务委派给提供者。
 提供者就是一个简单的 JavaScript 类， 然后使用 @Injectable 装饰器修饰。
 
-#### 服务（Service）
+### 服务（Service）
 
 service 负责业务逻辑，核心是如何将业务逻辑抽象成接口及其粒度。service 层应该尽量提供功能相对单一的基础方法，更多的场景和变化可以在 controller 层实现。这样设计有利于 service 层的复用和稳定。主要实现业务逻辑。
 
@@ -223,11 +222,11 @@ export class CatsController {
 }
 ```
 
-#### 依赖注入
+### 依赖注入
 
 依赖注入（Dependency Injection，简称 DI） 是实现 控制反转（Inversion of Control，缩写为 IoC） 的一种常见方式。
 
-##### 什么是控制反转呢
+#### 什么是控制反转呢
 
 控制反转，是面向对象编程中的一种设计原则，可以用来减低计算机代码之间的耦合度。通过控制反转，对象在被创建的时候，由一个调控系统内所有对象的外界实体，将其所依赖的对象的引用传递给它。也可以说，依赖被注入到对象。
 我们看一个例子
@@ -241,12 +240,12 @@ class A{
 /*假设，我们还有C类，D类等。他们也都要用到B的方法，同样地他们也需要实例化B，然后调用B的方法。如果B的实例化是一个十分消耗系统资源的过程，比如数据库连接等。那么这样每次一个类中需要调用B的方法，就要实例化B一次，这将是一个非常消耗系统资源的过程。*/
 ```
 
-##### Nest 中的依赖注入
+#### Nest 中的依赖注入
 
 nest 就是建立在依赖注入这种设计模式之上的，所以它在框架内部封装了一个 IoC 容器来管理所有的依赖关系。
 在 MVC 设计模式中， Controller 只负责对请求的分发，并不处理实际的业务逻辑。Service 主要处理实际业务逻辑 (CRUD)。
 
-#### 注册提供者
+### 注册提供者
 
 现在我们已经定义了一个 provider（CatsService），并且我们有了该 service（CatsController）的使用者，我们需要使用 Nest 注册该服务，以便它可以执行注入。我们通过编辑模块文件（app.module.ts）并将服务添加到装饰器的 providers 数组来完成此操作 @Module()。
 
@@ -264,7 +263,7 @@ import { CatsService } from './cats/cats.service';
 export class AppModule {}
 ```
 
-### 模块（Module）
+## 模块（Module）
 
 模块化是指解决一个复杂问题时自顶向下逐层把系统划分成若干模块的过程，有多种属性，分别反映其内部特性。
 
@@ -299,7 +298,7 @@ import { CatsModule } from './cats/cats.module';
 export class AppModule {}
 ```
 
-### 中间件（Middleware ）
+## 中间件（Middleware ）
 
 中间件是在路由处理程序之前调用的函数。中间件功能可以访问请求和响应对象，以及应用程序请求 - 响应周期中的下一个中间件功能。下一个中间件函数通常由一个名为 next 的变量表示。
 
@@ -309,27 +308,27 @@ export class AppModule {}
 - 调用堆栈中的下一个中间件函数。
 - 如果当前中间件函数没有结束请求 - 响应周期，它必须调用 next() 将控制权传递给下一个中间件函数。否则，请求将被挂起。
 
-### 过滤器（Exception filter）
+## 过滤器（Exception filter）
 
 捕获错误信息，返回响应给客户端。可以控制器中的类、方法、全局注册使用，可以做自定义响应异常格式。
 
-### 管道（Pipe）
+## 管道（Pipe）
 
 数据流处理，在中间件后路由处理前做数据处理，可以控制器中的类、方法、方法参数、全局注册使用，只能是一个纯函数。可以做数据验证，数据转换（将输入数据转换为所需的输出）等数据处理。
 
-### 守卫（Guard）
+## 守卫（Guard）
 
 决定请求是否可以到达对应的路由处理器，能够知道当前路由的执行上下文，可以控制器中的类、方法、全局注册使用，可以做角色守卫。
 
-### 拦截器（Interceptor）
+## 拦截器（Interceptor）
 
 进入控制器之前和之后处理相关逻辑，能够知道当前路由的执行上下文，可以控制器中的类、方法、全局注册使用，可以做日志、事务处理、异常处理、响应数据格式等。
 
-### 执行顺序
+## 执行顺序
 
 客户端请求 ---> 中间件 ---> 守卫 ---> 拦截器之前 ---> 管道 ---> 控制器处理并响应 ---> 拦截器之后 ---> 过滤器
 
-### SQL（TypeORM）
+## SQL（TypeORM）
 
 什么是 ORM
 
@@ -342,7 +341,7 @@ export class AppModule {}
 - findOne({id:123}) // 根据 id 查出指定对象
 - ...
 
-#### 新建实体类
+### 新建实体类
 
 ```js
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
@@ -360,7 +359,7 @@ export class Users {
 }
 ```
 
-#### 创建 database 提供者
+### 创建 database 提供者
 
 ```js
 import { createConnection } from 'typeorm';
@@ -433,7 +432,7 @@ export class UsersService {
 
 ```
 
-### Nest Cli
+## Nest Cli
 
 简单用法
 
@@ -459,7 +458,7 @@ pipe （简写：pi) |管道
 provider （简写：pr) |供应商
 service （简写：s) |服务
 
-### 总结
+## 总结
 
 NestJS 使用现代 JavaScript，使用 Typescript （保留与纯 JavaScript 的兼容性）构建，熟悉 angluar 的开发者能更快的入门，不仅是前端开发人员，哪怕是熟悉 Java Spring MVC 的后端开发者也能快速入门。
 
