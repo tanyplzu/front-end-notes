@@ -51,6 +51,8 @@ if (obj.a == null) {
 
 也是不一定的，例如`0 === -0`就为`true`，`NaN === NaN`为`false`，判断两个变量是否完全相等可以使用`ES6`新增的`API`，`Object.is(0, -0)`，`Object.is(NaN, NaN)`就可以准确区分。
 
+> ES6 Number.isNaN() 也可以检测 NaN
+
 ### 在类型转换中哪些值会被转为 true
 
 除了`undefined` `null` `false` `NaN` `''` `0` `-0`以外的值都会被转为`true`，包括所有引用类型，即使是空的。
@@ -581,6 +583,21 @@ child instanceof Parent // true
 - 解决命名冲突
 - 提供复用性
 - 提高代码可维护性
+
+### Map、WeakMap
+
+map 和 Object 比，主要的特性：
+
+- Object 是无序列表，Map 是有序列表
+- Map 有迭代器属性 `Symbol(Symbol.iterator)`
+- 可以用非字符串做键
+- 有 size 属性，可以取到长度
+- Object 有快属性和慢属性，不建议直接 delete 一个属性，map 可以直接 delete
+- map 中的 keys、values、entries 返回迭代器属性
+
+WeakMap是map的变体，二者的外部行为基本一致，区别在于内部内存分配的工作方式。
+
+### Set、WeakSet
 
 ### 模块化
 

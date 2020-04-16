@@ -83,30 +83,40 @@ const getSidebar = () => {
       'Nest.js入门',
     ],
     '/Reading/': [
-    {
-      title: '浏览器工作原理与实践',
-      collapsable: false,
-      children: [
-        '浏览器工作原理与实践/浏览器中的页面',
-        '浏览器工作原理与实践/从输入 URL 到页面展示',
-        '浏览器工作原理与实践/JavaScript的执行机制'
-      ]
-    },
-    {
-      title: '图解 Google V8',
-      collapsable: false,
-      children: [
-        'v8/JavaScript设计思想',
-        'v8/V8编译流水线'
-      ]
-    },
-    {
-      title: '玩转webpack',
-      collapsable: false,
-      children: [
-        'webpack/玩转webpack'
-      ]
-    }],
+      {
+        title: '浏览器工作原理与实践',
+        collapsable: false,
+        children: [
+          '浏览器工作原理与实践/浏览器中的页面',
+          '浏览器工作原理与实践/从输入 URL 到页面展示',
+          '浏览器工作原理与实践/JavaScript的执行机制'
+        ]
+      },
+      {
+        title: '图解 Google V8',
+        collapsable: false,
+        children: [
+          'v8/JavaScript设计思想',
+          'v8/V8编译流水线'
+        ]
+      },
+      {
+        title: '玩转webpack',
+        collapsable: false,
+        children: [
+          'webpack/玩转webpack',
+          'webpack/webpack进阶'
+        ]
+      },
+      // {
+      //   title: 'Webpack',
+      //   collapsable: false,
+      //   children: [
+      //     'webpack/env',
+      //     'webpack/webpack进阶'
+      //   ]
+      // }
+    ],
     '/Notes/': [
       {
         title: '文档(一)：',
