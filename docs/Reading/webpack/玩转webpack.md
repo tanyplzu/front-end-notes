@@ -1,3 +1,7 @@
+---
+sidebarDepth: 1
+---
+
 # webpack 基础
 
 > [文档](https://www.webpackjs.com/concepts/)
@@ -138,8 +142,6 @@ HMR 全称是 Hot Module Replacement，即模块热替换。HMR 既避免了频�
 ```
 
 首先我们要知道一个概念：webpack 内部运行时，会维护一份用于管理构建代码时各个模块之间交互的表数据，webpack 官方称之为 Manifest，其中包括入口代码文件和构建出来的 bundle 文件的对应关系。可以使用 WebpackManifestPlugin 插件来输出这样的一份数据。
-
-![HMR](./imgs/HMR.jpg)
 
 - Webpack Compile: 将 JS 编译成 Bundle
 - HMR Server: 将热更新的⽂件输出给 HMR Rumtime

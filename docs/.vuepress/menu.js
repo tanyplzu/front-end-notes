@@ -27,7 +27,6 @@ const getSidebar = () => {
       'NetworkAndSecurity/Network',
       // 'NetworkAndSecurity/网络协议进阶',
       'NetworkAndSecurity/Security',
-      'Webpack',
       'DesignPattern',
       'DSA/Algorithms',
       'Git'
@@ -101,21 +100,14 @@ const getSidebar = () => {
         ]
       },
       {
-        title: '玩转webpack',
+        title: 'Webpack',
         collapsable: false,
         children: [
-          'webpack/玩转webpack',
-          'webpack/webpack进阶'
+          'Webpack/env',
+          'Webpack/Webpack',
+          'Webpack/玩转Webpack'
         ]
       },
-      // {
-      //   title: 'Webpack',
-      //   collapsable: false,
-      //   children: [
-      //     'webpack/env',
-      //     'webpack/webpack进阶'
-      //   ]
-      // }
     ],
     '/Notes/': [
       {
@@ -138,7 +130,7 @@ const getSidebar = () => {
         title: '文档(二)：',
         collapsable: false,
         children: [
-          'docs2/数组操作方法',
+          // 'docs2/数组操作方法',
           'docs2/数字',
           'docs2/array',
         ]
