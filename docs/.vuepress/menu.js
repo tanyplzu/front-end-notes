@@ -105,6 +105,7 @@ const getSidebar = () => {
       children: [
         'Webpack/env',
         'Webpack/Webpack',
+        'Webpack/Webpack优化',
         'Webpack/玩转Webpack'
       ]
     }, ],
