@@ -13,6 +13,10 @@ sidebarDepth: 1
 - 分为两种：基础类型和引用类型。基础类型目前有 7 种，分别是`boolean` `null` `undefined` `number` `string` `symbol` `bigInt`
 - 除了以上的基础类型之外，其他就是引用类型了，有`Array` `Object` `Function`。
 
+### undefined 和 not defined
+
+undefined 是一个数据类型，not defined 是函数运行的报错信息。
+
 ### typeof 和 instanceof 的区别
 
 - typeof 对于基础类型除了 null 以外都可以显示正确的类型，对于数组和对象都会显示 object，对于函数会显示 function。
@@ -184,6 +188,8 @@ console.log(list.join()) //1,2,3,4,5
 ```
 
 原理：join 方法会让所有的数组元素转换成字符串，再用一个分隔符将这些字符串连接起来。如果元素是 undefined 或者 null， 则会转化成空字符串。
+
+> 结果用 split 去还原
 
 ### 数组去重
 
@@ -595,7 +601,7 @@ map 和 Object 比，主要的特性：
 - Object 有快属性和慢属性，不建议直接 delete 一个属性，map 可以直接 delete
 - map 中的 keys、values、entries 返回迭代器属性
 
-WeakMap是map的变体，二者的外部行为基本一致，区别在于内部内存分配的工作方式。
+WeakMap 是 map 的变体，二者的外部行为基本一致，区别在于内部内存分配的工作方式。
 
 ### Set、WeakSet
 
