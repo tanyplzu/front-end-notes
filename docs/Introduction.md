@@ -84,6 +84,10 @@
 - [Git Pro Book](https://git-scm.com/book/zh/v2)
 - Google 网页性能分析工具： [PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)
 
+### 操作系统知识
+
+- [入门操作系统知识，这一篇就够啦！](https://mp.weixin.qq.com/s/h3wSEMazR7luwscIUn_p8A)
+
 ---
 
 ::: warning 说明

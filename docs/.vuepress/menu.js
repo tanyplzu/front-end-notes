@@ -13,7 +13,7 @@ const getNav = () => {
       ]
     },
     { text: 'Reading', link: '/Reading/浏览器工作原理与实践/浏览器中的页面' },
-    { text: 'Notes', link: '/Notes/vuepress' }
+    { text: 'Notes', link: '/Notes/docs4/vuepress' }
   ];
 };
 const getSidebar = () => {
@@ -152,8 +152,14 @@ const getSidebar = () => {
           'docs3/数学',
         ]
       },
-      '密码学',
-      'vuepress',
+      {
+        title: '文档(四)：',
+        collapsable: false,
+        children: [
+          'docs4/密码学',
+          'docs4/vuepress',
+        ]
+      },
     ],
     '/AngularJS/': [
       'Scope和Digest',
