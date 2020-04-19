@@ -1,10 +1,10 @@
 ---
-sidebarDepth: 1
+sidebarDepth: 0
 ---
 
 # env 文件与环境设置
 
-## 2. 环境注入
+### 环境注入
 
 webpack 通过 DefinePlugin 内置插件将 process.env 注入到客户端代码中。
 
@@ -16,6 +16,8 @@ plugins: [
   })
 ],
 ```
+
+### 项目中使用
 
 process.env 属性返回包含用户环境的对象。
 
@@ -35,13 +37,12 @@ if (process.env.NODE_ENV !== 'production') {
 let base = `${process.env.BASE_URL}` // 获取二级目录
 ```
 
+### 有关问题
+
 - webpack 通过 DefinePlugin 内置插件将 process.env 注入到客户端代码中时，process.env.NODE_ENV 为什么要进行 JSON.stringify 处理？
 - process.env 中如何获取 package.json 中 name 的值？
 - 如何在 package.json 中的 scripts 字段中定义一些自定义脚本来切换不同的环境？
-
-NODE_ENV
-
-cross-env 跨平台设置环境变量
+- 开发中 NODE_ENV、cross-env、和 ENV 的区别
 
 ```json
 {

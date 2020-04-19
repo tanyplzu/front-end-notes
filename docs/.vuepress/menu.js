@@ -104,9 +104,9 @@ const getSidebar = () => {
       collapsable: false,
       children: [
         'Webpack/env',
-        'Webpack/Webpack',
+        'Webpack/Webpack运行原理',
+        'Webpack/Webpack基础知识',
         'Webpack/Webpack优化',
-        'Webpack/玩转Webpack'
       ]
     }, ],
     '/Notes/': [

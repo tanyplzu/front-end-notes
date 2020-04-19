@@ -175,6 +175,8 @@ webpack 已经内置该插件
 - DllPlugin，打出 dll 文件
 - DllReferencePlugin 使用该 dll
 
+简单来说 DllPlugin 和 DllReferencePlugin 主要是缓存编译后的内容，对不变的文件减少二次编译。webpack.dll.lib.js 为生成缓存文件，配置静态文件。
+
 > [webpack dllPlugin 打包体积和速度优化](https://zhuanlan.zhihu.com/p/39727247)
 
 ## 产出代码
@@ -193,6 +195,21 @@ webpack 已经内置该插件
 
 ### 懒加载
 
+```js
+// non-esm.js
+module.exports = {
+  sayHello: () => {
+    console.log('hello world')
+  },
+}
+
+function sayHello() {
+  import('./non-esm.js').then((module) => {
+    module.default.sayHello()
+  })
+}
+```
+
 ### 提取公共代码
 
 <!-- ### IngorePlugin -->
@@ -210,7 +227,6 @@ module.exports = {
 ```
 
 - 会自动做代码压缩
-
 - Vue 和 react 会自动删除调试代码
 - 启用 tree-shaking
 
