@@ -69,6 +69,7 @@ ajax 的模块：axios
 ## 生命周期函数
 
 ![react-lifecycle](./imgs/react-lifecycle.png)
+
 > 地址：[react-lifecycle](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
 ## 事件
@@ -109,21 +110,6 @@ JSX 上写的事件并没有绑定在对应的真实 DOM 上，而是通过事�
 
 方法中接收参数时，最后可追加一个参数，为 event
 
-## 受控组件和非受控组件
-
-```js
-return (
-  <div>
-    <p>{this.state.name}</p>
-    <label htmlFor='inputName'>姓名：</label> {/* 用 htmlFor 代替 for */}
-    <input id='inputName' value={this.state.name} onChange={this.onInputChange} />
-  </div>
-)
-```
-
-- 受控组件的意思是说，input 中的值受 state 的控制
-- textarea、select 也是基于 value 去写的
-
 ## 通信
 
 其实 React 中的组件通信基本和 Vue 中的一致。同样也分为以下三种情况：
@@ -156,6 +142,12 @@ return (
 > [Hooks 该怎么用](https://github.com/KieSun/Dream/issues/15)
 
 ## Context 上下文
+
+场景
+
+- 公共信息
+- 用props太繁琐
+- 用redux小题大做
 
 ```js
 // 创建 Context 实例
@@ -190,12 +182,82 @@ class ThemedButton extends React.Component {
 }
 ```
 
-## React 的高阶组件
+## 函数式组件
 
-HOC（Higher Order Component，高阶组件），它不是 React 的组件，而是一种设计模式。
+```js
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>
+}
+```
 
-## 性能优化点总结
+class 组件
 
-- bind()，放到构造函数中 setState 是个异步函数，可以将多次变换合并成一次渲染；前端一个特别重要的性能点就是渲染；
-- 同层比对，key 值比对，提升速度；
-- 生命周期函数的使用。
+```js
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>
+  }
+}
+```
+
+## 受控组件
+
+```js
+return (
+  <div>
+    <p>{this.state.name}</p>
+    <label htmlFor='inputName'>姓名：</label> {/* 用 htmlFor 代替 for */}
+    <input id='inputName' value={this.state.name} onChange={this.onInputChange} />
+  </div>
+)
+```
+
+- 受控组件的意思是说，input 中的值受 state 的控制
+- textarea、select 也是基于 value 去写的
+
+## 非受控组件
+
+### ref 和 defaultValue
+
+```js{5,9,18}
+class NameForm extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.input = React.createRef()
+  }
+
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.input.current.value)
+    event.preventDefault()
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input defaultValue='Bob' type='text' ref={this.input} />
+        </label>
+        <input type='submit' value='Submit' />
+      </form>
+    )
+  }
+}
+```
+
+- input 中的值不受 state 的控制
+- 默认值可以用 defaultValue 和 defaultCheched 去写
+
+### 手动操作 DOM 元素
+
+- 必须手动操作 DOM，setState 实现不了的，就必须用非受控组件
+
+- 如文件长传组件，需要拿到文件信息的，必须用非受控组件
+- 某些富文本编辑器
+
+### 受控组件和非受控组件
+
+- 优先使用受控组件
+- 必须操作 DOM，使用非受控组件
+

@@ -66,6 +66,7 @@ const getSidebar = () => {
         ['./', 'Introduction'],
         'setState',
         'react基础',
+        'react高级特性'
       ]
     },
     {
@@ -158,6 +159,7 @@ const getSidebar = () => {
         children: [
           'docs4/密码学',
           'docs4/vuepress',
+          'docs4/Java英语'
         ]
       },
     ],
