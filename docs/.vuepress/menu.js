@@ -139,7 +139,8 @@ const getSidebar = () => {
         children: [
           // 'docs2/数组操作方法',
           'docs2/数字',
-          'docs2/array',
+          'docs2/字符串方法',
+          'docs2/math',
         ]
       },
       {
