@@ -66,7 +66,8 @@ const getSidebar = () => {
         ['./', 'Introduction'],
         'setState',
         'react基础',
-        'react高级特性'
+        'react高级特性',
+        'redux'
       ]
     },
     {
@@ -116,8 +117,7 @@ const getSidebar = () => {
         collapsable: false,
         children: [
           'docs1/数组的方法',
-          'docs1/对象静态方法总结分享',
-          'docs1/字符串方法',
+          'docs1/对象静态方法总结分享', 
           'docs1/javascript-regexp',
         ]
       },
