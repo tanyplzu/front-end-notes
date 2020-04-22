@@ -22,118 +22,123 @@ Redux 的适用场景：
 1. Web 应用是一个状态机，视图与状态是一一对应的。
 2. 所有的状态，保存在一个对象里面。
 
-## 基本概念和 API
+## 例子
 
-### Store
+### actions
 
-Store 就是保存数据的地方，你可以把它看成一个容器。整个应用只能有一个 Store。
-
-```js
-import { createStore } from 'redux'
-const store = createStore(fn)
-```
-
-### State
+记住 actions 只是描述了有事情发生了这一事实，并没有描述应用如何更新 state。
 
 ```js
-import { createStore } from 'redux'
-const store = createStore(fn)
+/*
+ * action 类型
+ */
 
-const state = store.getState()
-```
+export const ADD_TODO = 'ADD_TODO'
+export const TOGGLE_TODO = 'TOGGLE_TODO'
+export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 
-Redux 规定， 一个 State 对应一个 View。只要 State 相同，View 就相同。你知道 State，就知道 View 是什么样，反之亦然。
+/*
+ * 其它的常量
+ */
 
-### Action
+export const VisibilityFilters = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_COMPLETED: 'SHOW_COMPLETED',
+  SHOW_ACTIVE: 'SHOW_ACTIVE',
+}
 
-State 的变化，会导致 View 的变化。但是，用户接触不到 State，只能接触到 View。所以，State 的变化必须是 View 导致的。Action 就是 View 发出的通知，表示 State 应该要发生变化了。
+/*
+ * action 创建函数
+ */
 
-```js
-const action = {
-  type: 'ADD_TODO',
-  payload: 'Learn Redux',
+export function addTodo(text) {
+  return { type: ADD_TODO, text }
+}
+
+export function toggleTodo(index) {
+  return { type: TOGGLE_TODO, index }
+}
+
+export function setVisibilityFilter(filter) {
+  return { type: SET_VISIBILITY_FILTER, filter }
 }
 ```
 
-### Action Creator
+### Reducer
 
-View 要发送多少种消息，就会有多少种 Action。如果都手写，会很麻烦。可以定义一个函数来生成 Action，这个函数就叫 Action Creator。
+> 开发复杂的应用时，不可避免会有一些数据相互引用。建议你尽可能地把 state 范式化，不存在嵌套。把所有数据放到一个对象里，每个数据以 ID 为主键，不同实体或列表间通过 ID 相互引用数据。把应用的 state 想像成数据库。这种方法在 normalizr 文档里有详细阐述。例如，实际开发中，在 state 里同时存放 todosById: { id -> todo } 和 todos: `array<id>` 是比较好的方式，本文中为了保持示例简单没有这样处理。
 
-```js
-const ADD_TODO = '添加 TODO'
-function addTodo(text) {
-  return {
-    type: ADD_TODO,
-    text,
-  }
-}
-const action = addTodo('Learn Redux')
-```
+保持 reducer 纯净非常重要。永远不要在 reducer 里做这些操作：
 
-### store.dispatch()
-
-store.dispatch()是 View 发出 Action 的唯一方法。
+- 修改传入参数；
+- 执行有副作用的操作，如 API 请求和路由跳转；
+- 调用非纯函数，如 Date.now() 或 Math.random()。
 
 ```js
-import { createStore } from 'redux'
-const store = createStore(fn)
+import { combineReducers } from 'redux'
+import { ADD_TODO, TOGGLE_TODO, SET_VISIBILITY_FILTER, VisibilityFilters } from './actions'
+const { SHOW_ALL } = VisibilityFilters
 
-store.dispatch({
-  type: 'ADD_TODO',
-  payload: 'Learn Redux',
-})
-```
-
-结合 Action Creator，这段代码可以改写如下
-
-```js
-store.dispatch(addTodo('Learn Redux'))
-```
-
-Reducer
-
-Store 收到 Action 以后，必须给出一个新的 State，这样 View 才会发生变化。这种 State 的计算过程就叫做 Reducer。Reducer 是一个函数，它接受 Action 和当前 State 作为参数，返回一个新的 State。
-
-```js
-const reducer = function(state, action) {
-  // ...
-  return new_state
-}
-```
-
-下面是一个实际的例子。
-
-```js
-const defaultState = 0
-const reducer = (state = defaultState, action) => {
+function visibilityFilter(state = SHOW_ALL, action) {
   switch (action.type) {
-    case 'ADD':
-      return state + action.payload
+    case SET_VISIBILITY_FILTER:
+      return action.filter
     default:
       return state
   }
 }
 
-const state = reducer(1, {
-  type: 'ADD',
-  payload: 2,
+function todos(state = [], action) {
+  switch (action.type) {
+    case ADD_TODO:
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false,
+        },
+      ]
+    case TOGGLE_TODO:
+      return state.map((todo, index) => {
+        if (index === action.index) {
+          return Object.assign({}, todo, {
+            completed: !todo.completed,
+          })
+        }
+        return todo
+      })
+    default:
+      return state
+  }
+}
+
+const todoApp = combineReducers({
+  visibilityFilter,
+  todos,
 })
+
+export default todoApp
 ```
 
-## Store 的实现
+- 不能这样使用 `Object.assign(state, { visibilityFilter: action.filter })`，因为它会改变第一个参数的值。
+- 遇到未知的 action 时，一定要返回旧的 state
+- 时刻谨记永远不要在克隆 state 前修改它。
 
-可以发现 Store 提供了三个方法:
+Redux 提供了 combineReducers() 工具类来合并 Reducers。
 
-- store.getState()
-- store.dispatch()
-- store.subscribe()
+## 容器组件和展示组件
 
-```js
-import { createStore } from 'redux'
-let { subscribe, dispatch, getState } = createStore(reducer)
-```
+容器组件（Smart/Container Components）和展示组件（Dumb/Presentational Components）：
+
+|                | 展示组件                   | 容器组件                           |
+| -------------: | :------------------------- | :--------------------------------- |
+|           作用 | 描述如何展现（骨架、样式） | 描述如何运行（数据获取、状态更新） |
+| 直接使用 Redux | 否                         | 是                                 |
+|       数据来源 | props                      | 监听 Redux state                   |
+|       数据修改 | 从 props 调用回调函数      | 向 Redux 派发 actions              |
+|       调用方式 | 手动                       | 通常由 React Redux 生成            |
 
 ## 资料
 
 - [Redux 中文文档](https://www.redux.org.cn/)
-- [Redux 入门教程](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)
+- [react-basic](https://github.com/react-guide/react-basic)
