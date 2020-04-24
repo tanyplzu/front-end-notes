@@ -67,7 +67,8 @@ const getSidebar = () => {
         'setState',
         'react基础',
         'react高级特性',
-        'redux'
+        'redux',
+        '构建react项目'
       ]
     },
     {
