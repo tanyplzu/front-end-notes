@@ -69,7 +69,16 @@ const getSidebar = () => {
         'react高级特性',
         'react-router',
         'redux',
-        '构建react项目'
+        'hooks',
+      ]
+    },
+    {
+      title: '项目构建',
+      collapsable: false,
+      sidebarDepth: 1,
+      children: [
+        '构建react项目',
+        '常用的库'
       ]
     },
     {

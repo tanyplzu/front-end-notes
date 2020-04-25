@@ -164,6 +164,10 @@ unsubscribe()
 |       数据修改 | 从 props 调用回调函数      | 向 Redux 派发 actions              |
 |       调用方式 | 手动                       | 通常由 React Redux 生成            |
 
+展示组件负责UI,容器组件负责逻辑
+
+使用redux后，展示组件会变成一个无状态组件，所以展示组件可以写成函数组价。把一个组件写成函数式组件的好处是，性能比较高。
+
 ## 使用方式
 
 -[如何优雅地结合类 Redux 处理异步通信的中间状态?](https://www.zhihu.com/question/66869266/answer/247192368)
