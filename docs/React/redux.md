@@ -126,7 +126,33 @@ export default todoApp
 
 Redux 提供了 combineReducers() 工具类来合并 Reducers。
 
-## 容器组件和展示组件
+## Store
+
+**Store** 就是把它们联系到一起的对象。Store 有以下职责：
+
+- 维持应用的 state；
+- 提供 [`getState()`](https://www.redux.org.cn/docs/api/Store.html#getState) 方法获取 state；
+- 提供 [`dispatch(action)`](https://www.redux.org.cn/docs/api/Store.html#dispatch) 方法更新 state；
+- 通过 [`subscribe(listener)`](https://www.redux.org.cn/docs/api/Store.html#subscribe) 注册监听器;
+- 通过 [`subscribe(listener)`](https://www.redux.org.cn/docs/api/Store.html#subscribe) 返回的函数注销监听器。
+
+```js
+// 每次 state 更新时，打印日志
+// 注意 subscribe() 返回一个函数用来注销监听器
+const unsubscribe = store.subscribe(() => console.log(store.getState()))
+
+// 发起一系列 action
+store.dispatch(addTodo('Learn about actions'))
+
+// 停止监听 state 更新
+unsubscribe()
+```
+
+如何将 store 用在 react 的组件中，实际是订阅了 store
+
+## 搭配 React
+
+### 容器组件和展示组件
 
 容器组件（Smart/Container Components）和展示组件（Dumb/Presentational Components）：
 
@@ -137,6 +163,11 @@ Redux 提供了 combineReducers() 工具类来合并 Reducers。
 |       数据来源 | props                      | 监听 Redux state                   |
 |       数据修改 | 从 props 调用回调函数      | 向 Redux 派发 actions              |
 |       调用方式 | 手动                       | 通常由 React Redux 生成            |
+
+## 使用方式
+
+-[如何优雅地结合类 Redux 处理异步通信的中间状态?](https://www.zhihu.com/question/66869266/answer/247192368)
+
 
 ## 资料
 
