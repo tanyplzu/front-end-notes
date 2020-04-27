@@ -121,59 +121,64 @@ const getSidebar = () => {
         'Webpack/Webpack基础知识',
         'Webpack/Webpack优化',
       ]
+    }, {
+      title: '操作系统',
+      collapsable: false,
+      children: [
+        '操作系统/Linux',
+      ]
     }, ],
     '/Notes/': [
-      {
-        title: '基础语法：',
-        collapsable: false,
-        children: [
-          'docs1/数组的方法',
-          'docs1/对象静态方法总结分享', 
-          'docs1/javascript-regexp',
-        ]
-      },
-      {
-        title: '文档(一)：',
-        collapsable: false,
-        children: [
-          'docs1/性能优化',
-          'docs1/router',
-          'docs1/Vue虚拟DOM和渲染流程',
-          'docs1/编译型语言和解释型语言',
-          'docs1/面向对象01',
-          'docs1/手机端开发问题汇总',
-          'docs1/前端面试'
-        ]
-      },
-      {
-        title: '文档(二)：',
-        collapsable: false,
-        children: [
-          // 'docs2/数组操作方法',
-          'docs2/数字',
-          'docs2/字符串方法',
-          'docs2/math',
-        ]
-      },
-      {
-        title: '文档(三)：',
-        collapsable: false,
-        children: [
-          'docs3/Vue 项目构建',
-          'docs3/WebGL 基础',
-          'docs3/数学',
-        ]
-      },
-      {
-        title: '文档(四)：',
-        collapsable: false,
-        children: [
-          'docs4/密码学',
-          'docs4/vuepress',
-          'docs4/Java英语'
-        ]
-      },
-    ],
+    {
+      title: '基础语法：',
+      collapsable: false,
+      children: [
+        'docs1/数组的方法',
+        'docs1/对象静态方法总结分享',
+        'docs1/javascript-regexp',
+      ]
+    },
+    {
+      title: '文档(一)：',
+      collapsable: false,
+      children: [
+        'docs1/性能优化',
+        'docs1/router',
+        'docs1/Vue虚拟DOM和渲染流程',
+        'docs1/编译型语言和解释型语言',
+        'docs1/面向对象01',
+        'docs1/手机端开发问题汇总',
+        'docs1/前端面试'
+      ]
+    },
+    {
+      title: '文档(二)：',
+      collapsable: false,
+      children: [
+        // 'docs2/数组操作方法',
+        'docs2/数字',
+        'docs2/字符串方法',
+        'docs2/math',
+      ]
+    },
+    {
+      title: '文档(三)：',
+      collapsable: false,
+      children: [
+        'docs3/Vue 项目构建',
+        'docs3/WebGL 基础',
+        'docs3/数学',
+      ]
+    },
+    {
+      title: '文档(四)：',
+      collapsable: false,
+      children: [
+        'docs4/密码学',
+        'docs4/vuepress',
+        'docs4/Java英语'
+      ]
+    }, ],
     '/AngularJS/': [
       'Scope和Digest',
       '指令',
