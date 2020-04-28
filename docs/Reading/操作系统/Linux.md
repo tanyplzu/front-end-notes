@@ -61,5 +61,4 @@ ls -a
 - bin
 - etc
 - private
-
-usr
+- usr

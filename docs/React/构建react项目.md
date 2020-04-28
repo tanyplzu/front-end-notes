@@ -14,6 +14,10 @@ create-react-app 是基于 webpack 的打包层方案，包含 build、dev、lin
 
 next.js 是个很好的选择，Umi 很多功能是参考 next.js 做的。要说有哪些地方不如 Umi，我觉得可能是不够贴近业务，不够接地气。比如 antd、dva 的深度整合，比如国际化、权限、数据流、配置式路由、补丁方案、自动化 external 方面等等一线开发者才会遇到的问题。
 
+## React 的状态管理
+
+[结合具体场景，聊聊 React 的状态管理方案](https://juejin.im/post/5c47e3246fb9a049ad776355)
+
 ## Prettier and ESlint
 
 Setting up Prettier and ESlint for JS and React Apps
