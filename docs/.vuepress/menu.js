@@ -136,6 +136,7 @@ const getSidebar = () => {
         'docs1/数组的方法',
         'docs1/对象静态方法总结分享',
         'docs1/javascript-regexp',
+        'docs1/TS2',
       ]
     },
     {

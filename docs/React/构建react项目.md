@@ -16,7 +16,8 @@ next.js 是个很好的选择，Umi 很多功能是参考 next.js 做的。要�
 
 ## React 的状态管理
 
-[结合具体场景，聊聊 React 的状态管理方案](https://juejin.im/post/5c47e3246fb9a049ad776355)
+- [结合具体场景，聊聊 React 的状态管理方案](https://juejin.im/post/5c47e3246fb9a049ad776355)
+- [mobx](https://cn.mobx.js.org/)
 
 ## Prettier and ESlint
 
