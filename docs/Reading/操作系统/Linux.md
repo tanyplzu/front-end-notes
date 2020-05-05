@@ -44,21 +44,7 @@ ls -a
   - -f 删除⽂件不进⾏提示
 - 注意： rm 命令可以删除多个⽬录，需谨慎使⽤
 
-## mac 下的文件
+## shell
 
-- Applications
-- Users
-- cores
-- home
-- sbin
-- var
-- Library
-- Volumes
-- dev
-- opt
-- tmp 临时文件，重启时会更新
-- System
-- bin
-- etc
-- private
-- usr
+- Shell 是命令解释器，用于解释用户对操作系统的操作
+- CentOS 7 默认使用的 Shell 是 bash
