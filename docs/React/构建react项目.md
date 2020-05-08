@@ -2,20 +2,28 @@
 
 ## 脚手架
 
+### [create-react-app](https://www.html.cn/create-react-app/docs/getting-started/)
+
+create-react-app 是基于 webpack 的打包层方案，包含 build、dev、lint 等，他在打包层把体验做到了极致，但是不包含路由，不是框架，也不支持配置。所以，如果大家想基于他修改部分配置，或者希望在打包层之外也做技术收敛时，就会遇到困难。
+
 ### [DVA](https://dvajs.com/)
+
+- [dva 介绍](https://github.com/dvajs/dva/issues/1)
+- [知识地图](https://dvajs.com/knowledgemap/)
+
 ### [umijs](https://umijs.org/zh-CN)
 
 - 蚂蚁金服开箱即用的中台前端 [pro.ant.design](https://pro.ant.design/)
 - [蚂蚁前端研发最佳实践](https://github.com/sorrycc/blog/issues/90)
 - [发布 UMI 3，插件化的企业级前端应用框架](https://zhuanlan.zhihu.com/p/110290443)
 
-### [create-react-app](https://www.html.cn/create-react-app/docs/getting-started/)
-
-create-react-app 是基于 webpack 的打包层方案，包含 build、dev、lint 等，他在打包层把体验做到了极致，但是不包含路由，不是框架，也不支持配置。所以，如果大家想基于他修改部分配置，或者希望在打包层之外也做技术收敛时，就会遇到困难。
-
 ### [next.js](https://github.com/zeit/next.js)
 
 next.js 是个很好的选择，Umi 很多功能是参考 next.js 做的。要说有哪些地方不如 Umi，我觉得可能是不够贴近业务，不够接地气。比如 antd、dva 的深度整合，比如国际化、权限、数据流、配置式路由、补丁方案、自动化 external 方面等等一线开发者才会遇到的问题。
+
+### 前端应用架构
+
+- [支付宝前端应用架构的发展和选择](https://github.com/sorrycc/blog/issues/6)
 
 ## React 的状态管理
 
@@ -47,4 +55,4 @@ yarn add -D babel-eslint eslint eslint-config-airbnb eslint-config-prettier esli
 
 ### airbnb 编码规范
 
-> [Airbnb JavaScript 代码规范](https://www.jianshu.com/p/527fe171e8d7)
+- [Airbnb JavaScript 代码规范](https://www.jianshu.com/p/527fe171e8d7)
