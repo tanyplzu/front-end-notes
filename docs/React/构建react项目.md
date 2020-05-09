@@ -6,8 +6,6 @@
 
 create-react-app 是基于 webpack 的打包层方案，包含 build、dev、lint 等，他在打包层把体验做到了极致，但是不包含路由，不是框架，也不支持配置。所以，如果大家想基于他修改部分配置，或者希望在打包层之外也做技术收敛时，就会遇到困难。
 
-
-
 ### [DVA](https://dvajs.com/)
 
 - [dva 介绍](https://github.com/dvajs/dva/issues/1)
