@@ -69,7 +69,8 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 
 ### button 按钮的默认类型
 
-在form表单里的button，不给button添加type属性，点击按钮，button的类型会默认为submit，会默认提交表单并刷新页面。
+- 在 form 表单里的 button，不给 button 添加 type 属性，点击按钮，button 的类型会默认为 submit，会默认提交表单并刷新页面。
+- element-ui 中的 el-button 组件有 type:text 的值，如果和 button 标签写混，会出现浏览路径不正确的问题。
 
 ### 定位的方式有哪几种
 
@@ -355,10 +356,10 @@ BEM 的意思就模块（Block）、元素（Element）、修饰符（Modifier�
 ```js
 // set 1rem = viewWidth / 10
 function setRemUnit() {
-  var rem = docEl.clientWidth / 10
-  docEl.style.fontSize = rem + 'px'
+  var rem = docEl.clientWidth / 10;
+  docEl.style.fontSize = rem + 'px';
 }
-setRemUnit()
+setRemUnit();
 ```
 
 > 也可以直接引用 [lib-flexible](https://github.com/amfe/lib-flexible)
@@ -366,8 +367,8 @@ setRemUnit()
 在之前的项目中是这样使用的：
 
 ```js
-let clientWidth = document.body.clientWidth >= 600 ? 600 : document.body.clientWidth
-document.querySelector('html').style.fontSize = clientWidth / 16 + 'px'
+let clientWidth = document.body.clientWidth >= 600 ? 600 : document.body.clientWidth;
+document.querySelector('html').style.fontSize = clientWidth / 16 + 'px';
 ```
 
 有 vs code 中有计算 rem 的插件
