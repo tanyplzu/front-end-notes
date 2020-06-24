@@ -70,7 +70,7 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 ### button 按钮的默认类型
 
 - 在 form 表单里的 button，不给 button 添加 type 属性，点击按钮，button 的类型会默认为 submit，会默认提交表单并刷新页面。
-- element-ui 中的 el-button 组件有 type:text 的值，如果和 button 标签写混，会出现浏览路径不正确的问题。
+- element-ui 中的 el-button 组件有 type:text 的值，如果和 button 标签的type值混用，会出现浏览路径不正确的问题。
 
 ### 定位的方式有哪几种
 
