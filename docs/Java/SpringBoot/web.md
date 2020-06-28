@@ -1,4 +1,4 @@
-# 一个 web 项目
+# Web 项目开发
 
 ## 加入 Web 依赖
 
@@ -9,8 +9,13 @@
 </dependency>
 ```
 
-## 创建 Controller
+## 默认配置：
 
-新建一个 Controller，需要在类上加入注解@RestController，这个注解是 Spring 4.0 版本之后的一个注解，功能相当于@Controller 与 @ResponseBody 两个注解的功能之和。
-
+- 自动配置了 ViewResolver 视图解析器
+- 静态资源文件夹处理
+- 自动注册了大量的转换器和格式化器
+- 提供了 HttpMessageConverter 对请求参数和返回结果进行处理
+- 自动注册了 MessageCodesResolver
+- 默认欢迎页配置
+- favicon 自动配置
 

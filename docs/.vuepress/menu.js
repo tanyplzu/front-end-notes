@@ -92,10 +92,11 @@ const getSidebar = () => {
         title: 'Spring Boot',
         collapsable: false,
         children: [
-          // 'SpringBoot/index',
+          'SpringBoot/SpringBoot基础',
           'SpringBoot/web',
           'SpringBoot/注解',
           'SpringBoot/MyBatis',
+          'SpringBoot/IOC',
         ],
       },
     ],

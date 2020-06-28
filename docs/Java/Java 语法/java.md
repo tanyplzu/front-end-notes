@@ -47,7 +47,9 @@ Integer oa = new Integer(6);
 ## 数组
 
 ```java
-int a[] = new int[10]; //定义了一个长度是10的int类型数组
+//定义了一个长度是10的int类型数组
+int a[] = new int[10];
+int[] a = new int[10];
 ```
 
 在 Java 中，我们通过如下方式访问数组中的元素：
