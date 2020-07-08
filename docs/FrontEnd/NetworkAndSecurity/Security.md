@@ -73,6 +73,9 @@ POST 请求含有 token，可以是以下几种方式之一，koa-csrf 插件就
 
 ## 前端 Cookies 问题
 
+> - [SameSite cookies explained](https://web.dev/samesite-cookies-explained/)
+> - [Cookie 的 SameSite 属性](http://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html)
+
 - 是一个前端的数据存贮；
 - 前后端都可以设置；
 - 遵循同源策略；
