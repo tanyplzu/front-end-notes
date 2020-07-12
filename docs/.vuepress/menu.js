@@ -37,7 +37,13 @@ const getSidebar = () => {
         title: 'Vue基础', // 必要的
         collapsable: false, // 可选的, 默认值是 true,
         sidebarDepth: 1, // 可选的, 默认值是 1
-        children: [['./', 'Vue相关'], 'Vue知识点', 'Vue路由', 'Vuex', 'nextTick'],
+        children: [
+          ['./', 'Vue相关'],
+          'Vue知识点',
+          'Vue路由',
+          'Vuex',
+          'nextTick',
+        ],
       },
       {
         title: 'Vue进阶', // 必要的
@@ -126,9 +132,9 @@ const getSidebar = () => {
         ],
       },
       {
-        title: '操作系统',
+        title: '运维相关',
         collapsable: false,
-        children: ['操作系统/Linux', '操作系统/mac'],
+        children: ['运维/Linux', '运维/mac', '运维/Linux'],
       },
     ],
     '/notes/': [
