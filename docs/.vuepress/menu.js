@@ -10,6 +10,7 @@ const getNav = () => {
         { text: 'Vue', link: '/Vue/index' },
         { text: 'NodeJS', link: '/NodeJS/Node基础' },
         { text: 'AngularJS', link: '/AngularJS/Scope和Digest' },
+        { text: '构建工具', link: '/工具篇/基础' },
       ],
     },
     { text: 'Java', link: '/Java/Java 语法/java' },
@@ -88,6 +89,7 @@ const getSidebar = () => {
       },
     ],
     '/NodeJS/': ['Node基础', 'Koa', 'Nest.js入门'],
+    '/工具篇/': ['基础'],
     '/Java/': [
       {
         title: 'Java',
