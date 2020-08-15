@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 0
+sidebarDepth: 1
 ---
 
 # ESLint 与 Prettier

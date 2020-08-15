@@ -93,6 +93,7 @@ const getSidebar = () => {
         ],
       },
       'ESLint&Prettier',
+      'npmScript',
       'Git',
       '组件库'
     ],
