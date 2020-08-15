@@ -2,7 +2,7 @@
 sidebarDepth: 0
 ---
 
-# 前端工具
+# ESLint 与 Prettier
 
 [[toc]]
 
