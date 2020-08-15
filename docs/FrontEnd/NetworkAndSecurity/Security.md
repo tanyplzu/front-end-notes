@@ -145,6 +145,12 @@ new Image().src =
 
 3. 远古浏览器使用 js 防御，当通过 iframe 的方式加载页面时，让攻击者网站不显示内容。
 
+
+## 一些前端安全的资料
+
+- [Where to Store your JWTs – Cookies vs HTML5 Web Storage](https://stormpath.com/blog/where-to-store-your-jwts-cookies-vs-html5-web-storage)
+
+
 ## 传输安全
 
 ### http 传输窃听篡改
