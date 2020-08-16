@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 1
+sidebarDepth: 0
 ---
 
 # Webpack 基础知识
@@ -272,8 +272,6 @@ module.exports = smart(webpackCommonConf, {
 }
 ```
 
-## 热更新
-
 ### webpack-dev-server
 
 - WDS 不刷新浏览器
@@ -284,28 +282,6 @@ module.exports = smart(webpackCommonConf, {
 ### webpack-dev-middleware(使用比较多)
 
 webpack-dev-middleware 就是在 Express 中提供 webpack-dev-server 静态服务能力的一个中间件，我们可以很轻松地将其集成到现有的 Express 代码中去，就像添加一个 Express 中间件那么简单。
-
-### HMR
-
-> 没有看懂，有待研究
-
-HMR 全称是 Hot Module Replacement，即模块热替换。HMR 既避免了频繁手动刷新页面，也减少了页面刷新时的等待。局部替换掉部分模块代码并且使其生效。
-
-安装好 webpack-dev-server， 添加一些简单的配置，即在 webpack 的配置文件中添加启用 HMR 需要的两个插件：
-
-```js
-  new webpack.NamedModulesPlugin(), // 用于启动 HMR 时可以显示模块的相对路径
-  new webpack.HotModuleReplacementPlugin(), // Hot Module Replacement 的插件
-```
-
-首先我们要知道一个概念：webpack 内部运行时，会维护一份用于管理构建代码时各个模块之间交互的表数据，webpack 官方称之为 Manifest，其中包括入口代码文件和构建出来的 bundle 文件的对应关系。可以使用 WebpackManifestPlugin 插件来输出这样的一份数据。
-
-- Webpack Compile: 将 JS 编译成 Bundle
-- HMR Server: 将热更新的⽂件输出给 HMR Rumtime
-- Bundle server: 提供⽂件在浏览器的访问
-- HMR Rumtime: 会被注⼊到浏览器，
-- 更新⽂件的变化
-- bundle.js: 构建输出的⽂件。
 
 ## 文件指纹
 

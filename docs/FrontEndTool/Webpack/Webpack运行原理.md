@@ -1,12 +1,10 @@
 ---
-sidebarDepth: 1
+sidebarDepth: 0
 ---
 
-# Webpack 运行原理
+# Webpack 工作原理
 
 学习 Webpack 需要理解四个核心概念：入口(entry)， 输出(output)，加载器(loader)，插件(plugins)
-
-![webpack](./imgs/webpack.png)
 
 首页图中的左中右三个部分对应 module chunk bundle
 
