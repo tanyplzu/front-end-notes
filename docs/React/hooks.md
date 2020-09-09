@@ -6,9 +6,9 @@
 - [useeffect](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
 - [React-Redux Hooks: useSelector and useDispatch](https://levelup.gitconnected.com/react-redux-hooks-useselector-and-usedispatch-f7d8c7f75cdd)
 - [写 React Hooks 前必读](https://zhuanlan.zhihu.com/p/113216415)
-- Dan 的[《useEffect 完全指南》](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
-- 衍良同学的[《React Hooks 完全上手指南》](https://zhuanlan.zhihu.com/p/92211533)
-- 阮一峰[React Hooks 入门教程](http://www.ruanyifeng.com/blog/2019/09/react-hooks.html)
+- Dan 的 [《useEffect 完全指南》](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
+- 衍良同学的 [《React Hooks 完全上手指南》](https://zhuanlan.zhihu.com/p/92211533)
+- 阮一峰 [React Hooks 入门教程](http://www.ruanyifeng.com/blog/2019/09/react-hooks.html)
 
 ## Hooks
 
@@ -152,7 +152,7 @@ const myReducer = (state, action) => {
   }
 };
 
-const [state, dispatch] = useReducer(myReducer, { count: 0 })
+const [state, dispatch] = useReducer(myReducer, { count: 0 });
 
 function App() {
   const [state, dispatch] = useReducer(myReducer, { count: 0 });
@@ -168,9 +168,9 @@ function App() {
 ## useEffect()
 
 ```jsx
-useEffect(()  =>  {
+useEffect(() => {
   // Async Action
-}, [dependencies])
+}, [dependencies]);
 ```
 
 ## 创建自己的 Hooks
@@ -182,12 +182,12 @@ const usePerson = (personId) => {
   useEffect(() => {
     setLoading(true);
     fetch(`https://swapi.co/api/people/${personId}/`)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         setPerson(data);
         setLoading(false);
       });
-  }, [personId]);  
+  }, [personId]);
   return [loading, person];
 };
 
