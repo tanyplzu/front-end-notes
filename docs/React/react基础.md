@@ -261,3 +261,20 @@ class NameForm extends React.Component {
 - 优先使用受控组件
 - 必须操作 DOM，使用非受控组件
 
+## StrictMode
+
+```jsx
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
+
+- 识别具有不安全生命周期的组件
+- 有关旧式字符串ref用法的警告
+- 关于已弃用的findDOMNode用法的警告
+- 检测意外的副作用
+- 检测遗留 context API
+

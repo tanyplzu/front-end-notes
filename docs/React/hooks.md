@@ -23,7 +23,7 @@ useEffect(); //副作用钩子
 
 ## 使用方法
 
-```js
+```jsx
 import React from 'react';
 import { connect } from 'react-redux';
 import { addCount } from './store/counter/actions';
@@ -66,7 +66,17 @@ export const Count = () => {
 };
 ```
 
-## 一些例子
+## useEffect
+
+基本用法
+
+```jsx
+useEffect(() => {
+  // Async Action
+}, [dependencies]);
+```
+
+### useEffect 是如何起作用的
 
 ```jsx
 function ErrorDemo() {
@@ -79,19 +89,78 @@ function ErrorDemo() {
 }
 ```
 
-结果：`{count}` 到`1`以后就加不上了
+结果：`{count}` 到`1`以后就加不上了,原因是 useEffect 中的 count 一直是 0
 
-处理方式:
+可以用下面的例子验证一下。
+
+```jsx
+function ErrorDemo() {
+  const [count, setCount] = useState(0);
+  const dom = useRef(null);
+  useEffect(() => {
+    dom.current.addEventListener('click', () => {
+      console.log(count);
+      setCount(count + 1);
+    });
+  }, []);
+  return <div ref={dom}>{count}</div>;
+}
+```
+
+每次点击时 console.log(count)都是 1
+
+```jsx
+function ErrorDemo() {
+  const [count, setCount] = useState(0);
+  const dom = useRef(null);
+  useEffect(() => {
+    dom.current.addEventListener('click', () => {
+      console.log(count);
+      setCount(count + 1);
+    });
+  }, [count]);
+  useEffect(() => {
+    console.log(2, count);
+  }, [count]);
+  return <div ref={dom}>{count}</div>;
+}
+```
+
+如果将 count 传入 useEffect，每次会重新绑定点击事件。
+
+**结论：**每次 count 都是重新声明的变量，指向一个全新的数据；每次的 setCount 虽然是重新声明的，但指向的是同一个引用。
+
+- 并不是 count 的值在“不变”的 effect 中发生了改变，而是 effect 函数本身在每一次渲染中都不相同。
+- effects 会在每次渲染后运行，并且概念上它是组件输出的一部分，可以“看到”属于某次特定渲染的 props 和 state。
+
+
+```jsx
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      console.log(count) // 一直是0
+      setCount(count + 1);
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return <h1>{count}</h1>;
+}
+```
+
+开始例子中的问题的处理方式:
 
 #### Functional updates
 
-```JSX
-function Counter({initialCount}) {
+```jsx
+function Counter({ initialCount }) {
   const [count, setCount] = useState(initialCount);
   return (
     <>
       Count: {count}
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+      <button onClick={() => setCount((prevCount) => prevCount + 1)}>+</button>
     </>
   );
 }
@@ -130,6 +199,21 @@ useEffect(() => {
 }, []);
 ```
 
+用 useRef 存储最新的值
+
+### useEffect 是如何清理的
+
+```jsx
+useEffect(() => {
+  ChatAPI.subscribeToFriendStatus(props.id, handleStatusChange);
+  return () => {
+    ChatAPI.unsubscribeFromFriendStatus(props.id, handleStatusChange);
+  };
+});
+```
+
+React 只会在浏览器绘制后运行 effects。这使得你的应用更流畅因为大多数 effects 并不会阻塞屏幕的更新。Effect 的清除同样被延迟了。上一次的 effect 会在重新渲染后被清除：
+
 ## useCallback 与 useMemo
 
 一个是「缓存函数」， 一个是缓存「函数的返回值」,使用较少，甚至有的时候会用错。
@@ -165,14 +249,6 @@ function App() {
 }
 ```
 
-## useEffect()
-
-```jsx
-useEffect(() => {
-  // Async Action
-}, [dependencies]);
-```
-
 ## 创建自己的 Hooks
 
 ```jsx
@@ -206,4 +282,8 @@ const Person = ({ personId }) => {
     </div>
   );
 };
+```
+
+```
+
 ```
