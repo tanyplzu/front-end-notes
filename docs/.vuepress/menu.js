@@ -65,6 +65,7 @@ const getSidebar = () => {
           'react-router',
           'redux',
           'hooks',
+          'package'
         ],
       },
       {

@@ -133,14 +133,13 @@ function ErrorDemo() {
 - 并不是 count 的值在“不变”的 effect 中发生了改变，而是 effect 函数本身在每一次渲染中都不相同。
 - effects 会在每次渲染后运行，并且概念上它是组件输出的一部分，可以“看到”属于某次特定渲染的 props 和 state。
 
-
 ```jsx
 function Counter() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
-      console.log(count) // 一直是0
+      console.log(count); // count一直是0,所以页面上的值没有变化
       setCount(count + 1);
     }, 1000);
     return () => clearInterval(id);
@@ -150,7 +149,7 @@ function Counter() {
 }
 ```
 
-开始例子中的问题的处理方式:
+一些移除依赖的常用技巧：
 
 #### Functional updates
 
@@ -165,6 +164,17 @@ function Counter({ initialCount }) {
   );
 }
 ```
+
+```jsx
+useEffect(() => {
+  const id = setInterval(() => {
+    setCount((c) => c + 1);
+  }, 1000);
+  return () => clearInterval(id);
+}, []);
+```
+
+> 即使是 setCount(c => c + 1)也并不完美。如果我们有两个互相依赖的状态，或者我们想基于一个 prop 来计算下一次的 state，它并不能做到。幸运的是， setCount(c => c + 1)有一个更强大的模式，它的名字叫 useReducer。
 
 #### 重新绑定事件
 
@@ -182,7 +192,7 @@ useEffect(() => {
 
 缺点：开销较大
 
-#### useRef
+#### 使用 useRef 做记录
 
 ```jsx
 const [count, setCount] = useState(0);
@@ -212,40 +222,93 @@ useEffect(() => {
 });
 ```
 
-React 只会在浏览器绘制后运行 effects。这使得你的应用更流畅因为大多数 effects 并不会阻塞屏幕的更新。Effect 的清除同样被延迟了。上一次的 effect 会在重新渲染后被清除：
-
-## useCallback 与 useMemo
-
-一个是「缓存函数」， 一个是缓存「函数的返回值」,使用较少，甚至有的时候会用错。
-
-- 在组件内部，那些会成为其他 useEffect 依赖项的方法，建议用 useCallback 包裹，或者直接编写在引用它的 useEffect 中。
-- 己所不欲勿施于人，如果你的 function 会作为 props 传递给子组件，请一定要使用 useCallback 包裹，对于子组件来说，如果每次 render 都会导致你传递的函数发生变化，可能会对它造成非常大的困扰。同时也不利于 react 做渲染优化。
+React 只会在浏览器绘制后运行 effects。这使得你的应用更流畅因为大多数 effects 并不会阻塞屏幕的更新。Effect 的清除同样被延迟了。上一次的 effect 会在重新渲染后被清除
 
 ## useReducer()
 
+当你写类似 setSomething(something => ...)这种代码的时候，也许就是考虑使用 reducer 的契机。reducer 可以让你把组件内发生了什么(actions)和状态如何响应并更新分开表述。
+
 ```jsx
-const myReducer = (state, action) => {
-  switch (action.type) {
-    case 'countUp':
-      return {
-        ...state,
-        count: state.count + 1,
-      };
-    default:
-      return state;
-  }
+const [state, dispatch] = useReducer(reducer, initialState);
+const { count, step } = state;
+
+useEffect(() => {
+  const id = setInterval(() => {
+    dispatch({ type: 'tick' }); // Instead of setCount(c => c + step);
+  }, 1000);
+  return () => clearInterval(id);
+}, [dispatch]);
+```
+
+定义 reducer
+
+```jsx
+const initialState = {
+  count: 0,
+  step: 1,
 };
 
-const [state, dispatch] = useReducer(myReducer, { count: 0 });
+function reducer(state, action) {
+  const { count, step } = state;
+  if (action.type === 'tick') {
+    return { count: count + step, step };
+  } else if (action.type === 'step') {
+    return { count, step: action.step };
+  } else {
+    throw new Error();
+  }
+}
+```
 
-function App() {
-  const [state, dispatch] = useReducer(myReducer, { count: 0 });
-  return (
-    <div className='App'>
-      <button onClick={() => dispatch({ type: 'countUp' })}>+1</button>
-      <p>Count: {state.count}</p>
-    </div>
-  );
+**为什么 useReducer 是 Hooks 的作弊模式**
+
+useReducer 是 Hooks 的“作弊模式”，它可以把更新逻辑和描述发生了什么分开。结果是，这可以帮助我移除不必需的依赖，避免不必要的 effect 调用。
+
+## 函数和 useEffect
+
+```jsx
+function SearchResults() {
+  const [query, setQuery] = useState('react');
+
+  // Imagine this function is also long
+  function getFetchUrl() {
+    return 'https://hn.algolia.com/api/v1/search?query=' + query;
+  }
+
+  // Imagine this function is also long
+  async function fetchData() {
+    const result = await axios(getFetchUrl());
+    setData(result.data);
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+}
+```
+
+如果我们忘记去更新使用这些函数（很可能通过其他函数调用）的 effects 的依赖，我们的 effects 就不会同步 props 和 state 带来的变更。这当然不是我们想要的。
+
+解决方案是，如果某些函数仅在 effect 中调用，你可以把它们的定义移到 effect 中。
+
+```jsx
+function SearchResults() {
+  const [query, setQuery] = useState('react');
+
+  useEffect(() => {
+    function getFetchUrl() {
+      return 'https://hn.algolia.com/api/v1/search?query=' + query;
+    }
+
+    async function fetchData() {
+      const result = await axios(getFetchUrl());
+      setData(result.data);
+    }
+
+    fetchData();
+  }, [query]); // ✅ Deps are OK
+
+  // ...
 }
 ```
 
@@ -284,6 +347,66 @@ const Person = ({ personId }) => {
 };
 ```
 
+## useCallback 与 useMemo
+
+一个是「缓存函数」， 一个是缓存「函数的返回值」,使用较少，甚至有的时候会用错。
+
+- 在组件内部，那些会成为其他 useEffect 依赖项的方法，建议用 useCallback 包裹，或者直接编写在引用它的 useEffect 中。
+- 己所不欲勿施于人，如果你的 function 会作为 props 传递给子组件，请一定要使用 useCallback 包裹，对于子组件来说，如果每次 render 都会导致你传递的函数发生变化，可能会对它造成非常大的困扰。同时也不利于 react 做渲染优化。
+
+```jsx
+function SearchResults() {
+  // ✅ Preserves identity when its own deps are the same
+  const getFetchUrl = useCallback((query) => {
+    return 'https://hn.algolia.com/api/v1/search?query=' + query;
+  }, []); // ✅ Callback deps are OK
+
+  useEffect(() => {
+    const url = getFetchUrl('react');
+    // ... Fetch data and do something ...
+  }, [getFetchUrl]); // ✅ Effect deps are OK
+
+  useEffect(() => {
+    const url = getFetchUrl('redux');
+    // ... Fetch data and do something ...
+  }, [getFetchUrl]); // ✅ Effect deps are OK
+  // ...
+}
 ```
 
+useCallback 本质上是添加了一层依赖检查。对可变值很有用：
+
+```jsx
+function SearchResults() {
+  const [query, setQuery] = useState('react');
+
+  // ✅ Preserves identity until query changes
+  const getFetchUrl = useCallback(() => {
+    return 'https://hn.algolia.com/api/v1/search?query=' + query;
+  }, [query]); // ✅ Callback deps are OK
+
+  useEffect(() => {
+    const url = getFetchUrl();
+    // ... Fetch data and do something ...
+  }, [getFetchUrl]); // ✅ Effect deps are OK
+
+  // ...
+}
+```
+
+## 规则
+
+hooks 容易出错，规则很重要
+
+https://github.com/facebook/react/issues/14920
+
+```json
+{
+  "plugins": ["react-hooks"],
+  // ...
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn" // <--- THIS IS THE NEW RULE
+  }
+}
 ```
