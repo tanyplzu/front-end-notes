@@ -65,7 +65,6 @@ const getSidebar = () => {
           'react-router',
           'redux',
           'hooks',
-          'package'
         ],
       },
       {
@@ -95,6 +94,7 @@ const getSidebar = () => {
         ],
       },
       '脚手架',
+      'package',
       'ESLint&Prettier',
       'npmScript',
       'Git',
