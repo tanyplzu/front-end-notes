@@ -2,7 +2,7 @@
 sidebarDepth: 0
 ---
 
-# Webpack 基础知识
+# Webpack 中常用的插件
 
 [[toc]]
 
@@ -145,7 +145,7 @@ module: {
 }
 ```
 
-webpack 的打包有一个打包入口，css 也是引到入口文件里的，通常情况会将 css 打入 js 文件中，所以需要做 css 抽离。
+webpack 的打包有一个打包入口，css 也是引到入口文件里的，通常情况会将 css 打入 js 文件中，所以需要做 css 抽离。style-loader 的作用总结一句话就是，将 css-loader 中所加载到的所有样式模块，通过创建 style 标签的方式添加到页面上。
 
 ```js
 // index.js

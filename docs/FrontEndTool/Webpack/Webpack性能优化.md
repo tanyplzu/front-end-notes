@@ -2,9 +2,22 @@
 sidebarDepth: 0
 ---
 
-# webpack 优化
+# webpack 性能优化
 
 [[toc]]
+
+## 优化前的准备工作
+
+优化方向：
+
+- 减少执行编译的模块。
+- 提升单个模块构建的速度。
+- 并行构建以提升总体效率。
+
+两个工具：
+
+- 基于时间的分析工具：[speed-measure-webpack-plugin](https://github.com/stephencookdev/speed-measure-webpack-plugin)
+- 基于产物内容的分析工具：[webpack-bundle-analyzer](https://www.npmjs.com/package/webpack-bundle-analyzer)
 
 ## 优化打包速度
 
@@ -19,7 +32,7 @@ sidebarDepth: 0
 避免引入无用模块。
 
 ```js
-new webpack.IgnorePlugin({ resourceRegExp, contextRegExp })
+new webpack.IgnorePlugin({ resourceRegExp, contextRegExp });
 ```
 
 - `resourceRegExp`：匹配(test)资源请求路径的正则表达式。
@@ -29,7 +42,7 @@ new webpack.IgnorePlugin({ resourceRegExp, contextRegExp })
 plugins: [
   // 忽略 moment 下的 /locale 目录
   new webpack.IgnorePlugin(/\.\/locale/, /moment/),
-]
+];
 ```
 
 手动引入语言包：`require('./locale/' + name);`
@@ -44,14 +57,14 @@ module.exports = {
   module: {
     noParse: /jquery|lodash/,
   },
-}
+};
 
 module.exports = {
   //...
   module: {
     noParse: (content) => /jquery|lodash/.test(content),
   },
-}
+};
 ```
 
 noParse 和 IngorePlugin 区别：
@@ -121,7 +134,7 @@ module.exports = {
       },
     }),
   ],
-}
+};
 ```
 
 - 项目较大，开启多进程会提高打包速度
@@ -144,7 +157,7 @@ module.exports = {
   devServer: {
     hot: true,
   },
-}
+};
 ```
 
 需要配置热跟新的范围
@@ -154,9 +167,9 @@ module.exports = {
 // 增加，开启热更新之后的代码逻辑
 if (module.hot) {
   module.hot.accept(['./math'], () => {
-    const sumRes = sum(10, 30)
-    console.log('sumRes in hot', sumRes)
-  })
+    const sumRes = sum(10, 30);
+    console.log('sumRes in hot', sumRes);
+  });
 }
 ```
 
@@ -199,14 +212,14 @@ webpack 已经内置该插件
 // non-esm.js
 module.exports = {
   sayHello: () => {
-    console.log('hello world')
+    console.log('hello world');
   },
-}
+};
 
 function sayHello() {
   import('./non-esm.js').then((module) => {
-    module.default.sayHello()
-  })
+    module.default.sayHello();
+  });
 }
 ```
 
@@ -223,7 +236,7 @@ function sayHello() {
 ```js
 module.exports = {
   mode: 'production',
-}
+};
 ```
 
 - 会自动做代码压缩
