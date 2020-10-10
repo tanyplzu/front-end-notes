@@ -1,0 +1,11 @@
+---
+sidebarDepth: {{sidebarDepth}}
+---
+
+# {{pageName}}
+
+{{#if hasToc}}
+[[toc]]
+{{/if}}
+
+## 
