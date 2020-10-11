@@ -31,13 +31,13 @@ module.exports = smart(baseWebpackConfig, {
 ## path
 
 ```js
-const path = require('path')
-const srcPath = path.join(__dirname, '..', 'src')
-const distPath = path.join(__dirname, '..', 'dist')
+const path = require('path');
+const srcPath = path.join(__dirname, '..', 'src');
+const distPath = path.join(__dirname, '..', 'dist');
 module.exports = {
   srcPath,
   distPath,
-}
+};
 ```
 
 > [path](https://juejin.im/book/5bc1bf3e5188255c3272e315/section/5be7bda9f265da617369d025)
@@ -141,7 +141,7 @@ module: {
         'postcss-loader',
       ],
     },
-  ]
+  ];
 }
 ```
 
@@ -150,8 +150,8 @@ webpack 的打包有一个打包入口，css 也是引到入口文件里的，�
 ```js
 // index.js
 // 引入 css
-import './style/style1.css'
-import './style/style2.less'
+import './style/style1.css';
+import './style/style2.less';
 ```
 
 ## 抽离公共代码
@@ -191,8 +191,10 @@ optimization: {
     }
   }
 }
-
 ```
+
+- Webpack 4 中内置了 TerserWebpackPlugin 作为默认的 JS 压缩工具，之前的版本则需要在项目配置中单独引入，早期主要使用的是 UglifyJSWebpackPlugin。这两个 Webpack 插件内部的压缩功能分别基于 Terser 和 UglifyJS。
+- 从第三方的测试结果看，两者在压缩效率与质量方面差别不大，但 Terser 整体上略胜一筹。
 
 ## Mode
 
@@ -237,7 +239,7 @@ module.export = {
     //判断文件是否发生变化是通过不停询问系统指定文件有没有变化实现的，默认每秒问1000次
     poll: 1000,
   },
-}
+};
 ```
 
 ## webpack 跨域请求

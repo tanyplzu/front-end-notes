@@ -1,5 +1,5 @@
 ---
-title: "Scope 和 Digest"
+title: 'Scope 和 Digest'
 sidebarDepth: 0
 ---
 
@@ -13,13 +13,13 @@ Angular 的文档挺不错的，第三方的资源也越来越丰富，想要学
 
 在这个系列的文章中，我将从无到有构建 AngularJS 的一个实现。随着逐步深入的讲解，读者将能对 Angular 的运作机制有一个深入的认识。
 
-在第一部分中，读者将看到 Angular 的作用域是如何运作的，还有比如 $eval, $digest, $apply 这些东西怎么实现。Angular 的脏检查逻辑看上去有些不可思议，但你将看到实际并非如此。
+在第一部分中，读者将看到 Angular 的作用域是如何运作的，还有比如 $eval, $digest, \$apply 这些东西怎么实现。Angular 的脏检查逻辑看上去有些不可思议，但你将看到实际并非如此。
 
 ## 基础知识
 
 在 Github 上，可以看到这个项目的全部源码。相比只复制一份下来，我更建议读者从无到有构建自己的实现，从不同角度探索代码的每个步骤。在本文中，我嵌入了 JSBin 的一些代码，可以直接在文章中进行一些互动。（译者注：因为我在 github 上翻译，没法集成 JSBin 了，只能给链接……）
 
-我们将使用 Lo-Dash 库来处理一些在数组和对象上的底层操作。Angular 自身并未使用 Lo-Dash，但是从我们的目的看，要尽量无视这些不太相关的比较底层的事情。当读者在代码中看到下划线（_）的时候，那就是在调用 Lo-Dash 的功能。
+我们将使用 Lo-Dash 库来处理一些在数组和对象上的底层操作。Angular 自身并未使用 Lo-Dash，但是从我们的目的看，要尽量无视这些不太相关的比较底层的事情。当读者在代码中看到下划线（\_）的时候，那就是在调用 Lo-Dash 的功能。
 
 我们还将使用 console.assert 函数做一些特别的测试。这个函数应该适用于所有现代 JavaScript 环境。
 
@@ -53,15 +53,15 @@ $watch 和 $digest 是相辅相成的。两者一起，构成了 Angular 作用�
 
 > 作为一名 Angular 用户，一般来说，是监控一个表达式，而不是使用监控函数。监控表达式是一个字符串，比如说“user.firstName”，通常在数据绑定，指令的属性，或者 JavaScript 代码中指定，它被 Angular 解析和编译成一个监控函数。在这篇文章的后面部分我们会探讨这是如何做的。在这篇文章中，我们将使用稍微低级的方法直接提供监控功能。
 
-为了实现 $watch，我们需要存储注册过的所有监听器。我们在 Scope 构造函数上添加一个数组：
+为了实现 \$watch，我们需要存储注册过的所有监听器。我们在 Scope 构造函数上添加一个数组：
 
     function Scope() {
       this.$$watchers = [];
     }
 
-在 Angular 框架中，双美元符前缀 $$ 表示这个变量被当作私有的来考虑，不应当在外部代码中调用。
+在 Angular 框架中，双美元符前缀 \$\$ 表示这个变量被当作私有的来考虑，不应当在外部代码中调用。
 
-现在我们可以定义 $watch 方法了。它接受两个函数作参数，把它们存储在 $$watchers 数组中。我们需要在每个 Scope 实例上存储这些函数，所以要把它放在 Scope 的原型上：
+现在我们可以定义 $watch 方法了。它接受两个函数作参数，把它们存储在 $\$watchers 数组中。我们需要在每个 Scope 实例上存储这些函数，所以要把它放在 Scope 的原型上：
 
     Scope.prototype.$watch = function(watchFn, listenerFn) {
       var watcher = {
@@ -71,7 +71,7 @@ $watch 和 $digest 是相辅相成的。两者一起，构成了 Angular 作用�
       this.$$watchers.push(watcher);
     };
 
-另外一面就是 $digest 函数。它执行了所有在作用域上注册过的监听器。我们来实现一个它的简化版，遍历所有监听器，调用它们的监听函数：
+另外一面就是 \$digest 函数。它执行了所有在作用域上注册过的监听器。我们来实现一个它的简化版，遍历所有监听器，调用它们的监听函数：
 
     Scope.prototype.$digest = function() {
       _.forEach(this.$$watchers, function(watch) {
@@ -79,7 +79,7 @@ $watch 和 $digest 是相辅相成的。两者一起，构成了 Angular 作用�
       });
     };
 
-现在我们可以添加监听器，然后运行 $digest 了，这将会调用监听函数：
+现在我们可以添加监听器，然后运行 \$digest 了，这将会调用监听函数：
 
 http://jsbin.com/oMaQoxa/2/embed?js,console
 
@@ -95,7 +95,7 @@ http://jsbin.com/oMaQoxa/2/embed?js,console
 
 这是监控函数的一般形式：从作用域获取一些值，然后返回。
 
-$digest 函数的作用是调用这个监控函数，并且比较它返回的值和上一次返回值的差异。如果不相同，监听器就是脏的，它的监听函数就应当被调用。
+\$digest 函数的作用是调用这个监控函数，并且比较它返回的值和上一次返回值的差异。如果不相同，监听器就是脏的，它的监听函数就应当被调用。
 
 想要这么做，$digest 需要记住每个监控函数上次返回的值。既然我们现在已经为每个监听器创建过一个对象，只要把上一次的值存在这上面就行了。下面是检测每个监控函数值变更的 $digest 新实现：
 
@@ -113,7 +113,7 @@ $digest 函数的作用是调用这个监控函数，并且比较它返回的值
 
 对每个监听器，我们调用监控函数，把作用域自身当作实参传递进去，然后比较这个返回值和上次返回值，如果不同，就调用监听函数。方便起见，我们把新旧值和作用域都当作参数传递给监听函数。最终，我们把监听器的 last 属性设置成新返回的值，下一次可以用它来作比较。
 
-有了这个实现之后，我们就可以看到在 $digest 调用的时候，监听函数是怎么执行的：
+有了这个实现之后，我们就可以看到在 \$digest 调用的时候，监听函数是怎么执行的：
 
 http://jsbin.com/OsITIZu/3/embed?js,console
 
@@ -123,13 +123,13 @@ http://jsbin.com/OsITIZu/3/embed?js,console
 
 - 在作用域上添加数据本身并不会有性能折扣。如果没有监听器在监控某个属性，它在不在作用域上都无所谓。Angular 并不会遍历作用域的属性，它遍历的是监听器。
 
-- $digest 里会调用每个监控函数，因此，最好关注监听器的数量，还有每个独立的监控函数或者表达式的性能。
+- \$digest 里会调用每个监控函数，因此，最好关注监听器的数量，还有每个独立的监控函数或者表达式的性能。
 
 ## 在 Digest 的时候获得提示
 
 如果你想在每次 Angular 的作用域被 digest 的时候得到通知，可以利用每次 digest 的时候挨个执行监听器这个事情，只要注册一个没有监听函数的监听器就可以了。
 
-想要支持这个用例，我们需要在 $watch 里面检测是否监控函数被省略了，如果是这样，用个空函数来代替它：
+想要支持这个用例，我们需要在 \$watch 里面检测是否监控函数被省略了，如果是这样，用个空函数来代替它：
 
     Scope.prototype.$watch = function(watchFn, listenerFn) {
       var watcher = {
@@ -153,7 +153,7 @@ http://jsbin.com/eTIpUyE/2/embed?js,console
 
 我们需要改变一下 digest，让它持续遍历所有监听器，直到监控的值停止变更。
 
-首先，我们把现在的 $digest 函数改名为 $$digestOnce，它把所有的监听器运行一次，返回一个布尔值，表示是否还有变更了：
+首先，我们把现在的 $digest 函数改名为 $\$digestOnce，它把所有的监听器运行一次，返回一个布尔值，表示是否还有变更了：
 
     Scope.prototype.$$digestOnce = function() {
       var self  = this;
@@ -170,7 +170,7 @@ http://jsbin.com/eTIpUyE/2/embed?js,console
       return dirty;
     };
 
-然后，我们重新定义 $digest，它作为一个“外层循环”来运行，当有变更发生的时候，调用 $$digestOnce：
+然后，我们重新定义 $digest，它作为一个“外层循环”来运行，当有变更发生的时候，调用 $\$digestOnce：
 
     Scope.prototype.$digest = function() {
       var dirty;
@@ -179,9 +179,9 @@ http://jsbin.com/eTIpUyE/2/embed?js,console
       } while (dirty);
     };
 
-$digest 现在至少运行每个监听器一次了。如果第一次运行完，有监控值发生变更了，标记为 dirty，所有监听器再运行第二次。这会一直运行，直到所有监控的值都不再变化，整个局面稳定下来了。
+\$digest 现在至少运行每个监听器一次了。如果第一次运行完，有监控值发生变更了，标记为 dirty，所有监听器再运行第二次。这会一直运行，直到所有监控的值都不再变化，整个局面稳定下来了。
 
->Angular 作用域里并不是真的有个函数叫做 $$digestOnce，相反，digest 循环都是包含在 $digest 里的。我们的目标更多是清晰度而不是性能，所以把内层循环封装成了一个函数。
+> Angular 作用域里并不是真的有个函数叫做 \$$digestOnce，相反，digest 循环都是包含在 $digest 里的。我们的目标更多是清晰度而不是性能，所以把内层循环封装成了一个函数。
 
 下面是新的实现：
 
@@ -189,7 +189,7 @@ http://jsbin.com/Imoyosa/3/embed?js,console
 
 我们现在可以对 Angular 的监听器有另外一个重要认识：它们可能在单次 digest 里面被执行多次。这也就是为什么人们经常说，监听器应当是幂等的：一个监听器应当没有边界效应，或者边界效应只应当发生有限次。比如说，假设一个监控函数触发了一个 Ajax 请求，无法确定你的应用程序发了多少个请求。
 
-在我们现在的实现中，有一个明显的遗漏：如果两个监听器互相监控了对方产生的变更，会怎样？也就是说，如果状态始终不会稳定？这种情况展示在下面的代码里。在这个例子里，$digest 调用被注释掉了，把注释去掉看看发生什么情况：
+在我们现在的实现中，有一个明显的遗漏：如果两个监听器互相监控了对方产生的变更，会怎样？也就是说，如果状态始终不会稳定？这种情况展示在下面的代码里。在这个例子里，\$digest 调用被注释掉了，把注释去掉看看发生什么情况：
 
 http://jsbin.com/eKEvOYa/3/embed?js,console
 
@@ -201,7 +201,7 @@ JSBin 执行了一段时间之后就停止了（在我机器上大概跑了 100,
 
 迭代的最大值称为 TTL（short for Time To Live）。这个值默认是 10，可能有点小（我们刚运行了这个 digest 100,000 次！），但是记住这是一个性能敏感的地方，因为 digest 经常被执行，而且每个 digest 运行了所有的监听器。用户也不太可能创建 10 个以上链状的监听器。
 
->事实上，Angular 里面的 TTL 是可以调整的。我们将在后续文章讨论 provider 和依赖注入的时候再回顾这个话题。
+> 事实上，Angular 里面的 TTL 是可以调整的。我们将在后续文章讨论 provider 和依赖注入的时候再回顾这个话题。
 
 我们继续，给外层 digest 循环添加一个循环计数器。如果达到了 TTL，就抛出异常：
 
@@ -239,7 +239,7 @@ http://jsbin.com/uNapUWe/2/embed?js,console
       this.$$watchers.push(watcher);
     };
 
-我们所做的一切是把这个标志加在监听器上，通过两次取反，强制转换为布尔类型。当用户调用 $watch，没传入第三个参数的时候，valueEq 会是未定义的，在监听器对象里就变成了 false。
+我们所做的一切是把这个标志加在监听器上，通过两次取反，强制转换为布尔类型。当用户调用 \$watch，没传入第三个参数的时候，valueEq 会是未定义的，在监听器对象里就变成了 false。
 
 基于值的脏检查意味着如果新旧值是对象或者数组，我们必须遍历其中包含的所有内容。如果它们之间有任何差异，监听器就脏了。如果该值包含嵌套的对象或者数组，它也会递归地按值比较。
 
@@ -253,9 +253,9 @@ Angular 内置了自己的相等检测函数，但是我们会用 Lo-Dash 提供
       }
     };
 
-为了提示值的变化，我们也需要改变之前在每个监听器上存储旧值的方式。只存储当前值的引用是不够的，因为在这个值内部发生的变更也会生效到它的引用上，$$areEqual 方法比较同一个值的两个引用始终为真，监控不到变化，因此，我们需要建立当前值的深拷贝，并且把它们储存起来。
+为了提示值的变化，我们也需要改变之前在每个监听器上存储旧值的方式。只存储当前值的引用是不够的，因为在这个值内部发生的变更也会生效到它的引用上，\$\$areEqual 方法比较同一个值的两个引用始终为真，监控不到变化，因此，我们需要建立当前值的深拷贝，并且把它们储存起来。
 
-就像相等检测一样，Angular 也内置了自己的深拷贝函数，但我们还是用 Lo-Dash 提供的。我们修改一下 $digestOnce，在内部使用新的 $$areEqual 函数，如果需要的话，也复制最后一次的引用：
+就像相等检测一样，Angular 也内置了自己的深拷贝函数，但我们还是用 Lo-Dash 提供的。我们修改一下 $digestOnce，在内部使用新的 $\$areEqual 函数，如果需要的话，也复制最后一次的引用：
 
     Scope.prototype.$$digestOnce = function() {
       var self  = this;
@@ -278,7 +278,7 @@ http://jsbin.com/ARiWENO/3/embed?js,console
 
 相比检查引用，检查值的方式显然是一个更为复杂的操作。遍历嵌套的数据结构很花时间，保持深拷贝的数据也占用不少内存。这就是 Angular 默认不使用基于值的脏检测的原因，用户需要显式设置这个标记去打开它。
 
->Angular 也提供了第三种脏检测的方法：集合监控。就像基于值的检测，也能提示对象和数组中的变更。但不同于基于值的检测方式，它做的是一个比较浅的检测，并不递归进入到深层去，所以它比基于值的检测效率更高。集合检测是通过“$watchCollection”函数来使用的，在这个系列的后续部分，我们会来看看它是如何实现的。
+> Angular 也提供了第三种脏检测的方法：集合监控。就像基于值的检测，也能提示对象和数组中的变更。但不同于基于值的检测方式，它做的是一个比较浅的检测，并不递归进入到深层去，所以它比基于值的检测效率更高。集合检测是通过“\$watchCollection”函数来使用的，在这个系列的后续部分，我们会来看看它是如何实现的。
 
 在我们完成值的比对之前，还有些 JavaScript 怪事要处理一下。
 
@@ -286,7 +286,7 @@ http://jsbin.com/ARiWENO/3/embed?js,console
 
 在 JavaScript 里，NaN（Not-a-Number）并不等于自身，这个听起来有点怪，但确实就这样。如果我们在脏检测函数里不显式处理 NaN，一个值为 NaN 的监听器会一直是脏的。
 
-对于基于值的脏检测来说，这个事情已经被 Lo-Dash 的 isEqual 函数处理掉了。对于基于引用的脏检测来说，我们需要自己处理。来修改一下 $$areEqual 函数的代码：
+对于基于值的脏检测来说，这个事情已经被 Lo-Dash 的 isEqual 函数处理掉了。对于基于引用的脏检测来说，我们需要自己处理。来修改一下 \$\$areEqual 函数的代码：
 
     Scope.prototype.$$areEqual = function(newValue, oldValue, valueEq) {
       if (valueEq) {
@@ -304,29 +304,29 @@ http://jsbin.com/ijINaRA/2/embed?js,console
 
 基于值的检测实现好了，现在我们该把注意力集中到应用程序代码如何跟作用域打交道上了。
 
-## $eval - 在作用域的上下文上执行代码
+## \$eval - 在作用域的上下文上执行代码
 
 在 Angular 中，有几种方式可以在作用域的上下文上执行代码，最简单的一种就是 $eval。它使用一个函数作参数，所做的事情是立即执行这个传入的函数，并且把作用域自身当作参数传递给它，返回的是这个函数的返回值。$eval 也可以有第二个参数，它所做的仅仅是把这个参数传递给这个函数。
 
-$eval 的实现很简单：
+\$eval 的实现很简单：
 
     Scope.prototype.$eval = function(expr, locals) {
       return expr(this, locals);
     };
 
-$eval 的使用一样很简单：
+\$eval 的使用一样很简单：
 
 http://jsbin.com/UzaWUC/1/embed?js,console
 
-那么，为什么要用这么一种明显很多余的方式去执行一个函数呢？有人觉得，有些代码是专门与作用域的内容打交道的，$eval 让这一切更加明显。$eval 也是构建 $apply 的一个部分，后面我们就来讲它。
+那么，为什么要用这么一种明显很多余的方式去执行一个函数呢？有人觉得，有些代码是专门与作用域的内容打交道的，$eval 让这一切更加明显。$eval 也是构建 \$apply 的一个部分，后面我们就来讲它。
 
-然后，可能 $eval 最有意思的用法是当我们不传入函数，而是表达式。就像 $watch 一样，可以给 $eval 一个字符串表达式，它会把这个表达式编译，然后在作用域的上下文中执行。我们将在这个系列的后面部分实现这些。
+然后，可能 $eval 最有意思的用法是当我们不传入函数，而是表达式。就像 $watch 一样，可以给 \$eval 一个字符串表达式，它会把这个表达式编译，然后在作用域的上下文中执行。我们将在这个系列的后面部分实现这些。
 
-## $apply - 集成外部代码与 digest 循环
+## \$apply - 集成外部代码与 digest 循环
 
-可能 Scope 上所有函数里最有名的就是 $apply 了。它被誉为将外部库集成到 Angular 的最标准的方式，这话有个不错的理由。
+可能 Scope 上所有函数里最有名的就是 \$apply 了。它被誉为将外部库集成到 Angular 的最标准的方式，这话有个不错的理由。
 
-$apply 使用函数作参数，它用 $eval 执行这个函数，然后通过 $digest 触发 digest 循环。下面是一个简单的实现：
+$apply 使用函数作参数，它用 $eval 执行这个函数，然后通过 \$digest 触发 digest 循环。下面是一个简单的实现：
 
     Scope.prototype.$apply = function(expr) {
       try {
@@ -336,15 +336,15 @@ $apply 使用函数作参数，它用 $eval 执行这个函数，然后通过 $d
       }
     };
 
-$digest 的调用放置于 finally 块中，以确保即使函数抛出异常，也会执行 digest。
+\$digest 的调用放置于 finally 块中，以确保即使函数抛出异常，也会执行 digest。
 
-关于 $apply，大的想法是，我们可以执行一些与 Angular 无关的代码，这些代码也还是可以改变作用域上的东西，$apply 可以保证作用域上的监听器可以检测这些变更。当人们谈论使用 $apply 集成代码到“Angular 生命周期”的时候，他们指的就是这个事情，也没什么比这更重要的了。
+关于 $apply，大的想法是，我们可以执行一些与 Angular 无关的代码，这些代码也还是可以改变作用域上的东西，$apply 可以保证作用域上的监听器可以检测这些变更。当人们谈论使用 \$apply 集成代码到“Angular 生命周期”的时候，他们指的就是这个事情，也没什么比这更重要的了。
 
-这里是 $apply 的实践：
+这里是 \$apply 的实践：
 
 http://jsbin.com/UzaWUC/2/embed?js,console
 
-## 延迟执行 - $evalAsync
+## 延迟执行 - \$evalAsync
 
 在 JavaScript 中，经常会有把一段代码“延迟”执行的情况 - 把它的执行延迟到当前的执行上下文结束之后的未来某个时间点。最常见的方式就是调用 setTimeout() 函数，传递一个 0（或者非常小）作为延迟参数。
 
@@ -352,14 +352,14 @@ http://jsbin.com/UzaWUC/2/embed?js,console
 
 但在 Angular 中还有一种延迟代码的方式，那就是 Scope 上的 $evalAsync 函数。$evalAsync 接受一个函数，把它列入计划，在当前正持续的 digest 中或者下一次 digest 之前执行。举例来说，你可以在一个监听器的监听函数中延迟执行一些代码，即使它已经被延迟了，仍然会在现有的 digest 遍历中被执行。
 
-我们首先需要的是存储 $evalAsync 列入计划的任务，可以在 Scope 构造函数中初始化一个数组来做这事：
+我们首先需要的是存储 \$evalAsync 列入计划的任务，可以在 Scope 构造函数中初始化一个数组来做这事：
 
     function Scope() {
       this.$$watchers = [];
       this.$$asyncQueue = [];
     }
 
-我们再来定义 $evalAsync，它添加将在这个队列上执行的函数：
+我们再来定义 \$evalAsync，它添加将在这个队列上执行的函数：
 
     Scope.prototype.$evalAsync = function(expr) {
       this.$$asyncQueue.push({scope: this, expression: expr});
@@ -386,7 +386,7 @@ http://jsbin.com/UzaWUC/2/embed?js,console
 
 这个实现保证了：如果当作用域还是脏的，就想把一个函数延迟执行，那这个函数会在稍后执行，但还处于同一个 digest 中。
 
-下面是关于如何使用 $evalAsync 的一个示例：
+下面是关于如何使用 \$evalAsync 的一个示例：
 
 http://jsbin.com/ilepOwI/1/embed?js,console
 
@@ -396,7 +396,7 @@ $evalAsync 做的另外一件事情是：如果现在没有其他的 $digest 在
 
 需要有一种机制让 $evalAsync 来检测某个 $digest 是否已经在运行了，因为它不想影响到被列入计划将要执行的那个。为此，Angular 的作用域实现了一种叫做阶段（phase）的东西，它就是作用域上一个简单的字符串属性，存储了现在正在做的信息。
 
-在 Scope 的构造函数里，我们引入一个叫 $$phase 的字段，初始化为 null：
+在 Scope 的构造函数里，我们引入一个叫 \$\$phase 的字段，初始化为 null：
 
     function Scope() {
       this.$$watchers = [];
@@ -437,7 +437,7 @@ $evalAsync 做的另外一件事情是：如果现在没有其他的 $digest 在
       this.$clearPhase();
     };
 
-我们把 $apply 也修改一下，在它里面也设置个跟自己一样的阶段。在调试的时候，这个会有些用：
+我们把 \$apply 也修改一下，在它里面也设置个跟自己一样的阶段。在调试的时候，这个会有些用：
 
     Scope.prototype.$apply = function(expr) {
       try {
@@ -463,19 +463,19 @@ $evalAsync 做的另外一件事情是：如果现在没有其他的 $digest 在
       self.$$asyncQueue.push({scope: self, expression: expr});
     };
 
-有了这个实现之后，不管何时、何地，调用 $evalAsync，都可以确定有一个 digest 会在不远的将来发生。
+有了这个实现之后，不管何时、何地，调用 \$evalAsync，都可以确定有一个 digest 会在不远的将来发生。
 
 http://jsbin.com/iKeSaGi/1/embed?js,console
 
-# 在 digest 之后执行代码 - $$postDigest
+# 在 digest 之后执行代码 - \$\$postDigest
 
-还有一种方式可以把代码附加到 digest 循环中，那就是把一个 $$postDigest 函数列入计划。
+还有一种方式可以把代码附加到 digest 循环中，那就是把一个 \$\$postDigest 函数列入计划。
 
 在 Angular 中，函数名字前面有双美元符号表示它是一个内部的东西，不是应用开发人员应该用的。但它确实存在，所以我们也要把它实现出来。
 
-就像 $evalAsync 一样，$$postDigest 也能把一个函数列入计划，让它“以后”运行。具体来说，这个函数将在下一次 digest 完成之后运行。将一个 $$postDigest 函数列入计划不会导致一个 digest 也被延后，所以这个函数的执行会被推迟到直到某些其他原因引起一次 digest。顾名思义，$$postDigest 函数是在 digest 之后运行的，如果你在 $$digest 里面修改了作用域，需要手动调用 $digest 或者 $apply，以确保这些变更生效。
+就像 $evalAsync 一样，$$postDigest 也能把一个函数列入计划，让它“以后”运行。具体来说，这个函数将在下一次 digest 完成之后运行。将一个 $$postDigest 函数列入计划不会导致一个 digest 也被延后，所以这个函数的执行会被推迟到直到某些其他原因引起一次 digest。顾名思义，$$postDigest 函数是在 digest 之后运行的，如果你在 $$digest 里面修改了作用域，需要手动调用 $digest 或者 \$apply，以确保这些变更生效。
 
-首先，我们给 Scope 的构造函数加队列，这个队列给 $$postDigest 函数用：
+首先，我们给 Scope 的构造函数加队列，这个队列给 \$\$postDigest 函数用：
 
     function Scope() {
       this.$$watchers = [];
@@ -484,13 +484,13 @@ http://jsbin.com/iKeSaGi/1/embed?js,console
       this.$$phase = null;
     }
 
-然后，我们把 $$postDigest 也加上去，它所做的就是把给定的函数加到队列里：
+然后，我们把 \$\$postDigest 也加上去，它所做的就是把给定的函数加到队列里：
 
     Scope.prototype.$$postDigest = function(fn) {
       this.$$postDigestQueue.push(fn);
     };
 
-最终，在 $digest 里，当 digest 完成之后，就把队列里面的函数都执行掉。
+最终，在 \$digest 里，当 digest 完成之后，就把队列里面的函数都执行掉。
 
     Scope.prototype.$digest = function() {
       var ttl = 10;
@@ -514,7 +514,7 @@ http://jsbin.com/iKeSaGi/1/embed?js,console
       }
     };
 
-下面是关于如何使用 $$postDigest 函数的：
+下面是关于如何使用 \$\$postDigest 函数的：
 
 http://jsbin.com/IMEhowO/1/embed?js,console
 
@@ -526,7 +526,7 @@ Angular 的作用域在遇到错误的时候是非常健壮的：当产生异常
 
 我们可以很容易修复它，把上面三个调用包在 try...catch 中就好了。
 
->Angular 实际上是把这些异常抛给了它的 $exceptionHandler 服务。既然我们现在还没有这东西，先扔到控制台上吧。
+> Angular 实际上是把这些异常抛给了它的 \$exceptionHandler 服务。既然我们现在还没有这东西，先扔到控制台上吧。
 
 $evalAsync 和 $$postDigest 的异常处理是在 $digest 函数里，在这些场景里，从已列入计划的程序中抛出的异常将被记录成日志，它后面的还是正常运行：
 
@@ -560,7 +560,7 @@ $evalAsync 和 $$postDigest 的异常处理是在 $digest 函数里，在这些�
       }
     };
 
-监听器的异常处理放在 $$digestOnce 里。
+监听器的异常处理放在 \$\$digestOnce 里。
 
     Scope.prototype.$$digestOnce = function() {
       var self  = this;
@@ -589,7 +589,7 @@ http://jsbin.com/IMEhowO/2/embed?js,console
 
 当注册一个监听器的时候，一般都需要让它一直存在于整个作用域的生命周期，所以很少会要显式把它移除。也有些场景下，需要保持作用域的存在，但要把某个监听器去掉。
 
-Angular 中的 $watch 函数是有返回值的，它是个函数，如果执行，就把刚注册的这个监听器销毁。想在我们这个版本里实现这功能，只要返回一个函数在里面把这个监控器从 $$watchers 数组去除就可以了：
+Angular 中的 $watch 函数是有返回值的，它是个函数，如果执行，就把刚注册的这个监听器销毁。想在我们这个版本里实现这功能，只要返回一个函数在里面把这个监控器从 $\$watchers 数组去除就可以了：
 
     Scope.prototype.$watch = function(watchFn, listenerFn, valueEq) {
       var self = this;
@@ -607,7 +607,7 @@ Angular 中的 $watch 函数是有返回值的，它是个函数，如果执行�
       };
     };
 
-现在我们就可以把 $watch 的这个返回值存起来，以后调用它来移除这个监听器：
+现在我们就可以把 \$watch 的这个返回值存起来，以后调用它来移除这个监听器：
 
 http://jsbin.com/IMEhowO/4/embed?js,console
 
