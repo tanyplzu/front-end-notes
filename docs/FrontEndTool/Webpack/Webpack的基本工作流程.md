@@ -12,6 +12,12 @@ sidebarDepth: 0
 - 能够编译代码中的新特性；
 - 能够支持不同种类的前端资源模块。
 
+## Webpack 的核心原理
+
+本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)，当 webpack 处理应用程序时，通常以一个 js文件为入口，根据代码中的 import 或 require 语句，解析推断出文件所依赖的所有资源模块，递归地构建出一个依赖关系图(dependency graph)，然后将所有这些模块打包成一个或多个 bundle。
+
+对那些非 JavaScript 文件（webpack 自身只理解 JavaScript）。loader 可以其转换为 webpack 能够处理的有效模块。
+
 ## Webpack 的运行方式
 
 在项目中有两种运行 Webpack 的方式：基于命令行的方式或基于代码的方式。
@@ -111,6 +117,12 @@ const webpack = (options, callback) => {
 Webpack 是用 Loader（加载器）来处理每个模块的，而内部默认的 Loader 只能处理 JS 模块，如果需要加载其他类型的模块就需要配置不同的 Loader。
 
 loader 用来转换模块的源代码。loader 在 import 或"加载"模块时预处理文件。因此，loader 类似于其他构建工具中 task，并提供了处理前端构建步骤的强大方法。loader 可以将文件从不同的语言（如 TypeScript）转换为 JavaScript，或将内联图像转换为 data URL。loader 甚至允许你直接在 JavaScript 模块中 import CSS 文件！
+
+常见的 Loader 有三类：
+
+- 编译转换类
+- 文件操作类
+- 代码检查类
 
 每个 Webpack 的 Loader 都需要导出一个函数，这个函数就是我们这个 Loader 对资源的处理过程，它的输入就是加载到的资源文件内容，输出就是我们加工后的结果。我们通过 source 参数接收输入，通过返回值输出。
 

@@ -19,7 +19,7 @@ module.exports = (plop) => {
         type: 'list',
         name: 'sidebarDepth',
         message: 'sidebarDepth:',
-        choices: ['0', '1'],
+        choices: [0, 1],
       },
       {
         type: 'directory',
@@ -32,12 +32,6 @@ module.exports = (plop) => {
       const { pageName, directory } = data;
       const actions = [];
       if (pageName && directory) {
-        console.log(directory)
-        actions.push({
-          type: 'add',
-          path: 'docs/{{directory}}/{{pageName}}.md',
-          templateFile: 'templates/index.txt',
-        });
         actions.push({
           type: 'add',
           path: 'docs/{{directory}}/{{pageName}}.md',

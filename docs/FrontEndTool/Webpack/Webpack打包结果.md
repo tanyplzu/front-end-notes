@@ -175,7 +175,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 ```
 
-## 工作模式
+## 工作模式 mode
 
 Webpack 4 新增了一个工作模式的用法：
 
