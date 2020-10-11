@@ -239,3 +239,5 @@ lint-staged 配合 husky 做更多
   }
 }
 ```
+
+> [搞懂 ESLint 和 Prettier](https://zhuanlan.zhihu.com/p/80574300)
