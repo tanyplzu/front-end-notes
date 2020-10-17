@@ -65,13 +65,14 @@ const getSidebar = () => {
           'react-router',
           'redux',
           'hooks',
+          'umijs',
         ],
       },
       {
         title: '项目构建',
         collapsable: false,
         sidebarDepth: 1,
-        children: ['构建react项目', '常用的库'],
+        children: ['构建react项目'],
       },
       {
         title: 'reactNative', // 必要的
