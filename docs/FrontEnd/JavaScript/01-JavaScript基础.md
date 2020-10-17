@@ -590,6 +590,26 @@ child instanceof Parent // true
 - 提供复用性
 - 提高代码可维护性
 
+### Symbol
+
+- 作用是表示独一无二的值；
+- 传入字符串作为描书文件 Symbol('bar')
+- 因为无法创建一个相同的键，在外部是无法访问的，可以作为对象的私有属性。
+- 如果获取相同的Symbol值，可以使用Symbol.for('bar')
+
+```js
+Symbol('bar') === Symbol('bar') // false
+Symbol.for('bar') === Symbol.for('bar') // true
+Symbol.for(true) === Symbol.for('true') // true 字符串的对应关系
+```
+- 自定义对象的toString便签
+
+```js
+const obj = {
+  [Symbol.toStringTan]: "XObject"
+}
+```
+
 ### Map、WeakMap
 
 map 和 Object 比，主要的特性：
