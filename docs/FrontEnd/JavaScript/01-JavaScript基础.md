@@ -603,7 +603,7 @@ Symbol.for('bar') === Symbol.for('bar'); // true
 Symbol.for(true) === Symbol.for('true'); // true 字符串的对应关系
 ```
 
-- 自定义对象的 toString 便签
+- 自定义对象的 toString 标签
 
 ```js
 const obj = {
@@ -619,7 +619,7 @@ __webpack_require__.r = function(exports) {
 };
 ```
 
-- 再 `for...in` 和 `Object.keys()`、`JSON.sringify()`会忽略 Symbol 属性
+- 在 `for...in` 和 `Object.keys()`、`JSON.sringify()`会忽略 Symbol 属性
 - 如果要获取 Symbol 的属性名，`Object.getOwnPropertySymbols`
 
 
