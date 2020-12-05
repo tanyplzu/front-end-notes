@@ -66,6 +66,7 @@ const getSidebar = () => {
           'redux',
           'hooks',
           'umijs',
+          '开发中遇到的问题',
         ],
       },
       {
