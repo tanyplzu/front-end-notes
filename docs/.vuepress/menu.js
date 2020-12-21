@@ -67,6 +67,7 @@ const getSidebar = () => {
           'react-router',
           'redux',
           'umijs',
+          '开发中遇到的问题',
         ],
       },
       {
