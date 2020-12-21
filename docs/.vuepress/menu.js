@@ -95,7 +95,7 @@ const getSidebar = () => {
           'Webpack/Webpack性能优化',
           'Webpack/env',
           'Webpack/热更新',
-          'webpack-chain'
+          'Webpack/webpack-chain'
         ],
       },
       'package',
