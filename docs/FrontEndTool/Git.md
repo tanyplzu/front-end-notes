@@ -45,16 +45,13 @@ git push origin books
 git branch -d books
 git push origin -d books
 
-// git commit之后，想撤销commit
+// git commit之后，想撤销 commit
 git reset --soft HEAD^
-
-
 ```
-HEAD^的意思是上一个版本，也可以写成HEAD~1。如果你进行了2次commit，想都撤回，可以使用HEAD~2
 
---soft：不删除工作空间改动代码，撤销commit，不撤销git add . 
-
---hard：删除工作空间改动代码，撤销commit，撤销`git add .`, 注意完成这个操作后，就恢复到了上一次的commit状态。
+- `HEAD^`的意思是上一个版本，也可以写成`HEAD~1`。如果你进行了2次commit，想都撤回，可以使用`HEAD~2`
+- `--soft`：不删除工作空间改动代码，撤销commit，不撤销`git add .`; 
+- `--hard`：删除工作空间改动代码，撤销commit，撤销`git add .`, 注意完成这个操作后，就恢复到了上一次的commit状态。
 
 ### 创建项目
 
