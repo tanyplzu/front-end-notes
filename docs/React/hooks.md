@@ -9,6 +9,7 @@
 - Dan 的 [《useEffect 完全指南》](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
 - 衍良同学的 [《React Hooks 完全上手指南》](https://zhuanlan.zhihu.com/p/92211533)
 - 阮一峰 [React Hooks 入门教程](http://www.ruanyifeng.com/blog/2019/09/react-hooks.html)
+- [Hooks 该怎么用](https://github.com/KieSun/Dream/issues/15)
 
 ## Hooks
 
@@ -74,6 +75,33 @@ export const Count = () => {
 useEffect(() => {
   // Async Action
 }, [dependencies]);
+```
+
+### useEffect 快速上手
+
+- 每一次渲染后都执行的副作用：传入回调函数，不传依赖数组。调用形式如下所示：
+
+```
+useEffect(callBack)
+```
+
+- 仅在挂载阶段执行一次的副作用：传入回调函数，且这个函数的返回值不是一个函数，同时传入一个空数组。调用形式如下所示：
+
+```
+useEffect(()=>{
+  // 这里是业务逻辑 
+}, [])
+```
+
+- 仅在挂载阶段和卸载阶段执行的副作用：传入回调函数，且这个函数的返回值是一个函数，同时传入一个空数组。假如回调函数本身记为 A， 返回的函数记为 B，那么将在挂载阶段执行 A，卸载阶段执行 B。调用形式如下所示：
+
+```
+useEffect(()=>{
+  // 这里是 A 的业务逻辑
+  // 返回一个函数记为 B
+  return ()=>{
+  }
+}, [])
 ```
 
 ### useEffect 是如何起作用的
@@ -347,9 +375,19 @@ const Person = ({ personId }) => {
 };
 ```
 
+## useRef
+
+useRef 在 react hook 中的作用, 正如官网说的, 它像一个变量, 类似于 this , 它就像一个盒子, 你可以存放任何东西. createRef 每次渲染都会返回一个新的引用，而 useRef 每次都会返回相同的引用。
+
+useRef 不仅仅是用来管理 DOM ref 的，它还相当于 this , 可以存放任何变量.
+
+当 useRef 的内容发生变化时,它不会通知您。更改.current属性不会导致重新呈现。因为他一直是一个引用 .
+
 ## useCallback 与 useMemo
 
 一个是「缓存函数」， 一个是缓存「函数的返回值」,使用较少，甚至有的时候会用错。
+
+他们的唯一区别就是：useCallback是根据依赖(deps)缓存第一个入参的(callback)。useMemo是根据依赖(deps)缓存第一个入参(callback)执行后的值。
 
 - 在组件内部，那些会成为其他 useEffect 依赖项的方法，建议用 useCallback 包裹，或者直接编写在引用它的 useEffect 中。
 - 己所不欲勿施于人，如果你的 function 会作为 props 传递给子组件，请一定要使用 useCallback 包裹，对于子组件来说，如果每次 render 都会导致你传递的函数发生变化，可能会对它造成非常大的困扰。同时也不利于 react 做渲染优化。

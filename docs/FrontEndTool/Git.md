@@ -46,6 +46,53 @@ git branch -d books
 git push origin -d books
 ```
 
+### 创建项目
+
+你有一个空的存储库 To get started you will need to run these commands in your terminal.
+
+第一次使用 Git？ 学习基本的 Git 命令
+
+第一次配置 Git
+
+```bash
+git config --global user.name ""
+git config --global user.email ""
+```
+
+使用您的存储库
+
+我只想克隆这个存储库
+
+如果要简单地克隆此空存储库，请在终端中运行此命令。
+
+```bash
+git clone ssh://git@code.xxxxxx.git
+```
+
+我的代码已经准备好推送
+
+如果你代码已经准备好推送到仓库，请在终端中执行该命令
+
+```bash
+cd existing-project
+git init
+git add --all
+git commit -m "Initial Commit"
+git remote add origin ssh://git@code.xxxxxx.git
+git push -u origin master
+```
+
+我的代码已经由 Git 跟踪
+
+如果你的代码已经由 Git 跟踪，然后设置这个仓库作为你的“origin”推送。
+
+```bash
+cd existing-project
+git remote set-url origin ssh://git@code.xxxxxx.git
+git push -u origin --all
+git push origin --tags
+```
+
 ### 提交格式
 
 ```text
