@@ -19,10 +19,10 @@ module.exports = {
         background: 'rgba(33, 37, 48, 0.9)',
       }
     }],
-    ['copyright', {
-      noCopy: true, // 选中的文字将无法被复制
-      minLength: 20, // 如果长度超过 100 个字符
-    }],
+    // ['copyright', {
+    //   noCopy: true, // 选中的文字将无法被复制
+    //   minLength: 20, // 如果长度超过 100 个字符
+    // }],
     ['vuepress-plugin-code-copy', {
       align: "bottom",
       color: "#3963bc",
