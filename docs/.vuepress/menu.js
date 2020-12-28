@@ -67,6 +67,7 @@ const getSidebar = () => {
           'react-router',
           'redux',
           'umijs',
+          'package',
           '开发中遇到的问题',
         ],
       },
@@ -98,7 +99,6 @@ const getSidebar = () => {
           'Webpack/webpack-chain'
         ],
       },
-      'package',
       'ESLint&Prettier',
       '脚手架工具',
       'npmScript',
