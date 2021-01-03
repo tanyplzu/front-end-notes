@@ -12,7 +12,10 @@ const getNav = () => {
         { text: 'AngularJS', link: '/AngularJS/Scope和Digest' },
       ],
     },
-    { text: '前端工具', link: '/FrontEndTool/Webpack/Webpack的基本工作流程.md' },
+    {
+      text: '前端工具',
+      link: '/FrontEndTool/Webpack/Webpack的基本工作流程.md',
+    },
     { text: 'Java', link: '/Java/Java 语法/java' },
     { text: 'Reading', link: '/Reading/浏览器工作原理与实践/浏览器中的页面' },
     { text: 'Notes', link: '/notes/docs4/vuepress' },
@@ -36,7 +39,13 @@ const getSidebar = () => {
         title: 'Vue基础', // 必要的
         collapsable: false, // 可选的, 默认值是 true,
         sidebarDepth: 1, // 可选的, 默认值是 1
-        children: [['./', 'Vue相关'], 'Vue知识点', 'Vue路由', 'Vuex', 'nextTick'],
+        children: [
+          ['./', 'Vue相关'],
+          'Vue知识点',
+          'Vue路由',
+          'Vuex',
+          'nextTick',
+        ],
       },
       {
         title: 'Vue进阶', // 必要的
@@ -67,15 +76,13 @@ const getSidebar = () => {
           'react-router',
           'redux',
           'umijs',
-          'package',
-          '开发中遇到的问题',
         ],
       },
       {
         title: '项目构建',
         collapsable: false,
         sidebarDepth: 1,
-        children: ['构建react项目'],
+        children: ['构建react项目', 'package', 'tsconfig', '开发中遇到的问题'],
       },
       {
         title: 'reactNative', // 必要的
@@ -96,14 +103,14 @@ const getSidebar = () => {
           'Webpack/Webpack性能优化',
           'Webpack/env',
           'Webpack/热更新',
-          'Webpack/webpack-chain'
+          'Webpack/webpack-chain',
         ],
       },
       'ESLint&Prettier',
       '脚手架工具',
       'npmScript',
       'Git',
-      '组件库'
+      '组件库',
     ],
     '/Java/': [
       {

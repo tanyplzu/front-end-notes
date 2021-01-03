@@ -8,6 +8,7 @@ module.exports = {
   description: '七月有风技术空间',
   dest: 'dist',
   serviceWorker: false,
+  // theme: 'antdocs',
   head: [
     ['link', { rel: 'icon', href: `/logo.png` }],
     ['link', { rel: 'manifest', href: '/manifest.json' }],

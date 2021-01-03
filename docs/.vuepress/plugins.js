@@ -23,11 +23,11 @@ module.exports = {
     //   noCopy: true, // 选中的文字将无法被复制
     //   minLength: 20, // 如果长度超过 100 个字符
     // }],
-    ['vuepress-plugin-code-copy', {
-      align: "bottom",
-      color: "#3963bc",
-      successText: "复制成功~"
-    }],
+    // ['vuepress-plugin-code-copy', {
+    //   align: "bottom",
+    //   color: "#3963bc",
+    //   successText: "复制成功~"
+    // }],
     ['vuepress-plugin-container']
   ]
 };
