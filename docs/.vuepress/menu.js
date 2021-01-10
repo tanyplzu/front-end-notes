@@ -164,6 +164,13 @@ const getSidebar = () => {
         ],
       },
       {
+        title: '微前端',
+        collapsable: false,
+        children: [
+          'docs1/micro-front',
+        ],
+      },
+      {
         title: '文档(一)：',
         collapsable: false,
         children: [

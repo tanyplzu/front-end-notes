@@ -218,7 +218,13 @@ husky 可以防止使用 Git hooks 的一些不好的 commit 或者 push。
 完整的 node.js 命令行解决方案，灵感来自 Ruby 的 commander。
 [Commander.js](https://github.com/tj/commander.js/blob/HEAD/Readme_zh-CN.md)
 
+### camelcase
+
+### immer
+
 ## package.json
+
+### umijs package.json
 
 ```json
 {
@@ -345,4 +351,90 @@ husky 可以防止使用 Git hooks 的一些不好的 commit 或者 push。
   ],
   "__npminstall_done": false
 }
+```
+
+### ts package.json
+
+```json
+"dependencies": {
+  "@babel/core": "7.9.0",
+  "@svgr/webpack": "4.3.3",
+  "@testing-library/jest-dom": "^4.2.4",
+  "@testing-library/react": "^9.3.2",
+  "@testing-library/user-event": "^7.1.2",
+  "@types/fastclick": "^1.0.29",
+  "@types/jest": "^26.0.7",
+  "@types/node": "^14.0.27",
+  "@types/react": "^16.9.43",
+  "@types/react-dom": "^16.9.8",
+  "@types/react-lazyload": "^2.6.0",
+  "@types/redux-immutable": "^4.0.1",
+  "@types/redux-thunk": "^2.1.0",
+  "@types/styled-components": "^5.1.1",
+  "@typescript-eslint/eslint-plugin": "^2.10.0",
+  "@typescript-eslint/parser": "^2.10.0",
+  "babel-eslint": "10.1.0",
+  "babel-jest": "^24.9.0",
+  "babel-loader": "8.1.0",
+  "babel-plugin-named-asset-import": "^0.3.6",
+  "babel-preset-react-app": "^9.1.2",
+  "better-scroll": "^2.0.0-beta.4",
+  "camelcase": "^5.3.1",
+  "case-sensitive-paths-webpack-plugin": "2.3.0",
+  "css-loader": "3.4.2",
+  "dotenv": "8.2.0",
+  "dotenv-expand": "5.1.0",
+  "eslint": "^6.6.0",
+  "eslint-config-react-app": "^5.2.1",
+  "eslint-loader": "3.0.3",
+  "eslint-plugin-flowtype": "4.6.0",
+  "eslint-plugin-import": "2.20.1",
+  "eslint-plugin-jsx-a11y": "6.2.3",
+  "eslint-plugin-react": "7.19.0",
+  "eslint-plugin-react-hooks": "^1.6.1",
+  "fastclick": "^1.0.6",
+  "file-loader": "4.3.0",
+  "fs-extra": "^8.1.0",
+  "html-webpack-plugin": "4.0.0-beta.11",
+  "identity-obj-proxy": "3.0.0",
+  "immer": "^7.0.7",
+  "jest": "24.9.0",
+  "jest-environment-jsdom-fourteen": "1.0.1",
+  "jest-resolve": "24.9.0",
+  "jest-watch-typeahead": "0.4.2",
+  "lodash": "^4.17.19",
+  "mini-css-extract-plugin": "0.9.0",
+  "optimize-css-assets-webpack-plugin": "5.0.3",
+  "pnp-webpack-plugin": "1.6.4",
+  "postcss-flexbugs-fixes": "4.1.0",
+  "postcss-loader": "3.0.0",
+  "postcss-normalize": "8.0.1",
+  "postcss-preset-env": "6.7.0",
+  "postcss-safe-parser": "4.0.1",
+  "react": "^16.13.1",
+  "react-app-polyfill": "^1.0.6",
+  "react-dev-utils": "^10.2.1",
+  "react-dom": "^16.13.1",
+  "react-fastclick": "^3.0.2",
+  "react-lazyload": "^3.0.0",
+  "react-redux": "^7.2.1",
+  "react-router-config": "^5.1.1",
+  "redux-immutable": "^4.0.0",
+  "redux-thunk": "^2.3.0",
+  "resolve": "1.15.0",
+  "resolve-url-loader": "3.1.1",
+  "sass-loader": "8.0.2",
+  "semver": "6.3.0",
+  "style-loader": "0.23.1",
+  "styled-components": "^5.1.1",
+  "swiper": "^4.5.1",
+  "terser-webpack-plugin": "2.3.5",
+  "ts-pnp": "1.1.6",
+  "typescript": "^3.9.7",
+  "url-loader": "2.3.0",
+  "webpack": "4.42.0",
+  "webpack-dev-server": "3.10.3",
+  "webpack-manifest-plugin": "2.2.0",
+  "workbox-webpack-plugin": "4.3.1"
+},
 ```
