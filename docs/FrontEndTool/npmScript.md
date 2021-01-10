@@ -15,7 +15,6 @@ yarn config get registry
 yarn config set registry https://registry.npm.taobao.org/
 yarn config set registry https://registry.yarnpkg.com
 ```
-
 ## npm init
 
 npm init 的过程
@@ -49,6 +48,13 @@ package.json
   "author": "",
   "license": "MIT"
 }
+```
+
+### npm script 注释
+
+```shell
+"//":"注释"
+"# 注释"
 ```
 
 ### 开源协议xs

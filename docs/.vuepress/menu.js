@@ -91,7 +91,7 @@ const getSidebar = () => {
         children: ['reactNative'],
       },
     ],
-    '/NodeJS/': ['Node基础', 'Koa', 'Nest.js入门'],
+    '/NodeJS/': ['Node基础','Node的工具集', 'Koa', 'Nest.js入门'],
     '/FrontEndTool/': [
       {
         title: 'Webpack',
