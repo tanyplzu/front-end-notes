@@ -74,6 +74,20 @@ package.json
 - Webpack 在 Web 浏览器环境配置下，优先选择：browser > module > main，
 - 在 Node.js 环境下 module > main。
 
+### homepage
+
+```js
+"homepage": "https://github.com/owner/project#readme"
+```
+
+### bugs
+
+```js
+{ 
+  "url" : "https://github.com/owner/project/issues",
+  "email" : "project@hostname.com"
+}
+```
 ### license
 
 - [五种开源协议(GPL,LGPL,BSD,MIT,Apache)](https://www.oschina.net/question/54100_9455)
@@ -86,6 +100,16 @@ MIT 协议可能是几大开源协议中最宽松的一个，核心条款是：�
 
 需要上传到 npm 的文件，没有设置默认采用.npmignore or .gitignore.中的配置；
 
+### bin
+
+### man
+
+### repository
+
+### scripts
+
+### config
+
 ### peerDependencies
 
 ```json
@@ -93,6 +117,14 @@ MIT 协议可能是几大开源协议中最宽松的一个，核心条款是：�
   "react": "^16.8.0"
 }
 ```
+
+### bundledDependencies
+
+### optionalDependencies
+
+### engines
+
+
 
 ## 模块化相关
 
