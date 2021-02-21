@@ -185,3 +185,11 @@ output: {
   }
 },
 ```
+
+跟新到最新版本
+
+```sh
+yarn upgrade-interactive  --latest
+npm i --save vue@latest
+yarn add vue@latest
+```
