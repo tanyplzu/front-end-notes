@@ -12,13 +12,20 @@ sidebarDepth: 1
 // 布尔
 const isCheck: boolean = false
 // 数字
-const year: number = 2077
+const year: number = 2077 // 可以存放 NaN 和 Infinity
 // 字符串
 const name: string = 'Cyberpunk'
 // 数组
 const list: number[] = [1, 2, 3]
 const list: Array<number> = [1, 2, 3]
 ```
+
+- boolean number string 可以为空，可以是null或undefined; 需要开启配置项
+
+### Object 
+
+- 泛指所有的非原始类型，数组，函数，对象都可以
+- 可以用对象去显示，不过一般是使用interface去限制
 
 ### Tuple
 
