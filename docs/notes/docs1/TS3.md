@@ -58,3 +58,7 @@ bear.honey;
 ### 到底应该用 type 还是 interface ？
 
 - 能用 interface 的地方就用 interface，否则用 type。如果我们是定义一个 object，那么最好是使用 interface 去做类型声明，什么时候用 type 呢，当定义一个 function 的时候，用 type 会更好一些
+
+### 资料
+
+[写了这么多年代码，你真的了解SOLID吗？](https://zhuanlan.zhihu.com/p/44344256)

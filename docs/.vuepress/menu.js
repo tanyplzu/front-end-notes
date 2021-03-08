@@ -19,6 +19,7 @@ const getNav = () => {
     { text: 'Java', link: '/Java/Java 语法/java' },
     { text: 'Reading', link: '/Reading/浏览器工作原理与实践/浏览器中的页面' },
     { text: 'Notes', link: '/notes/docs4/vuepress' },
+    { text: 'DumiApp', link: 'http://tanyplzu.gitee.io/dumi-app/' },
   ];
 };
 const getSidebar = () => {

@@ -17,10 +17,10 @@ Expires 是 HTTP/1.0 的标准，现在更倾向于用 HTTP/1.1 中定义的 Cac
 #### Cache-Control
 
 1. max-age 单位是 s，标准中规定 max-age 值最大不能超过一年 31536000
-2. s-maxage 同 max-age，覆盖 max-age、Expires，但仅适用于共享缓存，只对 public 起作用，在私有缓存中被忽略。
+2. s-maxage 同 max-age，覆盖 max-age、Expires，但仅适用于共享缓存，只对 public(如 cdn) 起作用，在私有缓存中被忽略。优先级高于 max-age。
 3. public 表明响应可以被任何对象（发送请求的客户端、代理服务器等等）缓存。
 4. private 表明响应只能被单个用户（可能是操作系统用户、浏览器用户）缓存，是非共享的，不能被代理服务器缓存。
-5. no-cache 强制所有缓存了该响应的用户，在使用已缓存的数据前，发送带验证器的请求到服务器。不是字面意思上的不缓存。
+5. no-cache 强制所有缓存了该响应的用户，在使用已缓存的数据前，发送请求到服务器验证。不是字面意思上的不缓存。
 6. no-store 禁止缓存，每次请求都要向服务器重新获取数据。
 
 ### 协商缓存
@@ -82,63 +82,63 @@ Last-modified: 服务器端资源的最后修改时间，响应头部会带上�
 实现一个简易版 Promise
 
 ```js
-;(function() {
-  const PENDING = 'pending'
-  const RESOLVED = 'resolved'
-  const REJECTED = 'rejected'
+(function() {
+  const PENDING = 'pending';
+  const RESOLVED = 'resolved';
+  const REJECTED = 'rejected';
 
   function MyPromise(fn) {
-    const that = this
-    that.state = PENDING
-    that.value = null
-    that.resolvedCallbacks = []
-    that.rejectedCallbacks = []
+    const that = this;
+    that.state = PENDING;
+    that.value = null;
+    that.resolvedCallbacks = [];
+    that.rejectedCallbacks = [];
 
     function resolve(value) {
       if (that.state === PENDING) {
-        that.state = RESOLVED
-        that.value = value
-        that.resolvedCallbacks.map(cb => cb(that.value))
+        that.state = RESOLVED;
+        that.value = value;
+        that.resolvedCallbacks.map((cb) => cb(that.value));
       }
     }
     function reject(value) {
       if (that.state === PENDING) {
-        that.state = REJECTED
-        that.value = value
-        that.rejectedCallbacks.map(cb => cb(that.value))
+        that.state = REJECTED;
+        that.value = value;
+        that.rejectedCallbacks.map((cb) => cb(that.value));
       }
     }
     try {
-      fn(resolve, reject)
+      fn(resolve, reject);
     } catch (e) {
-      reject(e)
+      reject(e);
     }
   }
 
   MyPromise.prototype.then = function(onFulfilled, onRejected) {
-    const that = this
-    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : v => v
+    const that = this;
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (v) => v;
     onRejected =
       typeof onRejected === 'function'
         ? onRejected
-        : r => {
-            throw r
-          }
+        : (r) => {
+            throw r;
+          };
     if (that.state === PENDING) {
-      that.resolvedCallbacks.push(onFulfilled)
-      that.rejectedCallbacks.push(onRejected)
+      that.resolvedCallbacks.push(onFulfilled);
+      that.rejectedCallbacks.push(onRejected);
     }
     // 下面两个if是为了实现透传
     if (that.state === RESOLVED) {
-      onFulfilled(that.value)
+      onFulfilled(that.value);
     }
     if (that.state === REJECTED) {
-      onRejected(that.value)
+      onRejected(that.value);
     }
-  }
+  };
 
-  window.Promise = MyPromise
-})()
+  window.Promise = MyPromise;
+})();
 ```
 
 透传的例子：
@@ -147,7 +147,7 @@ Last-modified: 服务器端资源的最后修改时间，响应头部会带上�
 // 只是作为一个透传的例子
 Promise.resolve(4)
   .then()
-  .then(value => console.log(value))
+  .then((value) => console.log(value));
 ```
 
 ## 手写 call、apply 及 bind 函数
@@ -155,15 +155,15 @@ Promise.resolve(4)
 ```js
 Function.prototype.myCall = function(context) {
   if (typeof this !== 'function') {
-    throw new TypeError('Error')
+    throw new TypeError('Error');
   }
-  context = context || window
-  context.fn = this
-  const args = [...arguments].slice(1)
-  const result = context.fn(...args)
-  delete context.fn
-  return result
-}
+  context = context || window;
+  context.fn = this;
+  const args = [...arguments].slice(1);
+  const result = context.fn(...args);
+  delete context.fn;
+  return result;
+};
 ```
 
 ::: details 以下是对实现的分析：
@@ -178,19 +178,19 @@ Function.prototype.myCall = function(context) {
 ```js
 Function.prototype.myBind = function(context) {
   if (typeof this !== 'function') {
-    throw new TypeError('Error')
+    throw new TypeError('Error');
   }
-  const _this = this
-  const args = [...arguments].slice(1)
+  const _this = this;
+  const args = [...arguments].slice(1);
   // 返回一个函数
   return function F() {
     // 因为返回了一个函数，我们可以 new F()，所以需要判断
     if (this instanceof F) {
-      return new _this(...args, ...arguments)
+      return new _this(...args, ...arguments);
     }
-    return _this.apply(context, args.concat(...arguments))
-  }
-}
+    return _this.apply(context, args.concat(...arguments));
+  };
+};
 ```
 
 ::: details 以下是对实现的分析：
@@ -241,40 +241,40 @@ Function.prototype.myBind = function(context) {
 - 防抖
 
 ```js
-let input1 = document.getElementById('inputId')
-let timeoutId = null
+let input1 = document.getElementById('inputId');
+let timeoutId = null;
 input1.addEventListener('keyup', function() {
   if (timeoutId) {
-    clearTimeout(timeoutId)
+    clearTimeout(timeoutId);
   }
   timeoutId = setTimeout(() => {
     // 执行操作
-    timeoutId = null
-  }, 500)
-})
+    timeoutId = null;
+  }, 500);
+});
 ```
 
 - 节流
 
 ```js
 function throttle(fn, deley = 100) {
-  let timeoutId = null
+  let timeoutId = null;
   return function() {
     if (timeoutId) {
-      return
+      return;
     }
     timeoutId = setTimeout(() => {
-      fn.apply(this, arguments)
-      timeoutId = null
-    }, deley)
-  }
+      fn.apply(this, arguments);
+      timeoutId = null;
+    }, deley);
+  };
 }
 dev.addEventListener(
   'drag',
   throttle(function() {
     // 执行事件
   })
-)
+);
 ```
 
 ## instanceof
