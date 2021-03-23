@@ -73,6 +73,7 @@ const getSidebar = () => {
           'react基础',
           'react数据流',
           'hooks',
+          'hooks进阶',
           'react高级特性',
           'react-router',
           'redux',
