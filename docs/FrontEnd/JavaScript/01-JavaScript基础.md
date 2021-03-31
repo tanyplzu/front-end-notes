@@ -619,6 +619,7 @@ class Bar {
 let bar = new Bar();
 console.log(bar.toString()); // [Object Bar]
 bar[Symbol.toStringTag]; // bar
+Object.prototype.toString.call(bar) // "[object Bar]"
 ```
 
 ```js
