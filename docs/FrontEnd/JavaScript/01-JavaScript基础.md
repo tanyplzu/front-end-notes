@@ -611,8 +611,19 @@ Symbol.for(true) === Symbol.for('true'); // true 字符串的对应关系
 - 自定义对象的 toString 标签
 
 ```js
+class Bar {
+  constructor() {
+    this[Symbol.toStringTag] = 'Bar';
+  }
+}
+let bar = new Bar();
+console.log(bar.toString()); // [Object Bar]
+bar[Symbol.toStringTag]; // bar
+```
+
+```js
 const obj = {
-  [Symbol.toStringTan]: 'XObject',
+  [Symbol.toStringTag]: 'XObject',
 };
 
 const __webpack_require__ = {};
