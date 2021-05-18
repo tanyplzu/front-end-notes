@@ -981,6 +981,7 @@ xhr.onerror = function(e) {
 xhr.open('GET', '/endpoint', true)
 xhr.send(null)
 ```
+
 ### cookie 和 session 分别是什么
 
 - cookie 是服务器发送到用户浏览器并保存在本地的一小块数据，它会在浏览器发起请求时被携带并发送到服务器，它通常是告知服务端两个请求是否来自同一浏览器，保持用户的登录状态。

@@ -3,6 +3,7 @@ title: JavaScript 正则表达式
 tag: RegExp
 keywords: JavaScript,RegExp,test,exec
 date: 2019-04-25
+sidebarDepth: 1
 ---
 
 在 `JavaScript` 中，正则表达式 (Regular Expressions) 也是对象。这些模式被用于 `RegExp` 的 `exec` 和 `test` 方法，以及 `String` 的 `match`、`replace`、`search` 和 `split` 方法。
@@ -216,51 +217,6 @@ console.log( string.match(regex) );         // => ["goodbye"]
 ```
 
 也就是说，分支结构也是惰性的，即当前面的匹配上了，后面的就不再尝试了。
-
-### 括号()
-#### 1. 分组和分支结构
-
-##### 1.1 分组
-
-```js
-var regex = /(ab)+/g;
-var string = "ababa abbb ababab";
-console.log( string.match(regex) ); // ["abab", "ab", "ababab"]
-```
-#### 1.2 分支结构
-
-上面的多选分支`(p1|p2|p3)`，提供了子表达式的所有可能。
-
-```js
-var regex = /^I love (JavaScript|Regular Expression)$/;
-console.log( regex.test("I love JavaScript") ); // true
-console.log( regex.test("I love Regular Expression") ); // true
-```
-如果去掉正则中的括号，即/^I love JavaScript|Regular Expression$/，匹配字符串是"I love JavaScript"和"Regular Expression"，当然这不是我们想要的。
-
-#### 2. 引用分组
-
-以日期为例,假设格式为：`yyyy-mm-dd`
-```js
-var regex = /\d{4}-\d{2}-\d{2}/;
-// 修改后
-var regex = /(\d{4})-(\d{2})-(\d{2})/;
-```
-
-##### 2.1 提取数据
-
-```js
-var regex = /\d{4}-\d{2}-\d{2}/;
-var regex2 = /(\d{4})-(\d{2})-(\d{2})/;
-var string = "2017-06-12";
-console.log( string.match(regex1) ); 
-// ["2017-06-12", index: 0, input: "2017-06-12", groups: undefined]
-
-console.log( string.match(regex2) ); 
-// ["2017-06-12", "2017", "06", "12", index: 0, input: "2017-06-12"]
-```
-
--  https://zhuanlan.zhihu.com/p/27355118
 
 ### 案例分析
 
