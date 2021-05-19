@@ -131,7 +131,7 @@ console.log( RegExp.$3 ); // 23
 
 按从左到右括号的位置决定
 
-### 4. 非捕获分组
+## 4. 非捕获分组
 
 之前文中出现的分组，都会捕获它们匹配到的数据，以便后续引用，因此也称他们是捕获型分组。
 
@@ -143,7 +143,7 @@ var string = "ababa abbb ababab";
 console.log( string.match(regex) ); // ["abab", "ab", "ababab"]
 ```
 
-### 5. 示例
+## 5. 示例
 
 要求匹配：`<title>regular expression</title>`、`<p>laoyao bye bye</p>`
 
