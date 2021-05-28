@@ -746,20 +746,54 @@ Reflect.deleteProperty(myObj, 'foo');
 
 ### async 和 await
 
+Async/await 是以更舒适的方式使用 promise 的一种特殊语法。
+
+#### Async function
+
+```js
+async function foo() {
+  return 1;
+}
+// 等价于
+function foo() {
+  return Promise.resolve(1);
+}
+```
+
+- async 函数的函数体可以被看作是由 0 个或者多个 await 表达式分割开来的。
+- 从第一行代码直到（并包括）第一个 await 表达式（如果有的话）都是同步运行的。这样的话，一个不含 await 表达式的 async 函数是会同步运行的。然而，如果函数体内有一个 await 表达式，async 函数就一定会异步执行。
+
+```js
+async function foo() {
+  await 1;
+}
+// 等价于
+function foo() {
+  return Promise.resolve(1).then(() => undefined);
+}
+```
+
+在 await 表达式之后的代码可以被认为是存在在链式调用的 then 回调中，多个 await 表达式都将加入链式调用的 then 回调中，返回值将作为最后一个 then 回调的返回值。如下面例子的 async3。
+
 ```js
 async function async1() {
   console.log('async1 start');
   await async2();
-  console.log('asnyc1 end');
+  await async3();
+  console.log('asnyc1 end'); // 其实是下一个promise
 }
 async function async2() {
   console.log('async2');
+}
+async function async3() {
+  console.log('async3');
 }
 console.log('script start');
 setTimeout(() => {
   console.log('setTimeOut');
 }, 0);
 async1();
+Promise.resolve(console.log('Promise.resolve'));
 new Promise(function(reslove) {
   console.log('promise1');
   reslove();
@@ -770,12 +804,18 @@ console.log('script end');
 // script start
 // async1 start
 // async2
+// Promise.resolve
 // promise1
 // script end
-// asnyc1 end
+// async3
 // promise2
+// asnyc1 end
 // setTimeOut
 ```
+
+#### await
+
+await 操作符用于等待一个 Promise 对象。它只能在异步函数 async function 中使用。
 
 ## JavaScript 的执行机制
 
