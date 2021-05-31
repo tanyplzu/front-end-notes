@@ -13,7 +13,7 @@ const getNav = () => {
       ],
     },
     {
-      text: '前端工具',
+      text: '前端工程化',
       link: '/FrontEndTool/Webpack/Webpack的基本工作流程.md',
     },
     { text: 'Java', link: '/Java/Java 语法/java' },
@@ -25,15 +25,27 @@ const getNav = () => {
 const getSidebar = () => {
   return {
     '/FrontEnd/': [
-      'JavaScript/01-JavaScript基础',
-      'JavaScript/02-JavaScript进阶',
-      'JavaScript/V8',
-      'JavaScript/TS',
+      {
+        title: 'JavaScript基础',
+        collapsable: true,
+        children: [
+          'JavaScript/01-JavaScript基础',
+          'JavaScript/02-JavaScript进阶',
+          'JavaScript/V8',
+        ],
+      },
       'Html&Css',
       'NetworkAndSecurity/Network',
       'NetworkAndSecurity/Security',
       'DesignPattern',
-      'DSA/Algorithms',
+      {
+        title: '数据结构与算法',
+        collapsable: true,
+        children: [
+          'DSA/Algorithms',
+          'DSA/手写题',
+        ],
+      },
     ],
     '/Vue/': [
     {
