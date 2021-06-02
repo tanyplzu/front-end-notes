@@ -403,8 +403,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 原生中没有 ready 这 api，jQuery 中有 ready
 
-## BOM
-
 ### 浏览器或元素的一些距离属性
 
 - document.documentElement.clientHeight：当前窗口内容区 + 内边距的高度
