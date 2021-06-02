@@ -43,7 +43,8 @@ const getSidebar = () => {
         collapsable: true,
         children: [
           'DSA/Algorithms',
-          'DSA/手写题',
+          'DSA/数据结构与算法2',
+          'DSA/数据结构与算法3',
         ],
       },
     ],

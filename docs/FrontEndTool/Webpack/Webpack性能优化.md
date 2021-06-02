@@ -601,6 +601,9 @@ externals: {
 ### babel-preset-env
 
 ## 参考资料
+[An in-depth guide to performance optimization with webpack](https://blog.logrocket.com/guide-performance-optimization-webpack/)
+
+[How to React with Webpack 5 - Setup Tutorial](https://www.robinwieruch.de/minimal-react-webpack-babel-setup#react-with-webpack)
 
 https://kaiwu.lagou.com/course/courseInfo.htm?courseId=88#/detail/pc?id=2269
 
