@@ -1,30 +1,31 @@
 const getNav = () => {
   return [
     { text: '首页', link: '/Introduction' },
-    { text: '前端知识点', link: '/FrontEnd/JavaScript/01-JavaScript基础' },
+    { text: '前端知识点', link: '/FrontEnd/' },
     {
       text: '前端框架',
       ariaLabel: 'Language Menu',
       items: [
-        { text: 'React', link: '/React/index' },
-        { text: 'Vue', link: '/Vue/index' },
-        { text: 'NodeJS', link: '/NodeJS/Node基础' },
-        { text: 'AngularJS', link: '/AngularJS/Scope和Digest' },
+        { text: 'React', link: '/React/' },
+        { text: 'Vue', link: '/Vue/' },
+        { text: 'NodeJS', link: '/NodeJS/' },
+        { text: 'AngularJS', link: '/AngularJS/' },
       ],
     },
     {
       text: '前端工程化',
-      link: '/FrontEndTool/Webpack/Webpack的基本工作流程.md',
+      link: '/FrontEndTool/',
     },
-    { text: 'Java', link: '/Java/Java 语法/java' },
-    { text: 'Reading', link: '/Reading/浏览器工作原理与实践/浏览器中的页面' },
-    { text: 'Notes', link: '/notes/docs4/vuepress' },
+    { text: 'Java', link: '/Java/' },
+    { text: 'Reading', link: '/Reading/' },
+    { text: 'Notes', link: '/notes/' },
     { text: 'DumiApp', link: 'http://tanyplzu.gitee.io/dumi-app/' },
   ];
 };
 const getSidebar = () => {
   return {
     '/FrontEnd/': [
+      '',
       {
         title: 'JavaScript基础',
         collapsable: true,
