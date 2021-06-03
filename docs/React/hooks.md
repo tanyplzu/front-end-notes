@@ -6,7 +6,6 @@
 
 - [英文文档](https://reactjs.org/docs/hooks-intro.html)
 - [中文文档](https://zh-hans.reactjs.org/docs/hooks-intro.html)
-- [useeffect 极客时间](https://time.geekbang.org/dailylesson/detail/100028442)
 - [useeffect](https://overreacted.io/zh-hans/a-complete-guide-to-useeffect/)
 - [React-Redux Hooks: useSelector and useDispatch](https://levelup.gitconnected.com/react-redux-hooks-useselector-and-usedispatch-f7d8c7f75cdd)
 - [写 React Hooks 前必读](https://zhuanlan.zhihu.com/p/113216415)
@@ -14,6 +13,12 @@
 - 衍良同学的 [《React Hooks 完全上手指南》](https://zhuanlan.zhihu.com/p/92211533)
 - 阮一峰 [React Hooks 入门教程](http://www.ruanyifeng.com/blog/2019/09/react-hooks.html)
 - [Hooks 该怎么用](https://github.com/KieSun/Dream/issues/15)
+
+ascoders 的笔记
+
+- [精读《怎么用 React Hooks 造轮子》](https://github.com/ascoders/weekly/blob/master/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/80.%E7%B2%BE%E8%AF%BB%E3%80%8A%E6%80%8E%E4%B9%88%E7%94%A8%20React%20Hooks%20%E9%80%A0%E8%BD%AE%E5%AD%90%E3%80%8B.md)
+- [精读《Function VS Class 组件》](https://github.com/ascoders/weekly/blob/master/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/95.%E7%B2%BE%E8%AF%BB%E3%80%8AFunction%20VS%20Class%20%E7%BB%84%E4%BB%B6%E3%80%8B.md)
+- [精读《useEffect 完全指南》](https://github.com/ascoders/weekly/blob/master/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/96.%E7%B2%BE%E8%AF%BB%E3%80%8AuseEffect%20%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%E3%80%8B.md)
 
 ## useState
 
@@ -317,10 +322,8 @@ function SearchResults() {
 
 如果我们结合 useMemo 和 useCallback 这两个 Hooks 一起看，会发现一个有趣的特性，那就是 useCallback 的功能其实是可以用 useMemo 来实现的。
 
-
-> 任何场景下，函数都用useCallback 包裹吗？那种轻量的函数是不是不需要？
+> 任何场景下，函数都用 useCallback 包裹吗？那种轻量的函数是不是不需要？
 > 确实不是，useCallback 可以减少不必要的渲染，主要体现在将回调函数作为属性传给某个组件。如果每次都不一样就会造成组件的重新渲染。但是如果你确定子组件多次渲染也没有太大问题，特别是原生的组件，比如 button，那么不用 useCallback 也问题不大。所以这和子组件的实现相关，和函数是否轻量无关。但是比较好的实践是都 useCallback。
-
 
 ## 函数组件的生命周期
 

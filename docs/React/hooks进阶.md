@@ -102,24 +102,6 @@ function useDebounceFn(fn, options) {
 }
 ```
 
-## useWindowSize
-
-```js
-const useWindowSize = () => {
-  const [size, setSize] = useState(getSize());
-  useEffect(() => {
-    const handler = () => {
-      setState(window.innerWidth);
-    };
-    window.addEventListener('resize', handler);
-    return () => {
-      window.removeEventListener('resize', handler);
-    };
-  }, []);
-  return size;
-};
-```
-
 ## useCounter
 
 ```js
@@ -152,4 +134,106 @@ function App() {
     </Counter.Provider>
   );
 }
+```
+
+## 获取上一个 props
+
+```js
+function Counter() {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
+  return (
+    <h1>
+      Now: {count}, before: {prevCount}
+    </h1>
+  );
+}
+
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+```
+
+通过 useEffect 在组件渲染完毕后再执行的特性，再利用 useRef 的可变特性，让 usePrevious 的返回值是 “上一次” Render 时的。
+
+## 修改页面 title
+
+```js
+function useDocumentTitle(title) {
+  useEffect(() => {
+    document.title = title;
+    return () => (document.title = '前端精读');
+  }, [title]);
+}
+```
+
+## useWindowSize
+
+```js
+function getSize() {
+  return {
+    innerHeight: window.innerHeight,
+    innerWidth: window.innerWidth,
+    outerHeight: window.outerHeight,
+    outerWidth: window.outerWidth,
+  };
+}
+const useWindowSize = () => {
+  const [size, setSize] = useState(getSize());
+  useEffect(() => {
+    const handler = () => {
+      setState(getSize());
+    };
+    window.addEventListener('resize', handler);
+    return () => {
+      window.removeEventListener('resize', handler);
+    };
+  }, []);
+  return size;
+};
+```
+
+## 模拟生命周期
+
+### componentDidMount
+
+```js
+useEffect(() => {
+  // 组件首次渲染时执行，等价于 class 组件中的componentDidMount
+  console.log('did mount');
+}, []);
+```
+
+### componentDidUpdate
+
+```js
+const mounting = useRef(true);
+useEffect(() => {
+  if (mounting.current) {
+    mounting.current = false;
+  } else {
+    fn();
+  }
+});
+
+useUpdate(() => {
+  // quite similar to `componentDidUpdate`
+});
+```
+
+### isMounted
+
+```js
+const [isMount, setIsMount] = useState(false);
+useEffect(() => {
+  if (!isMount) {
+    setIsMount(true);
+  }
+  return () => setIsMount(false);
+}, []);
+return isMount;
 ```
