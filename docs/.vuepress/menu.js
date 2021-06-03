@@ -7,7 +7,7 @@ const getNav = () => {
       ariaLabel: 'Language Menu',
       items: [
         { text: 'React', link: '/React/' },
-        { text: 'Vue', link: '/vue/' },
+        { text: 'Vue', link: '/Vue/' },
         { text: 'NodeJS', link: '/NodeJS/' },
         { text: 'AngularJS', link: '/AngularJS/' },
       ],
@@ -49,7 +49,7 @@ const getSidebar = () => {
         ],
       },
     ],
-    '/vue/': [
+    '/Vue/': [
     {
       title: 'Vue基础', // 必要的
       collapsable: false, // 可选的, 默认值是 true,
