@@ -52,6 +52,7 @@ git reset --soft HEAD^
 git log --oneline
 git reset --hard (想要回退的节点)
 git push -f 删除远程分支
+git reset --soft HEAD^ // 撤回commit，保留更改
 ```
 
 - `HEAD^`的意思是上一个版本，也可以写成`HEAD~1`。如果你进行了2次commit，想都撤回，可以使用`HEAD~2`
