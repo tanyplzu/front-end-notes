@@ -48,6 +48,60 @@ function useThrottle(fn, delay, dep = []) {
 }
 ```
 
+节流和防抖 ahooks 版
+
+```js
+//  useCreation 文件
+export default function useCreation(factory, deps) {
+  const { current } = useRef({
+    deps,
+    obj: undefined,
+    initialized: false,
+  });
+  if (current.initialized === false || !depsAreSame(current.deps, deps)) {
+    current.deps = deps;
+    current.obj = factory();
+    current.initialized = true;
+  }
+  return current.obj;
+}
+
+function depsAreSame(oldDeps, deps) {
+  if (oldDeps === deps) return true;
+  // eslint-disable-next-line no-restricted-syntax
+  for (const i in oldDeps) {
+    if (oldDeps[i] !== deps[i]) return false;
+  }
+  return true;
+}
+
+//  useDebounceFn 文件
+function useDebounceFn(fn, options) {
+  const fnRef = useRef(fn);
+  fnRef.current = fn;
+
+  const wait = options?.wait ?? 1000;
+
+  const debounced = useCreation(
+    () =>
+      debounce(
+        (...args) => {
+          return fnRef.current(...args);
+        },
+        wait,
+        options
+      ),
+    []
+  );
+
+  return {
+    run: debounced,
+    cancel: debounced.cancel,
+    flush: debounced.flush,
+  };
+}
+```
+
 ## useWindowSize
 
 ```js
@@ -99,5 +153,3 @@ function App() {
   );
 }
 ```
-
-
