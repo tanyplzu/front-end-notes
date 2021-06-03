@@ -40,6 +40,14 @@ const getSidebar = () => {
       'NetworkAndSecurity/Security',
       'DesignPattern',
       {
+        title: '函数式编程',
+        collapsable: true,
+        children: [
+          'Functional/curry',
+          'Functional/compose',
+        ],
+      },
+      {
         title: '数据结构与算法',
         collapsable: true,
         children: [

@@ -302,3 +302,13 @@ plugins: [
   })
 ]
 ```
+
+webpack： "fullhash" and "modulehash", "contenthash"
+
+## react-refresh-webpack-plugin
+
+An EXPERIMENTAL Webpack plugin to enable "Fast Refresh" (also previously known as Hot Reloading) for React components.
+
+```sh
+npm install -D react-refresh-webpack-plugin react-refresh
+```
