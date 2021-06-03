@@ -7,7 +7,7 @@ const getNav = () => {
       ariaLabel: 'Language Menu',
       items: [
         { text: 'React', link: '/React/' },
-        { text: 'Vue', link: '/vue/' },
+        { text: 'Vue', link: '/Vue/' },
         { text: 'NodeJS', link: '/NodeJS/' },
         { text: 'AngularJS', link: '/AngularJS/' },
       ],
@@ -40,6 +40,14 @@ const getSidebar = () => {
       'NetworkAndSecurity/Security',
       'DesignPattern',
       {
+        title: '函数式编程',
+        collapsable: true,
+        children: [
+          'Functional/curry',
+          'Functional/compose',
+        ],
+      },
+      {
         title: '数据结构与算法',
         collapsable: true,
         children: [
@@ -49,7 +57,7 @@ const getSidebar = () => {
         ],
       },
     ],
-    '/vue/': [
+    '/Vue/': [
     {
       title: 'Vue基础', // 必要的
       collapsable: false, // 可选的, 默认值是 true,

@@ -13,3 +13,4 @@
 - [React 实战：设计模式和最佳实践](https://juejin.im/book/5ba42844f265da0a8a6aa5e9/section)
 - [React 组合式开发实践](https://juejin.im/book/5b1e15f76fb9a01e516d14a0/section)
 - [React+webpack](https://time.geekbang.org/course/detail/100028901-121068)
+- [React技术揭秘](https://react.iamkasong.com/)
