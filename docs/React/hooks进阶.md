@@ -201,6 +201,80 @@ const useWindowSize = () => {
 };
 ```
 
+## 获取组件宽高
+
+```js
+function getSize(el) {
+  if (!el) {
+    return {};
+  }
+
+  return {
+    width: el.offsetWidth,
+    height: el.offsetHeight,
+  };
+}
+
+function useComponentSize(ref) {
+  let [ComponentSize, setComponentSize] = useState(getSize(ref.current));
+
+  function handleResize() {
+    if (ref && ref.current) {
+      setComponentSize(getSize(ref.current));
+    }
+  }
+
+  useLayoutEffect(() => {
+    handleResize();
+
+    let resizeObserver = new ResizeObserver(() => handleResize());
+    resizeObserver.observe(ref.current);
+
+    return () => {
+      resizeObserver.disconnect(ref.current);
+      resizeObserver = null;
+    };
+  }, []);
+
+  return ComponentSize;
+}
+
+function App() {
+  const ref = useRef(null);
+  const componentSize = useComponentSize(ref);
+  return (
+    <>
+      {componentSize.width}
+      <textArea ref={ref} />
+    </>
+  );
+}
+```
+
+ResizeObserver:是一个实验性的功能。
+
+## 拿到组件 onChange 抛出的值
+
+```js
+function App() {
+  function useInputValue(initialValue) {
+    let [value, setValue] = useState(initialValue);
+    let onChange = useCallback(function(event) {
+      setValue(event.currentTarget.value);
+      // react中的的事件
+    }, []);
+    return {
+      value,
+      onChange,
+    };
+  }
+
+  let name = useInputValue('Jamie');
+  // name = { value: 'Jamie', onChange: [Function] }
+  return <input {...name} />;
+}
+```
+
 ## 模拟生命周期
 
 ### componentDidMount
