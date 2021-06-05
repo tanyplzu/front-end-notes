@@ -115,7 +115,7 @@ const getSidebar = () => {
       sidebarDepth: 1, // 可选的, 默认值是 1
       children: ['reactNative'],
     }, ],
-    '/NodeJS/': ['', 'Node基础', 'Node的工具集', 'Koa', 'node-dev-server', 'Nest.js入门', ],
+    '/NodeJS/': ['', 'Node基础', 'Node的工具集', 'Koa', 'dev-server', 'Nest.js入门', ],
     '/FrontEndTool/': [
       {
         title: 'Webpack',
