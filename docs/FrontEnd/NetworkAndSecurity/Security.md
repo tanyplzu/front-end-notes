@@ -1,3 +1,7 @@
+---
+sidebarDepth: 1
+---
+
 # Web 安全
 
 [[toc]]
