@@ -1,3 +1,7 @@
+---
+sidebarDepth: 1
+---
+
 # 设计模式
 
 [[toc]]
@@ -109,7 +113,7 @@ SingleDog.getInstance = (function() {
 
 应用 Vuex
 
-## 实现一个全局唯一的模态框
+### 实现一个全局唯一的模态框
 
 ```html
 <!DOCTYPE html>
@@ -162,14 +166,7 @@ SingleDog.getInstance = (function() {
 </html>
 ```
 
-## 观察者模式和发布订阅模式的区别
-
-- 如果发布者直接触及到订阅者，就可以说明是观察者模式；
-- 如果发布者不直接触及到订阅者，而是由第三方来完成实际的通信操作，就叫做发布 - 订阅模式。
-- 简单来说，它们就是解耦的程度不同，vue 内的自定义事件的 Event Emitter，发布者完全不用感知到订阅者，事件的注册和触发都发生在事件总线上，实现了完全的解耦。
-- 而 Dep 和 Watcher 就是观察者模式，Dep 直接 add 以及 notify 触发 watcher 的更新。
-
-下面是一个观察者模式
+## 观察者模式
 
 ```js
 // 主题，接收状态变化，触发每个观察者
@@ -218,15 +215,18 @@ s.setState(2);
 s.setState(3);
 ```
 
+**观察者模式和发布订阅模式的区别**
+
+- 如果发布者直接触及到订阅者，就可以说明是观察者模式；
+- 如果发布者不直接触及到订阅者，而是由第三方来完成实际的通信操作，就叫做发布 - 订阅模式。
+- 简单来说，它们就是解耦的程度不同，vue 内的自定义事件的 Event Emitter，发布者完全不用感知到订阅者，事件的注册和触发都发生在事件总线上，实现了完全的解耦。
+- 而 Dep 和 Watcher 就是观察者模式，Dep 直接 add 以及 notify 触发 watcher 的更新。
+
 ## 策略模式
 
 > 需求：
 >
-> prePrice - 处理预热价
-> onSalePrice - 处理大促价
-> backPrice - 处理返场价
-> freshPrice - 处理尝鲜价
-> askPrice - 分发询价逻辑
+> prePrice - 处理预热价 onSalePrice - 处理大促价 backPrice - 处理返场价 freshPrice - 处理尝鲜价 askPrice - 分发询价逻辑
 
 ```js
 // 定义一个询价处理器对象
