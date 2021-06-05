@@ -1,16 +1,27 @@
-{$contentClass}
-  pre, pre[class*="language-"]
-    code
-      color #333
-      font-size 14px
+{$contentClass} {
+  pre, pre[class*='language-'] {
+    code {
+      color: #333;
+      font-size: 14px;
+    }
+  }
+}
 
-{$contentClass}
-  code
-    color #50596d
-    background-color #f0f4fb
+{$contentClass} {
+  code {
+    color: #50596d;
+    background-color: #f0f4fb;
     padding: 0.2rem 0.3rem;
+  }
+}
 
-div[class*='language-']
-  &::before
-    color #999
-    font-weight 500
+div[class*='language-'] {
+  &::before {
+    color: #999;
+    font-weight: 500;
+  }
+
+  .highlight-lines .highlighted {
+    background-color: #d3e8fd;
+  }
+}
