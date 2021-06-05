@@ -27,7 +27,9 @@ function useDebounce(fn, delay, dep = []) {
     }, delay);
   }, dep);
 }
+```
 
+```js
 function useThrottle(fn, delay, dep = []) {
   const { current } = useRef({ fn, timer: null });
   useEffect(
@@ -74,7 +76,9 @@ function depsAreSame(oldDeps, deps) {
   }
   return true;
 }
+```
 
+```js
 //  useDebounceFn 文件
 function useDebounceFn(fn, options) {
   const fnRef = useRef(fn);
