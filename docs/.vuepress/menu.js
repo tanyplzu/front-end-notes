@@ -30,8 +30,9 @@ const getSidebar = () => {
         title: 'JavaScript基础',
         collapsable: true,
         children: [
-          'JavaScript/01-JavaScript基础',
-          'JavaScript/02-JavaScript进阶',
+          'JavaScript/01-JS数据类型',
+          'JavaScript/02-JavaScript基础',
+          'JavaScript/03-JavaScript进阶',
           'JavaScript/V8',
         ],
       },
@@ -113,7 +114,7 @@ const getSidebar = () => {
       sidebarDepth: 1, // 可选的, 默认值是 1
       children: ['reactNative'],
     }, ],
-    '/NodeJS/': ['Node基础', 'Node的工具集', 'Koa', 'Nest.js入门'],
+    '/NodeJS/': ['', 'Node基础', 'Node的工具集', 'Koa', 'node-dev-server', 'Nest.js入门', ],
     '/FrontEndTool/': [
       {
         title: 'Webpack',
