@@ -148,7 +148,7 @@ function Child1() {
 console.log(new Child1(), new Child1().say());
 ```
 
-::: danger 缺点：
+::: warning 缺点：
 
 Parent1 原型链上的东西没有被继承，只实现了部分继承
 
@@ -171,7 +171,7 @@ console.log(s1.play, s2.play);
 s1.play.push(4);
 ```
 
-::: danger 缺点：
+::: warning 缺点：
 
 原型链较长。如果实例化多个对象，修改一个中的属性，另一个也会变化。
 
@@ -195,7 +195,7 @@ s3.play.push(4);
 console.log(s3.play, s4.play);
 ```
 
-::: danger 缺点：
+::: warning 缺点：
 
 原型链较长，Parent3 执行了两次。`Parent3.call(this)`、`new Parent3()`
 
