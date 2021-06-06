@@ -28,6 +28,24 @@ module.exports = {
     //   color: "#3963bc",
     //   successText: "复制成功~"
     // }],
-    ['vuepress-plugin-container']
+    ['vuepress-plugin-container'],
+    [
+      '@vuepress/last-updated',
+      {
+        transformer(timestamp) {
+          const date = new Date(timestamp);
+          const digits = [
+            date.getFullYear(),
+            date.getMonth() + 1,
+            date.getDate(),
+            date.getHours(),
+            date.getMinutes(),
+            date.getSeconds(),
+          ].map((num) => String(num).padStart(2, '0'));
+
+          return '{0}-{1}-{2} {3}:{4}:{5}'.replace(/{(\d)}/g, (_, num) => digits[num]);
+        }
+      }
+    ],
   ]
 };

@@ -25,7 +25,7 @@ const getNav = () => {
 const getSidebar = () => {
   return {
     '/FrontEnd/': [
-      '',
+      // '',
       {
         title: 'JavaScript基础',
         collapsable: true,
