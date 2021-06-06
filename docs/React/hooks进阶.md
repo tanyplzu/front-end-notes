@@ -201,57 +201,33 @@ const useWindowSize = () => {
 };
 ```
 
-## 获取组件宽高
-
 ```js
-function getSize(el) {
-  if (!el) {
-    return {};
-  }
+import { useState, useEffect } from 'react';
 
+// 获取横向，纵向滚动条位置
+const getPosition = () => {
   return {
-    width: el.offsetWidth,
-    height: el.offsetHeight,
+    x: document.body.scrollLeft,
+    y: document.body.scrollTop,
   };
-}
-
-function useComponentSize(ref) {
-  let [ComponentSize, setComponentSize] = useState(getSize(ref.current));
-
-  function handleResize() {
-    if (ref && ref.current) {
-      setComponentSize(getSize(ref.current));
-    }
-  }
-
-  useLayoutEffect(() => {
-    handleResize();
-
-    let resizeObserver = new ResizeObserver(() => handleResize());
-    resizeObserver.observe(ref.current);
-
+};
+const useScroll = () => {
+  // 定一个 position 这个 state 保存滚动条位置
+  const [position, setPosition] = useState(getPosition());
+  useEffect(() => {
+    const handler = () => {
+      setPosition(getPosition(document));
+    };
+    // 监听 scroll 事件，更新滚动条位置
+    document.addEventListener('scroll', handler);
     return () => {
-      resizeObserver.disconnect(ref.current);
-      resizeObserver = null;
+      // 组件销毁时，取消事件监听
+      document.removeEventListener('scroll', handler);
     };
   }, []);
-
-  return ComponentSize;
-}
-
-function App() {
-  const ref = useRef(null);
-  const componentSize = useComponentSize(ref);
-  return (
-    <>
-      {componentSize.width}
-      <textArea ref={ref} />
-    </>
-  );
-}
+  return position;
+};
 ```
-
-ResizeObserver:是一个实验性的功能。
 
 ## 拿到组件 onChange 抛出的值
 
@@ -272,6 +248,64 @@ function App() {
   let name = useInputValue('Jamie');
   // name = { value: 'Jamie', onChange: [Function] }
   return <input {...name} />;
+}
+```
+
+## useAsync
+
+```js
+import { useState } from 'react';
+
+const useAsync = (asyncFunction) => {
+  // 设置三个异步逻辑相关的 state
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  // 定义一个 callback 用于执行异步逻辑
+  const execute = useCallback(() => {
+    // 请求开始时，设置 loading 为 true，清除已有数据和 error 状态
+    setLoading(true);
+    setData(null);
+    setError(null);
+    return asyncFunction()
+      .then((response) => {
+        // 请求成功时，将数据写进 state，设置 loading 为 false
+        setData(response);
+        setLoading(false);
+      })
+      .catch((error) => {
+        // 请求失败时，设置 loading 为 false，并设置错误状态
+        setError(error);
+        setLoading(false);
+      });
+  }, [asyncFunction]);
+
+  return { execute, loading, data, error };
+};
+```
+
+使用
+
+```js
+import React from "react";
+import useAsync from './useAsync';
+
+export default function UserList() {
+  // 通过 useAsync 这个函数，只需要提供异步逻辑的实现
+  const {
+    execute: fetchUsers,
+    data: users,
+    loading,
+    error,
+  } = useAsync(async () => {
+    const res = await fetch("https://reqres.in/api/users/");
+    const json = await res.json();
+    return json.data;
+  });
+
+  return (
+    // 根据状态渲染 UI...
+  );
 }
 ```
 
@@ -315,3 +349,8 @@ useEffect(() => {
 }, []);
 return isMount;
 ```
+
+## 资料
+
+- [精读《怎么用 React Hooks 造轮子》](https://github.com/ascoders/weekly/blob/master/%E5%89%8D%E6%B2%BF%E6%8A%80%E6%9C%AF/80.%E7%B2%BE%E8%AF%BB%E3%80%8A%E6%80%8E%E4%B9%88%E7%94%A8%20React%20Hooks%20%E9%80%A0%E8%BD%AE%E5%AD%90%E3%80%8B.md)
+- [React Hooks 核心原理与实战](https://time.geekbang.org/column/intro/416)
