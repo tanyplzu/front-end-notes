@@ -52,6 +52,7 @@ const getSidebar = () => {
         title: '数据结构与算法',
         collapsable: true,
         children: [
+          'DSA/myPromise',
           'DSA/数据结构与算法2',
           'DSA/数据结构与算法3',
           'DSA/数据结构与算法4',
