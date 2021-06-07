@@ -3,7 +3,7 @@
 const { getNav, getSidebar } = require('./menu');
 const { plugins } = require('./plugins');
 module.exports = {
-  base: '/front-end/',
+  // base: '/front-end/',
   title: '七月有风',
   description: '七月有风技术空间',
   dest: 'dist',
