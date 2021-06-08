@@ -285,7 +285,7 @@ var intersection = function(nums1, nums2) {
 
 :::
 
-排序，然后用双指针法
+排序，然后用双指针法。如果是多个数组，可以用多指针法 :rocket:
 
 ```js
 let intersect = function(nums1, nums2) {
