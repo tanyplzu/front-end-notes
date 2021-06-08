@@ -394,6 +394,95 @@ const climbStairs = function(n) {
 };
 ```
 
+## 76. 最小覆盖子串
+
+给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 ""  
+
+::: tip 题目
+
+输入：s = "ADOBECODEBANC", t = "ABC"  
+输出："BANC"
+
+:::
+
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {string}
+ */
+var minWindow = function(source, target) {
+  if (source.length < target.length) {
+    return '';
+  }
+  if (source.includes(target)) {
+    return target;
+  }
+
+  // window和need两个哈希表，记录窗口中的字符和需要凑齐的字符
+  // key是要匹配的字符，value值是1，即出现的次数
+  const needs = new Map();
+  for (let t of target) {
+    const v = needs.get(t) || 0;
+    needs.set(t, v + 1);
+  }
+
+  // 存滑动窗口出现的字符，key是出现在target的字符，value是出现的次数
+  const window = new Map();
+
+  let isValidCount = 0; // 存放滑动窗口中的key的个数满足needs条件的字符个数
+
+  // 记录最小覆盖子串的起始索引及长度
+  let start = 0;
+  let len = Number.MAX_VALUE;
+
+  // 左右指针
+  let left = 0;
+  let right = 0;
+
+  while (right < source.length) {
+    let rightLetter = source[right];
+
+    // 1.进行窗口的数据更新，当前字符是需要的则加入窗口
+    if (needs.has(rightLetter)) {
+      const count = window.get(rightLetter) || 0;
+      window.set(rightLetter, count + 1);
+
+      // 2.如果相等则有效计数+1，排除掉窗口中值大于1的，即有重复的字符
+      if (needs.get(rightLetter) === window.get(rightLetter)) {
+        isValidCount++;
+      }
+    }
+
+    right++; // 扩大窗口
+
+    // 3.左移动窗口，window已经包含了needs所有的字符
+    while (isValidCount === needs.size) {
+      // 更新最小覆盖字串
+      const curLen = right - left;
+      if (curLen < len) {
+        start = left;
+        len = curLen;
+      }
+
+      let l = source[left];
+      if (needs.has(l) && window.has(l)) {
+        // 4.即将窗口左移动后，窗口已经不包含需要的字符了，有效计数需要减一
+        if (window.get(l) === needs.get(l)) {
+          isValidCount--;
+        }
+        window.set(l, window.get(l) - 1);
+      }
+
+      // 缩小窗口
+      left++;
+    }
+  }
+
+  return len === Number.MAX_VALUE ? '' : source.substr(start, len);
+};
+```
+
 ## 88. 合并两个有序数组
 
 ::: tip 题目
@@ -652,6 +741,62 @@ MinStack.prototype.getMin = function() {
   return this.stack2[this.stack2.length - 1];
 };
 ```
+
+## 235. 二叉搜索树的最近公共祖先
+
+::: tip 题目
+
+输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1  
+输出: 3  
+解释: 节点 5 和节点 1 的最近公共祖先是节点 3。
+
+输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4  
+输出: 5  
+解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。
+
+:::
+
+```js
+/**
+ * 二叉树结点的结构定义如下
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */
+const lowestCommonAncestor = function(root, p, q) {
+  // 编写 dfs 逻辑
+  function dfs(root) {
+    // 若当前结点不存在（意味着无效）或者等于p/q（意味着找到目标），则直接返回
+    if (!root || root === p || root === q) {
+      return root;
+    }
+    // 向左子树去寻找p和q
+    const leftNode = dfs(root.left);
+    // 向右子树去寻找p和q
+    const rightNode = dfs(root.right);
+    // 如果左子树和右子树同时包含了p和q，那么这个结点一定是最近公共祖先
+    if (leftNode && rightNode) {
+      return root;
+    }
+    // 如果左子树和右子树其中一个包含了p或者q，则把对应的有效子树汇报上去，等待进一步的判断；否则返回空
+    return leftNode || rightNode;
+  }
+
+  // 调用 dfs 方法
+  return dfs(root);
+};
+```
+
+- 若有效汇报个数为 2，直接返回当前结点
+- 若有效汇报个数为 1，返回 1 所在的子树的根结点
+- 若有效汇报个数为 0，则返回空（空就是无效汇报）
 
 ## 349. 两个数组的交集
 
