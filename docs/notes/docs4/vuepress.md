@@ -65,7 +65,6 @@ VuePress 提供了对 [YAML front matter](https://jekyllrb.com/docs/) 开箱即�
 :red_circle:
 :black_medium_square:
 :heavy_check_mark:
-
 ```
 
 :tada:
@@ -80,11 +79,22 @@ VuePress 提供了对 [YAML front matter](https://jekyllrb.com/docs/) 开箱即�
 :black_medium_square:
 :heavy_check_mark:
 
-### Badge <Badge text="beta" type="warning"/> <Badge text="默认主题"/>
+## Badge
 
+```md
+<Badge text="beta" type="warning"/> <Badge text="默认主题"/>
+```
+
+Badge <Badge text="beta" type="warning"/> <Badge text="默认主题"/>
+
+## 自定义
+
+```md
+<Describe>111</Describe>
+```
 
 <Describe>111</Describe>
 
-## 一些优秀的vuepress主题
+## 一些优秀的 vuepress 主题
 
 - [csign](https://www.csign.cn/)
