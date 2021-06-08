@@ -396,7 +396,7 @@ const climbStairs = function(n) {
 
 ## 76. 最小覆盖子串
 
-给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 ""  
+给你一个字符串 s 、一个字符串 t 。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串 ""
 
 ::: tip 题目
 
@@ -798,7 +798,73 @@ const lowestCommonAncestor = function(root, p, q) {
 - 若有效汇报个数为 1，返回 1 所在的子树的根结点
 - 若有效汇报个数为 0，则返回空（空就是无效汇报）
 
-## 349. 两个数组的交集
+## 239. 滑动窗口最大值
+
+给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
+
+输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出: [3,3,5,5,6,7]
+
+1 [3 -1 -3] 5 3 6 7  
+1 3 [-1 -3 5] 3 6 7  
+1 3 -1 [-3 5 3] 6 7  
+1 3 -1 -3 [5 3 6] 7  
+1 3 -1 -3 5 [3 6 7]
+
+最大值分别对应：3 3 5 5 6 7
+
+思路分析：双指针+遍历法
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */
+const maxSlidingWindow = function(nums, k) {
+  // 缓存数组的长度
+  const len = nums.length;
+  // 定义结果数组
+  const res = [];
+  // 初始化左指针
+  let left = 0;
+  // 初始化右指针
+  let right = k - 1;
+  // 当数组没有被遍历完时，执行循环体内的逻辑
+  while (right < len) {
+    // 计算当前窗口内的最大值
+    const max = calMax(nums, left, right);
+    // 将最大值推入结果数组
+    res.push(max);
+    // 左指针前进一步
+    left++;
+    // 右指针前进一步
+    right++;
+  }
+  // 返回结果数组
+  return res;
+};
+
+// 这个函数用来计算最大值
+function calMax(arr, left, right) {
+  // 处理数组为空的边界情况
+  if (!arr || !arr.length) {
+    return;
+  }
+  // 初始化 maxNum 的值为窗口内第一个元素
+  let maxNum = arr[left];
+  // 遍历窗口内所有元素，更新 maxNum 的值
+  for (let i = left; i <= right; i++) {
+    if (arr[i] > maxNum) {
+      maxNum = arr[i];
+    }
+  }
+  // 返回最大值
+  return maxNum;
+}
+```
+
+## 349. 两个数组的交集<Badge text="简单"/>
+
 
 ::: tip 题目
 

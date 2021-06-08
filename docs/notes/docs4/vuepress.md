@@ -80,6 +80,11 @@ VuePress 提供了对 [YAML front matter](https://jekyllrb.com/docs/) 开箱即�
 :black_medium_square:
 :heavy_check_mark:
 
+### Badge <Badge text="beta" type="warning"/> <Badge text="默认主题"/>
+
+
+<Describe>111</Describe>
+
 ## 一些优秀的vuepress主题
 
 - [csign](https://www.csign.cn/)
