@@ -24,7 +24,7 @@ module.exports = {
   themeConfig: {
     // repo: 'https://gitee.com/tanyplzu/front-end',
     // repoLabel: 'Gitee',
-    // editLinks: true,
+    editLinks: true,
     sidebarDepth: 2,
     // displayAllHeaders: true,
     docsDir: 'docs',
