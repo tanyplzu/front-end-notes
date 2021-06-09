@@ -45,14 +45,17 @@ git push origin books
 git branch -d books
 git push origin -d books
 
-// git commit之后，想撤销 commit
+// git commit之后，想撤销 commit，撤回后保留更改
 git reset --soft HEAD^
 
 // 代码回退删除远程
 git log --oneline
 git reset --hard (想要回退的节点)
 git push -f 删除远程分支
-git reset --soft HEAD^ // 撤回commit，保留更改
+
+
+// patch 
+git format-patch -n HEAD^
 ```
 
 - `HEAD^`的意思是上一个版本，也可以写成`HEAD~1`。如果你进行了2次commit，想都撤回，可以使用`HEAD~2`
