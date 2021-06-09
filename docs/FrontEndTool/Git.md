@@ -55,18 +55,8 @@ git push -f 删除远程分支
 
 
 // git format-patch 用来对某次提交生成patch，方便发送给其他人员进行参考或者同步
-
-git format-patch HEAD^
-// 从最近一次打起
-git format-patch HEAD^
-// 最近的二个patch内容
-git format-patch HEAD^^
-
-git format-patch -n
-// 最近一次的patch
-git format-patch -1
-// 最近两次的patch
-git format-patch -2
+git format-patch -n HEAD^ //生成path
+git am //同步path
 ```
 
 - `HEAD^`的意思是上一个版本，也可以写成`HEAD~1`。如果你进行了2次commit，想都撤回，可以使用`HEAD~2`
