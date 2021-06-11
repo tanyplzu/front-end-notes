@@ -1,7 +1,7 @@
 const getNav = () => {
   return [
     { text: '首页', link: '/Introduction' },
-    { text: '前端知识点', link: '/FrontEnd/' },
+    { text: '前端基础', link: '/FrontEnd/' },
     {
       text: '前端框架',
       ariaLabel: 'Language Menu',
