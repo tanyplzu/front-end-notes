@@ -100,6 +100,7 @@ const getSidebar = () => {
         'hooks',
         'hooks进阶',
         'react高级特性',
+        'react高级特性2',
         'react-router',
         'redux',
         'umijs',

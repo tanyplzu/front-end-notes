@@ -1,4 +1,10 @@
+---
+sidebarDepth: 0
+---
+
 # React 高级特性
+
+[[toc]]
 
 ## Portals
 
@@ -10,8 +16,8 @@
 ```js
 class App extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {};
   }
   render() {
     // // 正常渲染
@@ -24,7 +30,7 @@ class App extends React.Component {
     return ReactDOM.createPortal(
       <div className='modal'>{this.props.children}</div>,
       document.body // DOM 节点
-    )
+    );
   }
 }
 ```
@@ -38,11 +44,11 @@ class App extends React.Component {
 - Suspense
 
 ```js
-import React from 'react'
-const ContextDemo = React.lazy(() => import('./ContextDemo'))
+import React from 'react';
+const ContextDemo = React.lazy(() => import('./ContextDemo'));
 class App extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
   render() {
     return (
@@ -53,7 +59,7 @@ class App extends React.Component {
           <ContextDemo />
         </React.Suspense>
       </div>
-    )
+    );
     // 1. 强制刷新，可看到 loading （看不到就限制一下 chrome 网速）
     // 2. 看 network 的 js 加载
   }
@@ -85,10 +91,10 @@ shouldComponentUpdate(nextProps, nextState) {
 ```js
 class List extends React.PureComponent {
   constructor(props) {
-    super(props)
+    super(props);
   }
   render() {
-    const { list } = this.props
+    const { list } = this.props;
 
     return (
       <ul>
@@ -97,10 +103,10 @@ class List extends React.PureComponent {
             <li key={item.id}>
               <span>{item.title}</span>
             </li>
-          )
+          );
         })}
       </ul>
-    )
+    );
   }
   shouldComponentUpdate() {
     /*浅比较*/
@@ -115,75 +121,21 @@ memo 类似
 - 共享数据的方式（不是深拷贝），性能较好
 - 有一定的学习成本和迁移成本
 
-## 高阶组件 HOC
-
-HOC（Higher Order Component，高阶组件），它不是 React 的组件，而是一种类似工厂的设计模式。
-
-::: details 代码演示
-
-```js
-// 高阶组件
-const withMouse = (Component) => {
-  class withMouseComponent extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = { x: 0, y: 0 }
-    }
-
-    handleMouseMove = (event) => {
-      this.setState({
-        x: event.clientX,
-        y: event.clientY,
-      })
-    }
-
-    render() {
-      return (
-        <div style={{ height: '500px' }} onMouseMove={this.handleMouseMove}>
-          {/* 1. 透传所有 props 2. 增加 mouse 属性 */}
-          <Component {...this.props} mouse={this.state} />
-        </div>
-      )
-    }
-  }
-  return withMouseComponent
-}
-
-const App = (props) => {
-  const a = props.a
-  const { x, y } = props.mouse // 接收 mouse 属性
-  return (
-    <div style={{ height: '500px' }}>
-      <h1>
-        The mouse position is ({x}, {y})
-      </h1>
-      <p>{a}</p>
-    </div>
-  )
-}
-
-export default withMouse(App) // 返回高阶函数
-```
-
-:::
-
 ## render props
-
-::: details 代码演示
 
 ```js
 class Mouse extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = { x: 0, y: 0 }
+    super(props);
+    this.state = { x: 0, y: 0 };
   }
 
   handleMouseMove = (event) => {
     this.setState({
       x: event.clientX,
       y: event.clientY,
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -191,12 +143,12 @@ class Mouse extends React.Component {
         {/* 将当前 state 作为 props ，传递给 render （render 是一个函数组件） */}
         {this.props.render(this.state)}
       </div>
-    )
+    );
   }
 }
 Mouse.propTypes = {
   render: PropTypes.func.isRequired, // 必须接收一个 render 属性，而且是函数
-}
+};
 
 const App = (props) => (
   <div style={{ height: '500px' }}>
@@ -212,14 +164,12 @@ const App = (props) => (
       }
     />
   </div>
-)
+);
 
 /**
  * 即，定义了 Mouse 组件，只有获取 x y 的能力。
  * 至于 Mouse 组件如何渲染，App 说了算，通过 render prop 的方式告诉 Mouse 。
  */
 
-export default App
+export default App;
 ```
-
-:::
