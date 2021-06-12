@@ -18,6 +18,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@gitee.com:tanyplzu/front-end.git master:gh-pages
+git push -f git@github.com:tanyplzu/front-end-notes.git master:gh-pages
 
 cd -
