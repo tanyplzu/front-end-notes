@@ -127,6 +127,7 @@ const getSidebar = () => {
         children: [
           'Webpack/Webpack的基本工作流程',
           'Webpack/Webpack打包结果',
+          'Webpack/Webpack打包结果2',
           'Webpack/Webpack中常用的插件',
           'Webpack/Webpack性能优化',
           'Webpack/env',
