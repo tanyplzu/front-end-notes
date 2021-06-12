@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 ```
 
-原生中没有 ready 这 api，jQuery 中有 ready
+这连个 API 对现代的单页应用不太适用。
 
 ### 浏览器或元素的一些距离属性
 
