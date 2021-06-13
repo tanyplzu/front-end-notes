@@ -144,6 +144,29 @@ class ScrollingList extends React.Component {
 }
 ```
 
+### PureComponent
+
+PureComponent 默认实现了 shouldComponentUpdate 函数。所以仅在 props 与 state 进行浅比较后，确认有变更时才会触发重新渲染。
+
+### 如何避免生命周期中的坑
+
+避免生命周期中的坑需要做好两件事：不在恰当的时候调用了不该调用的代码；在需要调用时，不要忘了调用。主要有这么 7 种情况容易造成生命周期的坑。
+
+- getDerivedStateFromProps 容易编写反模式代码，使受控组件与非受控组件区分模糊。
+- componentWillMount 在 React 中已被标记弃用，不推荐使用，主要原因是新的异步渲染架构会导致它被多次调用。所以网络请求及事件绑定代码应移至 componentDidMount 中。
+- componentWillReceiveProps 同样被标记弃用，被 getDerivedStateFromProps 所取代，主要原因是性能问题。
+- shouldComponentUpdate 通过返回 true 或者 false 来确定是否需要触发新的渲染。主要用于性能优化。
+- componentWillUpdate 同样是由于新的异步渲染机制，而被标记废弃，不推荐使用，原先的逻辑可结合 getSnapshotBeforeUpdate 与 componentDidUpdate 改造使用。
+- 如果在 componentWillUnmount 函数中忘记解除事件绑定，取消定时器等清理操作，容易引发 bug。
+- 如果没有添加错误边界处理，当渲染发生异常时，用户将会看到一个无法操作的白屏，所以一定要添加。
+
+### React 的请求应该放在哪里
+
+- constructor：可以放，但从设计上而言不推荐。constructor 主要用于初始化 state 与函数绑定，并不承载业务逻辑。而且随着类属性的流行，constructor 已经很少使用了。
+- componentWillMount：已被标记废弃，在新的异步渲染架构下会触发多次渲染，容易引发 Bug，不利于未来 React 升级后的代码维护。
+
+所以React 的请求放在 componentDidMount 里是最好的选择。
+
 ## 事件
 
 ### React 事件为何 bind this
@@ -293,7 +316,6 @@ class NameForm extends React.Component {
 ### 手动操作 DOM 元素
 
 - 必须手动操作 DOM，setState 实现不了的，就必须用非受控组件
-
 - 如文件长传组件，需要拿到文件信息的，必须用非受控组件
 - 某些富文本编辑器
 

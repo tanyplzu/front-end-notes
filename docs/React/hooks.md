@@ -1,4 +1,8 @@
-# Hooks
+---
+sidebarDepth: 0
+---
+
+# Hooks 基础
 
 [[toc]]
 
@@ -34,8 +38,7 @@ useEffect(() => {
 
 ### useEffect 快速上手
 
-useEffect 就涵盖了 `componentDidMount`、`componentDidUpdate` 和 `componentWillUnmount` 三个生命周期方法。
-**useEffect 是每次组件 render 完后判断依赖并执行。**
+useEffect 就涵盖了 `componentDidMount`、`componentDidUpdate` 和 `componentWillUnmount` 三个生命周期方法。 **useEffect 是每次组件 render 完后判断依赖并执行。**
 
 - 每一次渲染后（render）都执行的副作用：传入回调函数，不传依赖数组。调用形式如下所示：
 
@@ -223,6 +226,16 @@ useEffect(() => {
 
 React 只会在浏览器绘制后运行 effects。这使得你的应用更流畅因为大多数 effects 并不会阻塞屏幕的更新。Effect 的清除同样被延迟了。上一次的 effect 会在重新渲染后被清除
 
+### useEffect 与 useLayoutEffect 区别
+
+它们的共同点很简单，底层的函数签名是完全一致的，都是调用的 mountEffectImpl，在使用上也没什么差异，基本可以直接替换，也都是用于处理副作用。
+
+那不同点就很大了，useEffect 在 React 的渲染过程中是被异步调用的，用于绝大多数场景，而 LayoutEffect 会在所有的 DOM 变更之后同步调用，主要用于处理 DOM 操作、调整样式、避免页面闪烁等问题。也正因为是同步处理，所以需要避免在 LayoutEffect 做计算量较大的耗时任务从而造成阻塞。
+
+在未来的趋势上，两个 API 是会长期共存的，暂时没有删减合并的计划，需要开发者根据场景去自行选择。React 团队的建议非常实用，如果实在分不清，先用 useEffect，一般问题不大；如果页面有异常，再直接替换为 useLayoutEffect 即可。
+
+从 LayoutEffect 这样一个命名就能看出，它想解决的也就是页面布局的问题。
+
 ## useReducer()
 
 当你写类似 setSomething(something => ...)这种代码的时候，也许就是考虑使用 reducer 的契机。reducer 可以让你把组件内发生了什么(actions)和状态如何响应并更新分开表述。
@@ -322,8 +335,7 @@ function SearchResults() {
 
 如果我们结合 useMemo 和 useCallback 这两个 Hooks 一起看，会发现一个有趣的特性，那就是 useCallback 的功能其实是可以用 useMemo 来实现的。
 
-> 任何场景下，函数都用 useCallback 包裹吗？那种轻量的函数是不是不需要？
-> 确实不是，useCallback 可以减少不必要的渲染，主要体现在将回调函数作为属性传给某个组件。如果每次都不一样就会造成组件的重新渲染。但是如果你确定子组件多次渲染也没有太大问题，特别是原生的组件，比如 button，那么不用 useCallback 也问题不大。所以这和子组件的实现相关，和函数是否轻量无关。但是比较好的实践是都 useCallback。
+> 任何场景下，函数都用 useCallback 包裹吗？那种轻量的函数是不是不需要？确实不是，useCallback 可以减少不必要的渲染，主要体现在将回调函数作为属性传给某个组件。如果每次都不一样就会造成组件的重新渲染。但是如果你确定子组件多次渲染也没有太大问题，特别是原生的组件，比如 button，那么不用 useCallback 也问题不大。所以这和子组件的实现相关，和函数是否轻量无关。但是比较好的实践是都 useCallback。
 
 ## 函数组件的生命周期
 
@@ -420,6 +432,17 @@ Hooks 不能在循环、条件判断或者嵌套函数内执行，而必须是�
 **2.Hooks 只能在函数组件或者其它 Hooks 中使用**
 
 如果一定要在 Class 组件中使用，那应该如何做呢？其实有一个通用的机制，那就是利用高阶组件的模式，将 Hooks 封装成高阶组件，从而让类组件使用。
+
+### 最佳实践
+
+- 原则一：保证状态最小化
+- 原则二：避免中间状态，确保唯一数据源
+
+需要解决状态的一致性
+
+问题：是任何场景，函数都用 useCallback 包裹吗？
+
+那种轻量的函数是不是不需要？讲解：对于简单的 DOM 结构，或者函数不被作为属性传递到依赖或者组件的属性，那么用不用 useCallback 都可以。和函数是否轻量无关，主要和组件的复杂度有关。但是始终使用 useCallback 是个比较好的习惯。
 
 ## eslint 规则
 
