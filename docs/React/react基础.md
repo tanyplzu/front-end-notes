@@ -21,10 +21,10 @@ sidebarDepth: 0
 PropType 和 DefaultProps 直接使用 PropTypes
 
 ```js
-import PropTypes from 'prop-types'
-TodoItem.propTypes = { content: PropTypes.string }
+import PropTypes from 'prop-types';
+TodoItem.propTypes = { content: PropTypes.string };
 // 还可以写成
-PropTypes.oneOfType(PropTypes.string, PropTypes.number)
+PropTypes.oneOfType(PropTypes.string, PropTypes.number);
 ```
 
 > 需要安装 prop-types 插件
@@ -66,7 +66,83 @@ ajax 的模块：axios
 
 ![react-lifecycle](./imgs/react-lifecycle.png)
 
+展示不常用的生命周期：
+
+![react-lifecycle](./imgs/react-lifecycle2.png)
+
 > 地址：[react-lifecycle](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
+
+### constructor
+
+```js
+import React from 'react';
+class Counter extends React.Component {
+  state = {
+    count: 0,
+  };
+
+  // 类属性第三阶段提案
+  handleClick = () => {
+    // do some stuff
+  };
+  render() {
+    return null;
+  }
+}
+```
+
+社区中去除 constructor 的原因非常明确：
+
+- constructor 中并不推荐去处理初始化以外的逻辑；
+- 本身 constructor 并不属于 React 的生命周期，它只是 Class 的初始化函数；
+- 通过移除 constructor，代码也会变得更为简洁。
+
+### getDerivedStateFromProps
+
+本函数的作用是使组件在 props 变化时更新 state，它的触发时机是：
+
+- 当 props 被传入时；
+- state 发生变化时；
+- forceUpdate 被调用时。
+
+依据官方的说法，它的使用场景是很有限的。有太多错误使用的案例。
+
+### getSnapshotBeforeUpdate
+
+getSnapshotBeforeUpdate 方法是配合 React 新的异步渲染的机制，在 DOM 更新发生前被调用，返回值将作为 componentDidUpdate 的第三个参数。
+
+```js
+class ScrollingList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // Are we adding new items to the list?
+    // Capture the scroll position so we can adjust scroll later.
+    if (prevProps.list.length < this.props.list.length) {
+      const list = this.listRef.current;
+      return list.scrollHeight - list.scrollTop;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // If we have a snapshot value, we've just added new items.
+    // Adjust scroll so these new items don't push the old ones out of view.
+    // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+    if (snapshot !== null) {
+      const list = this.listRef.current;
+      list.scrollTop = list.scrollHeight - snapshot;
+    }
+  }
+
+  render() {
+    return <div ref={this.listRef}>{/* ...contents... */}</div>;
+  }
+}
+```
 
 ## 事件
 
@@ -111,12 +187,12 @@ JSX 上写的事件并没有绑定在对应的真实 DOM 上，而是通过事�
 场景
 
 - 公共信息
-- 用props太繁琐
-- 用redux小题大做
+- 用 props 太繁琐
+- 用 redux 小题大做
 
 ```js
 // 创建 Context 实例
-const ThemeContext = React.createContext('light')
+const ThemeContext = React.createContext('light');
 
 class App extends React.Component {
   render() {
@@ -125,7 +201,7 @@ class App extends React.Component {
       <ThemeContext.Provider value='dark'>
         <Toolbar />
       </ThemeContext.Provider>
-    )
+    );
   }
 }
 
@@ -135,14 +211,14 @@ function Toolbar(props) {
     <div>
       <ThemedButton />
     </div>
-  )
+  );
 }
 
 // 构建组件实例
 class ThemedButton extends React.Component {
-  static contextType = ThemeContext
+  static contextType = ThemeContext;
   render() {
-    return <Button theme={this.context} />
+    return <Button theme={this.context} />;
   }
 }
 ```
@@ -151,7 +227,7 @@ class ThemedButton extends React.Component {
 
 ```js
 function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>
+  return <h1>Hello, {props.name}</h1>;
 }
 ```
 
@@ -160,7 +236,7 @@ class 组件
 ```js
 class Welcome extends React.Component {
   render() {
-    return <h1>Hello, {this.props.name}</h1>
+    return <h1>Hello, {this.props.name}</h1>;
   }
 }
 ```
@@ -174,7 +250,7 @@ return (
     <label htmlFor='inputName'>姓名：</label> {/* 用 htmlFor 代替 for */}
     <input id='inputName' value={this.state.name} onChange={this.onInputChange} />
   </div>
-)
+);
 ```
 
 - 受控组件的意思是说，input 中的值受 state 的控制
@@ -187,14 +263,14 @@ return (
 ```js{5,9,18}
 class NameForm extends React.Component {
   constructor(props) {
-    super(props)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.input = React.createRef()
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.input = React.createRef();
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.input.current.value)
-    event.preventDefault()
+    alert('A name was submitted: ' + this.input.current.value);
+    event.preventDefault();
   }
 
   render() {
@@ -206,7 +282,7 @@ class NameForm extends React.Component {
         </label>
         <input type='submit' value='Submit' />
       </form>
-    )
+    );
   }
 }
 ```
@@ -238,8 +314,7 @@ ReactDOM.render(
 ```
 
 - 识别具有不安全生命周期的组件
-- 有关旧式字符串ref用法的警告
-- 关于已弃用的findDOMNode用法的警告
+- 有关旧式字符串 ref 用法的警告
+- 关于已弃用的 findDOMNode 用法的警告
 - 检测意外的副作用
 - 检测遗留 context API
-
