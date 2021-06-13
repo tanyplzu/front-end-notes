@@ -8,7 +8,7 @@ sidebarDepth: 0
 
 ## api 介绍
 
-webpack.config.js 配置
+webpack.config.js 配置，以下是基于 webpack: ^5.4.0
 
 ```js
 // webpack.config.js
@@ -94,7 +94,7 @@ var __webpack_modules__ = {
 
 ### `__webpack_require__`
 
-其实就是用来加载模块的
+其实就是用来加载模块的，打包时会将 import 转化为`__webpack_require__`
 
 ```js
 // The require function

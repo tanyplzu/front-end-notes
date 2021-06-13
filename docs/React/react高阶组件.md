@@ -2,11 +2,9 @@
 sidebarDepth: 0
 ---
 
-# React 高级特性(二)
+# React 高阶组件
 
 [[toc]]
-
-## 高阶组件 HOC
 
 HOC（Higher Order Component，高阶组件），React 的官方文档将高阶组件称为 React 中复用组件逻辑的高级技术。高阶组件本身并不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。简而言之，高阶组件的参数是组件，返回值为函数。
 
@@ -56,7 +54,7 @@ export default withMouse(App); // 返回高阶函数
 
 高阶组件的作用：
 
-### 抽取公共逻辑
+## 抽取公共逻辑
 
 如权限判断，登录状态判断，埋点等，memo 组件也是一个高阶组件。下面是登录状态判断组件：
 
@@ -151,7 +149,7 @@ class OrderPage extends  React.Component {
 }
 ```
 
-### 链式调用
+## 链式调用
 
 由于高阶组件返回的是一个新的组件，所以链式调用是默认支持的。基于 checkLogin 与 PV 两个例子，链式使用是这样的：
 
@@ -169,7 +167,7 @@ class UserPage extends  React.Component {
 }
 ```
 
-### 渲染劫持
+## 渲染劫持
 
 渲染劫持可以通过控制 render 函数修改输出内容，常见的场景是显示加载元素，如下情况所示：
 
@@ -187,7 +185,7 @@ function withLoading(WrappedComponent) {
 }
 ```
 
-### 缺陷
+## 缺陷
 
 **丢失静态函数**
 
