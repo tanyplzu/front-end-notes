@@ -4,7 +4,7 @@ heroImage: /banner.jpg
 heroText: 七月有风技术空间
 tagline: 技术笔记
 actionText: 进入空间
-actionLink: /Introduction
+actionLink: /FrontEnd/
 features:
   - title:
     details: Beautiful is better than ugly. Explicit is better than implicit. Simple is better than complex.

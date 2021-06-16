@@ -1,6 +1,6 @@
 const getNav = () => {
   return [
-    { text: '首页', link: '/Introduction' },
+    // { text: '首页', link: '/Introduction' },
     { text: '前端基础', link: '/FrontEnd/' },
     {
       text: '前端框架',
@@ -19,7 +19,7 @@ const getNav = () => {
     { text: 'Java', link: '/Java/' },
     { text: 'Reading', link: '/Reading/' },
     { text: 'Notes', link: '/notes/' },
-    { text: 'DumiApp', link: 'http://tanyplzu.gitee.io/dumi-app/' },
+    // { text: 'DumiApp', link: 'http://tanyplzu.gitee.io/dumi-app/' },
   ];
 };
 const getSidebar = () => {
@@ -148,6 +148,7 @@ const getSidebar = () => {
       '脚手架工具',
       'npmScript',
       'Git',
+      'Monorepo',
       '组件库',
     ],
     '/Java/': [

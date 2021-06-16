@@ -143,3 +143,7 @@ someAsyncOperation(function() {
 ## process.nextTick()
 
 process.nextTick() 不是 Node 的 EL 中的一部分（虽然它也是异步 API），它有一个自己的队列，当每个阶段完成后，如果存在 nextTick 队列，就会**清空队列中的所有回调函数**，并且优先于其他 microtask 执行。
+
+资料：
+
+- [阮一峰 NODE](https://javascript.ruanyifeng.com/nodejs/basic.html)

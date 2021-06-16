@@ -384,13 +384,11 @@ document.querySelector('html').style.fontSize = clientWidth / 16 + 'px';
 
 有 vs code 中有计算 rem 的插件
 
-::: danger Note
 
 阻塞渲染，和重新计算的问题
 
 缺点：本质上，**用户使用更大的屏幕，是想看到更多的内容，而不是更大的字。**
 
-:::
 
 ### 2.使用 vw，vh 布局
 
