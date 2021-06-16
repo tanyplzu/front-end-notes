@@ -41,6 +41,15 @@ const getSidebar = () => {
       'NetworkAndSecurity/Security',
       'DesignPattern',
       {
+        title: '前端可视化',
+        collapsable: true,
+        children: [
+          'Canvas/SVG',
+          'Canvas/Canvas',
+          'Canvas/WebGL',
+        ],
+      },
+      {
         title: '函数式编程',
         collapsable: true,
         children: [
