@@ -1,20 +1,15 @@
 ---
-title: Monorepo
-order: 1
-toc: 'content'
-nav:
-  title: 工程化
-  order: 5
+sidebarDepth: 0
 ---
 
-## Monorepo
+# Monorepo
 
 两种项目的组织方式
 
 - Multirepo 每个包对应一个项目
 - Monorepo 一个项目仓库中管理多个模块/包
 
-### Multirepo
+## Multirepo
 
 在通常情况下，我们新开一个项目会先在 Github 上面创建一个新仓库，然后在本地创建这个项目，和远程仓库进行关联，基本上是一个仓库对应一个项目。
 
@@ -25,7 +20,7 @@ nav:
 - 占用总空间大
 - 不利于团队协作
 
-### Monorepo
+## Monorepo
 
 Monorepo 是管理项目代码的一个方式，Monorepo 的核心观点是所有的项目在一个代码仓库中。
 
@@ -46,7 +41,7 @@ Monorepo 是管理项目代码的一个方式，Monorepo 的核心观点是所�
 
 目前常见的 monorepo 解决方案是 Lerna 和 yarn 的 workspaces 特性。
 
-### Lerna 和 workspaces 工作流
+## Lerna 和 workspaces 工作流
 
 一般将 Lerna 结合 yarn 一起使用：使用 Lerna 发布，使用 yarn workspaces 管理依赖
 
