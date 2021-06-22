@@ -66,6 +66,7 @@ const getSidebar = () => {
           'DSA/数据结构与算法2',
           'DSA/LeetCode1',
           'DSA/LeetCode2',
+          'DSA/LeetCode3',
           'DSA/nowcoder',
         ],
       },
