@@ -1,14 +1,10 @@
 ---
-sidebarDepth: 1
+sidebarDepth: 0
 ---
 
 # Vue 知识点
 
-::: details 目录
-
 [[toc]]
-
-:::
 
 ## v-show 与 v-if 区别
 
@@ -137,7 +133,7 @@ computed 可以依赖其它 computed，甚至是其它组件的 data。
 
 ## 组件中 data 为什么是函数
 
-用函数是为了 return 出一个新的对象，如果 return 出一个对象的应用，还是没用的。
+用函数是为了 return 出一个新的对象，如果 return 出一个对象的引用，还是没用的。
 
 组件复用时所有组件实例都会共享 `data`，如果 `data` 是对象的话，就会造成一个组件修改 `data` 以后会影响到其他所有组件，所以需要将 `data` 写成函数，每次用到就调用一次函数获得新的数据。
 

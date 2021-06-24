@@ -170,6 +170,13 @@ const getSidebar = () => {
       ],
     }, ],
     '/Reading/': [
+      {
+        title: 'JavaScript高级程序设计',
+        collapsable: false,
+        children: [
+          'JavaScript高级程序设计/数据类型',
+        ],
+      },
     {
       title: '浏览器工作原理与实践',
       collapsable: false,
