@@ -132,6 +132,32 @@ var lengthOfLongestSubstring = function(s) {
 };
 ```
 
+```js
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function(s) {
+  let len = s.length;
+  // 左边界索引
+  let l = 0;
+  // 右边界索引
+  let r = 0;
+  let max = 0;
+  const subStr = [...s];
+  const set = new Set();
+  while (l < len && r < len) {
+    if (!set.has(subStr[r])) {
+      set.add(subStr[r++]);
+      max = Math.max(max, r - l);
+    } else {
+      set.delete(subStr[l++]);
+    }
+  }
+  return max;
+};
+```
+
 ## 9. 回文数
 
 ::: tip 题目
