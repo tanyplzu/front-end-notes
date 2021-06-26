@@ -6,7 +6,7 @@ sidebarDepth: 1
 
 [[toc]]
 
-### 剑指 Offer 47. 礼物的最大价值
+## 剑指 Offer 47. 礼物的最大价值
 
 在一个 m\*n 的棋盘的每一格都放有一个礼物，每个礼物都有一定的价值（价值大于 0）。你可以从棋盘的左上角开始拿格子里的礼物，并每次向右或者向下移动一格、直到到达棋盘的右下角。给定一个棋盘及其上面的礼物的价值，请计算你最多能拿到多少价值的礼物？
 
@@ -58,5 +58,38 @@ function maxValue(grid) {
     }
   }
   return dp[n - 1][m - 1];
+}
+```
+
+## 计算最大公约数
+
+```js
+function gcd(a, b) {
+  if (b == 0) {
+    return a;
+  }
+  var r = a % b;
+  console.log(r);
+  return gcd(b, r);
+}
+```
+
+```js
+function gcd(a, b) {
+  var temp;
+  while (b != 0) {
+    temp = a % b;
+    a = b;
+    b = temp;
+  }
+  return a;
+}
+```
+
+### 最小公倍数
+
+```js
+function scm(a, b) {
+  return (a * b) / gcd(a, b);
 }
 ```
