@@ -135,8 +135,9 @@ const getSidebar = () => {
     ],
     '/JsFrame/': [
       '',
-      'vue&react&angular',
-      'microFront'
+      'vue&react',
+      'microFront',
+      'cross-platform'
     ],
     '/FrontEndTool/': [
       {
