@@ -177,8 +177,7 @@ const getSidebar = () => {
         title: 'JavaScript高级程序设计',
         collapsable: false,
         children: [
-          'JavaScript高级程序设计/HTML中的JavaScript',
-          'JavaScript高级程序设计/数据类型',
+          'JavaScript高级程序设计/数组的方法',
         ],
       },
       {
@@ -206,7 +205,6 @@ const getSidebar = () => {
         title: '基础语法：',
         collapsable: false,
         children: [
-          'docs1/数组的方法',
           'docs1/对象静态方法总结分享',
           'docs1/regexp1',
           'docs1/regexp2',
