@@ -2,7 +2,7 @@
 sidebarDepth: 0
 ---
 
-# micro-front
+# 微前端
 
 [[toc]]
 
@@ -102,10 +102,4 @@ addGlobalUncaughtErrorHandler((event: Event | string) => {
 
 // 导出 qiankun 的启动函数
 export default start;
-```
-
-配置微应用 
-
-```js
-
 ```

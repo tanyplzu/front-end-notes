@@ -10,6 +10,7 @@ const getNav = () => {
         { text: 'Vue', link: '/Vue/' },
         { text: 'NodeJS', link: '/NodeJS/' },
         { text: 'AngularJS', link: '/AngularJS/' },
+        { text: '技术选型', link: '/JsFrame/' },
       ],
     },
     {
@@ -124,13 +125,18 @@ const getSidebar = () => {
         children: ['reactNative'],
       },
     ],
-    '/NodeJS/': [
+    '/NodeJS/': [ 
       '',
       'Node基础',
       'Node的工具集',
       'Koa',
       'dev-server',
       'Nest.js入门',
+    ],
+    '/JsFrame/': [
+      '',
+      'vue&react&angular',
+      'microFront'
     ],
     '/FrontEndTool/': [
       {
@@ -211,11 +217,6 @@ const getSidebar = () => {
           'docs1/TS1',
           'docs1/TS2',
         ],
-      },
-      {
-        title: '微前端',
-        collapsable: false,
-        children: ['docs1/micro-front'],
       },
       {
         title: '文档(一)：',
