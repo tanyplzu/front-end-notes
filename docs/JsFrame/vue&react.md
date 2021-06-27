@@ -62,7 +62,12 @@ Vue 的这个特点使得开发者不再需要考虑此类优化，从而能够�
 
 在超大量数据的首屏渲染速度上，React 有一定优势，因为 Vue 的渲染机制启动时候要做的工作比较多，而且 React 支持服务端渲染。
 
-需要指出的一点：React 的 Virtual DOM 也不是不需要优化的。复杂的应用里你有两个选择 1. 手动添加 shouldComponentUpdate 来避免不需要的 vdom re-render；2. Components 尽可能都用 pureRenderMixin，然后采用 Flux 结构 + Immutable.js。其实也不是那么简单的。相比之下，Vue 由于采用依赖追踪，默认就是优化状态：你动了多少数据，就触发多少更新，不多也不少。
+需要指出的一点：React 的 Virtual DOM 也不是不需要优化的。复杂的应用里你有两个选择：
+
+1. 手动添加 shouldComponentUpdate 来避免不需要的 vdom re-render；
+2. Components 尽可能都用 pureRenderMixin，然后采用 Flux 结构 + Immutable.js。  
+
+其实也不是那么简单的。相比之下，Vue 由于采用依赖追踪，默认就是优化状态：你动了多少数据，就触发多少更新，不多也不少。
 
 再谈谈开发风格的偏好：React 推荐的做法是 JSX + inline style，也就是把 HTML 和 CSS 全都整进 JavaScript 了。Vue 的默认 API 是以简单易上手为目标，但是进阶之后推荐的是使用 webpack + vue-loader 的单文件组件格式
 

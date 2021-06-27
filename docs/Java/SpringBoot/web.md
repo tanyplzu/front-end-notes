@@ -1,8 +1,6 @@
 # Web 项目开发
 
-### 分层
-
-层与层之间用 interfece 去衔接；其实一般不需要。策略模式 interfece 是必须要选择的
+[[toc]]
 
 ## 前端参数
 
@@ -277,8 +275,3 @@ public abstract class BaseEntity {
 
 列表信息需要返回概要数据还是详情数据？
 
-概要数据
-
-```java
-
-```

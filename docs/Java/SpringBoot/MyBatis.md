@@ -49,33 +49,33 @@ CREATE TABLE `tb_user` (
 package ltd.newbee.mall.entity;
 
 public class User {
-    private Integer id;
-    private String name;
-    private String password;
+  private Integer id;
+  private String name;
+  private String password;
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+      return id;
+  }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+  public void setId(Integer id) {
+      this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+      return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+      this.name = name;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPassword() {
+      return password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setPassword(String password) {
+      this.password = password;
+  }
 }
 ```
 
@@ -91,36 +91,36 @@ import java.util.List;
  * MyBatis 测试
  */
 public interface UserDao {
-    /**
-     * 返回数据列表
-     *
-     * @return
-     */
-    List<User> findAllUsers();
+  /**
+    * 返回数据列表
+    *
+    * @return
+    */
+  List<User> findAllUsers();
 
-    /**
-     * 添加
-     *
-     * @param User
-     * @return
-     */
-    int insertUser(User User);
+  /**
+    * 添加
+    *
+    * @param User
+    * @return
+    */
+  int insertUser(User User);
 
-    /**
-     * 修改
-     *
-     * @param User
-     * @return
-     */
-    int updUser(User User);
+  /**
+    * 修改
+    *
+    * @param User
+    * @return
+    */
+  int updUser(User User);
 
-    /**
-     * 删除
-     *
-     * @param id
-     * @return
-     */
-    int delUser(Integer id);
+  /**
+    * 删除
+    *
+    * @param id
+    * @return
+    */
+  int delUser(Integer id);
 }
 ```
 

