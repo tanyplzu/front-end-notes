@@ -6,6 +6,8 @@ sidebarDepth: 0
 
 https://juejin.cn/book/6844733786626719757/section/6844733786672857095
 
+[[toc]]
+
 ## WebView 流
 
 第一种方案，我们称之为 WebView 流。因为 WebView 作为一个显示 web 页面的容器，它本身是跨平台的，所以利用 WebView 跨平台属性的技术方案就称之为 WebView 流。WebView 流的发展也经历了如下的过程：

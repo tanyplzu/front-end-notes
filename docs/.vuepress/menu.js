@@ -10,9 +10,9 @@ const getNav = () => {
         { text: 'Vue', link: '/Vue/' },
         { text: 'NodeJS', link: '/NodeJS/' },
         { text: 'AngularJS', link: '/AngularJS/' },
-        { text: '技术方案', link: '/JsFrame/' },
       ],
     },
+    { text: '技术方案', link: '/JsFrame/' },
     {
       text: '前端工程化',
       link: '/FrontEndTool/',
@@ -41,7 +41,7 @@ const getSidebar = () => {
       {
         title: '网络协议',
         collapsable: true,
-        children: ['Network/Network','Network/DNS',],
+        children: ['Network/Network', 'Network/DNS', ],
       },
       'WebSecurity/Security',
       'DesignPattern',
@@ -140,8 +140,15 @@ const getSidebar = () => {
       'vue&react',
       'microFront',
       'cross-platform',
-      '前端监控体系',
-      '前端性能优化',
+      {
+        title: '性能与监控',
+        collapsable: false,
+        children: [
+          // 'performance/前端性能',
+          'performance/前端监控体系',
+          'performance/前端性能优化',
+        ],
+      },
       '设计一个前端项目'
     ],
     '/FrontEndTool/': [
@@ -158,6 +165,11 @@ const getSidebar = () => {
           'Webpack/热更新',
           'Webpack/webpack-chain',
         ],
+      },
+      {
+        title: 'Bable',
+        collapsable: false,
+        children: [],
       },
       'ESLint&Prettier',
       '脚手架工具',
