@@ -144,8 +144,8 @@ const getSidebar = () => {
         title: '性能与监控',
         collapsable: false,
         children: [
-          // 'performance/前端性能',
-          'performance/前端监控体系',
+          'performance/前端性能监控',
+          'performance/错误信息收集',
           'performance/前端性能优化',
         ],
       },
