@@ -8,7 +8,6 @@ const getNav = () => {
       items: [
         { text: 'React', link: '/React/' },
         { text: 'Vue', link: '/Vue/' },
-        { text: 'NodeJS', link: '/NodeJS/' },
         { text: 'AngularJS', link: '/AngularJS/' },
       ],
     },
@@ -17,6 +16,7 @@ const getNav = () => {
       text: '前端工程化',
       link: '/FrontEndTool/',
     },
+    { text: 'NodeJS', link: '/NodeJS/' },
     { text: 'Java', link: '/Java/' },
     { text: 'Reading', link: '/Reading/' },
     { text: 'Notes', link: '/notes/' },
@@ -130,6 +130,7 @@ const getSidebar = () => {
     '/NodeJS/': [
       '',
       'Node基础',
+      'Node核心模块',
       'Node的工具集',
       'Koa',
       'dev-server',
