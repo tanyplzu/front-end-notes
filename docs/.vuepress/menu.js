@@ -132,7 +132,11 @@ const getSidebar = () => {
     '/NodeJS/': [
       '',
       'Node基础',
-      'Node核心模块',
+      {
+        title: 'Node核心模块',
+        collapsable: false,
+        children: ['core-module/Buffer'],
+      },
       'Node的工具集',
       'Koa',
       'dev-server',
