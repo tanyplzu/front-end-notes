@@ -25,6 +25,7 @@
     "@vuepress/plugin-medium-zoom": "1.8.2",
     "inquirer-directory": "^2.2.0",
     "plop": "^2.7.4",
-    "vuepress-plugin-copyright": "^1.0.2"
+    "vuepress-plugin-copyright": "^1.0.2",
+    "vuepress-plugin-flowchart": "^1.4.3"
   }
 }

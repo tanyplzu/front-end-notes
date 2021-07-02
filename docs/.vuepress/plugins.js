@@ -20,24 +20,25 @@ module.exports = {
       }
     }],
     ['vuepress-plugin-container'],
-    [
-      '@vuepress/last-updated',
-      {
-        transformer(timestamp) {
-          const date = new Date(timestamp);
-          const digits = [
-            date.getFullYear(),
-            date.getMonth() + 1,
-            date.getDate(),
-            date.getHours(),
-            date.getMinutes(),
-            date.getSeconds(),
-          ].map((num) => String(num).padStart(2, '0'));
+    // [
+    //   '@vuepress/last-updated',
+    //   {
+    //     transformer(timestamp) {
+    //       const date = new Date(timestamp);
+    //       const digits = [
+    //         date.getFullYear(),
+    //         date.getMonth() + 1,
+    //         date.getDate(),
+    //         date.getHours(),
+    //         date.getMinutes(),
+    //         date.getSeconds(),
+    //       ].map((num) => String(num).padStart(2, '0'));
 
-          return '{0}-{1}-{2} {3}:{4}:{5}'.replace(/{(\d)}/g, (_, num) => digits[num]);
-        }
-      }
-    ],
+    //       return '{0}-{1}-{2} {3}:{4}:{5}'.replace(/{(\d)}/g, (_, num) => digits[num]);
+    //     }
+    //   }
+    // ],
+    'flowchart'
      // ['copyright', {
     //   noCopy: true, // 选中的文字将无法被复制
     //   minLength: 20, // 如果长度超过 100 个字符

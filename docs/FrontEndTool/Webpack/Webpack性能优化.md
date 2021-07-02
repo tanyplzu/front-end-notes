@@ -74,6 +74,7 @@ resolve: {
 配置后面加上`loader:'babel-loader? cacheDirectory = true'`将编译过的文件缓存起来，下次只需要编译更改过的代码文件即可。可以在`/node_modules/.cache/babel-loader`中查看。
 
 umi 中可以在`src/.umi/.cache/babel-loader`查看。
+
 #### Cache-loader
 
 在编译过程中利用缓存的第二种方式是使用 Cache-loader。在使用时，需要将 cache-loader 添加到对构建效率影响较大的 Loader（如 babel-loader 等）之前，如下面的代码所示：
@@ -130,8 +131,7 @@ plugins: [
 
 ### noParse
 
-- `module.noParse`：如果你确定一个文件下没有其他依赖，就可以使用该属性让 Webpack 不扫描该文件，这种方式对于大型的类库很有帮助
-  一般使用.min.js 结尾的文件。
+- `module.noParse`：如果你确定一个文件下没有其他依赖，就可以使用该属性让 Webpack 不扫描该文件，这种方式对于大型的类库很有帮助一般使用.min.js 结尾的文件。
 
 ```js
 module.exports = {
@@ -199,8 +199,7 @@ module.exports = {
 
 #### thread-loader
 
-每个 worker 都是一个独立的 node.js 进程，其开销大约为 600ms 左右。同时会限制跨进程的数据交换。
-请仅在耗时的操作中使用此 loader！
+每个 worker 都是一个独立的 node.js 进程，其开销大约为 600ms 左右。同时会限制跨进程的数据交换。请仅在耗时的操作中使用此 loader！
 
 ```js
 module.exports = {
@@ -600,7 +599,13 @@ externals: {
 
 ### babel-preset-env
 
+## webpack 5
+
+- esbuild
+- module federation
+
 ## 参考资料
+
 [An in-depth guide to performance optimization with webpack](https://blog.logrocket.com/guide-performance-optimization-webpack/)
 
 [How to React with Webpack 5 - Setup Tutorial](https://www.robinwieruch.de/minimal-react-webpack-babel-setup#react-with-webpack)

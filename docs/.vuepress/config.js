@@ -29,10 +29,11 @@ module.exports = {
     // displayAllHeaders: true,
     docsDir: 'docs',
     editLinkText: 'Edit page',
-    lastUpdated: 'Last updated',
+    // lastUpdated: 'Last updated',
     // wide: true,
     nav: getNav(),
     sidebar: getSidebar(),
+    smoothScroll: true,
   },
   markdown: {
     lineNumbers: false
@@ -41,5 +42,9 @@ module.exports = {
   extraWatchFiles: [
     '.vuepress/menu.js',
     '.vuepress/plugins.js'
-  ]
+  ],
+  chainWebpack: (config, isServer) => {
+    // config 是 ChainableConfig 的一个实例
+    console.log(config);
+  }
 };
