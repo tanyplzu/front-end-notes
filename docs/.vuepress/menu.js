@@ -33,7 +33,7 @@ const getSidebar = () => {
         children: [
           'JavaScript/01-JS数据类型',
           'JavaScript/02-JavaScript基础',
-          'JavaScript/03-JavaScript进阶',
+          'JavaScript/03-JavaScript基础',
           'JavaScript/V8',
         ],
       },
@@ -41,7 +41,11 @@ const getSidebar = () => {
       {
         title: '网络协议',
         collapsable: true,
-        children: ['Network/Network', 'Network/DNS'],
+        children: [
+          'Network/Network', 
+          'Network/DNS',
+          'Network/浏览器缓存'
+      ],
       },
       'WebSecurity/Security',
       'DesignPattern',
