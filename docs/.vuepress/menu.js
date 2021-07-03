@@ -42,12 +42,22 @@ const getSidebar = () => {
         title: '网络协议',
         collapsable: true,
         children: [
-          'Network/Network', 
+          'Network/HTTP', 
+          'Network/状态码', 
+          'Network/TCP&UDP', 
           'Network/DNS',
           'Network/浏览器缓存'
-      ],
+        ],
       },
-      'WebSecurity/Security',
+      {
+        title: 'Web 安全',
+        collapsable: true,
+        children: [
+          'WebSecurity/XSS',
+          'WebSecurity/CSRF',
+          'WebSecurity/Security',
+        ],
+      },
       'DesignPattern',
       {
         title: '前端可视化',
@@ -158,6 +168,8 @@ const getSidebar = () => {
           'performance/前端性能监控',
           'performance/错误信息收集',
           'performance/前端性能优化',
+          'performance/网页首帧优化实践',
+          'performance/浏览器渲染页面',
         ],
       },
       '设计一个前端项目',
