@@ -168,6 +168,14 @@ SingleDog.getInstance = (function() {
 
 ## 观察者模式
 
+### DOM 事件
+
+```js
+document.body.addEventListener('click', () => {}, false);
+```
+
+### 双向数据绑定
+
 ```js
 // 主题，接收状态变化，触发每个观察者
 class Subject {
@@ -222,7 +230,30 @@ s.setState(3);
 - 简单来说，它们就是解耦的程度不同，vue 内的自定义事件的 Event Emitter，发布者完全不用感知到订阅者，事件的注册和触发都发生在事件总线上，实现了完全的解耦。
 - 而 Dep 和 Watcher 就是观察者模式，Dep 直接 add 以及 notify 触发 watcher 的更新。
 
+观察者模式让观察者依赖与抽象而非具体。如登录的例子：
+
+```js
+// 登录成功后，发布“loginSucc”登录成功消息，并传递data数据
+login.succ((data) => {
+  login.trigger('loginSucc', data);
+});
+
+// header模块js
+// 订阅“loginSucc”登录成功消息
+login.listen('loginSucc', () => {
+  header.setAvatar(data.avatar);
+});
+
+// nav模块js
+// 订阅“loginSucc”登录成功消息
+login.listen('loginSucc', () => {
+  nav.setAvatar(data.avatar);
+});
+```
+
 ## 策略模式
+
+### 价格计算
 
 > 需求：
 >
@@ -269,6 +300,152 @@ priceProcessor.newUser = function(originPrice) {
   return originPrice;
 };
 ```
+
+### 表单校验
+
+```text
+现在有一个注册用户的表单需求，在提交表单之前，需要验证以下规则：
+
+用户名不能为空
+密码长度不能少于 6 位
+手机号码必须符合格式
+```
+
+传统做法：使用 `if-else` 语句判断表单输入是否符合对应规则，如不符合，提示错误原因。
+
+```js
+let registerForm = document.getElementById('registerForm');
+registerForm.onsubmit = () => {
+  if (registerForm.userName.value) {
+    alert('用户名不能为空');
+    return false;
+  }
+  if (registerForm.password.value.length < 6) {
+    alert('密码长度不能少于6');
+    return false;
+  }
+  if (!/(^1[3|5|8][0-9]$)/.test(registerForm.phone.value)) {
+    alert('手机号码格式不正确');
+    return false;
+  }
+};
+```
+
+上述代码有以下缺点：
+
+- onsubmit 函数庞大，包含大量 if-else 语句；
+- onsubmit 缺乏弹性，当有规则需要调整，或者需要新增规则时，需要改动 onsubmit 函数内部，违反开放-封闭原则；
+- 算法复用性差，只能通过复制，复用到其他表单。
+
+策略模式做法:
+
+```js
+// 表单dom
+const registerForm = document.getElementById('registerForm');
+
+// 表单规则
+const rules = {
+  userName: [
+    {
+      strategy: 'isNonEmpty',
+      errorMsg: '用户名不能为空',
+    },
+    {
+      strategy: 'minLength:10',
+      errorMsg: '用户名长度不能小于10位',
+    },
+  ],
+  password: [
+    {
+      strategy: 'minLength:6',
+      errorMsg: '密码长度不能小于6位',
+    },
+  ],
+  phoneNumber: [
+    {
+      strategy: 'isMobile',
+      errorMsg: '手机号码格式不正确',
+    },
+  ],
+};
+
+// 策略类
+var strategies = {
+  isNonEmpty: function(value, errorMsg) {
+    if (value === '') {
+      return errorMsg;
+    }
+  },
+  minLength: function(value, errorMsg, length) {
+    console.log(length);
+    if (value.length < length) {
+      return errorMsg;
+    }
+  },
+  isMobile: function(value, errorMsg) {
+    if (!/(^1[3|5|8][0-9]{9}$)/.test(value)) {
+      return errorMsg;
+    }
+  },
+};
+
+// 验证类
+const Validator = function() {
+  this.cache = [];
+};
+
+// 添加验证方法
+Validator.prototype.add = function({ dom, rules }) {
+  rules.forEach((rule) => {
+    const { strategy, errorMsg } = rule;
+    const [strategyName, strategyCondition] = strategy.split(':');
+    const { value } = dom;
+    this.cache.push(strategies[strategyName].bind(dom, value, errorMsg, strategyCondition));
+  });
+};
+
+// 开始验证
+Validator.prototype.start = function() {
+  let errorMsg;
+  this.cache.some((cacheItem) => {
+    const _errorMsg = cacheItem();
+    if (_errorMsg) {
+      errorMsg = _errorMsg;
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  return errorMsg;
+};
+
+// 验证函数
+const validatorFn = () => {
+  const validator = new Validator();
+  Object.keys(rules).forEach((key) => {
+    validator.add({
+      dom: registerForm[key],
+      rules: rules[key],
+    });
+  });
+
+  const errorMsg = validator.start();
+  return errorMsg;
+};
+
+// 表单提交
+registerForm.onsubmit = () => {
+  const errorMsg = validatorFn();
+  if (errorMsg) {
+    alert(errorMsg);
+    return false;
+  }
+  return false;
+};
+```
+
+:question: todo 调研现在 UI 框架的做法
 
 ## 迭代器模式
 
@@ -449,3 +626,7 @@ react hooks, react 中的高阶组件。
 - 告别写被人吐槽的烂代码
 - 提高复杂代码的设计和开发能力
 - 让读源码、学框架事半功倍
+
+## 资料
+
+- [简单易懂的设计模式](https://mp.weixin.qq.com/s/KDIsqVzA2XotlLyhsy-K9w)
