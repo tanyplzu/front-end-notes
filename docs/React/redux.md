@@ -1,4 +1,10 @@
+---
+sidebarDepth: 0
+---
+
 # Redux 基本用法
+
+[[toc]]
 
 ## 使用场景
 

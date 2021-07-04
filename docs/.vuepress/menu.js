@@ -127,6 +127,7 @@ const getSidebar = () => {
           'react性能优化',
           'react-router',
           'redux',
+          'Redux设计原理',
           'umijs',
         ],
       },
