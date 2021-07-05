@@ -652,8 +652,6 @@ function wordBreak(s: string, wordDict: string[]): boolean {
 }
 ```
 
-## 146.LRU 缓存函数
-
 ## 155. 最小栈
 
 ::: tip 题目
