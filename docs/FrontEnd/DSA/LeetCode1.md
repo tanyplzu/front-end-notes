@@ -158,6 +158,69 @@ var lengthOfLongestSubstring = function(s) {
 };
 ```
 
+## 5. 最长回文子串
+
+给你一个字符串 s，找到 s 中最长的回文子串。
+
+```text
+输入：s = "babad"
+输出："bab"
+解释："aba" 同样是符合题意的答案。
+
+输入：s = "cbbd"
+输出："bb"
+```
+
+**题解：中心扩展算法——此题动态规划法的改进方法。**
+
+事实上，只需使用恒定的空间，我们可以在 O(n^2)的时间内解决这个问题。
+
+我们观察到回文中心的两侧互为镜像。因此，回文可以从它的中心展开，并且只有 2n - 1 个这样的中心。
+
+你可能会问，为什么会是 2n - 1 个，而不是 n 个中心？原因在于所含字母数为偶数的回文的中心可以处于两字母之间（例如“abba”的中心在两个 b 之间）。
+
+复杂度分析时间复杂度：O(n^2)。由于围绕中心来扩展回文会耗去 O(n)的时间，所以总的复杂度为 O(n^2)。
+
+空间复杂度：O(1)。
+
+```js
+const longestPalindrome = function(s) {
+  let result = '';
+  if (s === '') return '';
+  if (s.length === 1) return s;
+  for (let i = 0; i < s.length - 1; i++) {
+    // 子串长度奇数和偶数都搜索一遍
+    let a = maxSubstring(i, i);
+    let b = maxSubstring(i, i + 1);
+    let temp = a.length > b.length ? a : b;
+    result = result.length > temp.length ? result : temp;
+  }
+  return result;
+
+  // 寻找某个对称轴为中心的最长回文子串
+  function maxSubstring(left, right) {
+    while (left >= 0 && right < s.length) {
+      if (s[left] === s[right]) {
+        left--;
+        right++;
+      }
+    }
+    // 使用slice的时候是左闭右开结构，所以left要+1指向子串第一个字符
+    left++;
+    // right到末尾使用slice会越界，单独考虑
+    if (right === s.length) {
+      // console.log('1 '+s.slice(left));
+      return s.slice(left);
+    }
+    // console.log('2 '+s.slice(left,right));
+    return s.slice(left, right);
+  }
+};
+console.log("longestPalindrome('aabacc')", longestPalindrome('aabacc')); // aba
+console.log("longestPalindrome('aabaa')", longestPalindrome('aabaa')); // aabaa
+console.log("longestPalindrome('cbbd')", longestPalindrome('cbbd')); //bb
+```
+
 ## 9. 回文数
 
 ::: tip 题目
@@ -652,7 +715,81 @@ function wordBreak(s: string, wordDict: string[]): boolean {
 }
 ```
 
-## 146.LRU 缓存函数
+## 146. LRU 缓存机制
+
+运用你所掌握的数据结构，设计和实现一个   LRU (最近最少使用) 缓存机制 。实现 LRUCache 类：
+
+LRUCache(int capacity) 以正整数作为容量  capacity 初始化 LRU 缓存 int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。 void put(int key, int value)  如果关键字已经存在，则变更其数据值；如果关键字不存在，则插入该组「关键字-值」。当缓存容量达到上限时，它应该在写入新数据之前删除最久未使用的数据值，从而为新的数据值留出空间。
+
+进阶：你是否可以在  O(1) 时间复杂度内完成这两种操作？
+
+```text
+输入
+["LRUCache", "put", "put", "get", "put", "get", "put", "get", "get", "get"]
+[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]
+输出
+[null, null, null, 1, null, -1, null, -1, 3, 4]
+
+解释
+LRUCache lRUCache = new LRUCache(2);
+lRUCache.put(1, 1); // 缓存是 {1=1}
+lRUCache.put(2, 2); // 缓存是 {1=1, 2=2}
+lRUCache.get(1);    // 返回 1
+lRUCache.put(3, 3); // 该操作会使得关键字 2 作废，缓存是 {1=1, 3=3}
+lRUCache.get(2);    // 返回 -1 (未找到)
+lRUCache.put(4, 4); // 该操作会使得关键字 1 作废，缓存是 {4=4, 3=3}
+lRUCache.get(1);    // 返回 -1 (未找到)
+lRUCache.get(3);    // 返回 3
+lRUCache.get(4);    // 返回 4
+```
+
+```js
+//  一个Map对象在迭代时会根据对象中元素的插入顺序来进行
+// 新添加的元素会被插入到map的末尾，整个栈倒序查看
+class LRUCache {
+  constructor(capacity) {
+    this.secretKey = new Map();
+    this.capacity = capacity;
+  }
+  get(key) {
+    if (this.secretKey.has(key)) {
+      let tempValue = this.secretKey.get(key);
+      this.secretKey.delete(key);
+      this.secretKey.set(key, tempValue);
+      return tempValue;
+    } else {
+      return -1;
+    }
+  }
+  put(key, value) {
+    // key存在，仅修改值
+    if (this.secretKey.has(key)) {
+      this.secretKey.delete(key);
+      this.secretKey.set(key, value);
+    }
+    // key不存在，cache未满
+    else if (this.secretKey.size < this.capacity) {
+      this.secretKey.set(key, value);
+    }
+    // 添加新key，删除旧key
+    else {
+      this.secretKey.set(key, value);
+      // 删除map的第一个元素，即为最长未使用的
+      this.secretKey.delete(this.secretKey.keys().next().value);
+    }
+  }
+}
+let cache = new LRUCache(2);
+cache.put(1, 1);
+cache.put(2, 2);
+console.log('cache.get(1)', cache.get(1)); // 返回  1
+cache.put(3, 3); // 该操作会使得密钥 2 作废
+console.log('cache.get(2)', cache.get(2)); // 返回 -1 (未找到)
+cache.put(4, 4); // 该操作会使得密钥 1 作废
+console.log('cache.get(1)', cache.get(1)); // 返回 -1 (未找到)
+console.log('cache.get(3)', cache.get(3)); // 返回  3
+console.log('cache.get(4)', cache.get(4)); // 返回  4
+```
 
 ## 155. 最小栈
 

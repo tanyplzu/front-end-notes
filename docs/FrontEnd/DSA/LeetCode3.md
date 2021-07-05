@@ -93,3 +93,4 @@ function scm(a, b) {
   return (a * b) / gcd(a, b);
 }
 ```
+

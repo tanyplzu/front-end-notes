@@ -44,10 +44,30 @@
 
 - [渲染树构建、布局及绘制](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=zh-cn)
 
+### 其它
+
+- [Gridsome](https://www.gridsome.cn/)
+- [Next.js](https://www.nextjs.cn/)
+- [Docusaurus](https://www.docusaurus.cn/)
+- [Gatsby](https://www.gatsbyjs.cn/)
+- [MDX](https://www.mdxjs.cn/)
+- [Markdown](https://www.markdown.xyz/)
+- [Webpack](https://www.webpackjs.com/)
+- [Rollup](https://www.rollupjs.com/)
+- [Parcel](https://www.parceljs.cn/)
+- [NPM](https://www.npmjs.cn/)
+- [Yarn](https://www.yarnpkg.cn/)
+- [PurgeCSS](https://www.purgecss.cn/)
+- [TailwindCSS](https://www.tailwindcss.cn/)
+- [Fastify](https://www.fastify.cn/)
+- [Preact](https://www.preactjs.com.cn/)
+- [WebAssembly](https://www.wasm.com.cn/)
+- [Deno](https://www.denojs.cn/)
+
 ---
 
 ::: warning 说明
 
-个人笔记，只供个人学习使用，笔记中多数例子来源于网络。
+个人笔记，只供个人学习使用。
 
 :::

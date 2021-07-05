@@ -26,13 +26,13 @@ export default {
   background-color: #fff;
   font-size: 20px;
   padding: 10px;
-  border: 5px solid #3eaf7c;
+  border: 5px solid #4569d4;
 }
 
 .my-sw-update-popup button {
   color: #fff;
-  background-color: #3eaf7c;
-  border-bottom: 1px solid #389d70;
+  background-color: #4569d4;
+  border-bottom: 1px solid #4569d4;
   transition: background-color .1s ease;
   border-radius: 4px;
 }

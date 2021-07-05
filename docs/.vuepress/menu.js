@@ -33,7 +33,7 @@ const getSidebar = () => {
         children: [
           'JavaScript/01-JS数据类型',
           'JavaScript/02-JavaScript基础',
-          'JavaScript/03-JavaScript进阶',
+          'JavaScript/03-JavaScript基础',
           'JavaScript/V8',
         ],
       },
@@ -41,9 +41,23 @@ const getSidebar = () => {
       {
         title: '网络协议',
         collapsable: true,
-        children: ['Network/Network', 'Network/DNS'],
+        children: [
+          'Network/HTTP', 
+          'Network/状态码', 
+          'Network/TCP&UDP', 
+          'Network/DNS',
+          'Network/浏览器缓存'
+        ],
       },
-      'WebSecurity/Security',
+      {
+        title: 'Web 安全',
+        collapsable: true,
+        children: [
+          'WebSecurity/XSS',
+          'WebSecurity/CSRF',
+          'WebSecurity/Security',
+        ],
+      },
       'DesignPattern',
       {
         title: '前端可视化',
@@ -113,6 +127,7 @@ const getSidebar = () => {
           'react性能优化',
           'react-router',
           'redux',
+          'Redux设计原理',
           'umijs',
         ],
       },
@@ -135,7 +150,7 @@ const getSidebar = () => {
       {
         title: 'Node核心模块',
         collapsable: false,
-        children: ['core-module/Buffer'],
+        // children: ['core-module/Buffer'],
       },
       'Node的工具集',
       'Koa',
@@ -154,6 +169,8 @@ const getSidebar = () => {
           'performance/前端性能监控',
           'performance/错误信息收集',
           'performance/前端性能优化',
+          'performance/网页首帧优化实践',
+          'performance/浏览器渲染页面',
         ],
       },
       '设计一个前端项目',
