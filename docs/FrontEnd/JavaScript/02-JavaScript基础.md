@@ -515,6 +515,92 @@ this 表示为当前的函数调用方，在运行时才能决定。如谁调用
 >
 > 阮一峰 [Javascript 的 this 用法](http://www.ruanyifeng.com/blog/2010/04/using_this_keyword_in_javascript.html)
 
+**全局环境下的 this**
+
+```js
+const foo = {
+  bar: 10,
+  fn: function() {
+    console.log(this);
+    console.log(this.bar);
+  },
+};
+let fn1 = foo.fn;
+
+fn1(); // 输出 window 和 undefined
+```
+
+**上下文对象调用中的 this**
+
+```js
+const student = {
+  name: 'Lucas',
+  fn: function() {
+    return this;
+  },
+};
+
+console.log(student.fn() === student); // true
+```
+
+```js
+const person = {
+  name: 'Lucas',
+  brother: {
+    name: 'Mike',
+    fn: function() {
+      return this.name;
+    },
+  },
+};
+
+console.log(person.brother.fn()); // Mike
+```
+
+```js
+const o1 = {
+  text: 'o1',
+  fn: function() {
+    return this.text;
+  },
+};
+
+const o2 = {
+  text: 'o2',
+  fn: function() {
+    return o1.fn();
+  },
+};
+
+const o3 = {
+  text: 'o3',
+  fn: function() {
+    var fn = o1.fn;
+    return fn();
+  },
+};
+
+console.log(o1.fn());
+console.log(o2.fn());
+console.log(o3.fn());
+
+// o1、o1、undefined
+```
+
+**箭头函数中的 this 指向**
+
+```js
+const foo = {
+  fn: function() {
+    setTimeout(function() {
+      console.log(this);
+    });
+  },
+};
+
+console.log(foo.fn());
+```
+
 ### 改变当前调用 this 的方式
 
 - call：会立即执行调用 call 方法的函数，不过是以第一个参数为 this 的情况下调用，方法内可以传递不等的参数，作为调用 call 方法的参数。
@@ -727,7 +813,9 @@ JS 会阻塞浏览器，浏览器必须等待 index.js 加载和执行完毕才�
 ### 如何创建一个 Ajax
 
 ```js
-var xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var xhr = XMLHttpRequest
+  ? new XMLHttpRequest()
+  : new ActiveXObject('Microsoft.XMLHTTP');
 xhr.onreadystatechange = function() {
   // 通信成功时，状态值为4
   if (xhr.readyState === 4) {
