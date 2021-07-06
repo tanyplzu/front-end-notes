@@ -169,7 +169,6 @@ const getSidebar = () => {
           'performance/前端性能监控',
           'performance/错误信息收集',
           'performance/前端性能优化',
-          'performance/网页首帧优化实践',
           'performance/浏览器渲染页面',
         ],
       },
