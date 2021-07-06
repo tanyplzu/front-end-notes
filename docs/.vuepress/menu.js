@@ -67,11 +67,7 @@ const getSidebar = () => {
       {
         title: '函数式编程',
         collapsable: true,
-        children: [
-          'Functional/',
-          'Functional/curry',
-          'Functional/compose',
-        ],
+        children: ['Functional/', 'Functional/curry', 'Functional/compose'],
       },
       {
         title: '数据结构与算法',

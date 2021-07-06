@@ -14,7 +14,13 @@ sidebarDepth: 0
 
 ```html
 <body style="background:url(clickhijack.png) no-repeat">
-  <iframe style="opacity:.1" src="http://localhost:1521/post/1" width="800" height="600"> </iframe>
+  <iframe
+    style="opacity:.1"
+    src="http://localhost:1521/post/1"
+    width="800"
+    height="600"
+  >
+  </iframe>
 </body>
 ```
 
@@ -37,10 +43,6 @@ sidebarDepth: 0
 
 3. 远古浏览器使用 js 防御，当通过 iframe 的方式加载页面时，让攻击者网站不显示内容。
 
-## 一些前端安全的资料
-
-- [Where to Store your JWTs – Cookies vs HTML5 Web Storage](https://stormpath.com/blog/where-to-store-your-jwts-cookies-vs-html5-web-storage)
-
 ## 传输安全
 
 ### http 传输窃听篡改
@@ -62,8 +64,6 @@ tracert https://juejin.im/timeline
 解决方法：
 
 - https TLS(SSL) 加密
-
-部署：
 
 ## 密码安全
 
@@ -155,3 +155,146 @@ Hash 函数是这样，不论原始数据有多长、有多少位，经过 Hash 
 是系统设计层面的。
 
 将渲染进程和操作系统隔离的这道墙就是我们要聊的安全沙箱。安全沙箱是不能防止 XSS 或者 CSRF 一类的攻击安全沙箱的目的是隔离渲染进程和操作系统，让渲染进行没有访问操作系统的权利 XSS 或者 CSRF 主要是利用网络资源获取用户的信息，这和操作系统没有关系的
+
+## CSP
+
+内容安全策略 (CSP) 是一个额外的安全层，用于检测并削弱某些特定类型的攻击，包括跨站脚本 (XSS (en-US)) 和数据注入攻击等。
+
+### 使用 CSP
+
+你可以使用 Content-Security-Policy HTTP 头部 来指定你的策略，像这样:
+
+```http
+Content-Security-Policy: policy
+```
+
+或使用
+
+```html
+<meta
+  http-equiv="Content-Security-Policy"
+  content="default-src 'self'; img-src https://*; child-src 'none';"
+/>
+```
+
+policy 参数是一个包含了各种描述你的 CSP 策略指令的字符串。
+
+```http
+Content-Security-Policy: default-src 'self'
+```
+
+一个网站管理者想要所有内容均来自站点的同一个源 (不包括其子域名)
+
+例 1：
+
+```http
+Content-Security-Policy: default-src 'self' *.trusted.com
+```
+
+一个网站管理者允许内容来自信任的域名及其子域名 (域名不必须与 CSP 设置所在的域名相同)
+
+例 2：
+
+```http
+Content-Security-Policy: default-src 'self'; img-src *; media-src media1.com media2.com; script-src userscripts.example.com
+```
+
+- 图片可以从任何地方加载(注意 "\*" 通配符)。
+- 多媒体文件仅允许从 media1.com 和 media2.com 加载(不允许从这些站点的子域名)。
+- 可运行脚本仅允许来自于 userscripts.example.com。
+
+例 3：
+
+```http
+Content-Security-Policy: default-src https://onlinebanking.jumbobank.com
+```
+
+该服务器仅允许通过 HTTPS 方式并仅从 onlinebanking.jumbobank.com 域名来访问文档。
+
+例 4：
+
+```http
+Content-Security-Policy: default-src 'self' *.mailsite.com; img-src *
+```
+
+同样图片允许从任何地方加载，但不允许 JavaScript 或者其他潜在的危险内容(从任意位置加载)。
+
+### 违例报告
+
+```http
+Content-Security-Policy: default-src 'self'; report-uri http://reportcollector.example.com/collector.cgi
+```
+
+报告格式：
+
+```http
+Content-Security-Policy: default-src 'none'; style-src cdn.example.com; report-uri /_/csp-reports
+```
+
+报告样式
+
+```json
+{
+  "csp-report": {
+    "document-uri": "http://example.com/signup.html",
+    "referrer": "",
+    "blocked-uri": "http://example.com/css/style.css",
+    "violated-directive": "style-src cdn.example.com",
+    "original-policy": "default-src 'none'; style-src cdn.example.com; report-uri /_/csp-reports"
+  }
+}
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self'; form-action 'self';"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>This is content</div>
+    <script>
+      console.log('inline js');
+    </script>
+    <script src="test.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/core.js"></script>
+  </body>
+</html>
+```
+
+```js
+const http = require('http');
+const fs = require('fs');
+
+http
+  .createServer(function(request, response) {
+    console.log('request come', request.url);
+
+    if (request.url === '/') {
+      const html = fs.readFileSync('test.html', 'utf8');
+      response.writeHead(200, {
+        'Content-Type': 'text/html',
+        'Content-Security-Policy':
+          "script-src 'self'; form-action 'self'; report-uri /report",
+      });
+      response.end(html);
+    } else {
+      response.writeHead(200, {
+        'Content-Type': 'application/javascript',
+      });
+      response.end('console.log("loaded script")');
+    }
+  })
+  .listen(8888);
+
+console.log('server listening on 8888');
+```
+
+- [内容安全策略( CSP )](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP)
