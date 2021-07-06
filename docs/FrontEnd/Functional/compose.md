@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 1
+sidebarDepth: 0
 ---
 
 # 代码组合（compose）
@@ -90,4 +90,3 @@ function compose(...funcs) {
 }
 ```
 
-##

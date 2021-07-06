@@ -42,11 +42,11 @@ const getSidebar = () => {
         title: '网络协议',
         collapsable: true,
         children: [
-          'Network/HTTP', 
-          'Network/状态码', 
-          'Network/TCP&UDP', 
+          'Network/HTTP',
+          'Network/状态码',
+          'Network/TCP&UDP',
           'Network/DNS',
-          'Network/浏览器缓存'
+          'Network/浏览器缓存',
         ],
       },
       {
@@ -67,7 +67,11 @@ const getSidebar = () => {
       {
         title: '函数式编程',
         collapsable: true,
-        children: ['Functional/curry', 'Functional/compose'],
+        children: [
+          'Functional/',
+          'Functional/curry',
+          'Functional/compose',
+        ],
       },
       {
         title: '数据结构与算法',
