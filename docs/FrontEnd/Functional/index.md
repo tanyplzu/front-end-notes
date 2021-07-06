@@ -81,3 +81,8 @@ const some = (array, fn) => {
 - 可缓存
 - 可自动化测试
 - 并行处理
+
+## 资料
+
+- 《JavaScript ES6 函数式编程入门经典》
+- 阮一峰[函数式编程入门教程](https://www.ruanyifeng.com/blog/2017/02/fp-tutorial.html)
