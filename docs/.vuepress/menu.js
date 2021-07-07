@@ -202,6 +202,7 @@ const getSidebar = () => {
       '组件库',
     ],
     '/Java/': [
+      '',
       {
         title: 'Java',
         collapsable: false,
