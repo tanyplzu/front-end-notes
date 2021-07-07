@@ -179,6 +179,24 @@ HTTP/3 中的 QUIC 协议集合了以下几点功能：
 
 ### TLS 1.3 做了哪些改进？
 
+#### 强化安全
+
+在 TLS1.3 中废除了非常多的加密算法，最后只保留五个加密套件:
+
+- TLS_AES_128_GCM_SHA256
+- TLS_AES_256_GCM_SHA384
+- TLS_CHACHA20_POLY1305_SHA256
+- TLS_AES_128_GCM_SHA256
+- TLS_AES_128_GCM_8_SHA256
+
+最后剩下的对称加密算法只有 AES 和 CHACHA20，之前主流的也会这两种。分组模式也只剩下 GCM 和 POLY1305, 哈希摘要算法只剩下了 SHA256 和 SHA384 了。
+
+ECDHE 取代 RSA。
+
+#### 提升性能
+
+大体的方式和 TLS1.2 差不多，不过和 TLS 1.2 相比少了一个 RTT， 服务端不必等待对方验证证书之后才拿到client_params，而是直接在第一次握手的时候就能够拿到, 拿到之后立即计算secret，节省了之前不必要的等待时间。这种 TLS 1.3 握手方式也被叫做1-RTT握手。
+
 ### 数字证书 CA
 
 已极客时间为例：
@@ -391,6 +409,48 @@ Via: proxy_server2, proxy_server1
 相应的，还有 `X-Forwarded-Host` 和 `X-Forwarded-Proto`，分别记录客户端(注意哦，不包括代理)的域名和协议名。
 
 ### 代理 缓存
+
+## HTTP 如何处理大文件的传输
+
+```http
+Accept-Ranges: bytes 0-9/100
+```
+
+## HTTP 中如何处理表单数据的提交
+
+有两种主要的表单提交的方式，体现在两种不同的 Content-Type 取值:
+
+- `application/x-www-form-urlencoded`
+- `multipart/form-data`
+
+### application/x-www-form-urlencoded
+
+- 其中的数据会被编码成以&分隔的键值对
+- 字符以 URL 编码方式编码。
+
+```
+转换过程: {a: 1, b: 2} -> a=1&b=2 -> "a%3D1%26b%3D2"
+```
+
+### multipart/form-data
+
+- 请求头中的 `Content-Typ`e 字段会包含 `boundary`，且 boundary 的值有浏览器默认指定。例: Content-Type: multipart/form-data;boundary=----WebkitFormBoundaryRRJKeWfHPGrS4LKe。
+- 数据会分为多个部分，每两个部分之间通过分隔符来分隔，每部分表述均有 HTTP 头部描述子包体，如 Content-Type，在最后的分隔符会加上--表示结束。
+
+相应的请求体是下面这样:
+
+```http
+Content-Disposition: form-data;name="data1";
+Content-Type: text/plain
+data1
+----WebkitFormBoundaryRRJKeWfHPGrS4LKe
+Content-Disposition: form-data;name="data2";
+Content-Type: text/plain
+data2
+----WebkitFormBoundaryRRJKeWfHPGrS4LKe--
+```
+
+在实际的场景中，对于图片等文件的上传，基本采用 multipart/form-data 而不用 application/x-www-form-urlencoded，因为没有必要做 URL 编码，带来巨大耗时的同时也占用了更多的空间。
 
 ## 相关参考
 
