@@ -74,7 +74,7 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 ### button 按钮的默认类型
 
 - 在 form 表单里的 button，不给 button 添加 type 属性，点击按钮，button 的类型会默认为 submit，会默认提交表单并刷新页面。
-- element-ui 中的 el-button 组件有 type:text 的值，如果和 button 标签的type值混用，会出现浏览路径不正确的问题。
+- element-ui 中的 el-button 组件有 type:text 的值，如果和 button 标签的 type 值混用，会出现浏览路径不正确的问题。
 
 ### 定位的方式有哪几种
 
@@ -106,9 +106,9 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 
 ### sticky
 
-元素根据正常文档流进行定位，然后相对它的最近滚动祖先（nearest scrolling ancestor）和 containing block (最近块级祖先 nearest block-level ancestor)，包括table-related元素，基于top, right, bottom, 和 left的值进行偏移。偏移值不会影响任何其他元素的位置。
+元素根据正常文档流进行定位，然后相对它的最近滚动祖先（nearest scrolling ancestor）和 containing block (最近块级祖先 nearest block-level ancestor)，包括 table-related 元素，基于 top, right, bottom, 和 left 的值进行偏移。偏移值不会影响任何其他元素的位置。
 
-该值总是创建一个新的层叠上下文（stacking context）。注意，一个sticky元素会“固定”在离它最近的一个拥有“滚动机制”的祖先上（当该祖先的overflow 是 hidden, scroll, auto, 或 overlay时），即便这个祖先不是最近的真实可滚动祖先。这有效地抑制了任何“sticky”行为
+该值总是创建一个新的层叠上下文（stacking context）。注意，一个 sticky 元素会“固定”在离它最近的一个拥有“滚动机制”的祖先上（当该祖先的 overflow 是 hidden, scroll, auto, 或 overlay 时），即便这个祖先不是最近的真实可滚动祖先。这有效地抑制了任何“sticky”行为
 
 ### 定位上下文
 
@@ -119,6 +119,7 @@ html5 新出的标签，每个标签都有自己语义，什么标签做什么�
 ![position](./imgs/css-position2.jpg)
 
 > https://developer.mozilla.org/zh-CN/docs/Web/CSS/position
+
 ### 介绍下 flex 布局
 
 #### 父级属性
@@ -384,11 +385,9 @@ document.querySelector('html').style.fontSize = clientWidth / 16 + 'px';
 
 有 vs code 中有计算 rem 的插件
 
-
 阻塞渲染，和重新计算的问题
 
 缺点：本质上，**用户使用更大的屏幕，是想看到更多的内容，而不是更大的字。**
-
 
 ### 2.使用 vw，vh 布局
 
@@ -403,18 +402,18 @@ vh 和 vw 方案和 rem 类似也是相当麻烦需要做单位转化，而且 p
   loader: 'postcss-loader',
   options: {
     plugins: ()=>[
-        require('autoprefixer')({
-          browsers: ['last 5 versions']
-        }),
-        require('postcss-px-to-viewport')({
-          viewportWidth: 375, //视口宽度（数字)
-          viewportHeight: 1334, //视口高度（数字）
-          unitPrecision: 3, //设置的保留小数位数（数字）
-          viewportUnit: 'vw', //设置要转换的单位（字符串）
-          selectorBlackList: ['.ignore', '.hairlines'], //不需要进行转换的类名（数组）
-              minPixelValue: 1, //设置要替换的最小像素值（数字）
-              mediaQuery: false//允许在媒体查询中转换px（true/false）
-        })
+      require('autoprefixer')({
+        browsers: ['last 5 versions']
+      }),
+      require('postcss-px-to-viewport')({
+        viewportWidth: 375, //视口宽度（数字)
+        viewportHeight: 1334, //视口高度（数字）
+        unitPrecision: 3, //设置的保留小数位数（数字）
+        viewportUnit: 'vw', //设置要转换的单位（字符串）
+        selectorBlackList: ['.ignore', '.hairlines'], //不需要进行转换的类名（数组）
+            minPixelValue: 1, //设置要替换的最小像素值（数字）
+            mediaQuery: false//允许在媒体查询中转换px（true/false）
+      })
     ]
   }
 }
@@ -530,20 +529,20 @@ css 根据设备像素比媒体查询后的解决方案
 
 ### 保持高宽比的图
 
-```js
+```css
 .mod_banner {
-    position: relative;
-    // 使用padding-top 实现宽高比为 100:750 的图片区域
-    padding-top: percentage(100/750);
-    height: 0;
-    overflow: hidden;
-    img {
-        width: 100%;
-        height: auto;
-        position: absolute;
-        left: 0;
-        top: 0;
-    }
+  position: relative;
+  // 使用padding-top 实现宽高比为 100:750 的图片区域
+  padding-top: percentage(100/750);
+  height: 0;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
 }
 ```
 
