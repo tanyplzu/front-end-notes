@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>LeetCode 算法精选(2) | 七月有风</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="七月有风技术空间">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="theme-color" content="#000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.2a34df0d.css" as="style"><link rel="preload" href="/assets/js/app.9f945a6d.js" as="script"><link rel="preload" href="/assets/js/32.ba4d1f66.js" as="script"><link rel="preload" href="/assets/js/3.6763c6b5.js" as="script"><link rel="preload" href="/assets/js/11.bc49b615.js" as="script"><link rel="prefetch" href="/assets/js/10.d383a911.js"><link rel="prefetch" href="/assets/js/100.74342306.js"><link rel="prefetch" href="/assets/js/101.524873c4.js"><link rel="prefetch" href="/assets/js/102.8ba598a5.js"><link rel="prefetch" href="/assets/js/103.28711326.js"><link rel="prefetch" href="/assets/js/104.80f82bfd.js"><link rel="prefetch" href="/assets/js/105.d964b811.js"><link rel="prefetch" href="/assets/js/106.00fa0112.js"><link rel="prefetch" href="/assets/js/107.fa1d6c19.js"><link rel="prefetch" href="/assets/js/108.6f685701.js"><link rel="prefetch" href="/assets/js/109.f7c1605d.js"><link rel="prefetch" href="/assets/js/110.dd5f11ef.js"><link rel="prefetch" href="/assets/js/111.755a3b51.js"><link rel="prefetch" href="/assets/js/112.a8690079.js"><link rel="prefetch" href="/assets/js/113.a963da1d.js"><link rel="prefetch" href="/assets/js/114.081ceb5b.js"><link rel="prefetch" href="/assets/js/115.d34daf9c.js"><link rel="prefetch" href="/assets/js/116.d9cfe714.js"><link rel="prefetch" href="/assets/js/117.194e4191.js"><link rel="prefetch" href="/assets/js/118.7ec3e430.js"><link rel="prefetch" href="/assets/js/119.da4ca162.js"><link rel="prefetch" href="/assets/js/12.ba3b1a55.js"><link rel="prefetch" href="/assets/js/120.e5db6113.js"><link rel="prefetch" href="/assets/js/121.0d17c9a5.js"><link rel="prefetch" href="/assets/js/122.29cbc359.js"><link rel="prefetch" href="/assets/js/123.385adff6.js"><link rel="prefetch" href="/assets/js/124.130f37a0.js"><link rel="prefetch" href="/assets/js/125.044cd124.js"><link rel="prefetch" href="/assets/js/126.cdd2c365.js"><link rel="prefetch" href="/assets/js/127.34e035c3.js"><link rel="prefetch" href="/assets/js/128.daa073b8.js"><link rel="prefetch" href="/assets/js/129.536301e7.js"><link rel="prefetch" href="/assets/js/13.be26e429.js"><link rel="prefetch" href="/assets/js/130.1c7339eb.js"><link rel="prefetch" href="/assets/js/131.cb407e78.js"><link rel="prefetch" href="/assets/js/132.2bb4a64a.js"><link rel="prefetch" href="/assets/js/133.f2b02735.js"><link rel="prefetch" href="/assets/js/134.7e091bd9.js"><link rel="prefetch" href="/assets/js/135.fc39c4c6.js"><link rel="prefetch" href="/assets/js/136.caf1d50b.js"><link rel="prefetch" href="/assets/js/137.5760d3ef.js"><link rel="prefetch" href="/assets/js/138.2501dd82.js"><link rel="prefetch" href="/assets/js/139.d438edbf.js"><link rel="prefetch" href="/assets/js/14.823d52d6.js"><link rel="prefetch" href="/assets/js/140.da85dbf4.js"><link rel="prefetch" href="/assets/js/141.6af537c0.js"><link rel="prefetch" href="/assets/js/142.2d74cb0e.js"><link rel="prefetch" href="/assets/js/143.15a847b8.js"><link rel="prefetch" href="/assets/js/144.93518af6.js"><link rel="prefetch" href="/assets/js/145.af16c143.js"><link rel="prefetch" href="/assets/js/146.39037451.js"><link rel="prefetch" href="/assets/js/147.7d1e7e67.js"><link rel="prefetch" href="/assets/js/148.47a77f15.js"><link rel="prefetch" href="/assets/js/149.0ad27258.js"><link rel="prefetch" href="/assets/js/15.20800410.js"><link rel="prefetch" href="/assets/js/150.910a1168.js"><link rel="prefetch" href="/assets/js/151.9a8ad067.js"><link rel="prefetch" href="/assets/js/152.29ef1e66.js"><link rel="prefetch" href="/assets/js/153.724bd497.js"><link rel="prefetch" href="/assets/js/154.274f0604.js"><link rel="prefetch" href="/assets/js/155.6aa717b5.js"><link rel="prefetch" href="/assets/js/156.3ed0b7f0.js"><link rel="prefetch" href="/assets/js/157.a3349b9b.js"><link rel="prefetch" href="/assets/js/158.33e9fed0.js"><link rel="prefetch" href="/assets/js/159.9e1aa160.js"><link rel="prefetch" href="/assets/js/16.e6cf3dc3.js"><link rel="prefetch" href="/assets/js/160.a4aa94f7.js"><link rel="prefetch" href="/assets/js/161.5649b928.js"><link rel="prefetch" href="/assets/js/162.18ad0d08.js"><link rel="prefetch" href="/assets/js/163.944ded01.js"><link rel="prefetch" href="/assets/js/164.a5943111.js"><link rel="prefetch" href="/assets/js/165.5d61e486.js"><link rel="prefetch" href="/assets/js/166.d70869ae.js"><link rel="prefetch" href="/assets/js/167.a8c7ac13.js"><link rel="prefetch" href="/assets/js/17.504f4c84.js"><link rel="prefetch" href="/assets/js/18.1825ef44.js"><link rel="prefetch" href="/assets/js/19.08cae42a.js"><link rel="prefetch" href="/assets/js/20.2aeedd86.js"><link rel="prefetch" href="/assets/js/21.b737bf02.js"><link rel="prefetch" href="/assets/js/22.9be0fe37.js"><link rel="prefetch" href="/assets/js/23.f4564f99.js"><link rel="prefetch" href="/assets/js/24.e242712d.js"><link rel="prefetch" href="/assets/js/25.3ac25216.js"><link rel="prefetch" href="/assets/js/26.00be2e49.js"><link rel="prefetch" href="/assets/js/27.0a2cc739.js"><link rel="prefetch" href="/assets/js/28.76b2abe6.js"><link rel="prefetch" href="/assets/js/29.9886a8cb.js"><link rel="prefetch" href="/assets/js/30.3b63afdd.js"><link rel="prefetch" href="/assets/js/31.fc0065f8.js"><link rel="prefetch" href="/assets/js/33.5886d877.js"><link rel="prefetch" href="/assets/js/34.a2d3ab07.js"><link rel="prefetch" href="/assets/js/35.0cacc950.js"><link rel="prefetch" href="/assets/js/36.94ae1473.js"><link rel="prefetch" href="/assets/js/37.0938516f.js"><link rel="prefetch" href="/assets/js/38.3f9ab253.js"><link rel="prefetch" href="/assets/js/39.ffc9cc02.js"><link rel="prefetch" href="/assets/js/4.f522a845.js"><link rel="prefetch" href="/assets/js/40.b957d423.js"><link rel="prefetch" href="/assets/js/41.4bf3d6e9.js"><link rel="prefetch" href="/assets/js/42.0341e170.js"><link rel="prefetch" href="/assets/js/43.1553b403.js"><link rel="prefetch" href="/assets/js/44.21a2470c.js"><link rel="prefetch" href="/assets/js/45.21db4302.js"><link rel="prefetch" href="/assets/js/46.68806e90.js"><link rel="prefetch" href="/assets/js/47.e13e1420.js"><link rel="prefetch" href="/assets/js/48.b853e7f0.js"><link rel="prefetch" href="/assets/js/49.79148ff6.js"><link rel="prefetch" href="/assets/js/5.7e633912.js"><link rel="prefetch" href="/assets/js/50.9060be85.js"><link rel="prefetch" href="/assets/js/51.fa0fa689.js"><link rel="prefetch" href="/assets/js/52.b774f108.js"><link rel="prefetch" href="/assets/js/53.e5076951.js"><link rel="prefetch" href="/assets/js/54.ad6401c2.js"><link rel="prefetch" href="/assets/js/55.073f261f.js"><link rel="prefetch" href="/assets/js/56.6019a787.js"><link rel="prefetch" href="/assets/js/57.d3c6ade5.js"><link rel="prefetch" href="/assets/js/58.14d1fcb4.js"><link rel="prefetch" href="/assets/js/59.7f6583d9.js"><link rel="prefetch" href="/assets/js/6.977ff5e3.js"><link rel="prefetch" href="/assets/js/60.94f2c5e7.js"><link rel="prefetch" href="/assets/js/61.ff303d72.js"><link rel="prefetch" href="/assets/js/62.2bb28c31.js"><link rel="prefetch" href="/assets/js/63.e1795764.js"><link rel="prefetch" href="/assets/js/64.88e4467f.js"><link rel="prefetch" href="/assets/js/65.40a88ff3.js"><link rel="prefetch" href="/assets/js/66.d080aea8.js"><link rel="prefetch" href="/assets/js/67.c1f443ba.js"><link rel="prefetch" href="/assets/js/68.66bfff86.js"><link rel="prefetch" href="/assets/js/69.73b9bd45.js"><link rel="prefetch" href="/assets/js/7.3af3b318.js"><link rel="prefetch" href="/assets/js/70.04af6f55.js"><link rel="prefetch" href="/assets/js/71.b604e096.js"><link rel="prefetch" href="/assets/js/72.ebfde101.js"><link rel="prefetch" href="/assets/js/73.19841682.js"><link rel="prefetch" href="/assets/js/74.b0ba91d6.js"><link rel="prefetch" href="/assets/js/75.311729c9.js"><link rel="prefetch" href="/assets/js/76.288c5796.js"><link rel="prefetch" href="/assets/js/77.d5c34c93.js"><link rel="prefetch" href="/assets/js/78.c4cf0d52.js"><link rel="prefetch" href="/assets/js/79.90d94312.js"><link rel="prefetch" href="/assets/js/8.875bf3b4.js"><link rel="prefetch" href="/assets/js/80.3c7a3e95.js"><link rel="prefetch" href="/assets/js/81.8ed4694b.js"><link rel="prefetch" href="/assets/js/82.a39cf134.js"><link rel="prefetch" href="/assets/js/83.6b7149ac.js"><link rel="prefetch" href="/assets/js/84.d8234ea5.js"><link rel="prefetch" href="/assets/js/85.40623acf.js"><link rel="prefetch" href="/assets/js/86.0750e4a0.js"><link rel="prefetch" href="/assets/js/87.bbe12d3f.js"><link rel="prefetch" href="/assets/js/88.71647f9d.js"><link rel="prefetch" href="/assets/js/89.b0134df7.js"><link rel="prefetch" href="/assets/js/9.4821d9dd.js"><link rel="prefetch" href="/assets/js/90.6ab9b48f.js"><link rel="prefetch" href="/assets/js/91.57dfac75.js"><link rel="prefetch" href="/assets/js/92.9598ccac.js"><link rel="prefetch" href="/assets/js/93.49761f1b.js"><link rel="prefetch" href="/assets/js/94.18d1a121.js"><link rel="prefetch" href="/assets/js/95.eaf093ec.js"><link rel="prefetch" href="/assets/js/96.be874472.js"><link rel="prefetch" href="/assets/js/97.34d37b1a.js"><link rel="prefetch" href="/assets/js/98.e94fb4fb.js"><link rel="prefetch" href="/assets/js/99.84f0f3b8.js"><link rel="prefetch" href="/assets/js/vendors~flowchart.6e75fdb7.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.2a34df0d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">七月有风</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FrontEnd/" class="nav-link router-link-active">
+  前端基础
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Language Menu" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="Language Menu" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/React/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/Vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/AngularJS/" class="nav-link">
+  AngularJS
+</a></li></ul></div></div><div class="nav-item"><a href="/JsFrame/" class="nav-link">
+  技术方案
+</a></div><div class="nav-item"><a href="/FrontEndTool/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/NodeJS/" class="nav-link">
+  NodeJS
+</a></div><div class="nav-item"><a href="/Java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/Reading/" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  Notes
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FrontEnd/" class="nav-link router-link-active">
+  前端基础
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Language Menu" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="Language Menu" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/React/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/Vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/AngularJS/" class="nav-link">
+  AngularJS
+</a></li></ul></div></div><div class="nav-item"><a href="/JsFrame/" class="nav-link">
+  技术方案
+</a></div><div class="nav-item"><a href="/FrontEndTool/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/NodeJS/" class="nav-link">
+  NodeJS
+</a></div><div class="nav-item"><a href="/Java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/Reading/" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  Notes
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/FrontEnd/" aria-current="page" class="sidebar-link">Introduction</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>JavaScript基础</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/FrontEnd/Html&amp;Css.html" class="sidebar-link">Html 和 Css</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>网络协议</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Web 安全</span> <span class="arrow right"></span></p> <!----></section></li><li><a href="/FrontEnd/DesignPattern.html" class="sidebar-link">设计模式</a></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前端可视化</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>函数式编程</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>数据结构与算法</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/FrontEnd/DSA/myPromise.html" class="sidebar-link">myPromise</a></li><li><a href="/FrontEnd/DSA/数据结构与算法1.html" class="sidebar-link">数据结构与算法(一)</a></li><li><a href="/FrontEnd/DSA/数据结构与算法2.html" class="sidebar-link">数据结构与算法(二)</a></li><li><a href="/FrontEnd/DSA/LeetCode1.html" class="sidebar-link">LeetCode 算法精选(1)</a></li><li><a href="/FrontEnd/DSA/LeetCode2.html" aria-current="page" class="active sidebar-link">LeetCode 算法精选(2)</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/FrontEnd/DSA/LeetCode2.html#_206-反转链表" class="sidebar-link">206. 反转链表</a></li><li class="sidebar-sub-header"><a href="/FrontEnd/DSA/LeetCode2.html#_235-二叉搜索树的最近公共祖先" class="sidebar-link">235. 二叉搜索树的最近公共祖先</a></li><li class="sidebar-sub-header"><a href="/FrontEnd/DSA/LeetCode2.html#_232-用栈实现队列" class="sidebar-link">232. 用栈实现队列</a></li><li class="sidebar-sub-header"><a href="/FrontEnd/DSA/LeetCode2.html#_239-滑动窗口最大值" class="sidebar-link">239. 滑动窗口最大值</a></li><li class="sidebar-sub-header"><a href="/FrontEnd/DSA/LeetCode2.html#_349-两个数组的交集" class="sidebar-link">349. 两个数组的交集</a></li><li class="sidebar-sub-header"><a href="/FrontEnd/DSA/LeetCode2.html#_350-两个数组的交集-ii" class="sidebar-link">350. 两个数组的交集 II</a></li></ul></li><li><a href="/FrontEnd/DSA/LeetCode3.html" class="sidebar-link">LeetCode 算法精选(3)</a></li><li><a href="/FrontEnd/DSA/nowcoder.html" class="sidebar-link">牛客网算法精选</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="leetcode-算法精选-2"><a href="#leetcode-算法精选-2" class="header-anchor">#</a> LeetCode 算法精选(2)</h1> <p></p><div class="table-of-contents"><ul><li><a href="#_206-反转链表">206. 反转链表</a></li><li><a href="#_235-二叉搜索树的最近公共祖先">235. 二叉搜索树的最近公共祖先</a></li><li><a href="#_232-用栈实现队列">232. 用栈实现队列</a></li><li><a href="#_239-滑动窗口最大值">239. 滑动窗口最大值</a></li><li><a href="#_349-两个数组的交集">349. 两个数组的交集</a></li><li><a href="#_350-两个数组的交集-ii">350. 两个数组的交集 II</a></li></ul></div><p></p> <h2 id="_206-反转链表"><a href="#_206-反转链表" class="header-anchor">#</a> 206. 反转链表</h2> <p>给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。</p> <div class="language-text extra-class"><pre class="language-text"><code>输入：head = [1,2,3,4,5]
+输出：[5,4,3,2,1]
+
+输入：head = [1,2]
+输出：[2,1]
+</code></pre></div><p>解题：</p> <p><img src="/assets/img/fanzhuanglianbian01.0d1a3625.png" alt="反转链表"></p> <p>cur.next = pre</p> <p><img src="/assets/img/fanzhuanglianbian02.d00ade52.png" alt="反转链表"></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">reverseList</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">head</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 初始化前驱结点为 null</span>
+  <span class="token keyword">let</span> pre <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token comment">// 初始化目标结点为头结点</span>
+  <span class="token keyword">let</span> cur <span class="token operator">=</span> head<span class="token punctuation">;</span>
+  <span class="token comment">// 只要目标结点不为 null，遍历就得继续</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>cur <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 记录一下 next 结点</span>
+    <span class="token keyword">let</span> next <span class="token operator">=</span> cur<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+    <span class="token comment">// 反转指针</span>
+    cur<span class="token punctuation">.</span>next <span class="token operator">=</span> pre<span class="token punctuation">;</span>
+    <span class="token comment">// pre 往前走一步</span>
+    pre <span class="token operator">=</span> cur<span class="token punctuation">;</span>
+    <span class="token comment">// cur往前走一步</span>
+    cur <span class="token operator">=</span> next<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 反转结束后，pre 就会变成新链表的头结点</span>
+  <span class="token keyword">return</span> pre<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="_235-二叉搜索树的最近公共祖先"><a href="#_235-二叉搜索树的最近公共祖先" class="header-anchor">#</a> 235. 二叉搜索树的最近公共祖先</h2> <div class="custom-block tip"><p class="custom-block-title">题目</p> <p>输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1<br>
+输出: 3<br>
+解释: 节点 5 和节点 1 的最近公共祖先是节点 3。</p> <p>输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4<br>
+输出: 5<br>
+解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。</p></div> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/**
+ * 二叉树结点的结构定义如下
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */</span>
+<span class="token comment">/**
+ * @param {TreeNode} root
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {TreeNode}
+ */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">lowestCommonAncestor</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">root<span class="token punctuation">,</span> p<span class="token punctuation">,</span> q</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 编写 dfs 逻辑</span>
+  <span class="token keyword">function</span> <span class="token function">dfs</span><span class="token punctuation">(</span><span class="token parameter">root</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 若当前结点不存在（意味着无效）或者等于p/q（意味着找到目标），则直接返回</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>root <span class="token operator">||</span> root <span class="token operator">===</span> p <span class="token operator">||</span> root <span class="token operator">===</span> q<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 向左子树去寻找p和q</span>
+    <span class="token keyword">const</span> leftNode <span class="token operator">=</span> <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 向右子树去寻找p和q</span>
+    <span class="token keyword">const</span> rightNode <span class="token operator">=</span> <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 如果左子树和右子树同时包含了p和q，那么这个结点一定是最近公共祖先</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>leftNode <span class="token operator">&amp;&amp;</span> rightNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> root<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 如果左子树和右子树其中一个包含了p或者q，则把对应的有效子树汇报上去，等待进一步的判断；否则返回空</span>
+    <span class="token keyword">return</span> leftNode <span class="token operator">||</span> rightNode<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// 调用 dfs 方法</span>
+  <span class="token keyword">return</span> <span class="token function">dfs</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><ul><li>若有效汇报个数为 2，直接返回当前结点</li> <li>若有效汇报个数为 1，返回 1 所在的子树的根结点</li> <li>若有效汇报个数为 0，则返回空（空就是无效汇报）</li></ul> <h2 id="_232-用栈实现队列"><a href="#_232-用栈实现队列" class="header-anchor">#</a> 232. 用栈实现队列</h2> <ul><li>push(x) -- 将一个元素放入队列的尾部。</li> <li>pop() -- 从队列首部移除元素。</li> <li>peek() -- 返回队列首部的元素。</li> <li>empty() -- 返回队列是否为空。</li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/**
+ * 初始化构造函数
+ */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">MyQueue</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 初始化两个栈</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>stack1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>stack2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Push element x to the back of queue.
+ * @param {number} x
+ * @return {void}
+ */</span>
+<span class="token class-name">MyQueue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">push</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 直接调度数组的 push 方法</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>stack1<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Removes the element from in front of queue and returns that element.
+ * @return {number}
+ */</span>
+<span class="token class-name">MyQueue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">pop</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 假如 stack2 为空，需要将 stack1 的元素转移进来</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>stack2<span class="token punctuation">.</span>length <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 当 stack1 不为空时，出栈</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>stack1<span class="token punctuation">.</span>length <span class="token operator">!==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 将 stack1 出栈的元素推入 stack2</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>stack2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>stack1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 为了达到逆序的目的，我们只从 stack2 里出栈元素</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>stack2<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Get the front element.
+ * @return {number}
+ * 这个方法和 pop 唯一的区别就是没有将定位到的值出栈
+ */</span>
+<span class="token class-name">MyQueue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">peek</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>stack2<span class="token punctuation">.</span>length <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 当 stack1 不为空时，出栈</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>stack1<span class="token punctuation">.</span>length <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 将 stack1 出栈的元素推入 stack2</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>stack2<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>stack1<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 缓存 stack2 的长度</span>
+  <span class="token keyword">const</span> stack2Len <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>stack2<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> stack2Len <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>stack2<span class="token punctuation">[</span>stack2Len <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Returns whether the queue is empty.
+ * @return {boolean}
+ */</span>
+<span class="token class-name">MyQueue</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">empty</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 若 stack1 和 stack2 均为空，那么队列空</span>
+  <span class="token keyword">return</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>stack1<span class="token punctuation">.</span>length <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>stack2<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="_239-滑动窗口最大值"><a href="#_239-滑动窗口最大值" class="header-anchor">#</a> 239. 滑动窗口最大值</h2> <p>给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。</p> <p>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出: [3,3,5,5,6,7]</p> <p>1 [3 -1 -3] 5 3 6 7<br>
+1 3 [-1 -3 5] 3 6 7<br>
+1 3 -1 [-3 5 3] 6 7<br>
+1 3 -1 -3 [5 3 6] 7<br>
+1 3 -1 -3 5 [3 6 7]</p> <p>最大值分别对应：3 3 5 5 6 7</p> <p>思路分析：双指针+遍历法</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">maxSlidingWindow</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">nums<span class="token punctuation">,</span> k</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 缓存数组的长度</span>
+  <span class="token keyword">const</span> len <span class="token operator">=</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  <span class="token comment">// 定义结果数组</span>
+  <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment">// 初始化左指针</span>
+  <span class="token keyword">let</span> left <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token comment">// 初始化右指针</span>
+  <span class="token keyword">let</span> right <span class="token operator">=</span> k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token comment">// 当数组没有被遍历完时，执行循环体内的逻辑</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>right <span class="token operator">&lt;</span> len<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 计算当前窗口内的最大值</span>
+    <span class="token keyword">const</span> max <span class="token operator">=</span> <span class="token function">calMax</span><span class="token punctuation">(</span>nums<span class="token punctuation">,</span> left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 将最大值推入结果数组</span>
+    res<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>max<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 左指针前进一步</span>
+    left<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token comment">// 右指针前进一步</span>
+    right<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 返回结果数组</span>
+  <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 这个函数用来计算最大值</span>
+<span class="token keyword">function</span> <span class="token function">calMax</span><span class="token punctuation">(</span><span class="token parameter">arr<span class="token punctuation">,</span> left<span class="token punctuation">,</span> right</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 处理数组为空的边界情况</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>arr <span class="token operator">||</span> <span class="token operator">!</span>arr<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 初始化 maxNum 的值为窗口内第一个元素</span>
+  <span class="token keyword">let</span> maxNum <span class="token operator">=</span> arr<span class="token punctuation">[</span>left<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment">// 遍历窗口内所有元素，更新 maxNum 的值</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> left<span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> right<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&gt;</span> maxNum<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      maxNum <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 返回最大值</span>
+  <span class="token keyword">return</span> maxNum<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p><code>calMax</code> 可以直接用 <code>Math.max</code></p> <p>解法二：双端队列法</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number[]}
+ */</span>
+<span class="token keyword">const</span> <span class="token function-variable function">maxSlidingWindow</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">nums<span class="token punctuation">,</span> k</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 缓存数组的长度</span>
+  <span class="token keyword">const</span> len <span class="token operator">=</span> nums<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  <span class="token comment">// 初始化结果数组</span>
+  <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment">// 初始化双端队列</span>
+  <span class="token keyword">const</span> deque <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token comment">// 开始遍历数组</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 当队尾元素小于当前元素时</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>deque<span class="token punctuation">.</span>length <span class="token operator">&amp;&amp;</span> nums<span class="token punctuation">[</span>deque<span class="token punctuation">[</span>deque<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 将队尾元素（索引）不断出队，直至队尾元素大于等于当前元素</span>
+      deque<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 入队当前元素索引（注意是索引）</span>
+    deque<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 当队头元素的索引已经被排除在滑动窗口之外时</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>deque<span class="token punctuation">.</span>length <span class="token operator">&amp;&amp;</span> deque<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">&lt;=</span> i <span class="token operator">-</span> k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 将队头元素索引出队</span>
+      deque<span class="token punctuation">.</span><span class="token function">shift</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 判断滑动窗口的状态，只有在被遍历的元素个数大于 k 的时候，才更新结果数组</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">&gt;=</span> k <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      res<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>nums<span class="token punctuation">[</span>deque<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 返回结果数组</span>
+  <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="_349-两个数组的交集"><a href="#_349-两个数组的交集" class="header-anchor">#</a> 349. 两个数组的交集</h2> <div class="custom-block tip"><p class="custom-block-title">题目</p> <p>输入：nums1 = [1,2,2,1], nums2 = [2,2]<br>
+输出：[2]</p> <p>输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]<br>
+输出：[9,4]</p></div> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> <span class="token function-variable function">set_intersection</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">set1<span class="token punctuation">,</span> set2</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>set1<span class="token punctuation">.</span>size <span class="token operator">&gt;</span> set2<span class="token punctuation">.</span>size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">set_intersection</span><span class="token punctuation">(</span>set2<span class="token punctuation">,</span> set1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">const</span> intersection <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> num <span class="token keyword">of</span> set1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>set2<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      intersection<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span>intersection<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> <span class="token function-variable function">intersection</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">nums1<span class="token punctuation">,</span> nums2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> set1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>nums1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> set2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>nums2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token function">set_intersection</span><span class="token punctuation">(</span>set1<span class="token punctuation">,</span> set2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="_350-两个数组的交集-ii"><a href="#_350-两个数组的交集-ii" class="header-anchor">#</a> 350. 两个数组的交集 II</h2> <div class="custom-block tip"><p class="custom-block-title">题目</p> <p>输入：nums1 = [1,2,2,1], nums2 = [2,2]<br>
+输出：[2,2]</p> <p>输入：nums1 = [4,9,5], nums2 = [9,4,9,8,4]<br>
+输出：[4,9]</p></div> <p>排序，然后用双指针法。如果是多个数组，可以用多指针法 🚀</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> <span class="token function-variable function">intersect</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">nums1<span class="token punctuation">,</span> nums2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  nums1<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  nums2<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> l <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    r <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    ans <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>l <span class="token operator">&lt;</span> nums1<span class="token punctuation">.</span>length <span class="token operator">&amp;&amp;</span> r <span class="token operator">&lt;</span> nums2<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>nums1<span class="token punctuation">[</span>l<span class="token punctuation">]</span> <span class="token operator">===</span> nums2<span class="token punctuation">[</span>r<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      ans<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>nums1<span class="token punctuation">[</span>l<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      l<span class="token operator">++</span><span class="token punctuation">;</span>
+      r<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      nums1<span class="token punctuation">[</span>l<span class="token punctuation">]</span> <span class="token operator">&lt;</span> nums2<span class="token punctuation">[</span>r<span class="token punctuation">]</span> <span class="token operator">?</span> l<span class="token operator">++</span> <span class="token operator">:</span> r<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> ans<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/FrontEnd/DSA/LeetCode1.html" class="prev">
+        LeetCode 算法精选(1)
+      </a></span> <span class="next"><a href="/FrontEnd/DSA/LeetCode3.html">
+        LeetCode 算法精选(3)
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.9f945a6d.js" defer></script><script src="/assets/js/32.ba4d1f66.js" defer></script><script src="/assets/js/3.6763c6b5.js" defer></script><script src="/assets/js/11.bc49b615.js" defer></script>
+  </body>
+</html>

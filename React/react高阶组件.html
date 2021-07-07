@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>React 高阶组件 | 七月有风</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="七月有风技术空间">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="theme-color" content="#000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.2a34df0d.css" as="style"><link rel="preload" href="/assets/js/app.9f945a6d.js" as="script"><link rel="preload" href="/assets/js/32.ba4d1f66.js" as="script"><link rel="preload" href="/assets/js/3.6763c6b5.js" as="script"><link rel="preload" href="/assets/js/114.081ceb5b.js" as="script"><link rel="prefetch" href="/assets/js/10.d383a911.js"><link rel="prefetch" href="/assets/js/100.74342306.js"><link rel="prefetch" href="/assets/js/101.524873c4.js"><link rel="prefetch" href="/assets/js/102.8ba598a5.js"><link rel="prefetch" href="/assets/js/103.28711326.js"><link rel="prefetch" href="/assets/js/104.80f82bfd.js"><link rel="prefetch" href="/assets/js/105.d964b811.js"><link rel="prefetch" href="/assets/js/106.00fa0112.js"><link rel="prefetch" href="/assets/js/107.fa1d6c19.js"><link rel="prefetch" href="/assets/js/108.6f685701.js"><link rel="prefetch" href="/assets/js/109.f7c1605d.js"><link rel="prefetch" href="/assets/js/11.bc49b615.js"><link rel="prefetch" href="/assets/js/110.dd5f11ef.js"><link rel="prefetch" href="/assets/js/111.755a3b51.js"><link rel="prefetch" href="/assets/js/112.a8690079.js"><link rel="prefetch" href="/assets/js/113.a963da1d.js"><link rel="prefetch" href="/assets/js/115.d34daf9c.js"><link rel="prefetch" href="/assets/js/116.d9cfe714.js"><link rel="prefetch" href="/assets/js/117.194e4191.js"><link rel="prefetch" href="/assets/js/118.7ec3e430.js"><link rel="prefetch" href="/assets/js/119.da4ca162.js"><link rel="prefetch" href="/assets/js/12.ba3b1a55.js"><link rel="prefetch" href="/assets/js/120.e5db6113.js"><link rel="prefetch" href="/assets/js/121.0d17c9a5.js"><link rel="prefetch" href="/assets/js/122.29cbc359.js"><link rel="prefetch" href="/assets/js/123.385adff6.js"><link rel="prefetch" href="/assets/js/124.130f37a0.js"><link rel="prefetch" href="/assets/js/125.044cd124.js"><link rel="prefetch" href="/assets/js/126.cdd2c365.js"><link rel="prefetch" href="/assets/js/127.34e035c3.js"><link rel="prefetch" href="/assets/js/128.daa073b8.js"><link rel="prefetch" href="/assets/js/129.536301e7.js"><link rel="prefetch" href="/assets/js/13.be26e429.js"><link rel="prefetch" href="/assets/js/130.1c7339eb.js"><link rel="prefetch" href="/assets/js/131.cb407e78.js"><link rel="prefetch" href="/assets/js/132.2bb4a64a.js"><link rel="prefetch" href="/assets/js/133.f2b02735.js"><link rel="prefetch" href="/assets/js/134.7e091bd9.js"><link rel="prefetch" href="/assets/js/135.fc39c4c6.js"><link rel="prefetch" href="/assets/js/136.caf1d50b.js"><link rel="prefetch" href="/assets/js/137.5760d3ef.js"><link rel="prefetch" href="/assets/js/138.2501dd82.js"><link rel="prefetch" href="/assets/js/139.d438edbf.js"><link rel="prefetch" href="/assets/js/14.823d52d6.js"><link rel="prefetch" href="/assets/js/140.da85dbf4.js"><link rel="prefetch" href="/assets/js/141.6af537c0.js"><link rel="prefetch" href="/assets/js/142.2d74cb0e.js"><link rel="prefetch" href="/assets/js/143.15a847b8.js"><link rel="prefetch" href="/assets/js/144.93518af6.js"><link rel="prefetch" href="/assets/js/145.af16c143.js"><link rel="prefetch" href="/assets/js/146.39037451.js"><link rel="prefetch" href="/assets/js/147.7d1e7e67.js"><link rel="prefetch" href="/assets/js/148.47a77f15.js"><link rel="prefetch" href="/assets/js/149.0ad27258.js"><link rel="prefetch" href="/assets/js/15.20800410.js"><link rel="prefetch" href="/assets/js/150.910a1168.js"><link rel="prefetch" href="/assets/js/151.9a8ad067.js"><link rel="prefetch" href="/assets/js/152.29ef1e66.js"><link rel="prefetch" href="/assets/js/153.724bd497.js"><link rel="prefetch" href="/assets/js/154.274f0604.js"><link rel="prefetch" href="/assets/js/155.6aa717b5.js"><link rel="prefetch" href="/assets/js/156.3ed0b7f0.js"><link rel="prefetch" href="/assets/js/157.a3349b9b.js"><link rel="prefetch" href="/assets/js/158.33e9fed0.js"><link rel="prefetch" href="/assets/js/159.9e1aa160.js"><link rel="prefetch" href="/assets/js/16.e6cf3dc3.js"><link rel="prefetch" href="/assets/js/160.a4aa94f7.js"><link rel="prefetch" href="/assets/js/161.5649b928.js"><link rel="prefetch" href="/assets/js/162.18ad0d08.js"><link rel="prefetch" href="/assets/js/163.944ded01.js"><link rel="prefetch" href="/assets/js/164.a5943111.js"><link rel="prefetch" href="/assets/js/165.5d61e486.js"><link rel="prefetch" href="/assets/js/166.d70869ae.js"><link rel="prefetch" href="/assets/js/167.a8c7ac13.js"><link rel="prefetch" href="/assets/js/17.504f4c84.js"><link rel="prefetch" href="/assets/js/18.1825ef44.js"><link rel="prefetch" href="/assets/js/19.08cae42a.js"><link rel="prefetch" href="/assets/js/20.2aeedd86.js"><link rel="prefetch" href="/assets/js/21.b737bf02.js"><link rel="prefetch" href="/assets/js/22.9be0fe37.js"><link rel="prefetch" href="/assets/js/23.f4564f99.js"><link rel="prefetch" href="/assets/js/24.e242712d.js"><link rel="prefetch" href="/assets/js/25.3ac25216.js"><link rel="prefetch" href="/assets/js/26.00be2e49.js"><link rel="prefetch" href="/assets/js/27.0a2cc739.js"><link rel="prefetch" href="/assets/js/28.76b2abe6.js"><link rel="prefetch" href="/assets/js/29.9886a8cb.js"><link rel="prefetch" href="/assets/js/30.3b63afdd.js"><link rel="prefetch" href="/assets/js/31.fc0065f8.js"><link rel="prefetch" href="/assets/js/33.5886d877.js"><link rel="prefetch" href="/assets/js/34.a2d3ab07.js"><link rel="prefetch" href="/assets/js/35.0cacc950.js"><link rel="prefetch" href="/assets/js/36.94ae1473.js"><link rel="prefetch" href="/assets/js/37.0938516f.js"><link rel="prefetch" href="/assets/js/38.3f9ab253.js"><link rel="prefetch" href="/assets/js/39.ffc9cc02.js"><link rel="prefetch" href="/assets/js/4.f522a845.js"><link rel="prefetch" href="/assets/js/40.b957d423.js"><link rel="prefetch" href="/assets/js/41.4bf3d6e9.js"><link rel="prefetch" href="/assets/js/42.0341e170.js"><link rel="prefetch" href="/assets/js/43.1553b403.js"><link rel="prefetch" href="/assets/js/44.21a2470c.js"><link rel="prefetch" href="/assets/js/45.21db4302.js"><link rel="prefetch" href="/assets/js/46.68806e90.js"><link rel="prefetch" href="/assets/js/47.e13e1420.js"><link rel="prefetch" href="/assets/js/48.b853e7f0.js"><link rel="prefetch" href="/assets/js/49.79148ff6.js"><link rel="prefetch" href="/assets/js/5.7e633912.js"><link rel="prefetch" href="/assets/js/50.9060be85.js"><link rel="prefetch" href="/assets/js/51.fa0fa689.js"><link rel="prefetch" href="/assets/js/52.b774f108.js"><link rel="prefetch" href="/assets/js/53.e5076951.js"><link rel="prefetch" href="/assets/js/54.ad6401c2.js"><link rel="prefetch" href="/assets/js/55.073f261f.js"><link rel="prefetch" href="/assets/js/56.6019a787.js"><link rel="prefetch" href="/assets/js/57.d3c6ade5.js"><link rel="prefetch" href="/assets/js/58.14d1fcb4.js"><link rel="prefetch" href="/assets/js/59.7f6583d9.js"><link rel="prefetch" href="/assets/js/6.977ff5e3.js"><link rel="prefetch" href="/assets/js/60.94f2c5e7.js"><link rel="prefetch" href="/assets/js/61.ff303d72.js"><link rel="prefetch" href="/assets/js/62.2bb28c31.js"><link rel="prefetch" href="/assets/js/63.e1795764.js"><link rel="prefetch" href="/assets/js/64.88e4467f.js"><link rel="prefetch" href="/assets/js/65.40a88ff3.js"><link rel="prefetch" href="/assets/js/66.d080aea8.js"><link rel="prefetch" href="/assets/js/67.c1f443ba.js"><link rel="prefetch" href="/assets/js/68.66bfff86.js"><link rel="prefetch" href="/assets/js/69.73b9bd45.js"><link rel="prefetch" href="/assets/js/7.3af3b318.js"><link rel="prefetch" href="/assets/js/70.04af6f55.js"><link rel="prefetch" href="/assets/js/71.b604e096.js"><link rel="prefetch" href="/assets/js/72.ebfde101.js"><link rel="prefetch" href="/assets/js/73.19841682.js"><link rel="prefetch" href="/assets/js/74.b0ba91d6.js"><link rel="prefetch" href="/assets/js/75.311729c9.js"><link rel="prefetch" href="/assets/js/76.288c5796.js"><link rel="prefetch" href="/assets/js/77.d5c34c93.js"><link rel="prefetch" href="/assets/js/78.c4cf0d52.js"><link rel="prefetch" href="/assets/js/79.90d94312.js"><link rel="prefetch" href="/assets/js/8.875bf3b4.js"><link rel="prefetch" href="/assets/js/80.3c7a3e95.js"><link rel="prefetch" href="/assets/js/81.8ed4694b.js"><link rel="prefetch" href="/assets/js/82.a39cf134.js"><link rel="prefetch" href="/assets/js/83.6b7149ac.js"><link rel="prefetch" href="/assets/js/84.d8234ea5.js"><link rel="prefetch" href="/assets/js/85.40623acf.js"><link rel="prefetch" href="/assets/js/86.0750e4a0.js"><link rel="prefetch" href="/assets/js/87.bbe12d3f.js"><link rel="prefetch" href="/assets/js/88.71647f9d.js"><link rel="prefetch" href="/assets/js/89.b0134df7.js"><link rel="prefetch" href="/assets/js/9.4821d9dd.js"><link rel="prefetch" href="/assets/js/90.6ab9b48f.js"><link rel="prefetch" href="/assets/js/91.57dfac75.js"><link rel="prefetch" href="/assets/js/92.9598ccac.js"><link rel="prefetch" href="/assets/js/93.49761f1b.js"><link rel="prefetch" href="/assets/js/94.18d1a121.js"><link rel="prefetch" href="/assets/js/95.eaf093ec.js"><link rel="prefetch" href="/assets/js/96.be874472.js"><link rel="prefetch" href="/assets/js/97.34d37b1a.js"><link rel="prefetch" href="/assets/js/98.e94fb4fb.js"><link rel="prefetch" href="/assets/js/99.84f0f3b8.js"><link rel="prefetch" href="/assets/js/vendors~flowchart.6e75fdb7.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.2a34df0d.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">七月有风</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/FrontEnd/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Language Menu" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="Language Menu" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/React/" class="nav-link router-link-active">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/Vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/AngularJS/" class="nav-link">
+  AngularJS
+</a></li></ul></div></div><div class="nav-item"><a href="/JsFrame/" class="nav-link">
+  技术方案
+</a></div><div class="nav-item"><a href="/FrontEndTool/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/NodeJS/" class="nav-link">
+  NodeJS
+</a></div><div class="nav-item"><a href="/Java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/Reading/" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  Notes
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/FrontEnd/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Language Menu" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="Language Menu" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/React/" class="nav-link router-link-active">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/Vue/" class="nav-link">
+  Vue
+</a></li><li class="dropdown-item"><!----> <a href="/AngularJS/" class="nav-link">
+  AngularJS
+</a></li></ul></div></div><div class="nav-item"><a href="/JsFrame/" class="nav-link">
+  技术方案
+</a></div><div class="nav-item"><a href="/FrontEndTool/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/NodeJS/" class="nav-link">
+  NodeJS
+</a></div><div class="nav-item"><a href="/Java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/Reading/" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  Notes
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>React 基础</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/React/" aria-current="page" class="sidebar-link">Introduction</a></li><li><a href="/React/setState.html" class="sidebar-link">setState</a></li><li><a href="/React/react基础.html" class="sidebar-link">React 基础</a></li><li><a href="/React/react数据流.html" class="sidebar-link">React 数据流</a></li><li><a href="/React/hooks.html" class="sidebar-link">Hooks 基础</a></li><li><a href="/React/hooks进阶.html" class="sidebar-link">自定义 hooks</a></li><li><a href="/React/react高级特性.html" class="sidebar-link">React 高级特性</a></li><li><a href="/React/react高阶组件.html" class="active sidebar-link">React 高阶组件</a></li><li><a href="/React/react性能优化.html" class="sidebar-link">React 性能优化</a></li><li><a href="/React/react-router.html" class="sidebar-link">React Router</a></li><li><a href="/React/redux.html" class="sidebar-link">Redux 基本用法</a></li><li><a href="/React/Redux设计原理.html" class="sidebar-link">Redux 设计原理</a></li><li><a href="/React/umijs.html" class="sidebar-link">umijs 笔记</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>项目构建</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/React/构建react项目.html" class="sidebar-link">构建一个 react 项目</a></li><li><a href="/React/package.html" class="sidebar-link">react 项目中的一些库</a></li><li><a href="/React/tsconfig.html" class="sidebar-link">tsconfig.json</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>reactNative</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/React/reactNative.html" class="sidebar-link">ReactNative</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="react-高阶组件"><a href="#react-高阶组件" class="header-anchor">#</a> React 高阶组件</h1> <p></p><div class="table-of-contents"><ul><li><a href="#抽取公共逻辑">抽取公共逻辑</a></li><li><a href="#链式调用">链式调用</a></li><li><a href="#渲染劫持">渲染劫持</a></li><li><a href="#缺陷">缺陷</a></li></ul></div><p></p> <p>HOC（Higher Order Component，高阶组件），React 的官方文档将高阶组件称为 React 中复用组件逻辑的高级技术。高阶组件本身并不是 React API 的一部分，它是一种基于 React 的组合特性而形成的设计模式。简而言之，高阶组件的参数是组件，返回值为函数。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 高阶组件</span>
+<span class="token keyword">const</span> <span class="token function-variable function">withMouse</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">Component</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">class</span> <span class="token class-name">withMouseComponent</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function-variable function">handleMouseMove</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        x<span class="token operator">:</span> event<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span>
+        y<span class="token operator">:</span> event<span class="token punctuation">.</span>clientY<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">(</span>
+        <span class="token operator">&lt;</span>div style<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> height<span class="token operator">:</span> <span class="token string">'500px'</span> <span class="token punctuation">}</span><span class="token punctuation">}</span> onMouseMove<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>handleMouseMove<span class="token punctuation">}</span><span class="token operator">&gt;</span>
+          <span class="token punctuation">{</span><span class="token comment">/* 1. 透传所有 props 2. 增加 mouse 属性 */</span><span class="token punctuation">}</span>
+          <span class="token operator">&lt;</span>Component <span class="token punctuation">{</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">}</span> mouse<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+      <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> withMouseComponent<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">App</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> a <span class="token operator">=</span> props<span class="token punctuation">.</span>a<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> x<span class="token punctuation">,</span> y <span class="token punctuation">}</span> <span class="token operator">=</span> props<span class="token punctuation">.</span>mouse<span class="token punctuation">;</span> <span class="token comment">// 接收 mouse 属性</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>
+    <span class="token operator">&lt;</span>div style<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">{</span> height<span class="token operator">:</span> <span class="token string">'500px'</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>h1<span class="token operator">&gt;</span>
+        The mouse position <span class="token function">is</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>y<span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token operator">&lt;</span><span class="token operator">/</span>h1<span class="token operator">&gt;</span>
+      <span class="token operator">&lt;</span>p<span class="token operator">&gt;</span><span class="token punctuation">{</span>a<span class="token punctuation">}</span><span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token function">withMouse</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 返回高阶函数</span>
+</code></pre></div><p>高阶组件的作用：</p> <h2 id="抽取公共逻辑"><a href="#抽取公共逻辑" class="header-anchor">#</a> 抽取公共逻辑</h2> <p>如权限判断，登录状态判断，埋点等，memo 组件也是一个高阶组件。下面是登录状态判断组件：</p> <p>一般的思路类似于：</p> <div class="language-jsx extra-class"><pre class="language-jsx"><code><span class="token keyword">const</span> <span class="token function-variable function">checkLogin</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token operator">!</span><span class="token operator">!</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">CartPage</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+   <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">UserPage</span> <span class="token keyword">extends</span>  <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>checkLogin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 重定向跳转登录页面</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">OrderPage</span> <span class="token keyword">extends</span>  <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>checkLogin<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 重定向跳转登录页面</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token operator">...</span>
+ <span class="token punctuation">}</span>
+</code></pre></div><p>采用高阶组件：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> <span class="token function-variable function">checkLogin</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token operator">!</span><span class="token operator">!</span>localStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'token'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> <span class="token function-variable function">checkLogin</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">WrappedComponent</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">checkLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token operator">&lt;</span>WrappedComponent <span class="token punctuation">{</span><span class="token operator">...</span>props<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span> <span class="token operator">:</span> <span class="token operator">&lt;</span>LoginPage <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// 函数写法</span>
+<span class="token keyword">class</span> <span class="token class-name">RawUserPage</span> <span class="token keyword">extends</span>  <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> UserPage <span class="token operator">=</span> <span class="token function">checkLogin</span><span class="token punctuation">(</span>RawUserPage<span class="token punctuation">)</span>
+
+<span class="token comment">// 装饰器写法</span>
+@checkLogin
+<span class="token keyword">class</span> <span class="token class-name">UserPage</span> <span class="token keyword">extends</span>  <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+@checkLogin
+<span class="token keyword">class</span> <span class="token class-name">OrderPage</span> <span class="token keyword">extends</span>  <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>还有一个非常经典的场景就是页面埋点统计。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> trackPageView <span class="token operator">=</span> <span class="token punctuation">(</span>pageName<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+   <span class="token comment">// 发送埋点信息请求</span>
+   <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> <span class="token function-variable function">PV</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">pageName</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">WrappedComponent</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">class</span> <span class="token class-name">Wrap</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+      <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">trackPageView</span><span class="token punctuation">(</span>pageName<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+          <span class="token operator">&lt;</span>WrappedComponent <span class="token punctuation">{</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+@<span class="token constant">PV</span><span class="token punctuation">(</span><span class="token string">'用户页面'</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">UserPage</span> <span class="token keyword">extends</span>  <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+@<span class="token constant">PV</span><span class="token punctuation">(</span><span class="token string">'购物车页面'</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">CartPage</span> <span class="token keyword">extends</span>  <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+@<span class="token constant">PV</span><span class="token punctuation">(</span><span class="token string">'订单页面'</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">OrderPage</span> <span class="token keyword">extends</span>  <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="链式调用"><a href="#链式调用" class="header-anchor">#</a> 链式调用</h2> <p>由于高阶组件返回的是一个新的组件，所以链式调用是默认支持的。基于 checkLogin 与 PV 两个例子，链式使用是这样的：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 函数调用方式</span>
+<span class="token keyword">class</span> <span class="token class-name">RawUserPage</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> UserPage <span class="token operator">=</span> <span class="token function">checkLogin</span><span class="token punctuation">(</span><span class="token constant">PV</span><span class="token punctuation">(</span><span class="token string">'用户页面'</span><span class="token punctuation">)</span><span class="token punctuation">(</span>RawUserPage<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// 装饰器调用方式</span>
+@checkLogin
+@<span class="token constant">PV</span><span class="token punctuation">(</span><span class="token string">'用户页面'</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">UserPage</span> <span class="token keyword">extends</span>  <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="渲染劫持"><a href="#渲染劫持" class="header-anchor">#</a> 渲染劫持</h2> <p>渲染劫持可以通过控制 render 函数修改输出内容，常见的场景是显示加载元素，如下情况所示：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">withLoading</span><span class="token punctuation">(</span><span class="token parameter">WrappedComponent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">class</span> <span class="token class-name">extends</span> WrappedComponent <span class="token punctuation">{</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">.</span>isLoading<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token operator">&lt;</span>Loading <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="缺陷"><a href="#缺陷" class="header-anchor">#</a> 缺陷</h2> <p><strong>丢失静态函数</strong></p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// UserPage.jsx</span>
+@<span class="token constant">PV</span><span class="token punctuation">(</span><span class="token string">'用户页面'</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">UserPage</span> <span class="token keyword">extends</span>  <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> <span class="token function">getUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token operator">...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// page.js</span>
+<span class="token keyword">import</span> UserPage <span class="token keyword">from</span> <span class="token string">'./UserPage'</span>
+UserPage<span class="token punctuation">.</span><span class="token function">checkLogin</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 调用失败，并不存在。</span>
+</code></pre></div><p>如果希望外界能够被调用，那么可以在 PV 函数中将静态函数复制出来。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> <span class="token function-variable function">PV</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">pageName</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">WrappedComponent</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">class</span> <span class="token class-name">Wrap</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+      <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">trackPageView</span><span class="token punctuation">(</span>pageName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token operator">&lt;</span>WrappedComponent <span class="token punctuation">{</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    Wrap<span class="token punctuation">.</span>getUser <span class="token operator">=</span> WrappedComponent<span class="token punctuation">.</span>getUser<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Wrap<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>通过 hoist-non-react-statics 来处理，可以自动复制所有静态函数。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> hoistNonReactStatics <span class="token keyword">from</span> <span class="token string">'hoist-non-react-statics'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> <span class="token function-variable function">PV</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">pageName</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">WrappedComponent</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">class</span> <span class="token class-name">Wrap</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+      <span class="token function">componentDidMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">trackPageView</span><span class="token punctuation">(</span>pageName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token operator">&lt;</span>WrappedComponent <span class="token punctuation">{</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">hoistNonReactStatics</span><span class="token punctuation">(</span>Wrap<span class="token punctuation">,</span> WrappedComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> Wrap<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p><strong>refs 属性不能透传</strong></p> <p>ref 属性由于被高阶组件包裹了一次，所以需要进行特殊处理才能获取。React 为我们提供了一个名为 React.forwardRef 的 API 来解决这一问题，以下是官方文档中的一个案例：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">withLog</span><span class="token punctuation">(</span><span class="token parameter">Component</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">class</span> <span class="token class-name">LogProps</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+    <span class="token function">componentDidUpdate</span><span class="token punctuation">(</span><span class="token parameter">prevProps</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'old props:'</span><span class="token punctuation">,</span> prevProps<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'new props:'</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> forwardedRef<span class="token punctuation">,</span> <span class="token operator">...</span>rest <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props<span class="token punctuation">;</span>
+      <span class="token comment">// 将自定义的 prop 属性 “forwardedRef” 定义为 ref</span>
+      <span class="token keyword">return</span> <span class="token operator">&lt;</span>Component ref<span class="token operator">=</span><span class="token punctuation">{</span>forwardedRef<span class="token punctuation">}</span> <span class="token punctuation">{</span><span class="token operator">...</span>rest<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// 注意 React.forwardRef 回调的第二个参数 “ref”。</span>
+  <span class="token comment">// 我们可以将其作为常规 prop 属性传递给 LogProps，例如 “forwardedRef”</span>
+  <span class="token comment">// 然后它就可以被挂载到被 LogProps 包裹的子组件上。</span>
+  <span class="token keyword">return</span> React<span class="token punctuation">.</span><span class="token function">forwardRef</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">props<span class="token punctuation">,</span> ref</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token operator">&lt;</span>LogProps <span class="token punctuation">{</span><span class="token operator">...</span>props<span class="token punctuation">}</span> forwardedRef<span class="token operator">=</span><span class="token punctuation">{</span>ref<span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>资料：</p> <ul><li>前端面试宝典之 React 篇</li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/React/react高级特性.html" class="prev">
+        React 高级特性
+      </a></span> <span class="next"><a href="/React/react性能优化.html">
+        React 性能优化
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.9f945a6d.js" defer></script><script src="/assets/js/32.ba4d1f66.js" defer></script><script src="/assets/js/3.6763c6b5.js" defer></script><script src="/assets/js/114.081ceb5b.js" defer></script>
+  </body>
+</html>
