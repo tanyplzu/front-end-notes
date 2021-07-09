@@ -361,7 +361,17 @@ const foo = {
   },
 };
 
-console.log(foo.fn());
+console.log(foo.fn()); // Window
+```
+
+```js
+const foo = {
+  bar: 10,
+  fn: () => {
+    console.log(this.bar);
+  },
+};
+foo.fn(); // undefined
 ```
 
 ### 改变当前调用 this 的方式
@@ -576,9 +586,7 @@ JS 会阻塞浏览器，浏览器必须等待 index.js 加载和执行完毕才�
 ### 如何创建一个 Ajax
 
 ```js
-var xhr = XMLHttpRequest
-  ? new XMLHttpRequest()
-  : new ActiveXObject('Microsoft.XMLHTTP');
+var xhr = XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
 xhr.onreadystatechange = function() {
   // 通信成功时，状态值为4
   if (xhr.readyState === 4) {
@@ -646,4 +654,3 @@ xhr.send(null);
 - localStorage: 存储大小为 5M，不参与请求，除非被清理，否则一直存在。
 - sessionStorage：存储大小为 5M，不参与请求，页面关闭清除。
 - indexDB：存储大小没限制，不参与请求，除非被清理，否则一直存在，运行在浏览器上的非关系型数据库。
-
