@@ -135,26 +135,24 @@ plugins: [
 
 ```js
 module.exports = {
-  module:{
-		noParse:/jquery|lodash/,//不去解析jquery|lodash中的依赖库
+  module: {
+    noParse: /jquery|lodash/, //不去解析jquery|lodash中的依赖库
     // noParse:function(contentPath){
     //   return /jquery|lodash/.test(contentPath);
     // },
-		rules:[
-			{
-				test:/\.js$/,
-				use:{
-					loader:'babel-loader',
-					options:{
-						presets:[
-							'@babel/preset-env',
-							'@babel/preset-react'
-						]
-					}
-				}
-			}
-		]
-	}
+    rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
+      },
+    ],
+  },
+};
 ```
 
 noParse 和 IngorePlugin 区别：
