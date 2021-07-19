@@ -119,6 +119,7 @@ const getSidebar = () => {
           ['./', 'Introduction'],
           'setState',
           'react基础',
+          'react生命周期',
           'react数据流',
           'hooks',
           'hooks进阶',
@@ -192,7 +193,9 @@ const getSidebar = () => {
       {
         title: 'Bable',
         collapsable: false,
-        children: [],
+        children: [
+          // 'babel/babel7内置的包'
+        ],
       },
       'ESLint&Prettier',
       '脚手架工具',
