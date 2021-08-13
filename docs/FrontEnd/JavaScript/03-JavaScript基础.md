@@ -242,3 +242,33 @@ console.log('script end');
 #### await
 
 await 操作符用于等待一个 Promise 对象。它只能在异步函数 async function 中使用。
+
+### class
+
+```js
+class Car {
+  start() {
+    this.openLight();
+    console.log(this);
+  }
+  stop() {}
+  openLight() {}
+}
+
+class DaZhongCar extends Car {
+  openLight() {
+    console.log('openLight');
+  }
+  start() {
+    super.start();
+  }
+}
+
+let lavad = new DaZhongCar();
+lavad.start();
+
+// openLight
+// DaZhongCar {}
+```
+
+在 js 里面，都是通过 prototype 进行继承的，子类调用父类方法的时候，传入的其实是子类的 this，所以，在父类里面可以调用到子类的方法和子类的属性。
