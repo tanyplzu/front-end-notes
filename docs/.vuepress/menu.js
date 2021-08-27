@@ -58,7 +58,11 @@ const getSidebar = () => {
           'WebSecurity/Security',
         ],
       },
-      'DesignPattern',
+      {
+        title: '设计模式',
+        collapsable: true,
+        children: ['DesignPattern', 'DesignPattern2'],
+      },
       {
         title: '前端可视化',
         collapsable: true,
@@ -274,7 +278,6 @@ const getSidebar = () => {
           'docs1/router',
           'docs1/Vue虚拟DOM和渲染流程',
           'docs1/编译型语言和解释型语言',
-          'docs1/面向对象01',
           'docs1/手机端开发问题汇总',
           'docs1/前端面试',
         ],
