@@ -295,7 +295,12 @@ const getSidebar = () => {
       {
         title: '文档(三)：',
         collapsable: false,
-        children: ['docs4/密码学', 'docs4/vuepress', 'docs4/Java英语'],
+        children: [
+          'docs4/密码学',
+          'docs4/vuepress',
+          'docs4/vsCode',
+          'docs4/Java英语',
+        ],
       },
     ],
     '/AngularJS/': ['Scope和Digest', '指令', 'parse和eval'],

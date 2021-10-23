@@ -17,8 +17,8 @@ cherry-pick  [commitID]
 git commit –a –m ""
 
 // 修改commit信息
-$ git commit --amend -m "add new file"
-$ git commit --amend // 直接编辑提交记录
+git commit --amend -m "add new file"
+git commit --amend // 直接编辑提交记录
 
 
 // 清除当前目录下所有没add的修改
@@ -59,6 +59,7 @@ git format-patch -n HEAD^ //生成path
 git am //同步path
 
 // 获取上游代码
+git remote -v
 git remote add upstream https://github.com/xxxxx/xxxx.git
 git fetch upstream
 git merge upstream/master
