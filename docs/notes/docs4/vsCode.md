@@ -9,5 +9,5 @@
 - 代码展开（部分）：ctrl + shift + [
 - 代码折叠（部分）: ctrl + shift + ]
 - 代码折叠（全部）: ctrl + k , ctrl + 0
-- 代码折叠（全部）: ctrl + k , ctrl + j
+- 代码展开（全部）: ctrl + k , ctrl + j
 - Ctrl + ` 集成终端

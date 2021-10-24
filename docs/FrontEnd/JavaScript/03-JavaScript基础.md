@@ -272,3 +272,9 @@ lavad.start();
 ```
 
 在 js 里面，都是通过 prototype 进行继承的，子类调用父类方法的时候，传入的其实是子类的 this，所以，在父类里面可以调用到子类的方法和子类的属性。
+
+### ES Module
+
+- [深入解析 ES Module（一）：禁用 export default object](https://zhuanlan.zhihu.com/p/40733281)
+- [深入解析 ES Module（二）：彻底禁用 default export](https://zhuanlan.zhihu.com/p/97335917)
+

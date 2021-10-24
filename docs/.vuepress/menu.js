@@ -6,6 +6,7 @@ const getNav = () => {
       text: '前端框架',
       ariaLabel: 'Language Menu',
       items: [
+        { text: 'vue3', link: 'https://vue3.tanyp.xyz' },
         { text: 'React', link: '/React/' },
         { text: 'Vue', link: '/Vue/' },
         { text: 'AngularJS', link: '/AngularJS/' },
@@ -20,7 +21,7 @@ const getNav = () => {
     { text: 'Java', link: '/Java/' },
     { text: 'Reading', link: '/Reading/' },
     { text: 'Notes', link: '/notes/' },
-    // { text: 'DumiApp', link: 'http://tanyplzu.gitee.io/dumi-app/' },
+    { text: '数据结构与算法', link: '/DSA/' },
   ];
 };
 const getSidebar = () => {
@@ -72,19 +73,6 @@ const getSidebar = () => {
         title: '函数式编程',
         collapsable: true,
         children: ['Functional/', 'Functional/curry', 'Functional/compose'],
-      },
-      {
-        title: '数据结构与算法',
-        collapsable: true,
-        children: [
-          'DSA/myPromise',
-          'DSA/数据结构与算法1',
-          'DSA/数据结构与算法2',
-          'DSA/LeetCode1',
-          'DSA/LeetCode2',
-          'DSA/LeetCode3',
-          'DSA/nowcoder',
-        ],
       },
     ],
     '/Vue/': [
@@ -304,6 +292,16 @@ const getSidebar = () => {
       },
     ],
     '/AngularJS/': ['Scope和Digest', '指令', 'parse和eval'],
+    '/DSA/': [
+      '',
+      'myPromise',
+      '数据结构与算法1',
+      '数据结构与算法2',
+      'LeetCode1',
+      'LeetCode2',
+      'LeetCode3',
+      'nowcoder',
+    ],
   };
 };
 
