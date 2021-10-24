@@ -1,12 +1,12 @@
 const getNav = () => {
   return [
-    // { text: '首页', link: '/Introduction' },
+    { text: '首页', link: '/Introduction' },
     { text: '前端基础', link: '/FrontEnd/' },
     {
       text: '前端框架',
       ariaLabel: 'Language Menu',
       items: [
-        { text: 'vue3', link: 'https://vue3.tanyp.xyz' },
+        { text: 'Vue3 笔记', link: 'https://vue3.tanyp.xyz' },
         { text: 'React', link: '/React/' },
         { text: 'Vue', link: '/Vue/' },
         { text: 'AngularJS', link: '/AngularJS/' },

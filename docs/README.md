@@ -14,3 +14,7 @@ features:
     details: If the implementation is hard to explain, it's a bad idea. If the implementation is easy to explain, it may be a good idea.
 footer: MIT Licensed | Copyright © 2019-2021
 ---
+
+其它笔记：
+
+- [Vue3 学习笔记](https://vue3.tanyp.xyz/)
