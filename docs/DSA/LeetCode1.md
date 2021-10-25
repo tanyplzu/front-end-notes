@@ -700,7 +700,7 @@ function maxProfit(prices = []) {
 ```js
 function wordBreak(s: string, wordDict: string[]): boolean {
   const n: number = s.length;
-  const wordDictSet: Set<string> = new Set(wordDict);
+  const wordDictSet: Set<string> =   Set(wordDict);
   const dp: Array<boolean> = new Array(n + 1).fill(false);
   dp[0] = true;
   for (let i = 1; i <= n; i++) {
@@ -807,34 +807,18 @@ console.log('cache.get(4)', cache.get(4)); // 返回  4
 实现一：
 
 ```js
-/**
- * 初始化你的栈结构
- */
 const MinStack = function() {
   this.stack = [];
 };
 
-/**
- * @param {number} x
- * @return {void}
- */
-// 栈的入栈操作，其实就是数组的 push 方法
 MinStack.prototype.push = function(x) {
   this.stack.push(x);
 };
 
-/**
- * @return {void}
- */
-// 栈的入栈操作，其实就是数组的 pop 方法
 MinStack.prototype.pop = function() {
   this.stack.pop();
 };
 
-/**
- * @return {number}
- */
-// 取栈顶元素，咱们教过的哈，这里我本能地给它一个边界条件判断（其实不给也能通过，但是多做不错哈）
 MinStack.prototype.top = function() {
   if (!this.stack || !this.stack.length) {
     return;
@@ -842,10 +826,6 @@ MinStack.prototype.top = function() {
   return this.stack[this.stack.length - 1];
 };
 
-/**
- * @return {number}
- */
-// 按照一次遍历的思路取最小值
 MinStack.prototype.getMin = function() {
   let minValue = Infinity;
   const { stack } = this;
@@ -863,44 +843,29 @@ MinStack.prototype.getMin = function() {
 ```js
 const MinStack = function() {
   this.stack = [];
-  // 定义辅助栈
   this.stack2 = [];
 };
 
-/**
- * @param {number} x
- * @return {void}
- */
 MinStack.prototype.push = function(x) {
   this.stack.push(x);
-  // 若入栈的值小于当前最小值，则推入辅助栈栈顶
   if (this.stack2.length == 0 || this.stack2[this.stack2.length - 1] >= x) {
     this.stack2.push(x);
   }
 };
 
-/**
- * @return {void}
- */
 MinStack.prototype.pop = function() {
-  // 若出栈的值和当前最小值相等，那么辅助栈也要对栈顶元素进行出栈，确保最小值的有效性
   if (this.stack.pop() == this.stack2[this.stack2.length - 1]) {
     this.stack2.pop();
   }
 };
 
-/**
- * @return {number}
- */
 MinStack.prototype.top = function() {
   return this.stack[this.stack.length - 1];
 };
 
-/**
- * @return {number}
- */
 MinStack.prototype.getMin = function() {
-  // 辅助栈的栈顶，存的就是目标中的最小值
   return this.stack2[this.stack2.length - 1];
 };
 ```
+
+实现二为什么不用一个数值替代，top 后可能没有值了。其实实现二也是有 bug 的。
