@@ -189,6 +189,7 @@ const getSidebar = () => {
           // 'babel/babel7内置的包'
         ],
       },
+      'rollup',
       'ESLint&Prettier',
       '脚手架工具',
       'npmScript',

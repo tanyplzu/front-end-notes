@@ -12,7 +12,7 @@ npm run build
 cd dist
 
 # 如果是发布到自定义域名
-# echo 'www.example.com' > CNAME
+echo 'https://blog.tanyp.xyz' > CNAME
 
 git init
 git add -A
