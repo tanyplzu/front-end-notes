@@ -186,7 +186,7 @@ const getSidebar = () => {
         title: 'Bable',
         collapsable: false,
         children: [
-          // 'babel/babel7内置的包'
+          'babel/创建AST节点'
         ],
       },
       'rollup',
