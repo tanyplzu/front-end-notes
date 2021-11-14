@@ -1,27 +1,25 @@
 ---
-title: JavaScript 正则表达式
-tag: RegExp
-keywords: JavaScript,RegExp,test,exec
-date: 2019-04-25
 sidebarDepth: 1
 ---
 
-在 `JavaScript` 中，正则表达式 (Regular Expressions) 也是对象。这些模式被用于 `RegExp` 的 `exec` 和 `test` 方法，以及 `String` 的 `match`、`replace`、`search` 和 `split` 方法。
+# JavaScript 正则表达式
+
+[[toc]]
 
 ## 创建一个正则表达式
 
 你可以使用以下两种方法之一构建一个正则表达式：使用一个正则表达式字面量，其由包含在斜杠之间的模式组成，如下所示：
 
-```JavaScript
+```js
 var regex = /ab+c/;
 var regex = /ab+c/gi;
 ```
 
 或者调用 `RegExp` 对象的构造函数，如下所示：
 
-```JavaScript
-let regex = new RegExp("ab+c");
-let regex = new RegExp(/^[a-zA-Z]+[0-9]*\W?_$/, "gi");
+```js
+let regex = new RegExp('ab+c');
+let regex = new RegExp(/^[a-zA-Z]+[0-9]*\W?_$/, 'gi');
 ```
 
 ## 正则表达式字符匹配攻略
@@ -32,10 +30,10 @@ let regex = new RegExp(/^[a-zA-Z]+[0-9]*\W?_$/, "gi");
 
 如果正则只有精确匹配是没多大意义的，比如 `/hello/` ，也只能匹配字符串中的 `"hello"` 这个子串。
 
-```JavaScript
+```js
 var regex = /hello/;
-console.log( regex.test("hello") );         // => true
-console.log( regex.test("hel333lo") );      // => false
+console.log(regex.test('hello')); // => true
+console.log(regex.test('hel333lo')); // => false
 ```
 
 正则表达式之所以强大，是因为其能实现模糊匹配。而模糊匹配，有两个方向上的“模糊”：横向模糊和纵向模糊。
@@ -46,10 +44,10 @@ console.log( regex.test("hel333lo") );      // => false
 
 测试如下：
 
-```JavaScript
+```js
 var regex = /ab{2,5}c/g;
-var string = "abc abbc abbbc abbbbc abbbbbc abbbbbbc";
-console.log( string.match(regex) );
+var string = 'abc abbc abbbc abbbbc abbbbbc abbbbbbc';
+console.log(string.match(regex));
 // => ["abbc", "abbbc", "abbbbc", "abbbbbc"]
 ```
 
@@ -57,14 +55,14 @@ Tips: 案例中用的正则是 `/ab{2,5}c/g` ，后面多了 `g` ，它是正则
 
 ### 纵向模糊匹配
 
-> 纵向模糊指的是，一个正则匹配的字符串，具体到某一位字符时，它可以不是某个确定的字符，可以有多种可能。其实现的方式是使用字符组。譬如 `[abc]` ，表示该字符可以是字符 “a”、“b”、“c” 中的任何一个。比如 `/a[123]b/` 可以匹配如下三种字符串："a1b"、"a2b"、"a3b"。
+> 纵向模糊指的是，一个正则匹配的字符串，具体到某一位字符时，它可以不是某个确定的字符，可以有多种可能。其实现的方式是使用字符组。譬如 `[abc]` ，表示该字符可以是字符 'a'、'b'、'c' 中的任何一个。比如 `/a[123]b/` 可以匹配如下三种字符串：'a1b'、'a2b'、'a3b'。
 
 测试如下：
 
-```JavaScript
+```js
 var regex = /a[123]b/g;
-var string = "a0b a1b a2b a3b a4b";
-console.log( string.match(regex) );
+var string = 'a0b a1b a2b a3b a4b';
+console.log(string.match(regex));
 // => ["a1b", "a2b", "a3b"]
 ```
 
@@ -72,17 +70,17 @@ console.log( string.match(regex) );
 
 ### 字符组
 
-需要强调的是，虽叫字符组（字符类），但只是其中一个字符。例如 `[abc]` ，表示匹配一个字符，它可以是 “a”、“b”、“c” 之一。
+需要强调的是，虽叫字符组（字符类），但只是其中一个字符。例如 `[abc]` ，表示匹配一个字符，它可以是 'a'、'b'、'c' 之一。
 
 #### 范围表示法
 
-如果字符组里的字符特别多的话，怎么办？可以使用范围表示法。例如 `[123456abcdefGHIJKLM]` ，可以写成 `[1-6a-fG-M]` 。用连字符 `-` 来省略和简写。因为连字符有特殊用途，如果要匹配 “a”、“-”、“z” 这三者中任意一个字符，该怎么做呢？不能写成 `[a-z]` ，因为其表示小写字符中的任何一个字符。可以写成如下的方式：`[-az]` 或 `[az-]` 或 `[a\-z]` 。即要么放在开头，要么放在结尾，要么转义。总之不会让引擎认为是范围表示法就行了。
+如果字符组里的字符特别多的话，怎么办？可以使用范围表示法。例如 `[123456abcdefGHIJKLM]` ，可以写成 `[1-6a-fG-M]` 。用连字符 `-` 来省略和简写。因为连字符有特殊用途，如果要匹配 'a'、'-'、'z' 这三者中任意一个字符，该怎么做呢？不能写成 `[a-z]` ，因为其表示小写字符中的任何一个字符。可以写成如下的方式：`[-az]` 或 `[az-]` 或 `[a\-z]` 。即要么放在开头，要么放在结尾，要么转义。总之不会让引擎认为是范围表示法就行了。
 
 测试如下：
 
-```JavaScript
+```js
 var regex = new RegExp(/[1-6a-fG-M]/);
-console.log( regex.test('123456abcdefGHIJKLM') );
+console.log(regex.test('123456abcdefGHIJKLM'));
 // => true
 ```
 
@@ -92,11 +90,15 @@ console.log( regex.test('123456abcdefGHIJKLM') );
 
 测试如下：
 
-```JavaScript
+```js
 var regex = new RegExp(/[^abc]/);
-console.log( regex.test('abc') );   // => false
-console.log( regex.test('222') );   // => true
+console.log(regex.test('abc')); // => false
+console.log(regex.test('222')); // => true
 ```
+
+### x|y
+
+匹配'x'或者'y', /green|red/匹配'green apple'中的'green'和'red apple'中的'red' ，和字符组的区别是纵向范围内不只是字符。可以是其它表达式。
 
 ### 常见的简写形式
 
@@ -108,7 +110,7 @@ console.log( regex.test('222') );   // => true
 - `\D` 就是 `[^0-9]` 。表示除数字外的任意字符。
 - `\w` 就是 `[0-9a-zA-Z_]` 。表示数字、大小写字母和下划线。记忆方式：w 是 word 的简写，也称单词字符。
 - `\W` 是 `[^0-9a-zA-Z_]` 。非单词字符。
-- `\s` 是 `[ \t\v\n\r\f]` 。表示空白符，包括空格、水平制表符、垂直制表符、换行符、回车符、换页符。记忆方式： `s` 是 space character 的首字母。
+- `\s` 是 `[ \t\v\n\r\f]` 。表示空白符，包括空格、`\t`水平制表符、`\v`垂直制表符、`\n`换行符、`\r`回车符、`\f`换页符。记忆方式： `s` 是 space character 的首字母。
 - `\S` 是 `[^ \t\v\n\r\f]` 。 非空白符。
 - . 就是 `[^\n\r\u2028\u2029]` 。通配符，表示几乎任意字符。换行符、回车符、行分隔符和段分隔符除外。记忆方式：想想省略号。
 - .. 中的每个点，都可以理解成占位符，表示任何类似的东西。
@@ -133,54 +135,54 @@ console.log( regex.test('222') );   // => true
 
 测试如下：
 
-```JavaScript
+```js
 //  {m,} 表示至少出现m次。
 var regex1 = new RegExp(/ac{2,}r/);
-regex1.test('accr');                //  => true
-regex1.test('acr');                 //  => false
+regex1.test('accr'); //  => true
+regex1.test('acr'); //  => false
 
 //  {m} 等价于 {m,m}，表示出现 m 次
 var regex2 = new RegExp(/ac{3}r/);
-regex2.test('acccr');               //  => true
-regex2.test('accr');                //  => false
+regex2.test('acccr'); //  => true
+regex2.test('accr'); //  => false
 
 // ? 等价于{0,1}，表示出现或者不出现。记忆方式：问号的意思表示，有吗？
 var regex3 = new RegExp(/abc?r/);
-console.log(regex3.test('abcr'));    //  => true
-console.log(regex3.test('abbr'));    //  => false
-console.log(regex3.test('abr'));     //  => true
+console.log(regex3.test('abcr')); //  => true
+console.log(regex3.test('abbr')); //  => false
+console.log(regex3.test('abr')); //  => true
 
 // + 等价于{1,}，表示出现至少一次。记忆方式：加号是追加的意思，得先有一个，然后才考虑追加。
 var regex4 = new RegExp(/ac+r/);
-console.log(regex4.test('acr'));    //  => true
-console.log(regex4.test('accr'));   //  => true
-console.log(regex4.test('abr'));    //  => false
+console.log(regex4.test('acr')); //  => true
+console.log(regex4.test('accr')); //  => true
+console.log(regex4.test('abr')); //  => false
 
 // * 等价于{0,}，表示出现任意次，有可能不出现。记忆方式：看看天上的星星，可能一颗没有，可能零散有几颗，可能数也数不过来。
 var regex5 = new RegExp(/abc*r/);
-console.log(regex5.test('abcr'));    //  => true
-console.log(regex5.test('abccr'));   //  => true
-console.log(regex5.test('abr'));     //  => true
-console.log(regex5.test('ar'));      //  => false
+console.log(regex5.test('abcr')); //  => true
+console.log(regex5.test('abccr')); //  => true
+console.log(regex5.test('abr')); //  => true
+console.log(regex5.test('ar')); //  => false
 ```
 
 #### 贪婪匹配和惰性匹配
 
 例子如下：
 
-```JavaScript
+```js
 var regex = /\d{2,5}/g;
-var string = "123 1234 12345 123456";
-console.log( string.match(regex) );
+var string = '123 1234 12345 123456';
+console.log(string.match(regex));
 // => ["123", "1234", "12345", "12345"]
 ```
 
 其中正则 `/\d{2,5}/` ，表示数字连续出现 2 到 5 次。会匹配 2 位、3 位、4 位、5 位连续数字。但是其是贪婪的，它会尽可能多的匹配。你能给我 6 个，我就要 6 个。你能给我 3 个，我就要 3 个。反正只要在能力范围内，越多越好。而惰性匹配，就是尽可能少的匹配：
 
-```JavaScript
+```js
 var regex = /\d{2,5}?/g;
-var string = "123 1234 12345 123456";
-console.log( string.match(regex) );
+var string = '123 1234 12345 123456';
+console.log(string.match(regex));
 // => ["12", "12", "34", "12", "34", "12", "34", "56"]
 ```
 
@@ -194,26 +196,26 @@ console.log( string.match(regex) );
 
 一个模式可以实现横向和纵向模糊匹配。而多选分支可以支持多个子模式任选其一。具体形式如下：`(p1|p2|p3)` ，其中 p1、p2 和 p3 是子模式，用 `|`（管道符）分隔，表示其中任何之一。例如要匹配 "good" 和 "nice" 可以使用 `/good|nice/` 。测试如下：
 
-```JavaScript
+```js
 var regex = /good|nice/g;
-var string = "good idea, nice try.";
-console.log( string.match(regex) );         // => ["good", "nice"]
+var string = 'good idea, nice try.';
+console.log(string.match(regex)); // => ["good", "nice"]
 ```
 
 但有个事实我们应该注意，比如我用 `/good|goodbye/` ，去匹配 "goodbye" 字符串时，结果是 "good"
 
-```JavaScript
+```js
 var regex = /good|goodbye/g;
-var string = "goodbye";
-console.log( string.match(regex) );         // => ["good"]
+var string = 'goodbye';
+console.log(string.match(regex)); // => ["good"]
 ```
 
 而把正则改成 `/goodbye|good/` ，结果是：
 
-```JavaScript
+```js
 var regex = /goodbye|good/g;
-var string = "goodbye";
-console.log( string.match(regex) );         // => ["goodbye"]
+var string = 'goodbye';
+console.log(string.match(regex)); // => ["goodbye"]
 ```
 
 也就是说，分支结构也是惰性的，即当前面的匹配上了，后面的就不再尝试了。
@@ -228,10 +230,10 @@ console.log( string.match(regex) );         // => ["goodbye"]
 
 分析：表示一个 16 进制字符，可以用字符组 `[0-9a-fA-F]` 。其中字符可以出现 3 或 6 次，需要是用量词和分支结构。使用分支结构时，需要注意顺序。
 
-```JavaScript
+```js
 var regex = /#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})/g;
-var string = "#ffbbad #Fc01DF #FFF #ffE";
-console.log( string.match(regex) );
+var string = '#ffbbad #Fc01DF #FFF #ffE';
+console.log(string.match(regex));
 // => ["#ffbbad", "#Fc01DF", "#FFF", "#ffE"]
 ```
 
@@ -241,19 +243,19 @@ console.log( string.match(regex) );
 
 分析：共 4 位数字，第一位数字可以为 `[0-2]` 。当第 1 位为 2 时，第 2 位可以为 `[0-3]` ，其他情况时，第 2 位为 `[0-9]` 。第 3 位数字为 `[0-5]` ，第 4 位为 `[0-9]`
 
-```JavaScript
+```js
 var regex = /^([01][0-9]|[2][0-3]):[0-5][0-9]$/;
-console.log( regex.test("23:59") );         // => true
-console.log( regex.test("02:07") );         // => true
+console.log(regex.test('23:59')); // => true
+console.log(regex.test('02:07')); // => true
 ```
 
 如果也要求匹配 7:9，也就是说时分前面的 0 可以省略。此时正则变成：
 
-```JavaScript
+```js
 var regex = /^(0?[0-9]|1[0-9]|[2][0-3]):(0?[0-9]|[1-5][0-9])$/;
-console.log( regex.test("23:59") );
-console.log( regex.test("02:07") );
-console.log( regex.test("7:9") );
+console.log(regex.test('23:59'));
+console.log(regex.test('02:07'));
+console.log(regex.test('7:9'));
 // => true
 // => true
 // => true
@@ -265,9 +267,9 @@ console.log( regex.test("7:9") );
 
 分析：年，四位数字即可，可用 `[0-9]{4}` 。月，共 12 个月，分两种情况 01、02、……、09 和 10、11、12，可用 `(0[1-9]|1[0-2])` 。日，最大 31 天，可用 `(0[1-9]|[12][0-9]|3[01])` 。正则如下：
 
-```JavaScript
+```js
 var regex = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
-console.log( regex.test("2017-06-10") );
+console.log(regex.test('2017-06-10'));
 // => true
 ```
 
@@ -279,7 +281,7 @@ Tips： `/^[0-9]` 这个 `^` 表示：匹配以数字开始的字符串（从左
 
 ### 什么是位置呢
 
-位置是相邻字符之间的位置。比如，下图中箭头所指的地方： <img src="https://user-gold-cdn.xitu.io/2017/7/19/95d0faf6b21f9414d24c8281b3046746?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"/>
+位置是相邻字符之间的位置。
 
 ### 如何匹配位置呢
 
@@ -289,19 +291,20 @@ Tips： `/^[0-9]` 这个 `^` 表示：匹配以数字开始的字符串（从左
 
 #### ^ 和 \$
 
-`^`（脱字符）匹配开头，在多行匹配中匹配行开头。 `$`（美元符号）匹配结尾，在多行匹配中匹配行结尾。
+- `^`（脱字符）匹配开头，在多行匹配中匹配行开头。
+- `$`（美元符号）匹配结尾，在多行匹配中匹配行结尾。
 
 比如我们把字符串的开头和结尾用"#"替换（位置可以替换成字符的！）：
 
-```JavaScript
-var result = "hello".replace(/^|$/g, '#');
-console.log(result);            // => "#hello#"
+```js
+var result = 'hello'.replace(/^|$/g, '#');
+console.log(result); // => "#hello#"
 ```
 
 多行匹配模式时，二者是行的概念，这个需要我们的注意：
 
-```JavaScript
-var result = "I\nlove\njavascript".replace(/^|$/gm, '#');
+```js
+var result = 'I\nlove\njavascript'.replace(/^|$/gm, '#');
 console.log(result);
 /*
 #I#
@@ -310,17 +313,23 @@ console.log(result);
 */
 ```
 
-Tips：`JavaScript` 正则标志 `/g` , `/i` , `/m` 说明
+JavaScript 正则标志 `/g` , `/i` , `/m` 说明：
 
-> 1、`/g` 表示该表达式将用来在输入字符串中查找所有可能的匹配，返回的结果可以是多个。如果不加 `/g` 最多只会匹配一个 2、`/i`  表示匹配的时候不区分大小写 3、`/m` 表示多行匹配，什么是多行匹配呢？就是匹配换行符两端的潜在匹配。影响正则中的`^$` 符号。
+::: tip
+
+- `/g` 表示该表达式将用来在输入字符串中查找所有可能的匹配，返回的结果可以是多个。如果不加 `/g` 最多只会匹配一个;
+- `/i`  表示匹配的时候不区分大小写;
+- `/m` 表示多行匹配，什么是多行匹配呢？就是匹配换行符两端的潜在匹配。影响正则中的`^$` 符号。
+
+:::
 
 #### \b 和 \B
 
-`\b` 是单词边界，具体就是 `\w` 和 `\W` 之间的位置，也包括 `\w` 和 `^` 之间的位置，也包括 `\w` 和 `$` 之间的位置。比如一个文件名是"[JS] Lesson_01.mp4"中的 `\b`，如下：
+`\b` 是单词边界，具体就是 `\w` 和 `\W` 之间的位置，也包括 `\w` 和 `^` 之间的位置，也包括 `\w` 和 `$` 之间的位置。<span style='color:red'>注意不是 \W 和 ^ 之间的位置</span>。比如一个文件名是"[JS] Lesson_01.mp4"中的 `\b`，如下：
 
-```JavaScript
-var result = "[JS] Lesson_01.mp4".replace(/\b/g, '#');
-console.log(result);        // => "[#JS#] #Lesson_01#.#mp4#"
+```js
+var result = '[JS] Lesson_01.mp4'.replace(/\b/g, '#');
+console.log(result); // => "[#JS#] #Lesson_01#.#mp4#"
 ```
 
 为什么匹配结果是这样呢？分析如下：首先，我们知道，`\w` 是字符组 `[0-9a-zA-Z_]` 的简写形式（单词字符），即 `\w` 是字母数字或者下划线的中任何一个字符。而 `\W` 是排除字符组 `[^0-9a-zA-Z_]` 的简写形式（非单词字符），即 `\W` 是 `\w` 以外的任何一个字符。此时我们可以看看"[#JS#] #Lesson_01#.#mp4#"中的每一个"#"，是怎么来的。
@@ -329,28 +338,26 @@ console.log(result);        // => "[#JS#] #Lesson_01#.#mp4#"
 
 知道了 `\b` 的概念后，那么 `\B` 也就相对好理解了。 `\B` 就是 `\b` 的反面的意思，非单词边界。例如在字符串中所有位置中，扣掉 `\b` ，剩下的都是 `\B` 的。具体说来就是 `\w` 与 `\w` 、 `\W` 与 `\W` 、`^` 与 `\W` ，`\W` 与 `$` 之间的位置。比如上面的例子，把所有 `\B` 替换成 "#"：
 
-```JavaScript
-var result = "[JS] Lesson_01.mp4".replace(/\B/g, '#');
-console.log(result);        // => "#[J#S]# L#e#s#s#o#n#_#0#1.m#p#4"
+```js
+var result = '[JS] Lesson_01.mp4'.replace(/\B/g, '#');
+console.log(result); // => "#[J#S]# L#e#s#s#o#n#_#0#1.m#p#4"
 ```
 
-#### (?=p) 和 (?!p)
+#### x(?=y) 向前断言和 x(?!y) 向前否定断言
 
-(?=p)，其中 p 是一个子模式，即 p 前面的位置。比如 (?=l)，表示'l'字符前面的位置，例如：
+x(?=y)，其中 y 是一个子模式，即 y 前面的位置。比如 (?=l)，表示'l'字符前面的位置，例如：
 
-```JavaScript
-var result = "hello".replace(/(?=l)/g, '#');
-console.log(result);        // => "he#l#lo"
+```js
+var result = 'hello'.replace(/(?=l)/g, '#');
+console.log(result); // => "he#l#lo"
 ```
 
-而 (?!p) 就是 (?=p) 的反面意思，比如：
+x(?=y)，理解成：要求接下来的字符与 y 匹配，但不能包括 y 的那些字符。而 x(?!y) 就是 x(?=y) 的反面意思，比如：
 
-```JavaScript
-var result = "hello".replace(/(?!l)/g, '#');
-console.log(result);        // => "#h#ell#o#"
+```js
+var result = 'hello'.replace(/(?!l)/g, '#');
+console.log(result); // => "#h#ell#o#"
 ```
-
-二者的学名分别是 positive lookahead 和 negative lookahead。中文翻译分别是正向先行断言和负向先行断言。 ES6 中，还支持 positive lookbehind 和 negative lookbehind。具体是 (?<=p) 和 (?<!p)。比如 (?=p)，一般都理解成：要求接下来的字符与 p 匹配，但不能包括 p 的那些字符。而在个人看来 (?=p) 就与 ^ 一样好理解，就是 p 前面的那个位置。
 
 ::: tip
 
@@ -359,43 +366,46 @@ console.log(result);        // => "#h#ell#o#"
 
 :::
 
-相关断言（Assertions）学习资料可以看看这里：[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp#assertions)、[博客](https://www.cnblogs.com/whaozl/p/5462865.html)、[百科](https://baike.baidu.com/item/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F?fr=aladdin#7)
+ES6 中，还支持 (?<=y)x 后行断言和 (?<!y)x 反向否定查找。
+
+#### (?<=y)x 向后断言和 (?<!y) 向后否定断言
+
+- (?<=y)x 匹配'x'仅当'x'前面是'y'。例如，/(?<=Jack)Sprat/会匹配到 'Sprat' 仅仅当它前面是 'Jack';
+- (?<!y) 仅仅当'x'前面不是'y'时匹配'x'。例如，仅仅当这个数字前面没有负号的时候，/(?<!-)\d+/ 匹配一个数字。
+
+相关断言（Assertions）学习资料可以看看这里：[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions)
 
 ### 位置的特性
 
 对于位置的理解，我们可以理解成空字符 ""。比如"hello"字符串等价于如下的形式：
 
-```JavaScript
-"hello" === "" + "h" + "" + "e" + "" + "l" + "" + "l" + "o" + "";   // => true
+```js
+'hello' === '' + 'h' + '' + 'e' + '' + 'l' + '' + 'l' + 'o' + ''; // => true
 ```
 
 也等价于：
 
-```JavaScript
-"hello" == "" + "" + "hello"        // => true
+```js
+'hello' == '' + '' + 'hello'; // => true
 ```
 
 因此，把 `/^hello$/` 写成 `/^^hello$$$/` ，是没有任何问题的：
 
-```JavaScript
-var result = /^^hello$$$/.test("hello");
-console.log(result);                // => true
+```js
+var result = /^^hello$$$/.test('hello');
+console.log(result); // => true
 ```
 
 甚至可以写成更复杂的：
 
-```JavaScript
-var result = /(?=he)^^he(?=\w)llo$\b\b$/.test("hello");
-console.log(result);                // => true
+```js
+var result = /(?=he)^^he(?=\w)llo$\b\b$/.test('hello');
+console.log(result); // => true
 ```
 
 也就是说字符之间的位置，可以写成多个。把位置理解空字符，是对位置非常有效的理解方式。
 
 ### 相关案例
-
-#### 不匹配任何东西的正则
-
-让你写个正则不匹配任何东西 `/.^/` 因为此正则要求只有一个字符，但该字符后面是开头。
 
 #### 数字的千位分隔符表示法
 
@@ -405,54 +415,62 @@ console.log(result);                // => true
 
 使用 `(?=\d{3}$)` 就可以做到：
 
-```JavaScript
+```js
 // 在字符最后3个数字前面加一个逗号
-var result = "12345678".replace(/(?=\d{3}$)/g, ',')
-console.log(result);            // => "12345,678"
+var result = '12345678'.replace(/(?=\d{3}$)/g, ',');
+console.log(result); // => "12345,678"
 ```
 
 ##### 弄出所有的逗号
 
 因为逗号出现的位置，要求后面 3 个数字一组，也就是 `\d{3}` 至少出现一次。此时可以使用量词 +：
 
-```JavaScript
-var result = "12345678".replace(/(?=(\d{3})+$)/g, ',')
-console.log(result);            // => "12,345,678"
+```js
+var result = '12345678'.replace(/(?=(\d{3})+$)/g, ',');
+console.log(result); // => "12,345,678"
 ```
 
 ##### 匹配其余案例
 
 写完正则后，多验证几个案例，此时我们会发现问题：
 
-```JavaScript
-var result = "123456789".replace(/(?=(\d{3})+$)/g, ',')
-console.log(result);            // => ",123,456,789"
+```js
+var result = '123456789'.replace(/(?=(\d{3})+$)/g, ',');
+console.log(result); // => ",123,456,789"
 ```
 
 因为上面的正则，仅仅表示把从结尾向前数，一但是 3 的倍数，就把其前面的位置替换成逗号。因此才会出现这个问题。怎么解决呢？我们要求匹配到这个位置不能是开头。我们知道匹配开头可以使用 `^` ，但要求这个位置不是开头怎么办？ `(?!^)` 测试如下：
 
-```JavaScript
-var string1 = "12345678", string2 = "123456789";
+```js
+var string1 = '12345678',
+  string2 = '123456789';
 var reg = /(?!^)(?=(\d{3})+$)/g;
 
-var result = string1.replace(reg, ',')
-console.log(result);            // => "12,345,678"
+var result = string1.replace(reg, ',');
+console.log(result); // => "12,345,678"
 
 result = string2.replace(reg, ',');
-console.log(result);            // => "123,456,789"
+console.log(result); // => "123,456,789"
 ```
 
 123456.3435 如果要匹配这种数据格式呢？就是保留小数并且千分位逗号分割
 
-```JavaScript
+```js
 // 小数点前面的数字，每隔三个数加一个 ','
 var string = '123456.3435';
-var reg = /(\d)(?=(\d{3})+\.)/g;
-var result = string.replace(reg, '$1,')
-console.log(result);            // => "123,456.3435"
+var reg = /(?!^)(?=(\d{3})+\.)/g;
+var result = string.replace(reg, ',');
+console.log(result); // => "123,456.3435"
 ```
 
-Tips: `var a = 222122122.6754;var b = a.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');` 这行代码，可以实现四舍五入保留 2 位小数点，并且千分位逗号分割，这是项目中很常见的一个需求
+Tips:
+
+```js
+var a = 222122122.6754;
+var b = a.toFixed(2).replace(/(?!^)(?=(\d{3})+\.)/g, ',');
+```
+
+这行代码，可以实现四舍五入保留 2 位小数点，并且千分位逗号分割，这是项目中很常见的一个需求
 
 ## test, exec, match, replace 用法介绍
 
@@ -471,6 +489,9 @@ Tips: `var a = 222122122.6754;var b = a.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g
 
 如果空字符串 `('')` 被用作分隔符，则字符串会在每个字符之间分割。
 
-> [正则用法更多详情](https://segmentfault.com/a/1190000003497780)
+资料：
+
+- [正则用法更多详情](https://segmentfault.com/a/1190000003497780)
+- [正则表达式中的特殊字符](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions)
 
 <!-- *此文为公司同事的分享* -->

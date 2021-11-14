@@ -1,8 +1,10 @@
 ---
-title: 正则表达式中的括号
-tag: RegExp
 sidebarDepth: 1
 ---
+
+# 正则表达式中的括号
+
+[[toc]]
 
 ## 1. 分组和分支结构
 
@@ -141,6 +143,15 @@ console.log( RegExp.$3 ); // 23
 var regex = /(?:ab)+/g;
 var string = "ababa abbb ababab";
 console.log( string.match(regex) ); // ["abab", "ab", "ababab"]
+```
+
+捕获分组可以叠加
+
+```js
+var string = '123456.3435';
+var reg = /(?!^)(?=(\d{3})+\.)/g;
+var result = string.replace(reg, ',');
+console.log(result); // => "123,456.3435"
 ```
 
 ## 5. 示例
