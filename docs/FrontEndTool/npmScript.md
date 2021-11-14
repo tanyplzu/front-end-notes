@@ -48,6 +48,15 @@ package.json
 }
 ```
 
+### 常用命令
+
+更新安装包
+
+```sh
+npm outdated         # 先查询有哪些包有更新
+npm update <package> # 更新指定包
+```
+
 ## package.json 说明
 
 ### 注释
@@ -83,11 +92,12 @@ package.json
 ### bugs
 
 ```js
-{ 
+{
   "url" : "https://github.com/owner/project/issues",
   "email" : "project@hostname.com"
 }
 ```
+
 ### license
 
 - [五种开源协议(GPL,LGPL,BSD,MIT,Apache)](https://www.oschina.net/question/54100_9455)
@@ -123,8 +133,6 @@ MIT 协议可能是几大开源协议中最宽松的一个，核心条款是：�
 ### optionalDependencies
 
 ### engines
-
-
 
 ## 模块化相关
 

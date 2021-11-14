@@ -19,8 +19,8 @@ const getNav = () => {
     },
     { text: 'NodeJS', link: '/NodeJS/' },
     { text: 'Java', link: '/Java/' },
-    { text: 'Reading', link: '/Reading/' },
     { text: 'Notes', link: '/notes/' },
+    { text: 'Reading', link: '/Reading/' },
     { text: '数据结构与算法', link: '/DSA/' },
   ];
 };
