@@ -45,6 +45,5 @@ module.exports = {
   ],
   chainWebpack: (config, isServer) => {
     // config 是 ChainableConfig 的一个实例
-    console.log(config);
   }
 };
