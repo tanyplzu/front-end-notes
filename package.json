@@ -4,6 +4,7 @@
   "description": "前端笔记",
   "main": "index.js",
   "scripts": {
+    "serve": "server.js",
     "start": "vuepress dev docs",
     "build": "vuepress build docs",
     "deploy": "sh build.sh",
@@ -26,6 +27,7 @@
     "inquirer-directory": "^2.2.0",
     "plop": "^2.7.4",
     "vuepress-plugin-copyright": "^1.0.2",
-    "vuepress-plugin-flowchart": "^1.4.3"
+    "vuepress-plugin-flowchart": "^1.4.3",
+    "pushstate-server": "^3.1.0"
   }
 }
