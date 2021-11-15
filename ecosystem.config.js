@@ -8,7 +8,7 @@ module.exports = {
   deploy: {
     production: {
       user: 'root',
-      host: '172.24.26.134',
+      host: '47.97.10.178',
       ref: 'origin/master',
       repo: 'git@github.com:tanyplzu/front-end-notes.git',
       path: '/www/website/front-end-notes',
