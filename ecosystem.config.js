@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'front-end-notes',
-      script: 'server.js --name react01',
+      script: 'server.js',
     },
   ],
   deploy: {
