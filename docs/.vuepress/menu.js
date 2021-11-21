@@ -166,6 +166,17 @@ const getSidebar = () => {
         ],
       },
       '设计一个前端项目',
+      {
+        title: '运维相关',
+        collapsable: false,
+        sidebarDepth: 0,
+        children: [
+          'operations/Linux',
+          'operations/Docker',
+          'operations/Nginx',
+          'operations/deployWebApp',
+        ],
+      },
     ],
     '/FrontEndTool/': [
       {
@@ -185,9 +196,7 @@ const getSidebar = () => {
       {
         title: 'Bable',
         collapsable: false,
-        children: [
-          'babel/创建AST节点'
-        ],
+        children: ['babel/创建AST节点'],
       },
       'rollup',
       'ESLint&Prettier',
@@ -239,12 +248,6 @@ const getSidebar = () => {
         collapsable: false,
         sidebarDepth: 0,
         children: ['v8/JavaScript设计思想', 'v8/V8编译流水线'],
-      },
-      {
-        title: '运维相关',
-        collapsable: false,
-        sidebarDepth: 0, // 可选的, 默认值是 1
-        children: ['运维/Linux', '运维/mac', '运维/Docker', '运维/Nginx'],
       },
     ],
     '/notes/': [
