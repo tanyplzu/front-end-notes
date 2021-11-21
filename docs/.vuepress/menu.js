@@ -30,7 +30,7 @@ const getSidebar = () => {
       '',
       {
         title: 'JavaScript基础',
-        collapsable: true,
+        collapsable: false,
         children: [
           'JavaScript/01-JS数据类型',
           'JavaScript/02-JavaScript基础',
@@ -41,7 +41,7 @@ const getSidebar = () => {
       'Html&Css',
       {
         title: '网络协议',
-        collapsable: true,
+        collapsable: false,
         children: [
           'Network/HTTP',
           'Network/状态码',
@@ -52,7 +52,7 @@ const getSidebar = () => {
       },
       {
         title: 'Web 安全',
-        collapsable: true,
+        collapsable: false,
         children: [
           'WebSecurity/XSS',
           'WebSecurity/CSRF',
@@ -61,7 +61,8 @@ const getSidebar = () => {
       },
       {
         title: '设计模式',
-        collapsable: true,
+        collapsable: false,
+        sidebarDepth: 0,
         children: ['DesignPattern', 'DesignPattern2'],
       },
       {
