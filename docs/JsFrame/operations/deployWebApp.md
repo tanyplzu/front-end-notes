@@ -291,6 +291,10 @@ pm2 deploy ecosystem.config.js production setup
 pm2 deploy production
 ```
 
+部署成功后：
+
+![pm2](./imgs/deployWebApp005.png)
+
 [pm2 文档](https://pm2.keymetrics.io/docs/usage/quick-start/)
 
 ## 部署问过程遇到的问题
