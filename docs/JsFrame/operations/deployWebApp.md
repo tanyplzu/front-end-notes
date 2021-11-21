@@ -1,12 +1,12 @@
 # 部署一个静态网站
 
-适应是阿里云 ecs、linux 系统、nginx、pm2、node 部署一个前端静态网站。
+在阿里云 ecs 部署一点前端静态服务器。使用的环境为 linux、nginx、node 以及 pm2。
 
 [[toc]]
 
 ## nginx
 
-安装
+linux 下安装
 
 ```sh
 yum -y install nginx-1.16.1
@@ -28,6 +28,9 @@ cd /etc/nginx/conf.d
 
 # 关闭
 nginx -s stop
+
+# 重新启动
+nginx -s reload
 
 # 查询80端口占用
 netstat -ntpl | grep 80
@@ -96,7 +99,7 @@ cat blog-xxx-com-3000
 nginx -t
 ```
 
-以上配置将 nginx 作为代理服务器使用，将 3000 端口下的 http 服务代理到https://blog.xxx.com域名下。如果将静态直接部署到nginx下，使用以下配置：
+以上配置将 nginx 作为代理服务器使用，将 3000 端口下的 http 服务反向代理到`https://blog.xxx.com`域名下。如果将静态直接部署到 nginx 下，使用以下配置：
 
 ```js
 server {
@@ -163,13 +166,21 @@ cassiopeia.dnspod.net
 
 添加记录
 
-![添加记录](./imgs/001.png)
+![添加记录](./imgs/deployWebApp001.png)
 
 ## 配置 SSL
 
 nginx 中配置 https 时，需要配置 `ssl_certificate` 和 `ssl_certificate_key` 字段，这个两个字段是 SSL 的两个证书。SSL 证书在域名解析时需要单独购买。对于个人网站可以使用免费的 SSL 证，域名解析时按提示配置 SSL 证书。配置后在证书管理页面下载 ssl 证书即可，里面有 `Apache`、`IIS`、`Nginx`、`Tomcat` 等服务器配置时需要的证书。
 
-![ssl证书](./imgs/002.jpg)
+![ssl证书](./imgs/deployWebApp002.jpg)
+
+下载证书后，需要将证书上传到固定 nginx 中固定的目录下。个人一般存放在自建的`www/ssl`目录下。
+
+```sh
+# 给nginx目录下上传文件
+scp 1_blog.xxx.com_bundle.crt root@xx.xx.xx.xxx:/www/ssl/
+scp 2_blog.xxx.com.key root@xx.xx.xx.xxx:/www/ssl/
+```
 
 ## node 服务器
 
@@ -213,7 +224,7 @@ module.exports = app.listen(port, function(err) {
 
 接下来配置 pm2 自动化部署，首先配置 ssh 远程服务器免密登录。
 
-## ssh
+## ssh 免密登录
 
 > SSH 是一种网络协议，用于计算机之间的加密登录。
 
@@ -221,13 +232,14 @@ module.exports = app.listen(port, function(err) {
 
 ```sh
 ssh-keygen -t rsa -C "xxxxx@xxxxx.com"
+cat id_rsa.pub
 ```
 
 `id_rsa.pub` 文件里面的内容，就是需要的公钥内容。
 
 拿到它之后，进入阿里云服务器，同样先看看本地是否有设置好公钥，如果没有，按刚才的步骤再配置一次。
 
-![ssh](./imgs/004.png)
+![ssh](./imgs/deployWebApp004.png)
 
 配置完成后，把之前用户本地生成的 `id_rsa.pub` 内容放入 `authorized_keys` 中，在本地命令行工具执行 `ssh root@服务器 IP`，便能直接免密登录了。
 
@@ -235,7 +247,7 @@ ssh-keygen -t rsa -C "xxxxx@xxxxx.com"
 
 部署流程图
 
-![部署流程图](./imgs/003.png)
+![部署流程图](./imgs/deployWebApp003.png)
 
 使用 ssh 免密登录远程服务器。
 
@@ -280,3 +292,7 @@ pm2 deploy production
 ```
 
 [pm2 文档](https://pm2.keymetrics.io/docs/usage/quick-start/)
+
+## 部署问过程遇到的问题
+
+重启 nginx 之后，访问 ip 地址首页，有 403 错误，可以在安全组添加对应的端口。
