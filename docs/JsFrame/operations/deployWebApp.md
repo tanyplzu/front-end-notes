@@ -297,6 +297,8 @@ pm2 deploy production
 
 [pm2 文档](https://pm2.keymetrics.io/docs/usage/quick-start/)
 
+## http 2
+
 ## 部署问过程遇到的问题
 
 重启 nginx 之后，访问 ip 地址首页，有 403 错误，可以在安全组添加对应的端口。
