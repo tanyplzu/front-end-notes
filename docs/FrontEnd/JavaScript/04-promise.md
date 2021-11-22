@@ -2,9 +2,21 @@
 sidebarDepth: 0
 ---
 
-# myPromise
+# promise
 
 [[toc]]
+
+Promise 的 3 个状态分别为 pending、fulfilled 和 rejected。
+
+## Promise 异常处理
+
+- 通过 then() 的第 2 个参数;
+- 通过 catch() （常用方案）
+- try...catch
+
+try catch 是传统的异常捕获方式，这里只能捕获同步代码的异常，并不能捕获异步异常，因此无法对 Promise 进行完整的异常捕获。一旦被 catch 捕获过的异常，将不会再往外部传递，除非在 catch 中又触发了新的异常。
+
+## Promise 深入理解之控制反转
 
 ## 手写 promise
 
@@ -70,7 +82,7 @@ sidebarDepth: 0
 })();
 ```
 
-## Promise.all
+### Promise.all
 
 - 如果传入的所有 promise 实例的状态均变为 fulfilled，那么返回的 promise 实例的状态就是 fulfilled，并且其 value 是传入的所有 promise 的 value 组成的数组。
 - 如果有一个 promise 实例状态变为了 rejected，那么返回的 promise 实例的状态立即变为 rejected。
@@ -99,7 +111,7 @@ Promise.myAll = function(iterators) {
 };
 ```
 
-## Promise.any
+### Promise.any
 
 - 如果传入的实例中，有任一实例变为 fulfilled，那么它返回的 promise 实例状态立即变为 fulfilled；
 - 如果所有实例均变为 rejected，那么它返回的 promise 实例状态为 rejected。
@@ -126,11 +138,13 @@ Promise.any = function(iterators) {
 };
 ```
 
-## Promise.allSettled
+### Promise.allSettled
 
 ```js
 const formatSettledResult = (success, value) =>
-  success ? { status: 'fulfilled', value } : { status: 'rejected', reason: value };
+  success
+    ? { status: 'fulfilled', value }
+    : { status: 'rejected', reason: value };
 
 Promise.allSettled = function(iterators) {
   const promises = Array.from(iterators);
@@ -158,7 +172,7 @@ Promise.allSettled = function(iterators) {
 };
 ```
 
-## Promise.race
+### Promise.race
 
 ```js
 Promise.myRace = function(iterators) {
@@ -174,7 +188,7 @@ Promise.myRace = function(iterators) {
 };
 ```
 
-## Promise.prototype.finally
+### Promise.prototype.finally
 
 ```js
 Promise.prototype.finally = function(cb) {

@@ -35,6 +35,7 @@ const getSidebar = () => {
           'JavaScript/01-JS数据类型',
           'JavaScript/02-JavaScript基础',
           'JavaScript/03-JavaScript基础',
+          'JavaScript/04-promise',
           'JavaScript/V8',
         ],
       },
@@ -197,7 +198,7 @@ const getSidebar = () => {
       {
         title: 'Bable',
         collapsable: false,
-        children: ['babel/创建AST节点'],
+        children: ['babel/创建AST节点', 'babel/在前端脚手架中使用'],
       },
       'rollup',
       'ESLint&Prettier',
@@ -299,7 +300,6 @@ const getSidebar = () => {
     '/AngularJS/': ['Scope和Digest', '指令', 'parse和eval'],
     '/DSA/': [
       '',
-      'myPromise',
       '数据结构与算法1',
       '数据结构与算法2',
       'LeetCode1',

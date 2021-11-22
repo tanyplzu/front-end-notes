@@ -1,14 +1,12 @@
 ---
-sidebarDepth: 1
+sidebarDepth: 0
 ---
 
-# JavaScript 基础(三)
+# ES6 相关
 
 [[toc]]
 
-## ES6 有关
-
-### 箭头函数和普通函数的区别
+## 箭头函数和普通函数的区别
 
 解决了 this 指向的问题。
 
@@ -16,13 +14,13 @@ sidebarDepth: 1
 - 不能使用 call bind 等；
 - 不能 new;
 
-### 为什么要使用模块化
+## 为什么要使用模块化
 
 - 解决命名冲突
 - 提供复用性
 - 提高代码可维护性
 
-### Symbol
+## Symbol
 
 - 作用是表示独一无二的值；
 - 传入字符串作为描书文件 Symbol('bar')
@@ -66,7 +64,7 @@ __webpack_require__.r = function(exports) {
 - 在 `for...in` 和 `Object.keys()`、`JSON.sringify()`会忽略 Symbol 属性
 - 如果要获取 Symbol 的属性名，`Object.getOwnPropertySymbols`
 
-### Map、WeakMap
+## Map、WeakMap
 
 map 和 Object 比，主要的特性：
 
@@ -79,7 +77,7 @@ map 和 Object 比，主要的特性：
 
 WeakMap 是 map 的变体，二者的外部行为基本一致，区别在于内部内存分配的工作方式。
 
-### Proxy 可以实现什么功能
+## Proxy 可以实现什么功能
 
 语法：
 
@@ -113,7 +111,7 @@ handler 对象的方法：
 
 Vue3.0 使用 Proxy 替换原本的 API 原因在于 Proxy 无需一层层递归为每个属性添加代理，一次即可完成以上操作，性能上更好，对数组也不用单独处理，Proxy 可以完美监听到任何方式的数据改变，唯一缺陷可能就是浏览器的兼容性不好了
 
-### Reflect
+## Reflect
 
 其成员方法就是 Proxy 处理对象的默认实现
 
@@ -163,18 +161,17 @@ Reflect.has(Object, 'assign'); // true
 Reflect.deleteProperty(myObj, 'foo');
 ```
 
-#### 静态方法
+### 静态方法
 
 - Reflect.get
 - Reflect.set
 - Reflect.has
 - Reflect.deleteProperty
-
-### async 和 await
+## async 和 await
 
 Async/await 是以更舒适的方式使用 promise 的一种特殊语法。
 
-#### Async function
+### Async function
 
 ```js
 async function foo() {
@@ -239,11 +236,11 @@ console.log('script end');
 // setTimeOut
 ```
 
-#### await
+### await
 
 await 操作符用于等待一个 Promise 对象。它只能在异步函数 async function 中使用。
 
-### class
+## class
 
 ```js
 class Car {
@@ -273,8 +270,7 @@ lavad.start();
 
 在 js 里面，都是通过 prototype 进行继承的，子类调用父类方法的时候，传入的其实是子类的 this，所以，在父类里面可以调用到子类的方法和子类的属性。
 
-### ES Module
+## ES Module
 
 - [深入解析 ES Module（一）：禁用 export default object](https://zhuanlan.zhihu.com/p/40733281)
 - [深入解析 ES Module（二）：彻底禁用 default export](https://zhuanlan.zhihu.com/p/97335917)
-
