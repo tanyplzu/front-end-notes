@@ -68,8 +68,15 @@ const getSidebar = () => {
       },
       {
         title: '前端可视化',
-        collapsable: true,
-        children: ['Canvas/SVG', 'Canvas/Canvas', 'Canvas/WebGL'],
+        collapsable: false,
+        sidebarDepth: 0,
+        children: [
+          'Visualization/DataVisualization',
+          'Visualization/threeJS',
+          'Visualization/SVG',
+          'Visualization/Canvas',
+          'Visualization/WebGL',
+        ],
       },
       {
         title: '函数式编程',

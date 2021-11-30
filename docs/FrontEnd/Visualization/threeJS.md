@@ -1,3 +1,7 @@
+---
+sidebarDepth: 0
+---
+
 # Three.JS
 
 ## 常用方法
