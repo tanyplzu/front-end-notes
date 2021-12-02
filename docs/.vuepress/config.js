@@ -4,8 +4,8 @@ const { getNav, getSidebar } = require('./menu');
 const { plugins } = require('./plugins');
 module.exports = {
   // base: '/front-end/',
-  title: '七月有风',
-  description: '七月有风技术空间',
+  title: '朝花夕拾',
+  description: '朝花夕拾技术空间',
   dest: 'dist',
   serviceWorker: false,
   // theme: 'antdocs',
