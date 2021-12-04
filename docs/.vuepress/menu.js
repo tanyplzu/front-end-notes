@@ -309,9 +309,25 @@ const getSidebar = () => {
       '',
       '数据结构与算法1',
       '数据结构与算法2',
-      'LeetCode1',
-      'LeetCode2',
-      'LeetCode3',
+      {
+        title: '常用的算法方法',
+        collapsable: false,
+        sidebarDepth: 0,
+        children: [
+          'method/常用的算法方法',
+          'method/Dynamicprogramming',
+          'method/vue3diff',
+        ],
+      },
+      {
+        title: 'LeetCode',
+        collapsable: false,
+        children: [
+          'LeetCode/LeetCode1',
+          'LeetCode/LeetCode2',
+          'LeetCode/LeetCode3',
+        ],
+      },
       'nowcoder',
     ],
   };

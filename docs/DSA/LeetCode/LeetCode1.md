@@ -25,7 +25,6 @@ https://leetcode-cn.com/problems/two-sum
  * @return {number[]}
  */
 const twoSum = function(nums, target) {
-  // 这里我用对象来模拟 map 的能力
   const diffs = {};
   // 缓存数组长度
   const len = nums.length;
@@ -43,6 +42,8 @@ const twoSum = function(nums, target) {
 ```
 
 空间换时间，也可以采用 map.
+
+<span style="color:red">当发现自己的代码里有两层循环时，先反思一下，能不能用空间换时间，把它优化成一层循环。</span>
 
 ## 2.两数相加
 
