@@ -1,3 +1,6 @@
+---
+sidebarDepth: 1
+---
 # rollup 配置
 
 [[toc]]
