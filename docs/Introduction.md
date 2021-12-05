@@ -8,10 +8,17 @@
 - [v8.dev](https://v8.dev/)
 - [Div.IO](https://div.io/#/welcome)
 
+
+### 前端教程
+
+- [JavaScript for impatient programmers](https://exploringjs.com/impatient-js/toc.html)
+- [ECMAScript 6 入门](http://es6.ruanyifeng.com/)
+- [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript)
+- [阮一峰 NODE](https://javascript.ruanyifeng.com/nodejs/basic.html)
+
 ### 前端文档
 
 - [npm 中文文档](https://www.npmjs.cn/ 'npm 中文文档')
-- [ECMAScript 6 入门](http://es6.ruanyifeng.com/)
 - [Typescript 中文指南](https://www.tslang.cn/docs/home.html)
 - [TypeScript 实践](https://juejin.im/post/5a9c004a6fb9a028b92c9e91)
 - [TypeScript 体系调研报告](https://juejin.im/post/59c46bc86fb9a00a4636f939)
@@ -40,10 +47,6 @@
 - [AST](https://mp.weixin.qq.com/s/fH2xYo_Bad0mgvo0OdYRZQ)
 - [snabbdom](https://github.com/snabbdom/snabbdom)
 
-### node
-
-- [阮一峰 NODE](https://javascript.ruanyifeng.com/nodejs/basic.html)
-
 ### css
 
 - [渲染树构建、布局及绘制](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction?hl=zh-cn)
@@ -51,6 +54,7 @@
 ### 博客
 
 - [阮一峰的网络日志](http://www.ruanyifeng.com/blog/javascript/)
+- [2ality – JavaScript and more](https://2ality.com/index.html)
 - [神三元](https://juejin.im/user/5c45ddf06fb9a04a006f5491/posts)
 - [木易杨说](https://juejin.im/user/56dea4aa7664bf00559f002d/posts)
 

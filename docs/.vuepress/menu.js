@@ -307,28 +307,32 @@ const getSidebar = () => {
     '/AngularJS/': ['Scope和Digest', '指令', 'parse和eval'],
     '/DSA/': [
       '',
-      '数据结构与算法1',
-      '数据结构与算法2',
       {
         title: '常用的算法方法',
         collapsable: false,
         sidebarDepth: 0,
         children: [
+          'method/On',
           'method/常用的算法方法',
+          'method/DFS&BFS',
           'method/Dynamicprogramming',
           'method/vue3diff',
+          'method/BitwiseOperators',
         ],
       },
       {
-        title: 'LeetCode',
+        title: 'LeetCode 习题',
         collapsable: false,
+        sidebarDepth: 0,
         children: [
           'LeetCode/LeetCode1',
           'LeetCode/LeetCode2',
           'LeetCode/LeetCode3',
+          'LeetCode/LeetCode3',
+          'LeetCode/nowcoder',
         ],
       },
-      'nowcoder',
+      '常见的一些前端算法',
     ],
   };
 };

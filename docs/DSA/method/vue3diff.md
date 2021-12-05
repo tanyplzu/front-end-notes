@@ -1,3 +1,7 @@
+---
+sidebarDepth: 0
+---
+
 # vue3 diff 算法
 
 ## 使用贪心 + 二分查找替换
@@ -110,7 +114,7 @@ function getSequence(arr: number[]): number[] {
       }
       if (arrI < arr[result[u]]) {
         if (u > 0) {
-          p[i] = result[u - 1]; // 有可能替换会导致结果不正确，需要一个新数组 p 记录正确的结果
+          p[i] = result[u - 1]; // 要将他替换的前一个记住
         }
         result[u] = i;
       }
@@ -136,6 +140,8 @@ function getSequence(arr: number[]): number[] {
 - `tails = [0,4,2,3]` `p=[1,0,1,2,0,3,7,0]`
 - `tails = [0,4,5,3]` `p=[1,0,1,2,0,4,7,0]`
 - `tails = [0,4,5,3,6]` `p=[1,0,1,2,0,4,3,0]`
+
+tails 其实是多个递增子序列数组的叠加，里面最长的一个就是最长递增子序列。而最长递增子序列的值已被其它子序列覆盖。为了复原之前的值，需要记录之前的值前一个的索引，以便反推出之前的值。
 
 vue3 diff 解决了上面贪心算法的问题。
 
