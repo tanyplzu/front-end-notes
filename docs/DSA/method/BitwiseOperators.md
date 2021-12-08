@@ -135,6 +135,14 @@ mid = (left + right) >> 1;
 5 / 2; // 2.5
 ```
 
+### >>> 0
+
+```js
+const a = [1, 2, 3, 4, 5];
+const index = a.findIndex((item) => item === 8);
+a.splice(index >>> 0, 1);
+```
+
 ### | 0
 
 ```text
