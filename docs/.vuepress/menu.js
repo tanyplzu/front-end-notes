@@ -234,6 +234,15 @@ const getSidebar = () => {
           'SpringBoot/IOC',
         ],
       },
+      {
+        title: 'MySql',
+        collapsable: false,
+        sidebarDepth: 0,
+        children: [
+          'MySql/MySql语法',
+          'MySql/50道SQL练习题',
+        ],
+      },
     ],
     '/Reading/': [
       {
