@@ -100,7 +100,9 @@ SELECT
 	*
 FROM
 	( SELECT SId, score FROM sc WHERE sc.CId = '01' ) AS t1
-	LEFT JOIN ( SELECT SId, score FROM sc WHERE sc.CId = '02' ) AS t2 ON t1.SId = t2.SId
+	LEFT JOIN (
+    SELECT SId, score FROM sc WHERE sc.CId = '02'
+  ) AS t2 ON t1.SId = t2.SId
 ```
 
 1.3 查询不存在" 01 "课程但存在" 02 "课程的情况
@@ -118,12 +120,22 @@ WHERE
 2. 查询平均成绩大于等于 60 分的同学的学生编号和学生姓名和平均成绩
 
 ```sql
-select student.*,t1.avgscore
-from student inner JOIN(
-select sc.SId ,AVG(sc.score)as avgscore
-from sc
-GROUP BY sc.SId
-HAVING AVG(sc.score)>=60)as t1 on student.SId=t1.SId
+SELECT
+	student.*,
+	t1.avgscore 
+FROM
+	student
+	INNER JOIN (
+	SELECT
+		sc.SId,
+		AVG( sc.score ) AS avgscore 
+	FROM
+		sc 
+	GROUP BY
+		sc.SId 
+	HAVING
+	AVG( sc.score )>= 60 
+	) AS t1 ON student.SId = t1.SId
 ```
 
 3. 查询在 SC 表存在成绩的学生信息
@@ -363,17 +375,9 @@ ORDER BY
 
 14. 查询各科成绩最高分、最低分和平均分：
 
-以如下形式显示：课程 ID，课程 name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率
-
-及格为>=60，中等为：70-80，优良为：80-90，优秀为：>=90
-
-要求输出课程号和选修人数，查询结果按人数降序排列，若人数相同，按课程号升序排列
-
-```sql
-
-```
-
-15. 按各科成绩进行排序，并显示排名， Score 重复时保留名次空缺
+- 以如下形式显示：课程 ID，课程 name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率
+- 及格为>=60，中等为：70-80，优良为：80-90，优秀为：>=90
+- 要求输出课程号和选修人数，查询结果按人数降序排列，若人数相同，按课程号升序排列
 
 ```sql
 SELECT
@@ -385,14 +389,35 @@ SELECT
 	sum( CASE WHEN sc.score >= 60 THEN 1 ELSE 0 END )/ count(*) AS 及格率,
 	sum( CASE WHEN sc.score >= 70 AND sc.score < 80 THEN 1 ELSE 0 END )/ count(*) AS 中等率,
 	sum( CASE WHEN sc.score >= 80 AND sc.score < 90 AND sc.score < 80 THEN 1 ELSE 0 END )/ count(*) AS 优良率,
-	sum( CASE WHEN sc.score >= 90 THEN 1 ELSE 0 END )/ count(*) AS 优秀率
+	sum( CASE WHEN sc.score >= 90 THEN 1 ELSE 0 END )/ count(*) AS 优秀率 
 FROM
-	sc
+	sc 
 GROUP BY
-	sc.CId
+	sc.CId 
 ORDER BY
 	count(*) DESC,
 	sc.CId ASC
+```
+
+15. 按各科成绩进行排序，并显示排名， Score 重复时保留名次空缺
+
+```sql
+SELECT
+	sc.SId,
+	sc.CId,
+CASE
+		WHEN @pre_parent_code = sc.CId THEN
+		@curRank := @curRank + 1 
+		WHEN @pre_parent_code := sc.CId THEN
+		@curRank := 1 
+	END AS rank,
+	sc.score 
+FROM
+	( SELECT @curRank := 0, @pre_parent_code := '' ) AS t,
+	sc 
+ORDER BY
+	sc.CId,
+	sc.score DESC
 ```
 
 15.1 按各科成绩进行排序，并显示排名， Score 重复时合并名次
@@ -402,7 +427,6 @@ SELECT
 	sc.SId,
 	sc.CId,
 CASE
-
 		WHEN @pre_parent_code = sc.CId THEN
 		(
 		CASE
