@@ -64,7 +64,12 @@ const getSidebar = () => {
         title: '设计模式',
         collapsable: false,
         sidebarDepth: 0,
-        children: ['DesignPattern', 'DesignPattern2'],
+        children: [
+          'Design/IOC',
+          'Design/DesignPattern',
+          'Design/DesignPattern2',
+          // 'Design/DesignPattern2',
+        ],
       },
       {
         title: '前端可视化',
@@ -184,6 +189,7 @@ const getSidebar = () => {
           'operations/Docker',
           'operations/Nginx',
           'operations/deployWebApp',
+          'operations/gitlab',
         ],
       },
     ],
@@ -238,10 +244,7 @@ const getSidebar = () => {
         title: 'MySql',
         collapsable: false,
         sidebarDepth: 0,
-        children: [
-          'MySql/MySql语法',
-          'MySql/50道SQL练习题',
-        ],
+        children: ['MySql/MySql语法', 'MySql/50道SQL练习题'],
       },
     ],
     '/Reading/': [
