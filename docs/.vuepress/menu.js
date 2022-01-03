@@ -85,8 +85,14 @@ const getSidebar = () => {
       },
       {
         title: '函数式编程',
-        collapsable: true,
-        children: ['Functional/', 'Functional/curry', 'Functional/compose'],
+        collapsable: false,
+        sidebarDepth: 0,
+        children: [
+          'Functional/',
+          'Functional/curry',
+          'Functional/compose',
+          'Functional/Mostly-adequate-guide',
+        ],
       },
     ],
     '/Vue/': [
