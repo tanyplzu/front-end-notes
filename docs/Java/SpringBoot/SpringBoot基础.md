@@ -45,4 +45,3 @@ public class literature {
 
 Spring Boot 可以更改对象实例化和实例化的时机的。可以使用 @Lazy 注解。
 
-## 
