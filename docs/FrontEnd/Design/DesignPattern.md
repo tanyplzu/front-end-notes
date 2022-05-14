@@ -253,6 +253,8 @@ login.listen('loginSucc', () => {
 
 ## 策略模式
 
+> 一个基于策略模式的程序至少由两部分组成。第一部分为策略类，策略类封装了具体的算法，并负责具体计算过程。第二部分是环境类 context，接收客户请求，随后把请求委托给某一个策略。
+
 ### 价格计算
 
 > 需求：
@@ -400,7 +402,9 @@ Validator.prototype.add = function({ dom, rules }) {
     const { strategy, errorMsg } = rule;
     const [strategyName, strategyCondition] = strategy.split(':');
     const { value } = dom;
-    this.cache.push(strategies[strategyName].bind(dom, value, errorMsg, strategyCondition));
+    this.cache.push(
+      strategies[strategyName].bind(dom, value, errorMsg, strategyCondition)
+    );
   });
 };
 
@@ -447,6 +451,125 @@ registerForm.onsubmit = () => {
 
 :question: todo 调研现在 UI 框架的做法
 
+## 状态模式
+
+> 简单来说，就是将 “一个大 class + 一堆 if else” 替换为 “一堆小 class”。一堆小 class 就是一堆状态，用一堆状态代替 if else 会更好拓展与维护。
+
+```ts
+abstract class Context {
+  abstract setState(state: State): void;
+}
+
+// 定义状态接口
+interface State {
+  // 模拟台灯点亮
+  show: () => string
+}
+
+interface Light {
+  click: () => void
+}
+
+type LightState = State & Light
+
+class TurnOff implements State, Light {
+  context: Context;
+
+  constructor(context: Context) {
+    this.context = context
+  }
+
+  show() {
+    return '关灯'
+  }
+
+  // 按下按钮
+  public click() {
+    this.context.setState(new WeakLight(this.context))
+  }
+}
+
+class WeakLight implements State, Light {
+  context: Context;
+
+  constructor(context: Context) {
+    this.context = context
+  }
+
+  show() {
+    return '弱光'
+  }
+
+  // 按下按钮
+  public click() {
+    this.context.setState(new StandardLight(this.context))
+  }
+}
+
+class StandardLight implements State, Light {
+  context: Context;
+
+  constructor(context: Context) {
+    this.context = context
+  }
+
+  show() {
+    return '亮'
+  }
+
+  // 按下按钮
+  public click() {
+    this.context.setState(new StrongLight(this.context))
+  }
+}
+
+class StrongLight implements State, Light {
+  context: Context;
+
+  constructor(context: Context) {
+    this.context = context
+  }
+
+  show() {
+    return '强光'
+  }
+
+  // 按下按钮
+  public click() {
+    this.context.setState(new TurnOff(this.context))
+  }
+}
+
+// 台灯
+class Lamp extends Context {
+  // 当前状态
+  #currentState: LightState = new TurnOff(this)
+  setState(state: LightState) {
+    this.#currentState = state
+  }
+  getState() {
+    return this.#currentState
+  }
+
+  // 按下按钮
+  click() {
+    this.getState().click()
+  }
+}
+
+const lamp = new Lamp() // 关闭
+console.log(lamp.getState().show()) // 关灯
+lamp.click() // 弱光
+console.log(lamp.getState().show()) // 弱光
+lamp.click() // 亮
+console.log(lamp.getState().show()) // 亮
+lamp.click() // 强光
+console.log(lamp.getState().show()) // 强光
+lamp.click() // 关闭
+console.log(lamp.getState().show()) // 关闭
+
+```
+
 ## 迭代器模式
 
 - ES6 对迭代器的实现
@@ -460,6 +583,33 @@ const arr = [1, 2, 3];
 const len = arr.length;
 for (item of arr) {
   console.log(`当前元素是${item}`);
+}
+```
+
+改变原始值
+
+```js
+let iterable = [10, 20, 30];
+
+for (let value of iterable) {
+  value += 1;
+  console.log(value);
+}
+// 11
+// 21
+// 31
+```
+
+终止迭代器
+
+```js
+let iterable = [10, 20, 30];
+
+for (let value of iterable) {
+  console.log(value);
+  if (value === 20) {
+    break;
+  }
 }
 ```
 
@@ -630,3 +780,4 @@ react hooks, react 中的高阶组件。
 ## 资料
 
 - [简单易懂的设计模式](https://mp.weixin.qq.com/s/KDIsqVzA2XotlLyhsy-K9w)
+- [黄子毅 设计模式](https://github.com/ascoders/weekly/tree/master/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)

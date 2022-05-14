@@ -12,7 +12,8 @@ features:
     details: Simple is better than complex. Complex is better than complicated. Flat is better than nested. Sparse is better than dense.
   - title:
     details: If the implementation is hard to explain, it's a bad idea. If the implementation is easy to explain, it may be a good idea.
-footer: MIT Licensed | Copyright © 2019-2021
+
+footer: MIT Licensed | Copyright © 2019-2022
 ---
 
 其它笔记：

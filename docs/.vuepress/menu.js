@@ -1,6 +1,6 @@
 const getNav = () => {
   return [
-    { text: '首页', link: '/' },
+    { text: '首页', link: '/Introduction' },
     { text: '前端基础', link: '/FrontEnd/' },
     {
       text: '前端框架',
