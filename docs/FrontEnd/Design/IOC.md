@@ -1,8 +1,8 @@
 ---
-sidebarDepth: 1
+sidebarDepth:0
 ---
 
-# 控制反转（IOC
+# 控制反转 IOC
 
 [浅析控制反转](https://zhuanlan.zhihu.com/p/60995312)
 
