@@ -244,6 +244,7 @@ const getSidebar = () => {
           'SpringBoot/注解',
           'SpringBoot/MyBatis',
           'SpringBoot/IOC',
+          'SpringBoot/ORM',
         ],
       },
       {
