@@ -27,7 +27,7 @@ sidebarDepth: 0
  * @param {number} n
  * @return {number}
  */
-const climbStairs = function(n) {
+const climbStairs = function (n) {
   // 处理递归边界
   if (n === 1) {
     return 1;
@@ -150,7 +150,7 @@ LeetCode 真题 300。
  * @param {number[]} nums
  * @return {number}
  */
-const lengthOfLIS = function(nums) {
+const lengthOfLIS = function (nums) {
   // 缓存序列的长度
   const len = nums.length;
   // 处理边界条件
@@ -180,3 +180,8 @@ const lengthOfLIS = function(nums) {
 };
 ```
 
+- 数组的初始值为 1，从第二个数开始选择；
+- 每选一个数，都要回头看；
+- 每选一个数，只更新数组的第 i 个数。数组的其它值不进行更新；
+- 只有`nums[j] < nums[i]`时才更新, 即回头看的数小于当前值时，此时`j`处的最大上升子序列增加 1，就是`i`处的值；
+- 最后的 dp 记录的是个数，如果需要求那几个数，可以将数中记录的个数值写成对象。
