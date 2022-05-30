@@ -131,8 +131,6 @@ function knapsack(n, c, w, value) {
 }
 ```
 
-- bilibili [动态规划 (第 1 讲)](https://www.bilibili.com/video/BV18x411V7fm?p=1&share_medium=iphone&share_plat=ios&share_session_id=05AB749C-18D7-4F07-8E80-C37396B69FDD&share_source=WEIXIN&share_tag=s_i&timestamp=1638611926&unique_k=SGWhnyj)
-
 ## 最长上升子序列
 
 LeetCode 真题 300。
@@ -185,3 +183,6 @@ const lengthOfLIS = function (nums) {
 - 每选一个数，只更新数组的第 i 个数。数组的其它值不进行更新；
 - 只有`nums[j] < nums[i]`时才更新, 即回头看的数小于当前值时，此时`j`处的最大上升子序列增加 1，就是`i`处的值；
 - 最后的 dp 记录的是个数，如果需要求那几个数，可以将数中记录的个数值写成对象。
+
+- bilibili [动态规划 (第 1 讲)](https://www.bilibili.com/video/BV18x411V7fm?p=1&share_medium=iphone&share_plat=ios&share_session_id=05AB749C-18D7-4F07-8E80-C37396B69FDD&share_source=WEIXIN&share_tag=s_i&timestamp=1638611926&unique_k=SGWhnyj)
+- 大厂算法面试之leetcode精讲3.动态规划(https://segmentfault.com/a/1190000040995447?sort=votes)
