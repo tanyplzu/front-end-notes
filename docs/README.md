@@ -18,4 +18,4 @@ footer: MIT Licensed | Copyright © 2019-2022
 
 其它笔记：
 
-- [Vue3 学习笔记](https://vue3.tanyp.xyz/)
+- [Vue3 学习笔记](https://vue3.tanyp.ink/)
