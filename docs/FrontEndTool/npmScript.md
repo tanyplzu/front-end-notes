@@ -102,7 +102,7 @@ npm update <package> # 更新指定包
 
 - [五种开源协议(GPL,LGPL,BSD,MIT,Apache)](https://www.oschina.net/question/54100_9455)
 
-MIT 协议可能是几大开源协议中最宽松的一个，核心条款是：该软件及其相关文档对所有人免费，可以任意处置，包括使用，复制，修改，合并，发表，分发，再授权，或者销售。唯一的限制是，软件中必须包含上述版 权和许可提示。
+MIT 协议可能是几大开源协议中最宽松的一个，核心条款是：该软件及其相关文档对所有人免费，可以任意处置，包括使用，复制，修改，合并，发表，分发，再授权，或者销售。唯一的限制是，软件中必须包含上述版权和许可提示。
 
 这意味着：你可以自由使用，复制，修改，可以用于自己的项目。可以免费分发或用来盈利。唯一的限制是必须包含许可声明。MIT 协议是所有开源许可中最宽松的一个，除了必须包含许可声明外，再无任何限制。
 
@@ -139,18 +139,18 @@ MIT 协议可能是几大开源协议中最宽松的一个，核心条款是：�
 ### UMD 规范的代码示例
 
 ```js
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
+(function (root, factory) {
+  if (typeof define === "function" && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['b'], factory);
-  } else if (typeof module === 'object' && module.exports) {
+    define(["b"], factory);
+  } else if (typeof module === "object" && module.exports) {
     // Node.
-    module.exports = factory(require('b'));
+    module.exports = factory(require("b"));
   } else {
     // Browser globals (root is window)
     root.returnExports = factory(root.b);
   }
-})(typeof self !== 'undefined' ? self : this, function(b) {
+})(typeof self !== "undefined" ? self : this, function (b) {
   // Use b in some fashion.
 
   // Just return a value to define the module export.
@@ -194,10 +194,39 @@ output: {
 },
 ```
 
-跟新到最新版本
+更新到最新版本
 
 ```sh
 yarn upgrade-interactive  --latest
 npm i --save vue@latest
 yarn add vue@latest
+```
+
+```sh
+# 删除目录
+"clean": "rimraf dist/*",
+
+# 本地搭建一个 HTTP 服务
+"serve": "http-server -p 8080 dist/",
+
+# 打开浏览器
+"open:dev": "opener http://localhost:9090",
+
+# 实时刷新
+ "livereload": "live-reload --port 9091 dist/",
+
+# 构建 HTML 文件
+"build:html": "jade index.jade > dist/index.html",
+
+# 只要 CSS 文件有变动，就重新执行构建
+"watch:css": "watch 'npm run build:css' assets/styles/",
+
+# 只要 HTML 文件有变动，就重新执行构建
+"watch:html": "watch 'npm run build:html' assets/html",
+
+# 部署到 Amazon S3
+"deploy:prod": "s3-cli sync ./dist/ s3://example-com/prod-site/",
+
+# 构建 favicon
+"build:favicon": "node scripts/favicon.js",
 ```
