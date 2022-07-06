@@ -4,61 +4,127 @@ sidebarDepth: 1
 
 # Git 常用命令
 
-### 如何合并分之中的某一次提交
+### 查看历史
 
 ```sh
-cherry-pick  [commitID]
+# 每个提交在一行内显示
+git log --oneline
+
+# 在所有提交日志中搜索包含「homepage」的提交
+git log --all --grep='homepage'
+git log --grep="homepage"
+
+# 获取某人的提交日志
+git log --author="小六"
+
+# 查看今日的提交
+git log --since="0 am"
+
+# 获取所有的操作历史，包括被删除的
+git reflog
 ```
 
-### 常用功能
+### 重置本地仓库
 
 ```sh
-// 提交代码
-git commit –a –m ""
+git fetch origin
+git checkout master
+git reset --hard origin/master
+```
 
-// 修改commit信息
-git commit --amend -m "add new file"
-git commit --amend // 直接编辑提交记录
+### 合并 commit
 
+经常需要从一个分支选择性的合并 commit 到另一个分支，可使用 cherry-pick 实现：
 
-// 清除当前目录下所有没add的修改
-git checkout .
+```sh
+# 单个commit合并
+git cherry-pick commit_id
 
-// 合并分支
+# ommit_id到commit_idn之间，包括两端
+git cherry-pick commit_id..commit_idn
+```
+
+### 操作分支
+
+查看分支
+
+```sh
+git branch -v
+
+# 分支信息更加详细，可以看到分支是 origin 或 upstream
+git branch -vv
+```
+
+新建分支
+
+```sh
+git checkout -b books
+git push origin books
+```
+
+删除分支
+
+```sh
+git branch -d books
+git branch -D books # 有没有提交的merge
+git push origin -d books
+```
+
+合并分支
+
+```sh
 git checkout test4.0
 git pull origin test4.0
 git merge develop4.0
 git push origin test4.0
 git checkout develop4.0
 
-// 暂存
+# 对没有合并成功的代码撤销合并
+git merge --abort
+```
+
+### 提交代码
+
+```sh
+# 查看文件状态
+git status
+
+# 提交代码
+git commit –a –m ""
+
+# 修改commit信息
+git commit --amend -m "add new file"
+git commit --amend # 直接编辑提交记录
+
+# 清除当前目录下所有没add的修改
+git checkout .
+
+# git format-patch 用来对某次提交生成patch，方便发送给其他人员进行参考或者同步
+git format-patch -n HEAD^ # 生成path
+git am # 同步path
+```
+
+### 暂存
+
+```sh
 git stash
 git stash list
 git stash pop
 git stash clear
 
-// 新建
-git checkout -b books
-git push origin books
+# 保存所有正在追踪的文件
+git stash save "日志信息"
 
-// 删除分支
-git branch -d books
-git push origin -d books
+# 获取并删除暂存项
+git stash apply stash@{1}
+git stash drop stash@{1}
 
-// git commit之后，想撤销 commit，撤回后保留更改
-git reset --soft HEAD^
+git stash pop stash@{1}
+```
 
-// 代码回退删除远程
-git log --oneline
-git reset --hard (想要回退的节点)
-git push -f 删除远程分支
+### 获取上游代码
 
-
-// git format-patch 用来对某次提交生成patch，方便发送给其他人员进行参考或者同步
-git format-patch -n HEAD^ //生成path
-git am //同步path
-
-// 获取上游代码
+```sh
 git remote -v
 git remote add upstream https://github.com/xxxxx/xxxx.git
 git fetch upstream
@@ -66,15 +132,39 @@ git merge upstream/master
 git push origin master
 ```
 
-- `HEAD^`的意思是上一个版本，也可以写成`HEAD~1`。如果你进行了2次commit，想都撤回，可以使用`HEAD~2`
-- `--soft`：不删除工作空间改动代码，撤销commit，不撤销`git add .`; 
-- `--hard`：删除工作空间改动代码，撤销commit，撤销`git add .`, 注意完成这个操作后，就恢复到了上一次的commit状态。
+### 回退到某次 commit
+
+```sh
+# git commit之后，想撤销 commit，撤回后保留更改
+git reset --soft HEAD^
+
+# 代码回退删除远程
+git log --oneline
+git reset --hard HEAD@{4}
+git reset --hard <commit-hash-code>
+git push -f 删除远程分支
+```
+
+- `HEAD^`的意思是上一个版本，也可以写成`HEAD~1`。如果你进行了 2 次 commit，想都撤回，可以使用`HEAD~2`
+- `--soft`：不删除工作空间改动代码，撤销 commit，不撤销`git add .`;
+- `--hard`：删除工作空间改动代码，撤销 commit，撤销`git add .`, 注意完成这个操作后，就恢复到了上一次的 commit 状态。
+
+```sh
+# revert 针对某一次commit的反向操作，会生成一次空的commit
+git revert -n <commit-hash-code>
+```
+
+### 清理
+
+```sh
+# 移除远程仓库上不存在的分支
+git fetch -p
+ 
+# 清除当前目录下所有没add的修改
+git checkout .
+```
 
 ### 创建项目
-
-你有一个空的存储库 To get started you will need to run these commands in your terminal.
-
-第一次使用 Git？ 学习基本的 Git 命令
 
 第一次配置 Git
 
@@ -83,19 +173,13 @@ git config --global user.name ""
 git config --global user.email ""
 ```
 
-使用您的存储库
-
-我只想克隆这个存储库
-
-如果要简单地克隆此空存储库，请在终端中运行此命令。
+克隆某个项目
 
 ```bash
 git clone ssh://git@code.xxxxxx.git
 ```
 
-我的代码已经准备好推送
-
-如果你代码已经准备好推送到仓库，请在终端中执行该命令
+如果代码已经准备好推送到仓库，请在终端中执行该命令
 
 ```bash
 cd existing-project
