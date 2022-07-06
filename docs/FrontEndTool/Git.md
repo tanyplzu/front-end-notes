@@ -114,10 +114,22 @@ git format-patch -n HEAD^ # 生成path
 git am # 同步path
 ```
 
-跳到之前分支
+切换到之前分支
 
 ```sh
 git checkout -
+```
+
+### 标签
+
+```sh
+git tag -a v1.0 
+```
+
+如果我们忘了给某个提交打标签，又将它发布了，我们可以给它追加标签。
+
+```sh
+git tag -a v0.9 85fc7e7
 ```
 
 ### 暂存
