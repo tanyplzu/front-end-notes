@@ -4,6 +4,8 @@ sidebarDepth: 1
 
 # Git 常用命令
 
+[[toc]]
+
 ### 查看历史
 
 ```sh
@@ -15,7 +17,7 @@ git log --all --grep='homepage'
 git log --grep="homepage"
 
 # 获取某人的提交日志
-git log --author="小六"
+git log --author="linghuchong"
 
 # 查看今日的提交
 git log --since="0 am"
@@ -30,18 +32,6 @@ git reflog
 git fetch origin
 git checkout master
 git reset --hard origin/master
-```
-
-### 合并 commit
-
-经常需要从一个分支选择性的合并 commit 到另一个分支，可使用 cherry-pick 实现：
-
-```sh
-# 单个commit合并
-git cherry-pick [commit_hash]
-
-# ommit_id到commit_idn之间，包括两端
-git cherry-pick commit_id..commit_idn
 ```
 
 ### 操作分支
@@ -89,7 +79,7 @@ git merge develop4.0
 git push origin test4.0
 git checkout develop4.0
 
-# 对没有合并成功的代码撤销合并
+# 对没有合并成功的代码，撤销合并
 git merge --abort
 ```
 
@@ -123,7 +113,7 @@ git checkout -
 ### 标签
 
 ```sh
-git tag -a v1.0 
+git tag -a v1.0
 ```
 
 如果我们忘了给某个提交打标签，又将它发布了，我们可以给它追加标签。
@@ -192,13 +182,46 @@ git fetch -p
 git checkout .
 ```
 
+### cherry-pick
+
+经常需要从一个分支选择性的合并 commit 到另一个分支，可使用 cherry-pick 实现：
+
+```sh
+# 单个commit合并
+git cherry-pick <commitHash>
+```
+
+这会在当前分支产生一个新的提交
+
+```sh
+# 转移多个提交
+git cherry-pick <HashA> <HashB>
+
+# 转移一串提交，提交 A 将不会包含在 Cherry pick 中
+git cherry-pick A..B
+
+# 包含提交 A
+git cherry-pick A^..B
+```
+
+#### 代码冲突
+
+用户解决代码冲突后，第一步将修改的文件重新加入暂存区（git add .），第二步使用下面的命令，让 Cherry pick 过程继续执行。
+
+```
+git cherry-pick --continue
+```
+
+- `--abort` 发生代码冲突后，放弃合并，回到操作前的样子。
+- `--quit` 发生代码冲突后，退出 Cherry pick，但是不回到操作前的样子。
+
 ### 创建项目
 
 第一次配置 Git
 
 ```bash
-git config --global user.name ""
-git config --global user.email ""
+git config --global user.name "linghuchong"
+git config --global user.email "xxxxxx@qq.com"
 ```
 
 克隆某个项目
@@ -229,7 +252,7 @@ git push -u origin --all
 git push origin --tags
 ```
 
-## 其他
+### 其他
 
 ```sh
 # 统计项目
@@ -253,3 +276,7 @@ refactor：重构（即不是新增功能，也不是修改bug的代码变动）
 test：增加测试
 chore：构建过程或辅助工具的变动
 ```
+
+### 资料
+
+- [git cherry-pick 教程](https://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
