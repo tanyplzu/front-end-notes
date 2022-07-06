@@ -38,7 +38,7 @@ git reset --hard origin/master
 
 ```sh
 # 单个commit合并
-git cherry-pick commit_id
+git cherry-pick [commit_hash]
 
 # ommit_id到commit_idn之间，包括两端
 git cherry-pick commit_id..commit_idn
@@ -53,6 +53,16 @@ git branch -v
 
 # 分支信息更加详细，可以看到分支是 origin 或 upstream
 git branch -vv
+
+# 查看本地和远程分支
+git branch -a
+```
+
+```text
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/gh-pages
+  remotes/origin/master
 ```
 
 新建分支
@@ -104,6 +114,12 @@ git format-patch -n HEAD^ # 生成path
 git am # 同步path
 ```
 
+跳到之前分支
+
+```sh
+git checkout -
+```
+
 ### 暂存
 
 ```sh
@@ -141,7 +157,7 @@ git reset --soft HEAD^
 # 代码回退删除远程
 git log --oneline
 git reset --hard HEAD@{4}
-git reset --hard <commit-hash-code>
+git reset --hard commit_hash
 git push -f 删除远程分支
 ```
 
@@ -151,7 +167,7 @@ git push -f 删除远程分支
 
 ```sh
 # revert 针对某一次commit的反向操作，会生成一次空的commit
-git revert -n <commit-hash-code>
+git revert -n commit_hash
 ```
 
 ### 清理
@@ -159,7 +175,7 @@ git revert -n <commit-hash-code>
 ```sh
 # 移除远程仓库上不存在的分支
 git fetch -p
- 
+
 # 清除当前目录下所有没add的修改
 git checkout .
 ```
@@ -200,6 +216,18 @@ git remote set-url origin ssh://git@code.xxxxxx.git
 git push -u origin --all
 git push origin --tags
 ```
+
+## 其他
+
+```sh
+# 统计项目
+git shortlog -sn
+
+# 强制推送
+git push -f git@github.com:xxx/xxx.git master:gh-pages
+```
+
+pull 根据不同的配置，可等于 fetch + merge 或 fetch + rebase
 
 ### 提交格式
 
