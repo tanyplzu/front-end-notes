@@ -163,7 +163,7 @@ const getSidebar = () => {
       {
         title: 'Node核心模块',
         collapsable: false,
-        // children: ['core-module/Buffer'],
+        children: ['core-module/fs', 'core-module/path', 'core-module/Buffer'],
       },
       'Node的工具集',
       'Koa',

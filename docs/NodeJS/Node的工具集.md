@@ -8,25 +8,6 @@ sidebarDepth: 0
 
 [[toc]]
 
-## 文件路径
-
-- `./` 当前文件所在目录，是个相对路径;
-- `__dirname` 当前文件所在目录的完整目录名，也就是绝对路径 `\Users\front-end\docs\NodeJS\`;
-- `__filename` 当前文件所在目录的完整目录路径，含文件名`\Users\front-end\docs\NodeJS\Node的工具集.md`;
-- `process.cwd()` 当前执行 Node 命令时候的文件夹目录名。如：`node index.js` 就是 index.js 文件夹目录；`node ./lib/index.js` 就是 lib 这一级的目录;
-
-## path
-
-- path.basename()
-- path.dirname()
-- path.extname()
-- path.isAbsolute()
-- path.join()
-- path.normalize()
-- path.parse()
-- path.relative()
-- path.resolve()
-
 ## 参数的序列化与反序列化 - querystring
 
 - querystring.decode()
