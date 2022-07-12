@@ -44,8 +44,6 @@ Byte，也即字节，是一种对数据大小衡量的单位，所以 1GB = 102
 - TypedArray : 描述二进制数据缓存区的视图，类似于数组 Array 的形式，比如有 Int8Array/Int16Array/Uint8Array 等
 - Uint8Array : 是数组类型，表示一个 8 位无符号整型数组，长度为一个字节，类似这样：[0, 0, 0, 0, 0, 0, 0, 0]，是 TypedArray 的一种实现，那同样还有 Uint16Array 和浮点数组等。
 
-
-
 资料：
 
 - [10+ 代码案例掌握 NodeJS 核心基础知识](https://juejin.cn/book/6844733758315184142)

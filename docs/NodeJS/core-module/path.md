@@ -18,9 +18,9 @@ sidebarDepth: 0
 返回路径的最后一部分。 第二个参数可以过滤掉文件的扩展名：
 
 ```js
-require('path').basename('/test/something'); //something
-require('path').basename('/test/something.txt'); //something.txt
-require('path').basename('/test/something.txt', '.txt'); //something
+require("path").basename("/test/something"); //something
+require("path").basename("/test/something.txt"); //something.txt
+require("path").basename("/test/something.txt", ".txt"); //something
 ```
 
 ## path.dirname()
@@ -28,8 +28,8 @@ require('path').basename('/test/something.txt', '.txt'); //something
 返回路径的目录部分：
 
 ```js
-require('path').dirname('/test/something'); // /test
-require('path').dirname('/test/something/file.txt'); // /test/something
+require("path").dirname("/test/something"); // /test
+require("path").dirname("/test/something/file.txt"); // /test/something
 ```
 
 ## path.extname()
@@ -37,9 +37,9 @@ require('path').dirname('/test/something/file.txt'); // /test/something
 返回路径的扩展名部分。
 
 ```js
-require('path').extname('/test/something'); // ''
-require('path').extname('/test/something/file.txt'); // '.txt'
-require('path').extname('index.'); // '.'
+require("path").extname("/test/something"); // ''
+require("path").extname("/test/something/file.txt"); // '.txt'
+require("path").extname("index."); // '.'
 ```
 
 ## path.isAbsolute()
@@ -47,8 +47,8 @@ require('path').extname('index.'); // '.'
 如果是绝对路径，则返回 true。
 
 ```js
-require('path').isAbsolute('/test/something'); // true
-require('path').isAbsolute('./test/something'); // false
+require("path").isAbsolute("/test/something"); // true
+require("path").isAbsolute("./test/something"); // false
 ```
 
 ## path.join()
@@ -56,8 +56,8 @@ require('path').isAbsolute('./test/something'); // false
 连接路径的两个或多个部分
 
 ```js
-const name = 'joe';
-require('path').join('/', 'users', name, 'notes.txt'); //'/users/joe/notes.txt'
+const name = "joe";
+require("path").join("/", "users", name, "notes.txt"); //'/users/joe/notes.txt'
 ```
 
 ## path.normalize()
@@ -65,7 +65,21 @@ require('path').join('/', 'users', name, 'notes.txt'); //'/users/joe/notes.txt'
 当包含类似 .、.. 或双斜杠等相对的说明符时，则尝试计算实际的路径：
 
 ```js
-require('path').normalize('/users/joe/..//test.txt'); //'/users/test.txt'
+require("path").normalize("/users/joe/..//test.txt"); //'/users/test.txt'
+```
+
+防止对越权读取路径，如：`GET /../../../`
+
+```js
+const path = require("path");
+
+const directoryName = "./public";
+const root = path.normalize(path.resolve(directoryName));
+
+const requestUrl = "index.html";
+
+const filePath = path.join(root, fileName);
+const isPathUnderRoot = path.normalize(path.resolve(filePath)).startsWith(root);
 ```
 
 ## path.parse()
@@ -79,7 +93,7 @@ require('path').normalize('/users/joe/..//test.txt'); //'/users/test.txt'
 - ext: 文件扩展名
 
 ```js
-require('path').parse('/users/test.txt');
+require("path").parse("/users/test.txt");
 ```
 
 ```json
@@ -97,8 +111,8 @@ require('path').parse('/users/test.txt');
 接受 2 个路径作为参数。 基于当前工作目录，返回从第一个路径到第二个路径的相对路径。
 
 ```js
-require('path').relative('/Users/joe', '/Users/joe/test.txt'); //'test.txt'
-require('path').relative('/Users/joe', '/Users/joe/something/test.txt'); //'something/test.txt'
+require("path").relative("/Users/joe", "/Users/joe/test.txt"); //'test.txt'
+require("path").relative("/Users/joe", "/Users/joe/something/test.txt"); //'something/test.txt'
 ```
 
 ## path.resolve()
@@ -106,19 +120,19 @@ require('path').relative('/Users/joe', '/Users/joe/something/test.txt'); //'some
 可以使用 path.resolve() 获得相对路径的绝对路径计算：
 
 ```js
-path.resolve('joe.txt'); //'/Users/joe/joe.txt' 如果从主文件夹运行
+path.resolve("joe.txt"); //'/Users/joe/joe.txt' 如果从主文件夹运行
 ```
 
 通过指定第二个参数，resolve 会使用第一个参数作为第二个参数的基准：
 
 ```js
-path.resolve('tmp', 'joe.txt'); //'/Users/joe/tmp/joe.txt' 如果从主文件夹运行
+path.resolve("tmp", "joe.txt"); //'/Users/joe/tmp/joe.txt' 如果从主文件夹运行
 ```
 
 如果第一个参数以斜杠开头，则表示它是绝对路径：
 
 ```js
-path.resolve('/etc', 'joe.txt'); //'/etc/joe.txt'
+path.resolve("/etc", "joe.txt"); //'/etc/joe.txt'
 ```
 
 ## 资料

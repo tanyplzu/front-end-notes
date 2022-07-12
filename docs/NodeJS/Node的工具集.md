@@ -62,20 +62,33 @@ Url {
 ### format
 
 ```js
-const url = require('url');
+const url = require("url");
 
 const href = url.format({
-  protocol: 'https',
-  hostname: 'xxxx.com',
-  port: '8080',
-  pathname: '/a/b/c/d',
-  auth: 'usr:pwd',
-  hash: '#hash',
+  protocol: "https",
+  hostname: "xxxx.com",
+  port: "8080",
+  pathname: "/a/b/c/d",
+  auth: "usr:pwd",
+  hash: "#hash",
   query: {
-    q: 'js',
+    q: "js",
     cat: 3,
   },
 });
 
 // https://usr:pwd@xxxx.com:8080/a/b/c/d?q=js&cat=3#hash
 ```
+
+### UUID
+
+```js
+const crypto = require("crypto");
+
+const UUIDGeneratorNode = () =>
+  ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
+    (c ^ (crypto.randomBytes(1)[0] & (15 >> (c / 4)))).toString(16)
+  );
+```
+
+- [Generate UUID (Node.js)](https://www.30secondsofcode.org/js/s/uuid-generator-node)
