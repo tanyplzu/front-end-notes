@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>位运算符 | 朝花夕拾</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="朝花夕拾技术空间">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="theme-color" content="#000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.3b8ca7f7.css" as="style"><link rel="preload" href="/assets/js/app.d4c7d2ae.js" as="script"><link rel="preload" href="/assets/js/38.4e55b6b9.js" as="script"><link rel="preload" href="/assets/js/3.07504c13.js" as="script"><link rel="preload" href="/assets/js/19.44e9522e.js" as="script"><link rel="prefetch" href="/assets/js/10.3a39badf.js"><link rel="prefetch" href="/assets/js/100.48aafe05.js"><link rel="prefetch" href="/assets/js/101.e0fc15c2.js"><link rel="prefetch" href="/assets/js/102.85a69de9.js"><link rel="prefetch" href="/assets/js/103.1e776270.js"><link rel="prefetch" href="/assets/js/104.625a8569.js"><link rel="prefetch" href="/assets/js/105.f51794ab.js"><link rel="prefetch" href="/assets/js/106.e7d380e3.js"><link rel="prefetch" href="/assets/js/107.1126749e.js"><link rel="prefetch" href="/assets/js/108.8cedf2f1.js"><link rel="prefetch" href="/assets/js/109.7a8f3daf.js"><link rel="prefetch" href="/assets/js/11.bdb15794.js"><link rel="prefetch" href="/assets/js/110.eccefd44.js"><link rel="prefetch" href="/assets/js/111.0405b080.js"><link rel="prefetch" href="/assets/js/112.2039d057.js"><link rel="prefetch" href="/assets/js/113.906f916d.js"><link rel="prefetch" href="/assets/js/114.a7d3b6e7.js"><link rel="prefetch" href="/assets/js/115.8f396c5b.js"><link rel="prefetch" href="/assets/js/116.4d9275cc.js"><link rel="prefetch" href="/assets/js/117.cd24ba09.js"><link rel="prefetch" href="/assets/js/118.135fbb30.js"><link rel="prefetch" href="/assets/js/119.2066ba95.js"><link rel="prefetch" href="/assets/js/12.c002587a.js"><link rel="prefetch" href="/assets/js/120.fe9e769f.js"><link rel="prefetch" href="/assets/js/121.7acb351e.js"><link rel="prefetch" href="/assets/js/122.3c855b1e.js"><link rel="prefetch" href="/assets/js/123.83b4a523.js"><link rel="prefetch" href="/assets/js/124.59ab0f66.js"><link rel="prefetch" href="/assets/js/125.ff789715.js"><link rel="prefetch" href="/assets/js/126.772e8e9d.js"><link rel="prefetch" href="/assets/js/127.5b20234c.js"><link rel="prefetch" href="/assets/js/128.b2ae0d98.js"><link rel="prefetch" href="/assets/js/129.ebadeac4.js"><link rel="prefetch" href="/assets/js/13.82bf2391.js"><link rel="prefetch" href="/assets/js/130.64e18ec7.js"><link rel="prefetch" href="/assets/js/131.51dea3ed.js"><link rel="prefetch" href="/assets/js/132.4070462d.js"><link rel="prefetch" href="/assets/js/133.faa85325.js"><link rel="prefetch" href="/assets/js/134.bf2bb878.js"><link rel="prefetch" href="/assets/js/135.b11865ba.js"><link rel="prefetch" href="/assets/js/136.22841592.js"><link rel="prefetch" href="/assets/js/137.a8157b05.js"><link rel="prefetch" href="/assets/js/138.b6a424e9.js"><link rel="prefetch" href="/assets/js/139.0ffc8997.js"><link rel="prefetch" href="/assets/js/14.df08e919.js"><link rel="prefetch" href="/assets/js/140.f1f4b890.js"><link rel="prefetch" href="/assets/js/141.e8dcd9bd.js"><link rel="prefetch" href="/assets/js/142.ec6f607d.js"><link rel="prefetch" href="/assets/js/143.bbfe3e92.js"><link rel="prefetch" href="/assets/js/144.decabfa5.js"><link rel="prefetch" href="/assets/js/145.0377ba5d.js"><link rel="prefetch" href="/assets/js/146.9b5a3356.js"><link rel="prefetch" href="/assets/js/147.dfad2e06.js"><link rel="prefetch" href="/assets/js/148.30d814f2.js"><link rel="prefetch" href="/assets/js/149.ddcbe2e2.js"><link rel="prefetch" href="/assets/js/15.4e1e4aa3.js"><link rel="prefetch" href="/assets/js/150.79f71930.js"><link rel="prefetch" href="/assets/js/151.6b5d50a8.js"><link rel="prefetch" href="/assets/js/152.03e87c7d.js"><link rel="prefetch" href="/assets/js/153.a424a600.js"><link rel="prefetch" href="/assets/js/154.f89b4c9a.js"><link rel="prefetch" href="/assets/js/155.95693c4c.js"><link rel="prefetch" href="/assets/js/156.865bd9fb.js"><link rel="prefetch" href="/assets/js/157.df414a99.js"><link rel="prefetch" href="/assets/js/158.58618aa7.js"><link rel="prefetch" href="/assets/js/159.5152c678.js"><link rel="prefetch" href="/assets/js/16.b9021729.js"><link rel="prefetch" href="/assets/js/160.58cf5903.js"><link rel="prefetch" href="/assets/js/161.24f6d90d.js"><link rel="prefetch" href="/assets/js/162.f83328a4.js"><link rel="prefetch" href="/assets/js/163.27349657.js"><link rel="prefetch" href="/assets/js/164.43e499e3.js"><link rel="prefetch" href="/assets/js/165.1a47e6d4.js"><link rel="prefetch" href="/assets/js/166.73064cb4.js"><link rel="prefetch" href="/assets/js/167.90ce4ba7.js"><link rel="prefetch" href="/assets/js/168.99d412e0.js"><link rel="prefetch" href="/assets/js/169.0fcd7dd5.js"><link rel="prefetch" href="/assets/js/17.49794a56.js"><link rel="prefetch" href="/assets/js/170.451030dd.js"><link rel="prefetch" href="/assets/js/171.6926b9e6.js"><link rel="prefetch" href="/assets/js/172.28e177a3.js"><link rel="prefetch" href="/assets/js/173.c2d20eb8.js"><link rel="prefetch" href="/assets/js/174.6ee7ab2b.js"><link rel="prefetch" href="/assets/js/175.65438c7d.js"><link rel="prefetch" href="/assets/js/176.f41a414f.js"><link rel="prefetch" href="/assets/js/177.3a6973a8.js"><link rel="prefetch" href="/assets/js/178.e8a1484d.js"><link rel="prefetch" href="/assets/js/179.161edffa.js"><link rel="prefetch" href="/assets/js/18.92ac679b.js"><link rel="prefetch" href="/assets/js/180.f3f1660b.js"><link rel="prefetch" href="/assets/js/181.9663605a.js"><link rel="prefetch" href="/assets/js/182.fe643e84.js"><link rel="prefetch" href="/assets/js/183.b9d6f7e6.js"><link rel="prefetch" href="/assets/js/184.9f6a3e84.js"><link rel="prefetch" href="/assets/js/185.10c596fe.js"><link rel="prefetch" href="/assets/js/186.ca2f57f8.js"><link rel="prefetch" href="/assets/js/187.3589a1d2.js"><link rel="prefetch" href="/assets/js/188.2cb7b220.js"><link rel="prefetch" href="/assets/js/189.73559e08.js"><link rel="prefetch" href="/assets/js/190.75e98315.js"><link rel="prefetch" href="/assets/js/191.9c395bcc.js"><link rel="prefetch" href="/assets/js/192.5f969625.js"><link rel="prefetch" href="/assets/js/193.e4b78bb2.js"><link rel="prefetch" href="/assets/js/194.052c36e9.js"><link rel="prefetch" href="/assets/js/195.467d172b.js"><link rel="prefetch" href="/assets/js/196.f518d9a1.js"><link rel="prefetch" href="/assets/js/20.4ee33976.js"><link rel="prefetch" href="/assets/js/21.cb9d3730.js"><link rel="prefetch" href="/assets/js/22.8daafea4.js"><link rel="prefetch" href="/assets/js/23.63c46d5e.js"><link rel="prefetch" href="/assets/js/24.be4a738e.js"><link rel="prefetch" href="/assets/js/25.b18c7ba3.js"><link rel="prefetch" href="/assets/js/26.84810b8c.js"><link rel="prefetch" href="/assets/js/27.463ce61d.js"><link rel="prefetch" href="/assets/js/28.e68a091f.js"><link rel="prefetch" href="/assets/js/29.05fd7a11.js"><link rel="prefetch" href="/assets/js/30.a9c3aa15.js"><link rel="prefetch" href="/assets/js/31.2a53461c.js"><link rel="prefetch" href="/assets/js/32.140635e6.js"><link rel="prefetch" href="/assets/js/33.4fe873b7.js"><link rel="prefetch" href="/assets/js/34.fb7f3932.js"><link rel="prefetch" href="/assets/js/35.e1b54db8.js"><link rel="prefetch" href="/assets/js/36.ab52b4ed.js"><link rel="prefetch" href="/assets/js/37.29d1cf3f.js"><link rel="prefetch" href="/assets/js/39.e1a2e10e.js"><link rel="prefetch" href="/assets/js/4.645dc04a.js"><link rel="prefetch" href="/assets/js/40.290647ce.js"><link rel="prefetch" href="/assets/js/41.30cbaee3.js"><link rel="prefetch" href="/assets/js/42.a79bf63e.js"><link rel="prefetch" href="/assets/js/43.73b29637.js"><link rel="prefetch" href="/assets/js/44.a891ce66.js"><link rel="prefetch" href="/assets/js/45.c5608318.js"><link rel="prefetch" href="/assets/js/46.b4b69c98.js"><link rel="prefetch" href="/assets/js/47.d8c6820a.js"><link rel="prefetch" href="/assets/js/48.bff126d3.js"><link rel="prefetch" href="/assets/js/49.f82378ce.js"><link rel="prefetch" href="/assets/js/5.14259fc6.js"><link rel="prefetch" href="/assets/js/50.6275049c.js"><link rel="prefetch" href="/assets/js/51.39988a36.js"><link rel="prefetch" href="/assets/js/52.1f874577.js"><link rel="prefetch" href="/assets/js/53.d10c3889.js"><link rel="prefetch" href="/assets/js/54.2dcb94b8.js"><link rel="prefetch" href="/assets/js/55.f96185d5.js"><link rel="prefetch" href="/assets/js/56.dd4d4b8f.js"><link rel="prefetch" href="/assets/js/57.f994c6a9.js"><link rel="prefetch" href="/assets/js/58.a93c10c7.js"><link rel="prefetch" href="/assets/js/59.554b01ad.js"><link rel="prefetch" href="/assets/js/6.ee77adb3.js"><link rel="prefetch" href="/assets/js/60.0d43a6e5.js"><link rel="prefetch" href="/assets/js/61.56793618.js"><link rel="prefetch" href="/assets/js/62.fd64b076.js"><link rel="prefetch" href="/assets/js/63.1ccd6c22.js"><link rel="prefetch" href="/assets/js/64.def3f5d8.js"><link rel="prefetch" href="/assets/js/65.24c2f619.js"><link rel="prefetch" href="/assets/js/66.5d80cd8c.js"><link rel="prefetch" href="/assets/js/67.7bb4e1bb.js"><link rel="prefetch" href="/assets/js/68.ac309c5e.js"><link rel="prefetch" href="/assets/js/69.e6f5bc15.js"><link rel="prefetch" href="/assets/js/7.0b275963.js"><link rel="prefetch" href="/assets/js/70.af51a9ef.js"><link rel="prefetch" href="/assets/js/71.6f634adf.js"><link rel="prefetch" href="/assets/js/72.48151142.js"><link rel="prefetch" href="/assets/js/73.f3cdaba1.js"><link rel="prefetch" href="/assets/js/74.d20fac7f.js"><link rel="prefetch" href="/assets/js/75.fbeb1946.js"><link rel="prefetch" href="/assets/js/76.0af132c4.js"><link rel="prefetch" href="/assets/js/77.353be78d.js"><link rel="prefetch" href="/assets/js/78.3adf5d07.js"><link rel="prefetch" href="/assets/js/79.06dada55.js"><link rel="prefetch" href="/assets/js/8.334b8757.js"><link rel="prefetch" href="/assets/js/80.71bff3b8.js"><link rel="prefetch" href="/assets/js/81.71f38dc0.js"><link rel="prefetch" href="/assets/js/82.dc9bec29.js"><link rel="prefetch" href="/assets/js/83.a78c4499.js"><link rel="prefetch" href="/assets/js/84.bacc2a6b.js"><link rel="prefetch" href="/assets/js/85.ef283f1a.js"><link rel="prefetch" href="/assets/js/86.c83365e4.js"><link rel="prefetch" href="/assets/js/87.c38a0a0f.js"><link rel="prefetch" href="/assets/js/88.41132597.js"><link rel="prefetch" href="/assets/js/89.2d240c4c.js"><link rel="prefetch" href="/assets/js/9.06831d79.js"><link rel="prefetch" href="/assets/js/90.862a5e8a.js"><link rel="prefetch" href="/assets/js/91.df00fdc6.js"><link rel="prefetch" href="/assets/js/92.25672b61.js"><link rel="prefetch" href="/assets/js/93.d437a43a.js"><link rel="prefetch" href="/assets/js/94.1a357bb5.js"><link rel="prefetch" href="/assets/js/95.8923ab50.js"><link rel="prefetch" href="/assets/js/96.2b809c98.js"><link rel="prefetch" href="/assets/js/97.6d86fe3f.js"><link rel="prefetch" href="/assets/js/98.a4ee7efe.js"><link rel="prefetch" href="/assets/js/99.ea0ea429.js"><link rel="prefetch" href="/assets/js/vendors~flowchart.4cf1a21d.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.3b8ca7f7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">朝花夕拾</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/Introduction.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/FrontEnd/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Language Menu" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="Language Menu" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://vue3.tanyp.xyz" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/React/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/Vue/" class="nav-link">
+  Vue2
+</a></li><li class="dropdown-item"><!----> <a href="/AngularJS/" class="nav-link">
+  AngularJS
+</a></li></ul></div></div><div class="nav-item"><a href="/JsFrame/" class="nav-link">
+  技术方案
+</a></div><div class="nav-item"><a href="/FrontEndTool/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/NodeJS/" class="nav-link">
+  NodeJS
+</a></div><div class="nav-item"><a href="/Java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  Notes
+</a></div><div class="nav-item"><a href="/Reading/" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><a href="/DSA/" class="nav-link router-link-active">
+  数据结构与算法
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/Introduction.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/FrontEnd/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Language Menu" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="Language Menu" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://vue3.tanyp.xyz" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/React/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/Vue/" class="nav-link">
+  Vue2
+</a></li><li class="dropdown-item"><!----> <a href="/AngularJS/" class="nav-link">
+  AngularJS
+</a></li></ul></div></div><div class="nav-item"><a href="/JsFrame/" class="nav-link">
+  技术方案
+</a></div><div class="nav-item"><a href="/FrontEndTool/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/NodeJS/" class="nav-link">
+  NodeJS
+</a></div><div class="nav-item"><a href="/Java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  Notes
+</a></div><div class="nav-item"><a href="/Reading/" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><a href="/DSA/" class="nav-link router-link-active">
+  数据结构与算法
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/DSA/" aria-current="page" class="sidebar-link">Introduction</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>常用的算法方法</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/DSA/method/On.html" class="sidebar-link">时间复杂度和空间复杂度</a></li><li><a href="/DSA/method/常用的算法方法.html" class="sidebar-link">常用的算法方法（一）</a></li><li><a href="/DSA/method/DFS&amp;BFS.html" class="sidebar-link">DFS &amp; BFS</a></li><li><a href="/DSA/method/Dynamicprogramming.html" class="sidebar-link">动态规划</a></li><li><a href="/DSA/method/vue3diff.html" class="sidebar-link">vue3 diff 算法</a></li><li><a href="/DSA/method/BitwiseOperators.html" aria-current="page" class="active sidebar-link">位运算符</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>LeetCode 习题</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/DSA/LeetCode/LeetCode1.html" class="sidebar-link">LeetCode 算法精选(1)</a></li><li><a href="/DSA/LeetCode/LeetCode2.html" class="sidebar-link">LeetCode 算法精选(2)</a></li><li><a href="/DSA/LeetCode/LeetCode3.html" class="sidebar-link">LeetCode 算法精选(3)</a></li><li><a href="/DSA/LeetCode/LeetCode3.html" class="sidebar-link">LeetCode 算法精选(3)</a></li><li><a href="/DSA/LeetCode/nowcoder.html" class="sidebar-link">牛客网算法精选</a></li></ul></section></li><li><a href="/DSA/常见的一些前端算法.html" class="sidebar-link">常见的一些前端算法</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="位运算符"><a href="#位运算符" class="header-anchor">#</a> 位运算符</h1> <p></p><div class="table-of-contents"><ul><li><a href="#运算符">运算符</a></li><li><a href="#应用">应用</a><ul><li><a href="#判断奇偶">判断奇偶</a></li><li><a href="#x-1">x &gt;&gt; 1</a></li><li><a href="#_0">&gt;&gt;&gt; 0</a></li><li><a href="#_0">| 0</a></li><li><a href="#使用-来完成值交换">使用^来完成值交换</a></li><li><a href="#rgb-和-16-进制颜色值转换">rgb 和 16 进制颜色值转换</a></li></ul></li><li><a href="#开关作用">开关作用</a></li><li><a href="#leecode-52-n-皇后-ii">Leecode 52. N 皇后 II</a></li><li><a href="#vue3-中的位运算">Vue3 中的位运算</a></li><li><a href="#_0b-0x">0b &amp; 0x</a></li></ul></div><p></p> <h2 id="运算符"><a href="#运算符" class="header-anchor">#</a> 运算符</h2> <p>位运算符只对整数起作用，如果一个运算子不是整数，会自动转为整数后再执行。另外，虽然在 JavaScript 内部，数值都是以 64 位浮点数的形式储存，但是做位运算的时候，是以 32 位带符号的整数进行运算的，并且返回值也是一个 32 位带符号的整数。</p> <ul><li><code>&amp;</code> ，与 两个位都为 1 时，结果才为 1</li> <li><code>|</code> ，或 两个位都为 0 时，结果才为 0</li> <li><code>^</code> ，异或 两个位相同为 0 ，相异为 1</li> <li><code>~</code>，按位取反 所有 0 变 1，1 变 0</li> <li><code>&lt;&lt;</code>，左移 各二进位全部左移若干位，高位丢弃，低位补 0</li> <li><code>&gt;&gt;</code>，有符号右移 各二进位全部右移若干位，对无符号数，高位补 0 ，有符号数，各编译器处理方法不一样，有的补符号位，有的补 0</li> <li><code>&gt;&gt;&gt;</code>， 无符号右移动</li></ul> <p>例子：</p> <p>&amp;</p> <div class="language-text extra-class"><pre class="language-text"><code>  11011110
+&amp; 11110000
+------------
+= 11010000
+</code></pre></div><p>|</p> <div class="language-text extra-class"><pre class="language-text"><code>  11010000
+| 10101010
+------------
+= 11111010
+</code></pre></div><p>^</p> <div class="language-text extra-class"><pre class="language-text"><code>  11010000
+^ 01111110
+------------
+= 10101110
+</code></pre></div><p>~</p> <div class="language-text extra-class"><pre class="language-text"><code>~ 00000000000000000000000010101010
+------------------------------------
+= 11111111111111111111111101010101
+</code></pre></div><p><code>&lt;&lt;&lt;</code></p> <p><code>(A &lt;&lt; B) =&gt; A * (2 ** B) =&gt; A * Math.pow(2, B)</code></p> <div class="language-text extra-class"><pre class="language-text"><code>170 =&gt; 00000000000000000000000010101010
+170 &lt;&lt; 3
+--------------------------------------------
+   (000)00000000000000000000010101010(***)
+--------------------------------------------
+ = (***)00000000000000000000010101010(000)
+--------------------------------------------
+ = 00000000000000000000010101010000
+--------------------------------------------
+ = 1360 (decimal)
+</code></pre></div><p><code>&gt;&gt;</code></p> <div class="language-text extra-class"><pre class="language-text"><code>-170 &gt;&gt; 3
+--------------------------------------------
+   (***)11111111111111111111111101010(110)
+--------------------------------------------
+ = (111)11111111111111111111111101010(***)
+--------------------------------------------
+ = 11111111111111111111111111101010
+--------------------------------------------
+ = -22 (decimal)
+
+</code></pre></div><p><code>&gt;&gt;&gt;</code></p> <div class="language-text extra-class"><pre class="language-text"><code>170 &gt;&gt;&gt; 3
+--------------------------------------------
+   (***)00000000000000000000000010101(010)
+--------------------------------------------
+ = (000)00000000000000000000000010101(***)
+--------------------------------------------
+ = 00000000000000000000000000010101
+--------------------------------------------
+ = 21 (decimal)
+
+-170 &gt;&gt;&gt; 3
+--------------------------------------------
+   (***)11111111111111111111111101010(110)
+--------------------------------------------
+ = (000)11111111111111111111111101010(***)
+--------------------------------------------
+ = 00011111111111111111111111101010
+--------------------------------------------
+ = 536870890 (decimal)
+</code></pre></div><h2 id="应用"><a href="#应用" class="header-anchor">#</a> 应用</h2> <h3 id="判断奇偶"><a href="#判断奇偶" class="header-anchor">#</a> 判断奇偶</h3> <div class="language-js extra-class"><pre class="language-js"><code>x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>x <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">//(奇数)</span>
+
+x <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">(</span>x <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">//(偶数)</span>
+</code></pre></div><h3 id="x-1"><a href="#x-1" class="header-anchor">#</a> x &gt;&gt; 1</h3> <div class="language-js extra-class"><pre class="language-js"><code>mid <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+mid <span class="token operator">=</span> <span class="token punctuation">(</span>left <span class="token operator">+</span> right<span class="token punctuation">)</span> <span class="token operator">&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token number">5</span> <span class="token operator">&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// 2</span>
+<span class="token number">5</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">// 2.5</span>
+</code></pre></div><h3 id="_0"><a href="#_0" class="header-anchor">#</a> &gt;&gt;&gt; 0</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> index <span class="token operator">=</span> a<span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> item <span class="token operator">===</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>index <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="_0-2"><a href="#_0-2" class="header-anchor">#</a> | 0</h3> <div class="language-text extra-class"><pre class="language-text"><code>( 3|0 ) === 3;             // it does not change integers
+( 3.3|0 ) === 3;           // it casts off the fractional part in fractionalal numbers
+( 3.8|0 ) === 3;           // it does not round, but exactly casts off the fractional part
+( -3.3|0 ) === -3;         // including negative fractional numbers
+( -3.8|0 ) === -3;         // which have Math.floor(-3.3) == Math.floor(-3.8) == -4
+( &quot;3&quot;|0 ) === 3;           // strings with numbers are typecast to integers
+( &quot;3.8&quot;|0 ) === 3;         // during this the fractional part is cast off too
+( &quot;-3.8&quot;|0 ) === -3;       // including negative fractional numbers
+( NaN|0 ) === 0;           // NaN is typecast to 0
+( Infinity|0 ) === 0;      // the typecast to 0 occurs with the Infinity
+( -Infinity|0 ) === 0;     // and with -Infinity
+( null|0 ) === 0;          // and with null,
+( (void 0)|0 ) === 0;      // and with undefined
+( []|0 ) === 0;            // and with an empty array
+( [3]|0 ) === 3;           // but an array with one number is typecast to number
+( [-3.8]|0 ) === -3;       // including the cast off of the fractional part
+( [&quot; -3.8 &quot;]|0 ) === -3;   // including the typecast of strings to numbers
+( [-3.8, 22]|0 ) === 0     // but an Array with several numbers is typecast to 0
+( {}|0 ) === 0;                // an empty object is typecast to 0
+( {'2':'3'}|0 ) === 0;         // or a not empty object
+( (function(){})|0 ) === 0;    // an empty function is typecast to 0 too
+( (function(){ return 3;})|0 ) === 0;
+</code></pre></div><h3 id="使用-来完成值交换"><a href="#使用-来完成值交换" class="header-anchor">#</a> 使用^来完成值交换</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span>
+a <span class="token operator">^=</span> b<span class="token punctuation">;</span>
+b <span class="token operator">^=</span> a<span class="token punctuation">;</span>
+a <span class="token operator">^=</span> b<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 8</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5</span>
+</code></pre></div><h3 id="rgb-和-16-进制颜色值转换"><a href="#rgb-和-16-进制颜色值转换" class="header-anchor">#</a> rgb 和 16 进制颜色值转换</h3> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">/**
+ * 16进制颜色值转RGB
+ * @param  {String} hex 16进制颜色字符串
+ * @return {String}     RGB颜色字符串
+ */</span>
+<span class="token keyword">function</span> <span class="token function">hexToRGB</span><span class="token punctuation">(</span><span class="token parameter">hex</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> hexx <span class="token operator">=</span> hex<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">'#'</span><span class="token punctuation">,</span> <span class="token string">'0x'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> r <span class="token operator">=</span> hexx <span class="token operator">&gt;&gt;</span> <span class="token number">16</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> g <span class="token operator">=</span> <span class="token punctuation">(</span>hexx <span class="token operator">&gt;&gt;</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xff</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> b <span class="token operator">=</span> hexx <span class="token operator">&amp;</span> <span class="token number">0xff</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">rgb(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>r<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>g<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>b<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/**
+ * RGB颜色转16进制颜色
+ * @param  {String} rgb RGB进制颜色字符串
+ * @return {String}     16进制颜色字符串
+ */</span>
+<span class="token keyword">function</span> <span class="token function">RGBToHex</span><span class="token punctuation">(</span><span class="token parameter">rgb</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> rgbArr <span class="token operator">=</span> rgb<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[^\d]+</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> color <span class="token operator">=</span> <span class="token punctuation">(</span>rgbArr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>rgbArr<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token operator">|</span> rgbArr<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token string">'#'</span> <span class="token operator">+</span> color<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">hexToRGB</span><span class="token punctuation">(</span><span class="token string">'#ffffff'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'rgb(255,255,255)'</span>
+<span class="token function">RGBToHex</span><span class="token punctuation">(</span><span class="token string">'rgb(255,255,255)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// '#ffffff'</span>
+</code></pre></div><div class="language-text extra-class"><pre class="language-text"><code>  (red) =&gt; 255 =&gt; 00000000 00000000 00000000 11111111
+(green) =&gt;  35 =&gt; 00000000 00000000 00000000 00100011
+ (blue) =&gt;  20 =&gt; 00000000 00000000 00000000 00010100
+
+// Rearrange the component bits and pad with zeroes as necessary
+// Use the left shift operator
+
+  (red &lt;&lt; 16) =&gt; 00000000 11111111 00000000 00000000
+ (green &lt;&lt; 8) =&gt; 00000000 00000000 00100011 00000000
+       (blue) =&gt; 00000000 00000000 00000000 00010100
+
+// Combine the component bits together using the OR (|) operator
+// ( red &lt;&lt; 16 | green &lt;&lt; 8 | blue )
+
+      00000000 11111111 00000000 00000000
+    | 00000000 00000000 00100011 00000000
+    | 00000000 00000000 00000000 00010100
+// -----------------------------------------
+      00000000 11111111 00100011 00010100
+//
+</code></pre></div><h2 id="开关作用"><a href="#开关作用" class="header-anchor">#</a> 开关作用</h2> <p>以下是一段代码控制逻辑：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">doSomething</span> <span class="token punctuation">(</span><span class="token parameter">optA <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> optB <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> optC <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> optD <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token operator">...</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// something happens here...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>优化一下可以写成这样：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> defaultOptions <span class="token operator">=</span> <span class="token punctuation">{</span>
+  optA<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  optB<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  optC<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  optD<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">doSomething</span> <span class="token punctuation">(</span><span class="token parameter">options <span class="token operator">=</span> defaultOptions</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// something happens here...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>如果使用位运算</p> <p>If all the options take boolean values, we could use an integer instead of an object to represent the options. In this case, certain bits of the integer will be mapped to designated options. If a bit is turned on (set to 1), the designated option’s value is true;otherwise, it is false.</p> <p>以下例子有三个状态：</p> <p>fraction: 将数组的每个项除以数组中的最大项
+unique: 从数组中删除重复项
+sorted: 按从低到高对数组的项目进行排序</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> <span class="token constant">LIST_FRACTION</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// (001)</span>
+<span class="token keyword">const</span> <span class="token constant">LIST_UNIQUE</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// (010)</span>
+<span class="token keyword">const</span> <span class="token constant">LIST_SORTED</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">// (100)</span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> <span class="token constant">LIST_ALL</span> <span class="token operator">=</span> <span class="token constant">LIST_FRACTION</span> <span class="token operator">|</span> <span class="token constant">LIST_UNIQUE</span> <span class="token operator">|</span> <span class="token constant">LIST_SORTED</span><span class="token punctuation">;</span> <span class="token comment">// (111)</span>
+<span class="token keyword">const</span> <span class="token constant">LIST_DEFAULT</span> <span class="token operator">=</span> <span class="token constant">LIST_FRACTION</span> <span class="token operator">|</span> <span class="token constant">LIST_SORTED</span><span class="token punctuation">;</span> <span class="token comment">// (101)</span>
+<span class="token keyword">const</span> <span class="token constant">LIST_DEFAULT</span> <span class="token operator">=</span> <span class="token constant">LIST_ALL</span> <span class="token operator">^</span> <span class="token constant">LIST_UNIQUE</span><span class="token punctuation">;</span> <span class="token comment">// (101)</span>
+</code></pre></div><p>使用这种方式非常巧妙的控制了下面的逻辑</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">normalizeList</span><span class="token punctuation">(</span><span class="token parameter">list<span class="token punctuation">,</span> flag <span class="token operator">=</span> <span class="token constant">LIST_DEFAULT</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>flag <span class="token operator">&amp;</span> <span class="token constant">LIST_FRACTION</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> max <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token operator">...</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    list <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">Number</span><span class="token punctuation">(</span><span class="token punctuation">(</span>value <span class="token operator">/</span> max<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toFixed</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>flag <span class="token operator">&amp;</span> <span class="token constant">LIST_UNIQUE</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>flag <span class="token operator">&amp;</span> <span class="token constant">LIST_SORTED</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    list <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a <span class="token operator">-</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="leecode-52-n-皇后-ii"><a href="#leecode-52-n-皇后-ii" class="header-anchor">#</a> Leecode 52. N 皇后 II</h2> <div class="custom-block tip"><p class="custom-block-title">题目</p> <p>n  皇后问题 研究的是如何将 n  个皇后放置在 n × n 的棋盘上，并且使皇后彼此之间不能相互攻击。<br>
+给你一个整数 n ，返回 n 皇后问题 不同的解决方案的数量。</p> <p>输入：n = 4<br>
+输出：2<br>
+解释：如上图所示，4 皇后问题存在两个不同的解法。</p></div> <p>皇后彼此之间不能相互攻击，也就是说需要满足任意两个皇后不能在同一行、同一列以及同一条斜线上。</p> <p><img src="/assets/img/queens.628d519b.jpg" alt="queens"></p> <p>将 N 个位置对应成 N 个二进制位，0 代表可以选择，1 代表不能选择。比如八皇后当前第一行的第二位被选择时的状态是 00100000，那么下一行的第二位也不能被选择，正对角线(na)对应的第三位不能被选择(对应当前行右移了一位)，状态表示为：00100000。副对角线(pie)对应的第一位不能被选择(对应当前行左移了一位)，状态表示为 10000000。</p> <ul><li><code>n：n层</code></li> <li><code>row：当前层</code></li> <li><code>cols：列</code></li> <li><code>pie：撇，左斜线(副对角线)</code></li> <li><code>na：捺，右斜线(正对角线)</code></li> <li><code>二进制为 1，代表不可放置，0 相反</code></li> <li><code>x &amp; -x ：得到最低位的1 (代表除最后一位 1 保留，其他位全部为 0)</code></li> <li><code>x &amp; (x - 1)：清零最低位的 1 (代表将最后一位 1 变成 0)</code></li> <li><code>x &amp; ((1 &lt;&lt; n) - 1)：将 x 的最高位至第 n 位(含)清零</code></li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> <span class="token function-variable function">totalNQueens</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> res <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">dfs</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">n<span class="token punctuation">,</span> row<span class="token punctuation">,</span> cols<span class="token punctuation">,</span> pie<span class="token punctuation">,</span> na</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>row <span class="token operator">&gt;=</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      res<span class="token operator">++</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">let</span> bits <span class="token operator">=</span> <span class="token operator">~</span><span class="token punctuation">(</span>cols <span class="token operator">|</span> pie <span class="token operator">|</span> na<span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> n<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>bits<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 2</span>
+      <span class="token keyword">let</span> p <span class="token operator">=</span> bits <span class="token operator">&amp;</span> <span class="token operator">-</span>bits<span class="token punctuation">;</span> <span class="token comment">// 3</span>
+      <span class="token function">dfs</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> row <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span> cols <span class="token operator">|</span> p<span class="token punctuation">,</span> <span class="token punctuation">(</span>pie <span class="token operator">|</span> p<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>na <span class="token operator">|</span> p<span class="token punctuation">)</span> <span class="token operator">&gt;&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 4</span>
+      bits <span class="token operator">=</span> bits <span class="token operator">&amp;</span> <span class="token punctuation">(</span>bits <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token function">dfs</span><span class="token punctuation">(</span>n<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><p>1.<code>cols ｜ pie ｜ na</code> 表示所有能够被皇后攻击的格子，<code>~(cols | pie | na)</code> 取反表示将没有被占的格子从 0 变为 1，以便后续的位遍历。这里用到公式：<code>x &amp; ((1 &lt;&lt; n) - 1)</code>：将 x 的最高位至第 n 位(含)清零。一个 int 的二进制位至少有 32 位，我们将前面不需要的位置清零。所以，这行代码表示得到当前所有的空位，也就是可以放置皇后的格子。</p> <p>2.只要 bits 中有 1，就说明还有格子可以放置皇后，每次遍历都会将其清零(表示在 p 位置放入了皇后)，也就是注释 5 的代码含义。对应公式：<code>x &amp; (x - 1)</code>：清零最低位的 1 (代表将最后一位 1 变成 0)。</p> <p>3.对应公式：<code>x &amp; -x</code> ：得到最低位的 1 (代表除最后一位 1 保留，其他位全部为 0)，表示当前皇后可放入的位置。</p> <p>4.修改状态，进入下一层递归。<code>row + 1</code> 代表搜索下一行，<code>cols ｜ p</code> 代表目前所有可以放置皇后的列。<code>(pie | p) &lt;&lt; 1</code> ，<code>(na | p) &gt;&gt; 1</code>，在上面思路中已经说过了，不再赘述。</p> <h2 id="vue3-中的位运算"><a href="#vue3-中的位运算" class="header-anchor">#</a> Vue3 中的位运算</h2> <p>shapeFlags</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// packages/shared/src/shapeFlags.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token keyword">enum</span> ShapeFlags <span class="token punctuation">{</span>
+  <span class="token constant">ELEMENT</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token comment">// HTML 或 SVG 标签 普通 DOM 元素</span>
+  <span class="token constant">FUNCTIONAL_COMPONENT</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token comment">// 函数式组件  1 &lt;&lt; 1 -&gt; 2</span>
+  <span class="token constant">STATEFUL_COMPONENT</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token comment">// 普通有状态组件 1 &lt;&lt; 2 -&gt; 4</span>
+  <span class="token constant">TEXT_CHILDREN</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token comment">// 子节点是纯文本</span>
+  <span class="token constant">ARRAY_CHILDREN</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token comment">// 子节点是数组</span>
+  <span class="token constant">SLOTS_CHILDREN</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token comment">// 子节点是插槽</span>
+  <span class="token constant">TELEPORT</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token comment">// Teleport</span>
+  <span class="token constant">SUSPENSE</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token comment">// Suspense</span>
+  <span class="token constant">COMPONENT_SHOULD_KEEP_ALIVE</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token comment">// 需要被 keep-alive 的有状态组件</span>
+  <span class="token constant">COMPONENT_KEPT_ALIVE</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token comment">// 已经被 keep-alive 的有状态组件</span>
+  <span class="token constant">COMPONENT</span> <span class="token operator">=</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">STATEFUL_COMPONENT</span> <span class="token operator">|</span> ShapeFlags<span class="token punctuation">.</span><span class="token constant">FUNCTIONAL_COMPONENT</span> <span class="token comment">// 有状态组件和函数组件都是组件，用 COMPONENT 表示</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>patchFlags</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// packages/shared/src/patchFlags.ts</span>
+<span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token keyword">enum</span> PatchFlags <span class="token punctuation">{</span>
+  <span class="token constant">TEXT</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token comment">// 动态文本节点</span>
+  <span class="token constant">CLASS</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token comment">// 动态 class</span>
+  <span class="token constant">STYLE</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token comment">// 动态 style</span>
+  <span class="token constant">PROPS</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token comment">// 动态属性</span>
+  <span class="token constant">FULL_PROPS</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token comment">// 具有动态 key 属性，当 key 改变时，需要进行完整的 diff 比较</span>
+  <span class="token constant">HYDRATE_EVENTS</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token comment">// 具有监听事件的节点</span>
+  <span class="token constant">STABLE_FRAGMENT</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token comment">// 子节点顺序不会被改变的 fragment</span>
+  <span class="token constant">KEYED_FRAGMENT</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token comment">// 带有 key 属或部分子节点有 key 的 fragment</span>
+  <span class="token constant">UNKEYED_FRAGMENT</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token comment">// 子节点没有 key 的 fragment</span>
+  <span class="token constant">NEED_PATCH</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token comment">// 非 props 的比较，比如 ref 或指令</span>
+  <span class="token constant">DYNAMIC_SLOTS</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token comment">// 动态插槽</span>
+  <span class="token constant">DEV_ROOT_FRAGMENT</span> <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token comment">// 仅供开发时使用，表示将注释放在模板根级别的片段</span>
+  <span class="token constant">HOISTED</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token comment">// 静态节点</span>
+  <span class="token constant">BAIL</span> <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">2</span> <span class="token comment">// diff 算法要退出优化模式</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="_0b-0x"><a href="#_0b-0x" class="header-anchor">#</a> 0b &amp; 0x</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> val1 <span class="token operator">=</span> <span class="token number">0b10101</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> val2 <span class="token operator">=</span> <span class="token number">0xff</span><span class="token punctuation">;</span>
+</code></pre></div><p>阅读资料：</p> <ul><li>阮一峰<a href="http://javascript.ruanyifeng.com/grammar/operator.html#toc21" target="_blank" rel="noopener noreferrer">运算符<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://juejin.cn/post/6904595258915422215/#heading-28" target="_blank" rel="noopener noreferrer">前端玩转位运算(N 皇后+Vue3 位运算应用)<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://stackoverflow.com/questions/654057/where-would-i-use-a-bitwise-operator-in-javascript" target="_blank" rel="noopener noreferrer">where-would-i-use-a-bitwise-operator-in-javascript<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li> <li><a href="https://blog.logrocket.com/interesting-use-cases-for-javascript-bitwise-operators/" target="_blank" rel="noopener noreferrer">Interesting use cases for JavaScript bitwise operators<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/DSA/method/vue3diff.html" class="prev">
+        vue3 diff 算法
+      </a></span> <span class="next"><a href="/DSA/LeetCode/LeetCode1.html">
+        LeetCode 算法精选(1)
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.d4c7d2ae.js" defer></script><script src="/assets/js/38.4e55b6b9.js" defer></script><script src="/assets/js/3.07504c13.js" defer></script><script src="/assets/js/19.44e9522e.js" defer></script>
+  </body>
+</html>

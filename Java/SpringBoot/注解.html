@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>常用的注解 | 朝花夕拾</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="朝花夕拾技术空间">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="theme-color" content="#000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.3b8ca7f7.css" as="style"><link rel="preload" href="/assets/js/app.d4c7d2ae.js" as="script"><link rel="preload" href="/assets/js/38.4e55b6b9.js" as="script"><link rel="preload" href="/assets/js/3.07504c13.js" as="script"><link rel="preload" href="/assets/js/105.f51794ab.js" as="script"><link rel="prefetch" href="/assets/js/10.3a39badf.js"><link rel="prefetch" href="/assets/js/100.48aafe05.js"><link rel="prefetch" href="/assets/js/101.e0fc15c2.js"><link rel="prefetch" href="/assets/js/102.85a69de9.js"><link rel="prefetch" href="/assets/js/103.1e776270.js"><link rel="prefetch" href="/assets/js/104.625a8569.js"><link rel="prefetch" href="/assets/js/106.e7d380e3.js"><link rel="prefetch" href="/assets/js/107.1126749e.js"><link rel="prefetch" href="/assets/js/108.8cedf2f1.js"><link rel="prefetch" href="/assets/js/109.7a8f3daf.js"><link rel="prefetch" href="/assets/js/11.bdb15794.js"><link rel="prefetch" href="/assets/js/110.eccefd44.js"><link rel="prefetch" href="/assets/js/111.0405b080.js"><link rel="prefetch" href="/assets/js/112.2039d057.js"><link rel="prefetch" href="/assets/js/113.906f916d.js"><link rel="prefetch" href="/assets/js/114.a7d3b6e7.js"><link rel="prefetch" href="/assets/js/115.8f396c5b.js"><link rel="prefetch" href="/assets/js/116.4d9275cc.js"><link rel="prefetch" href="/assets/js/117.cd24ba09.js"><link rel="prefetch" href="/assets/js/118.135fbb30.js"><link rel="prefetch" href="/assets/js/119.2066ba95.js"><link rel="prefetch" href="/assets/js/12.c002587a.js"><link rel="prefetch" href="/assets/js/120.fe9e769f.js"><link rel="prefetch" href="/assets/js/121.7acb351e.js"><link rel="prefetch" href="/assets/js/122.3c855b1e.js"><link rel="prefetch" href="/assets/js/123.83b4a523.js"><link rel="prefetch" href="/assets/js/124.59ab0f66.js"><link rel="prefetch" href="/assets/js/125.ff789715.js"><link rel="prefetch" href="/assets/js/126.772e8e9d.js"><link rel="prefetch" href="/assets/js/127.5b20234c.js"><link rel="prefetch" href="/assets/js/128.b2ae0d98.js"><link rel="prefetch" href="/assets/js/129.ebadeac4.js"><link rel="prefetch" href="/assets/js/13.82bf2391.js"><link rel="prefetch" href="/assets/js/130.64e18ec7.js"><link rel="prefetch" href="/assets/js/131.51dea3ed.js"><link rel="prefetch" href="/assets/js/132.4070462d.js"><link rel="prefetch" href="/assets/js/133.faa85325.js"><link rel="prefetch" href="/assets/js/134.bf2bb878.js"><link rel="prefetch" href="/assets/js/135.b11865ba.js"><link rel="prefetch" href="/assets/js/136.22841592.js"><link rel="prefetch" href="/assets/js/137.a8157b05.js"><link rel="prefetch" href="/assets/js/138.b6a424e9.js"><link rel="prefetch" href="/assets/js/139.0ffc8997.js"><link rel="prefetch" href="/assets/js/14.df08e919.js"><link rel="prefetch" href="/assets/js/140.f1f4b890.js"><link rel="prefetch" href="/assets/js/141.e8dcd9bd.js"><link rel="prefetch" href="/assets/js/142.ec6f607d.js"><link rel="prefetch" href="/assets/js/143.bbfe3e92.js"><link rel="prefetch" href="/assets/js/144.decabfa5.js"><link rel="prefetch" href="/assets/js/145.0377ba5d.js"><link rel="prefetch" href="/assets/js/146.9b5a3356.js"><link rel="prefetch" href="/assets/js/147.dfad2e06.js"><link rel="prefetch" href="/assets/js/148.30d814f2.js"><link rel="prefetch" href="/assets/js/149.ddcbe2e2.js"><link rel="prefetch" href="/assets/js/15.4e1e4aa3.js"><link rel="prefetch" href="/assets/js/150.79f71930.js"><link rel="prefetch" href="/assets/js/151.6b5d50a8.js"><link rel="prefetch" href="/assets/js/152.03e87c7d.js"><link rel="prefetch" href="/assets/js/153.a424a600.js"><link rel="prefetch" href="/assets/js/154.f89b4c9a.js"><link rel="prefetch" href="/assets/js/155.95693c4c.js"><link rel="prefetch" href="/assets/js/156.865bd9fb.js"><link rel="prefetch" href="/assets/js/157.df414a99.js"><link rel="prefetch" href="/assets/js/158.58618aa7.js"><link rel="prefetch" href="/assets/js/159.5152c678.js"><link rel="prefetch" href="/assets/js/16.b9021729.js"><link rel="prefetch" href="/assets/js/160.58cf5903.js"><link rel="prefetch" href="/assets/js/161.24f6d90d.js"><link rel="prefetch" href="/assets/js/162.f83328a4.js"><link rel="prefetch" href="/assets/js/163.27349657.js"><link rel="prefetch" href="/assets/js/164.43e499e3.js"><link rel="prefetch" href="/assets/js/165.1a47e6d4.js"><link rel="prefetch" href="/assets/js/166.73064cb4.js"><link rel="prefetch" href="/assets/js/167.90ce4ba7.js"><link rel="prefetch" href="/assets/js/168.99d412e0.js"><link rel="prefetch" href="/assets/js/169.0fcd7dd5.js"><link rel="prefetch" href="/assets/js/17.49794a56.js"><link rel="prefetch" href="/assets/js/170.451030dd.js"><link rel="prefetch" href="/assets/js/171.6926b9e6.js"><link rel="prefetch" href="/assets/js/172.28e177a3.js"><link rel="prefetch" href="/assets/js/173.c2d20eb8.js"><link rel="prefetch" href="/assets/js/174.6ee7ab2b.js"><link rel="prefetch" href="/assets/js/175.65438c7d.js"><link rel="prefetch" href="/assets/js/176.f41a414f.js"><link rel="prefetch" href="/assets/js/177.3a6973a8.js"><link rel="prefetch" href="/assets/js/178.e8a1484d.js"><link rel="prefetch" href="/assets/js/179.161edffa.js"><link rel="prefetch" href="/assets/js/18.92ac679b.js"><link rel="prefetch" href="/assets/js/180.f3f1660b.js"><link rel="prefetch" href="/assets/js/181.9663605a.js"><link rel="prefetch" href="/assets/js/182.fe643e84.js"><link rel="prefetch" href="/assets/js/183.b9d6f7e6.js"><link rel="prefetch" href="/assets/js/184.9f6a3e84.js"><link rel="prefetch" href="/assets/js/185.10c596fe.js"><link rel="prefetch" href="/assets/js/186.ca2f57f8.js"><link rel="prefetch" href="/assets/js/187.3589a1d2.js"><link rel="prefetch" href="/assets/js/188.2cb7b220.js"><link rel="prefetch" href="/assets/js/189.73559e08.js"><link rel="prefetch" href="/assets/js/19.44e9522e.js"><link rel="prefetch" href="/assets/js/190.75e98315.js"><link rel="prefetch" href="/assets/js/191.9c395bcc.js"><link rel="prefetch" href="/assets/js/192.5f969625.js"><link rel="prefetch" href="/assets/js/193.e4b78bb2.js"><link rel="prefetch" href="/assets/js/194.052c36e9.js"><link rel="prefetch" href="/assets/js/195.467d172b.js"><link rel="prefetch" href="/assets/js/196.f518d9a1.js"><link rel="prefetch" href="/assets/js/20.4ee33976.js"><link rel="prefetch" href="/assets/js/21.cb9d3730.js"><link rel="prefetch" href="/assets/js/22.8daafea4.js"><link rel="prefetch" href="/assets/js/23.63c46d5e.js"><link rel="prefetch" href="/assets/js/24.be4a738e.js"><link rel="prefetch" href="/assets/js/25.b18c7ba3.js"><link rel="prefetch" href="/assets/js/26.84810b8c.js"><link rel="prefetch" href="/assets/js/27.463ce61d.js"><link rel="prefetch" href="/assets/js/28.e68a091f.js"><link rel="prefetch" href="/assets/js/29.05fd7a11.js"><link rel="prefetch" href="/assets/js/30.a9c3aa15.js"><link rel="prefetch" href="/assets/js/31.2a53461c.js"><link rel="prefetch" href="/assets/js/32.140635e6.js"><link rel="prefetch" href="/assets/js/33.4fe873b7.js"><link rel="prefetch" href="/assets/js/34.fb7f3932.js"><link rel="prefetch" href="/assets/js/35.e1b54db8.js"><link rel="prefetch" href="/assets/js/36.ab52b4ed.js"><link rel="prefetch" href="/assets/js/37.29d1cf3f.js"><link rel="prefetch" href="/assets/js/39.e1a2e10e.js"><link rel="prefetch" href="/assets/js/4.645dc04a.js"><link rel="prefetch" href="/assets/js/40.290647ce.js"><link rel="prefetch" href="/assets/js/41.30cbaee3.js"><link rel="prefetch" href="/assets/js/42.a79bf63e.js"><link rel="prefetch" href="/assets/js/43.73b29637.js"><link rel="prefetch" href="/assets/js/44.a891ce66.js"><link rel="prefetch" href="/assets/js/45.c5608318.js"><link rel="prefetch" href="/assets/js/46.b4b69c98.js"><link rel="prefetch" href="/assets/js/47.d8c6820a.js"><link rel="prefetch" href="/assets/js/48.bff126d3.js"><link rel="prefetch" href="/assets/js/49.f82378ce.js"><link rel="prefetch" href="/assets/js/5.14259fc6.js"><link rel="prefetch" href="/assets/js/50.6275049c.js"><link rel="prefetch" href="/assets/js/51.39988a36.js"><link rel="prefetch" href="/assets/js/52.1f874577.js"><link rel="prefetch" href="/assets/js/53.d10c3889.js"><link rel="prefetch" href="/assets/js/54.2dcb94b8.js"><link rel="prefetch" href="/assets/js/55.f96185d5.js"><link rel="prefetch" href="/assets/js/56.dd4d4b8f.js"><link rel="prefetch" href="/assets/js/57.f994c6a9.js"><link rel="prefetch" href="/assets/js/58.a93c10c7.js"><link rel="prefetch" href="/assets/js/59.554b01ad.js"><link rel="prefetch" href="/assets/js/6.ee77adb3.js"><link rel="prefetch" href="/assets/js/60.0d43a6e5.js"><link rel="prefetch" href="/assets/js/61.56793618.js"><link rel="prefetch" href="/assets/js/62.fd64b076.js"><link rel="prefetch" href="/assets/js/63.1ccd6c22.js"><link rel="prefetch" href="/assets/js/64.def3f5d8.js"><link rel="prefetch" href="/assets/js/65.24c2f619.js"><link rel="prefetch" href="/assets/js/66.5d80cd8c.js"><link rel="prefetch" href="/assets/js/67.7bb4e1bb.js"><link rel="prefetch" href="/assets/js/68.ac309c5e.js"><link rel="prefetch" href="/assets/js/69.e6f5bc15.js"><link rel="prefetch" href="/assets/js/7.0b275963.js"><link rel="prefetch" href="/assets/js/70.af51a9ef.js"><link rel="prefetch" href="/assets/js/71.6f634adf.js"><link rel="prefetch" href="/assets/js/72.48151142.js"><link rel="prefetch" href="/assets/js/73.f3cdaba1.js"><link rel="prefetch" href="/assets/js/74.d20fac7f.js"><link rel="prefetch" href="/assets/js/75.fbeb1946.js"><link rel="prefetch" href="/assets/js/76.0af132c4.js"><link rel="prefetch" href="/assets/js/77.353be78d.js"><link rel="prefetch" href="/assets/js/78.3adf5d07.js"><link rel="prefetch" href="/assets/js/79.06dada55.js"><link rel="prefetch" href="/assets/js/8.334b8757.js"><link rel="prefetch" href="/assets/js/80.71bff3b8.js"><link rel="prefetch" href="/assets/js/81.71f38dc0.js"><link rel="prefetch" href="/assets/js/82.dc9bec29.js"><link rel="prefetch" href="/assets/js/83.a78c4499.js"><link rel="prefetch" href="/assets/js/84.bacc2a6b.js"><link rel="prefetch" href="/assets/js/85.ef283f1a.js"><link rel="prefetch" href="/assets/js/86.c83365e4.js"><link rel="prefetch" href="/assets/js/87.c38a0a0f.js"><link rel="prefetch" href="/assets/js/88.41132597.js"><link rel="prefetch" href="/assets/js/89.2d240c4c.js"><link rel="prefetch" href="/assets/js/9.06831d79.js"><link rel="prefetch" href="/assets/js/90.862a5e8a.js"><link rel="prefetch" href="/assets/js/91.df00fdc6.js"><link rel="prefetch" href="/assets/js/92.25672b61.js"><link rel="prefetch" href="/assets/js/93.d437a43a.js"><link rel="prefetch" href="/assets/js/94.1a357bb5.js"><link rel="prefetch" href="/assets/js/95.8923ab50.js"><link rel="prefetch" href="/assets/js/96.2b809c98.js"><link rel="prefetch" href="/assets/js/97.6d86fe3f.js"><link rel="prefetch" href="/assets/js/98.a4ee7efe.js"><link rel="prefetch" href="/assets/js/99.ea0ea429.js"><link rel="prefetch" href="/assets/js/vendors~flowchart.4cf1a21d.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.3b8ca7f7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">朝花夕拾</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/Introduction.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/FrontEnd/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Language Menu" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="Language Menu" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://vue3.tanyp.xyz" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/React/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/Vue/" class="nav-link">
+  Vue2
+</a></li><li class="dropdown-item"><!----> <a href="/AngularJS/" class="nav-link">
+  AngularJS
+</a></li></ul></div></div><div class="nav-item"><a href="/JsFrame/" class="nav-link">
+  技术方案
+</a></div><div class="nav-item"><a href="/FrontEndTool/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/NodeJS/" class="nav-link">
+  NodeJS
+</a></div><div class="nav-item"><a href="/Java/" class="nav-link router-link-active">
+  Java
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  Notes
+</a></div><div class="nav-item"><a href="/Reading/" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><a href="/DSA/" class="nav-link">
+  数据结构与算法
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/Introduction.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/FrontEnd/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Language Menu" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="Language Menu" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://vue3.tanyp.xyz" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/React/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/Vue/" class="nav-link">
+  Vue2
+</a></li><li class="dropdown-item"><!----> <a href="/AngularJS/" class="nav-link">
+  AngularJS
+</a></li></ul></div></div><div class="nav-item"><a href="/JsFrame/" class="nav-link">
+  技术方案
+</a></div><div class="nav-item"><a href="/FrontEndTool/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/NodeJS/" class="nav-link">
+  NodeJS
+</a></div><div class="nav-item"><a href="/Java/" class="nav-link router-link-active">
+  Java
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  Notes
+</a></div><div class="nav-item"><a href="/Reading/" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><a href="/DSA/" class="nav-link">
+  数据结构与算法
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/Java/" aria-current="page" class="sidebar-link">Introduction</a></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Java</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/Java/Java 语法/java.html" class="sidebar-link">Java 基础语法</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Spring Boot</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/Java/SpringBoot/SpringBoot基础.html" class="sidebar-link">Spring Boot 基础</a></li><li><a href="/Java/SpringBoot/web.html" class="sidebar-link">Web 项目开发</a></li><li><a href="/Java/SpringBoot/注解.html" class="active sidebar-link">常用的注解</a></li><li><a href="/Java/SpringBoot/MyBatis.html" class="sidebar-link">MyBatis</a></li><li><a href="/Java/SpringBoot/IOC.html" class="sidebar-link">控制反转 IOC</a></li><li><a href="/Java/SpringBoot/ORM.html" class="sidebar-link">ORM</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>MySql</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/Java/MySql/MySql语法.html" class="sidebar-link">查询表数据</a></li><li><a href="/Java/MySql/50道SQL练习题.html" class="sidebar-link">50 道 SQL 练习题</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="常用的注解"><a href="#常用的注解" class="header-anchor">#</a> 常用的注解</h1> <p></p><div class="table-of-contents"><ul><li><a href="#spring-bean-相关">Spring Bean 相关</a><ul><li><a href="#component-repository-service-controller">@Component,@Repository,@Service, @Controller</a></li><li><a href="#restcontroller">@RestController</a></li><li><a href="#scope">@Scope</a></li><li><a href="#configuration">Configuration</a></li></ul></li><li><a href="#处理常见的-http-请求类型">处理常见的 HTTP 请求类型</a></li><li><a href="#前后端传值">前后端传值</a></li><li><a href="#读取配置信息">读取配置信息</a><ul><li><a href="#value">@value</a></li><li><a href="#configurationproperties-读取配置信息并与-bean-绑定">@ConfigurationProperties 读取配置信息并与 bean 绑定</a></li><li><a href="#propertysource-读取指定-properties-文件">@PropertySource 读取指定 properties 文件</a></li></ul></li><li><a href="#参数校验">参数校验</a><ul><li><a href="#一些常用的字段验证的注解">一些常用的字段验证的注解</a></li><li><a href="#验证请求体-requestbody">验证请求体(RequestBody)</a></li><li><a href="#验证请求参数-path-variables-和-request-parameters">验证请求参数(Path Variables 和 Request Parameters)</a></li></ul></li><li><a href="#全局处理-controller-层异常">全局处理 Controller 层异常</a></li><li><a href="#jpa-相关">JPA 相关</a><ul><li><a href="#创建表">创建表</a></li><li><a href="#创建主键">创建主键</a></li><li><a href="#设置字段类型">设置字段类型</a></li><li><a href="#指定不持久化特定字段">指定不持久化特定字段</a></li><li><a href="#创建枚举类型的字段">创建枚举类型的字段</a></li><li><a href="#增加审计功能">增加审计功能</a></li><li><a href="#删除-修改数据">删除/修改数据</a></li><li><a href="#关联关系">关联关系</a></li></ul></li><li><a href="#事务-transactional">事务 @Transactional</a></li><li><a href="#json-数据处理">json 数据处理</a><ul><li><a href="#过滤-json-数据">过滤 json 数据</a></li><li><a href="#格式化-json-数据">格式化 json 数据</a></li><li><a href="#扁平化对象">扁平化对象</a></li></ul></li><li><a href="#测试相关">测试相关</a></li></ul></div><p></p> <h2 id="spring-bean-相关"><a href="#spring-bean-相关" class="header-anchor">#</a> Spring Bean 相关</h2> <p>我们一般使用 @Autowired 注解让 Spring 容器帮我们自动装配 bean。要想把类标识成可用于 @Autowired 注解自动装配的 bean 的类,可以采用以下注解实现：</p> <h3 id="component-repository-service-controller"><a href="#component-repository-service-controller" class="header-anchor">#</a> @Component,@Repository,@Service, @Controller</h3> <ul><li>@Component ：通用的注解，可标注任意类为 Spring 组件。如果一个 Bean 不知道属于哪个层，可以使用@Component 注解标注。</li> <li>@Repository : 对应持久层即 Dao 层，主要用于数据库相关操作。</li> <li>@Service : 对应服务层，主要涉及一些复杂的逻辑，需要用到 Dao 层。</li> <li>@Controller : 对应 Spring MVC 控制层，主要用户接受用户请求并调用 Service 层返回数据给前端页面。</li></ul> <h3 id="restcontroller"><a href="#restcontroller" class="header-anchor">#</a> @RestController</h3> <p>@RestController 注解是 @Controller 和 @ResponseBody 的合集,表示这是个控制器 bean,并且是将函数的返回值直 接填入 HTTP 响应体中,是 REST 风格的控制器。</p> <h3 id="scope"><a href="#scope" class="header-anchor">#</a> @Scope</h3> <p>声明 Spring Bean 的作用域，使用方法:</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Bean</span>
+<span class="token annotation punctuation">@Scope</span><span class="token punctuation">(</span><span class="token string">&quot;singleton&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">Person</span> <span class="token function">personSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>四种常见的 Spring Bean 的作用域：</p> <ul><li>singleton : 唯一 bean 实例，Spring 中的 bean 默认都是单例的。</li> <li>prototype : 每次请求都会创建一个新的 bean 实例。</li> <li>request : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。</li> <li>session : 每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。</li></ul> <h3 id="configuration"><a href="#configuration" class="header-anchor">#</a> Configuration</h3> <p>一般用来声明配置类，可以使用 @Component 注解替代，不过使用 Configuration 注解声明配置类更加语义化。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AppConfig</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">TransferService</span> <span class="token function">transferService</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">TransferServiceImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="处理常见的-http-请求类型"><a href="#处理常见的-http-请求类型" class="header-anchor">#</a> 处理常见的 HTTP 请求类型</h2> <ul><li>@GetMapping(&quot;users&quot;) 等价于 @RequestMapping(value=&quot;/users&quot;,method=RequestMethod.GET)</li> <li>@PostMapping(&quot;users&quot;) 等价于 @RequestMapping(value=&quot;/users&quot;,method=RequestMethod.POST)</li> <li>@PutMapping(&quot;/users/{userId}&quot;)</li> <li>@DeleteMapping(&quot;/users/{userId}&quot;)</li> <li>@PatchMapping(&quot;/profile&quot;)</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/users&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> <span class="token function">getAllUsers</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">return</span> userRepository<span class="token punctuation">.</span><span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/users&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">&gt;</span></span> <span class="token function">createUser</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Valid</span> <span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">UserCreateRequest</span> userCreateRequest<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">return</span> userRespository<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="前后端传值"><a href="#前后端传值" class="header-anchor">#</a> 前后端传值</h2> <ul><li>@PathVariable 用于获取路径参数</li> <li>@RequestParam 用于获取查询参数</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/klasses/{klassId}/teachers&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Teacher</span><span class="token punctuation">&gt;</span></span> <span class="token function">getKlassRelatedTeachers</span><span class="token punctuation">(</span>
+  <span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">&quot;klassId&quot;</span><span class="token punctuation">)</span> <span class="token class-name">Long</span> klassId<span class="token punctuation">,</span>
+  <span class="token annotation punctuation">@RequestParam</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token string">&quot;type&quot;</span><span class="token punctuation">,</span> required <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token class-name">String</span> type <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+</code></pre></div><ul><li>@RequestBody</li></ul> <h2 id="读取配置信息"><a href="#读取配置信息" class="header-anchor">#</a> 读取配置信息</h2> <p>我们的数据源 application.yml 内容如下：：</p> <div class="language-yml extra-class"><pre class="language-yml"><code><span class="token key atrule">wuhan2020</span><span class="token punctuation">:</span> 2020年初武汉爆发了新型冠状病毒，疫情严重，但是，我相信一切都会过去！武汉加油！中国加油！
+
+<span class="token key atrule">my-profile</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> Guide哥
+  <span class="token key atrule">email</span><span class="token punctuation">:</span> koushuangbwcx@163.com
+
+<span class="token key atrule">library</span><span class="token punctuation">:</span>
+  <span class="token key atrule">location</span><span class="token punctuation">:</span> 湖北武汉加油中国加油
+  <span class="token key atrule">books</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> 天才基本法
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> 二十二岁的林朝夕在父亲确诊阿尔茨海默病这天，得知自己暗恋多年的校园男神裴之即将出国深造的消息——对方考取的学校，恰是父亲当年为她放弃的那所。
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> 时间的秩序
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> 为什么我们记得过去，而非未来？时间“流逝”意味着什么？是我们存在于时间之内，还是时间存在于我们之中？卡洛·罗韦利用诗意的文字，邀请我们思考这一亘古难题——时间的本质。
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> 了不起的我
+      <span class="token key atrule">description</span><span class="token punctuation">:</span> 如何养成一个新习惯？如何让心智变得更成熟？如何拥有高质量的关系？ 如何走出人生的艰难时刻？
+</code></pre></div><h3 id="value"><a href="#value" class="header-anchor">#</a> @value</h3> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">&quot;${wuhan2020}&quot;</span><span class="token punctuation">)</span>
+<span class="token class-name">String</span> wuhan2020<span class="token punctuation">;</span>
+</code></pre></div><h3 id="configurationproperties-读取配置信息并与-bean-绑定"><a href="#configurationproperties-读取配置信息并与-bean-绑定" class="header-anchor">#</a> @ConfigurationProperties 读取配置信息并与 bean 绑定</h3> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Component</span>
+<span class="token annotation punctuation">@ConfigurationProperties</span><span class="token punctuation">(</span>prefix <span class="token operator">=</span> <span class="token string">&quot;library&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">class</span> <span class="token class-name">LibraryProperties</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@NotEmpty</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> location<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Book</span><span class="token punctuation">&gt;</span></span> books<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Setter</span>
+    <span class="token annotation punctuation">@Getter</span>
+    <span class="token annotation punctuation">@ToString</span>
+    <span class="token keyword">static</span> <span class="token keyword">class</span> <span class="token class-name">Book</span> <span class="token punctuation">{</span>
+        <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+        <span class="token class-name">String</span> description<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// 省略getter/setter</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>你可以像使用普通的 Spring bean 一样，将其注入到类中使用。</p> <h3 id="propertysource-读取指定-properties-文件"><a href="#propertysource-读取指定-properties-文件" class="header-anchor">#</a> @PropertySource 读取指定 properties 文件</h3> <h2 id="参数校验"><a href="#参数校验" class="header-anchor">#</a> 参数校验</h2> <p>JSR(Java Specification Requests） 是一套 JavaBean 参数校验的标准，它定义了很多常用的校验注解，我们可以直接将这些注解加在我们 JavaBean 的属性上面，这样就可以在需要校验的时候进行校验了，非常方便！</p> <p>SpringBoot 项目的 spring-boot-starter-web 依赖中已经有 hibernate-validator 包，不需要引用相关依赖。</p> <h3 id="一些常用的字段验证的注解"><a href="#一些常用的字段验证的注解" class="header-anchor">#</a> 一些常用的字段验证的注解</h3> <ul><li>@NotEmpty 被注释的字符串的不能为 null 也不能为空</li> <li>@NotBlank 被注释的字符串非 null，并且必须包含一个非空白字符</li> <li>@Null 被注释的元素必须为 null</li> <li>@NotNull 被注释的元素必须不为 null</li> <li>@AssertTrue 被注释的元素必须为 true</li> <li>@AssertFalse 被注释的元素必须为 false</li> <li>@Pattern(regex=,flag=)被注释的元素必须符合指定的正则表达式</li> <li>@Email 被注释的元素必须是 Email 格式。</li> <li>@Min(value)被注释的元素必须是一个数字，其值必须大于等于指定的最小值</li> <li>@Max(value)被注释的元素必须是一个数字，其值必须小于等于指定的最大值</li> <li>@DecimalMin(value)被注释的元素必须是一个数字，其值必须大于等于指定的最小值</li> <li>@DecimalMax(value) 被注释的元素必须是一个数字，其值必须小于等于指定的最大值</li> <li>@Size(max=, min=)被注释的元素的大小必须在指定的范围内</li> <li>@Digits (integer, fraction)被注释的元素必须是一个数字，其值必须在可接受的范围内</li> <li>@Past 被注释的元素必须是一个过去的日期</li> <li>@Future 被注释的元素必须是一个将来的日期</li></ul> <h3 id="验证请求体-requestbody"><a href="#验证请求体-requestbody" class="header-anchor">#</a> 验证请求体(RequestBody)</h3> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@NotNull</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">&quot;classId 不能为空&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> classId<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Size</span><span class="token punctuation">(</span>max <span class="token operator">=</span> <span class="token number">33</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@NotNull</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">&quot;name 不能为空&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Pattern</span><span class="token punctuation">(</span>regexp <span class="token operator">=</span> <span class="token string">&quot;((^Man$|^Woman$|^UGM$))&quot;</span><span class="token punctuation">,</span> message <span class="token operator">=</span> <span class="token string">&quot;sex 值不在可选范围&quot;</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@NotNull</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">&quot;sex 不能为空&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> sex<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Email</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">&quot;email 格式不正确&quot;</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@NotNull</span><span class="token punctuation">(</span>message <span class="token operator">=</span> <span class="token string">&quot;email 不能为空&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> email<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>我们在需要验证的参数上加上了 @Valid 注解，如果验证失败，它将抛出 MethodArgumentNotValidException。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/api&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonController</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/person&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Person</span><span class="token punctuation">&gt;</span></span> <span class="token function">getPerson</span><span class="token punctuation">(</span><span class="token annotation punctuation">@RequestBody</span> <span class="token annotation punctuation">@Valid</span> <span class="token class-name">Person</span> person<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="验证请求参数-path-variables-和-request-parameters"><a href="#验证请求参数-path-variables-和-request-parameters" class="header-anchor">#</a> 验证请求参数(Path Variables 和 Request Parameters)</h3> <p>一定一定不要忘记在类上加上 Validated 注解了，这个参数可以告诉 Spring 去校验方法参数。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/api&quot;</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Validated</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonController</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@GetMapping</span><span class="token punctuation">(</span><span class="token string">&quot;/person/{id}&quot;</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> <span class="token function">getPersonByID</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Valid</span> <span class="token annotation punctuation">@PathVariable</span><span class="token punctuation">(</span><span class="token string">&quot;id&quot;</span><span class="token punctuation">)</span> <span class="token annotation punctuation">@Max</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span>message <span class="token operator">=</span> <span class="token string">&quot;超过 id 的范围了&quot;</span><span class="token punctuation">)</span> <span class="token class-name">Integer</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token class-name">ResponseEntity</span><span class="token punctuation">.</span><span class="token function">ok</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="全局处理-controller-层异常"><a href="#全局处理-controller-层异常" class="header-anchor">#</a> 全局处理 Controller 层异常</h2> <ul><li>@ControllerAdvice :注解定义全局异常处理类</li> <li>@ExceptionHandler :注解声明异常处理方法</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@ControllerAdvice</span>
+<span class="token annotation punctuation">@ResponseBody</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GlobalExceptionHandler</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 请求参数异常处理
+     */</span>
+    <span class="token annotation punctuation">@ExceptionHandler</span><span class="token punctuation">(</span><span class="token class-name">MethodArgumentNotValidException</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">ResponseEntity</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> <span class="token function">handleMethodArgumentNotValidException</span><span class="token punctuation">(</span><span class="token class-name">MethodArgumentNotValidException</span> ex<span class="token punctuation">,</span> <span class="token class-name">HttpServletRequest</span> request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="jpa-相关"><a href="#jpa-相关" class="header-anchor">#</a> JPA 相关</h2> <h3 id="创建表"><a href="#创建表" class="header-anchor">#</a> 创建表</h3> <ul><li>@Entity 声明一个类对应一个数据库实体。</li> <li>@Table 设置表明</li></ul> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Entity</span>
+<span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">&quot;role&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Role</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Id</span>
+    <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> <span class="token class-name">GenerationType</span><span class="token punctuation">.</span>IDENTITY<span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> description<span class="token punctuation">;</span>
+    <span class="token comment">// 省略getter/setter......</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="创建主键"><a href="#创建主键" class="header-anchor">#</a> 创建主键</h3> <p>@Id ：声明一个字段为主键。</p> <p>使用@Id 声明之后，我们还需要定义主键的生成策略。我们可以使用 @GeneratedValue 指定主键生成策略。</p> <h4 id="_1-通过-generatedvalue-直接使用-jpa-内置提供的四种主键生成策略来指定主键生成策略。"><a href="#_1-通过-generatedvalue-直接使用-jpa-内置提供的四种主键生成策略来指定主键生成策略。" class="header-anchor">#</a> 1.通过 @GeneratedValue 直接使用 JPA 内置提供的四种主键生成策略来指定主键生成策略。</h4> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Id</span>
+<span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> <span class="token class-name">GenerationType</span><span class="token punctuation">.</span>IDENTITY<span class="token punctuation">)</span>
+<span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+</code></pre></div><div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">GenerationType</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * 使用一个特定的数据库表格来保存主键
+     * 持久化引擎通过关系数据库的一张特定的表格来生成主键,
+     */</span>
+    TABLE<span class="token punctuation">,</span>
+
+    <span class="token comment">/**
+     *在某些数据库中,不支持主键自增长,比如Oracle、PostgreSQL其提供了一种叫做&quot;序列(sequence)&quot;的机制生成主键
+     */</span>
+    SEQUENCE<span class="token punctuation">,</span>
+
+    <span class="token comment">/**
+     * 主键自增长
+     */</span>
+    IDENTITY<span class="token punctuation">,</span>
+
+    <span class="token comment">/**
+     *把主键生成策略交给持久化引擎(persistence engine),
+     *持久化引擎会根据数据库在以上三种主键生成 策略中选择其中一种
+     */</span>
+    AUTO
+<span class="token punctuation">}</span>
+</code></pre></div><p>@GeneratedValue 注解默认使用的策略是 GenerationType.AUTO。一般使用 MySQL 数据库的话，使用 GenerationType.IDENTITY 策略比较普遍一点（分布式系统的话需要另外考虑使用分布式 ID）</p> <h4 id="_2-通过-genericgenerator-声明一个主键策略-然后-generatedvalue-使用这个策略"><a href="#_2-通过-genericgenerator-声明一个主键策略-然后-generatedvalue-使用这个策略" class="header-anchor">#</a> 2.通过 @GenericGenerator 声明一个主键策略，然后 @GeneratedValue 使用这个策略</h4> <h3 id="设置字段类型"><a href="#设置字段类型" class="header-anchor">#</a> 设置字段类型</h3> <p>@Column 声明字段。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">&quot;user_name&quot;</span><span class="token punctuation">,</span> nullable <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> length<span class="token operator">=</span><span class="token number">32</span><span class="token punctuation">)</span>
+<span class="token keyword">private</span> <span class="token class-name">String</span> userName<span class="token punctuation">;</span>
+</code></pre></div><h3 id="指定不持久化特定字段"><a href="#指定不持久化特定字段" class="header-anchor">#</a> 指定不持久化特定字段</h3> <h3 id="创建枚举类型的字段"><a href="#创建枚举类型的字段" class="header-anchor">#</a> 创建枚举类型的字段</h3> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">Gender</span> <span class="token punctuation">{</span>
+    <span class="token function">MALE</span><span class="token punctuation">(</span><span class="token string">&quot;男性&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">FEMALE</span><span class="token punctuation">(</span><span class="token string">&quot;女性&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">String</span> value<span class="token punctuation">;</span>
+    <span class="token class-name">Gender</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        value<span class="token operator">=</span>str<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@Entity</span>
+<span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">&quot;role&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Role</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Id</span>
+    <span class="token annotation punctuation">@GeneratedValue</span><span class="token punctuation">(</span>strategy <span class="token operator">=</span> <span class="token class-name">GenerationType</span><span class="token punctuation">.</span>IDENTITY<span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> description<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@Enumerated</span><span class="token punctuation">(</span><span class="token class-name">EnumType</span><span class="token punctuation">.</span>STRING<span class="token punctuation">)</span>
+    <span class="token keyword">private</span> <span class="token class-name">Gender</span> gender<span class="token punctuation">;</span>
+    <span class="token comment">// 省略getter/setter......</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><h3 id="增加审计功能"><a href="#增加审计功能" class="header-anchor">#</a> 增加审计功能</h3> <p>只要继承了 AbstractAuditBase 的类都会默认加上下面四个字段。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Data</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span>
+<span class="token annotation punctuation">@MappedSuperclass</span>
+<span class="token annotation punctuation">@EntityListeners</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token class-name">AuditingEntityListener</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractAuditBase</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@CreatedDate</span>
+    <span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>updatable <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@JsonIgnore</span>
+    <span class="token keyword">private</span> <span class="token class-name">Instant</span> createdAt<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@LastModifiedDate</span>
+    <span class="token annotation punctuation">@JsonIgnore</span>
+    <span class="token keyword">private</span> <span class="token class-name">Instant</span> updatedAt<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@CreatedBy</span>
+    <span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>updatable <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+    <span class="token annotation punctuation">@JsonIgnore</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> createdBy<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@LastModifiedBy</span>
+    <span class="token annotation punctuation">@JsonIgnore</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> updatedBy<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="删除-修改数据"><a href="#删除-修改数据" class="header-anchor">#</a> 删除/修改数据</h3> <p>@Modifying 注解提示 JPA 该操作是修改操作,注意还要配合@Transactional 注解使用。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@Repository</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserRepository</span> <span class="token keyword">extends</span> <span class="token class-name">JpaRepository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Modifying</span>
+    <span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+    <span class="token keyword">void</span> <span class="token function">deleteByUserName</span><span class="token punctuation">(</span><span class="token class-name">String</span> userName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="关联关系"><a href="#关联关系" class="header-anchor">#</a> 关联关系</h3> <ul><li>@OneToOne 声明一对一关系</li> <li>@OneToMany 声明一对多关系</li> <li>@ManyToOne 声明多对一关系</li> <li>MangToMang 声明多对多关系</li></ul> <h2 id="事务-transactional"><a href="#事务-transactional" class="header-anchor">#</a> 事务 @Transactional</h2> <h2 id="json-数据处理"><a href="#json-数据处理" class="header-anchor">#</a> json 数据处理</h2> <h3 id="过滤-json-数据"><a href="#过滤-json-数据" class="header-anchor">#</a> 过滤 json 数据</h3> <p>@JsonIgnoreProperties 作用在类上用于过滤掉特定字段不返回或者不解析。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token comment">//生成json时将userRoles属性过滤</span>
+<span class="token annotation punctuation">@JsonIgnoreProperties</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token string">&quot;userRoles&quot;</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">String</span> userName<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> fullName<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@JsonIgnore</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">UserRole</span><span class="token punctuation">&gt;</span></span> userRoles <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>@JsonIgnore 一般用于类的属性上，作用和上面的@JsonIgnoreProperties 一样。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">String</span> userName<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> fullName<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> password<span class="token punctuation">;</span>
+   <span class="token comment">//生成json时将userRoles属性过滤</span>
+    <span class="token annotation punctuation">@JsonIgnore</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">UserRole</span><span class="token punctuation">&gt;</span></span> userRoles <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="格式化-json-数据"><a href="#格式化-json-数据" class="header-anchor">#</a> 格式化 json 数据</h3> <p>@JsonFormat 一般用来格式化 json 数据。</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@JsonFormat</span><span class="token punctuation">(</span>shape<span class="token operator">=</span><span class="token class-name">JsonFormat<span class="token punctuation">.</span>Shape</span><span class="token punctuation">.</span>STRING<span class="token punctuation">,</span> pattern<span class="token operator">=</span><span class="token string">&quot;yyyy-MM-dd'T'HH:mm:ss.SSS'Z'&quot;</span><span class="token punctuation">,</span> timezone<span class="token operator">=</span><span class="token string">&quot;GMT&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">private</span> <span class="token class-name">Date</span> date<span class="token punctuation">;</span>
+</code></pre></div><h3 id="扁平化对象"><a href="#扁平化对象" class="header-anchor">#</a> 扁平化对象</h3> <h2 id="测试相关"><a href="#测试相关" class="header-anchor">#</a> 测试相关</h2> <p>@ActiveProfiles 一般作用于测试类上， 用于声明生效的 Spring 配置文件</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token annotation punctuation">@SpringBootTest</span><span class="token punctuation">(</span>webEnvironment <span class="token operator">=</span> RANDOM_PORT<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@ActiveProfiles</span><span class="token punctuation">(</span><span class="token string">&quot;test&quot;</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Slf4j</span>
+<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">TestBase</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
+</code></pre></div><ul><li>@Test 声明一个方法为测试方法</li> <li>@Transactional 被声明的测试方法的数据会回滚，避免污染测试数据。</li> <li>@WithMockUser Spring Security 提供的，用来模拟一个真实用户，并且可以赋予权限。</li></ul> <p>@Slf4j：如果不想每次都写<code>private final Logger logger = LoggerFactory.getLogger</code>(当前类名.class); 可以用注解@Slf4j;类上面添加@Sl4j注解,然后使用log打印日志;</p> <blockquote><p><a href="https://zhuanlan.zhihu.com/p/135987318" target="_blank" rel="noopener noreferrer">8000 字的 Spring/SpringBoot 常用注解总结<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></blockquote></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/Java/SpringBoot/web.html" class="prev">
+        Web 项目开发
+      </a></span> <span class="next"><a href="/Java/SpringBoot/MyBatis.html">
+        MyBatis
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.d4c7d2ae.js" defer></script><script src="/assets/js/38.4e55b6b9.js" defer></script><script src="/assets/js/3.07504c13.js" defer></script><script src="/assets/js/105.f51794ab.js" defer></script>
+  </body>
+</html>
