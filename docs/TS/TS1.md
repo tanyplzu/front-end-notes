@@ -10,31 +10,29 @@ sidebarDepth: 1
 
 ```ts
 // 布尔
-const isCheck: boolean = false
+const isCheck: boolean = false;
 // 数字
-const year: number = 2077 // 可以存放 NaN 和 Infinity
+const year: number = 2077; // 可以存放 NaN 和 Infinity
 // 字符串
-const name: string = 'Cyberpunk'
+const name: string = 'Cyberpunk';
 // 数组
-const list: number[] = [1, 2, 3]
-const list: Array<number> = [1, 2, 3]
+const list: number[] = [1, 2, 3];
+const list: Array<number> = [1, 2, 3];
 ```
 
-- boolean number string 可以为空，可以是null或undefined; 需要开启配置项
+- boolean number string 可以为空，可以是 null 或 undefined; 需要开启配置项
 
-### Object 
+### Object
 
 - 泛指所有的非原始类型，数组，函数，对象都可以
-- 可以用对象去显示，不过一般是使用interface去限制
+- 可以用对象去显示，不过一般是使用 interface 去限制
 
 ### Tuple
 
 元组 Tuple，表示一个已知元素数量和类型的数组。访问跨界元素时，ts 会抛出错误。
 
-👻：[typescript 中文网](https://www.tslang.cn/)中的内容是，访问跨界元素，使用联合类型。是过时的内容。
-
 ```ts
-const tuple: [number, string] = [2077, 'Cyberpunk']
+const tuple: [number, string] = [2077, 'Cyberpunk'];
 ```
 
 ### Enum
@@ -47,9 +45,9 @@ enum language {
   JS = 2,
   JAVA = 3,
 }
-const lan: language = language.CPP // 1
+const lan: language = language.CPP; // 1
 // Enum类型，也可以通过枚举的值，获取枚举的名称
-const lanName: string = language[2] // 2
+const lanName: string = language[2]; // 2
 ```
 
 ### Any
@@ -80,8 +78,8 @@ object 表示非原始类型，也就是除 number，string，boolean，symbol�
 
 ```ts
 // as语法或是尖括号语法
-alert((temp as string).length)
-alert((<string>temp).length)
+alert((temp as string).length);
+alert((<string>temp).length);
 ```
 
 ### 双重断言
@@ -90,9 +88,9 @@ alert((<string>temp).length)
 
 ```ts
 window.onclick = function(event: Event) {
-  let mouseEvent = event as HTMLElement // error，Event，HTMLElement类型不是父子集关系
-  mouseEvent = (event as any) as HTMLElement // ok
-}
+  let mouseEvent = event as HTMLElement; // error，Event，HTMLElement类型不是父子集关系
+  mouseEvent = (event as any) as HTMLElement; // ok
+};
 ```
 
 ## 接口
@@ -101,21 +99,21 @@ window.onclick = function(event: Event) {
 
 ```ts
 interface Bar {
-  name: string
+  name: string;
 }
 interface Foo {
-  name: string
+  name: string;
 }
 
-const bar: Bar = { name: 'Geralt' }
-const foo: Foo = { name: 'V' }
+const bar: Bar = { name: 'Geralt' };
+const foo: Foo = { name: 'V' };
 
 function getName(hero: Bar) {
-  return hero.name
+  return hero.name;
 }
 // hero接受Bar类型，但是Foo类型和Bar类型结构是一致的，所以使用Foo类型也是被允许的
-getName(bar) // Geralt
-getName(foo) // V
+getName(bar); // Geralt
+getName(foo); // V
 ```
 
 ### 可选属性
@@ -131,14 +129,14 @@ getName(foo) // V
 使用 ReadonlyArray 关键字可以声明一个只读数组。但是我们可以通过类型断言，绕过编译器修改只读数组。
 
 ```ts
-let list: ReadonlyArray<number> = [1, 2, 3]
+let list: ReadonlyArray<number> = [1, 2, 3];
 // error
 list
   .push(4)(
     // ok
     list as number[]
   )
-  .push(4)
+  .push(4);
 ```
 
 ### 额外的属性检查
@@ -147,20 +145,20 @@ list
 
 ```ts
 interface Bar {
-  name: string
-  age?: number
+  name: string;
+  age?: number;
 }
 function getName(hero: Bar) {
-  return hero.name
+  return hero.name;
 }
 
 // error，对象字面量会进行额外的属性检查
-getName({ name: 'Geralt', gender: 'man' })
+getName({ name: 'Geralt', gender: 'man' });
 // ok，使用类型断言会绕过检查
-getName({ name: 'Geralt', gender: 'man' } as Bar)
+getName({ name: 'Geralt', gender: 'man' } as Bar);
 // ok，使用一个变量，变量是不会进行额外的属性检查
-const bar = { name: 'Geralt', gender: 'man' }
-getName(bar)
+const bar = { name: 'Geralt', gender: 'man' };
+getName(bar);
 // 或者修改接口的定义，对于未知的属性，使用索引签名
 ```
 
@@ -170,11 +168,11 @@ getName(bar)
 
 ```ts
 interface FooFunc {
-  (a: number, b: string): string
+  (a: number, b: string): string;
 }
-const foo: FooFunc = (a: number, b: string): string => a + b
+const foo: FooFunc = (a: number, b: string): string => a + b;
 // 如果不指定类型，TypeScript会自动对推断参数以及返回值的类型
-const far: FooFunc = (a, b) => a + b
+const far: FooFunc = (a, b) => a + b;
 ```
 
 ### 可索引的类型
@@ -183,19 +181,19 @@ const far: FooFunc = (a, b) => a + b
 
 ```ts
 interface Foo {
-  [key: number]: string
-  [key: string]: string
+  [key: number]: string;
+  [key: string]: string;
 }
 
 interface NumberDictionary {
-  [index: string]: number
-  length: number // ok
-  name: string // error
+  [index: string]: number;
+  length: number; // ok
+  name: string; // error
 }
 interface Foo {
-  [key: string]: number | string
-  length: number // ok
-  name: string // ok
+  [key: string]: number | string;
+  length: number; // ok
+  name: string; // ok
 }
 ```
 
@@ -205,28 +203,28 @@ interface Foo {
 
 ```ts
 interface Foo {
-  color?: string
-  [key: string]: string
+  color?: string;
+  [key: string]: string;
 }
 // 因为笔误，写错了拼写，color -> colour，但是由于可索引类型的原因，这并不会抛出错误
 let a: Foo = {
   colour: 'blue',
-}
+};
 ```
 
 合理的思路，是应该将可索引的类型，分离到单独的属性里
 
 ```ts
 interface Foo {
-  color?: string
+  color?: string;
   other?: {
-    [key: string]: string
-  }
+    [key: string]: string;
+  };
 }
 // error编译器会抛出错误
 let a: Foo = {
   colour: 'blue',
-}
+};
 ```
 
 ### 类类型
@@ -235,15 +233,15 @@ TypeScript 可以使用接口强制**一个类的实例**部分实现某种属�
 
 ```ts
 interface WitcherClass {
-  name: string // 接口可以定义`实例`的属性
-  getName(): string // 接口可以定义`实例`的方法
+  name: string; // 接口可以定义`实例`的属性
+  getName(): string; // 接口可以定义`实例`的方法
 }
 
 // Witcher类实现WitcherClass接口
 class Witcher implements WitcherClass {
-  name: string
+  name: string;
   getName() {
-    return this.name
+    return this.name;
   }
   constructor() {}
 }
@@ -255,17 +253,17 @@ class Witcher implements WitcherClass {
 
 ```ts
 interface Witcher {
-  name: string
+  name: string;
 }
 
 interface Wolf extends Witcher {
-  fencing: string
+  fencing: string;
 }
 
 const geralt: Wolf = {
   name: 'geralt',
   fencing: '拜年剑法',
-}
+};
 ```
 
 ### 接口继承类
@@ -274,26 +272,26 @@ const geralt: Wolf = {
 
 ```ts
 class Foo {
-  protected name: string
+  protected name: string;
 }
 interface InterfaceFoo extends Foo {
-  getName(): string
+  getName(): string;
 }
 // ok
 class Bar extends Foo implements InterfaceFoo {
   getName() {
-    return this.name
+    return this.name;
   }
 }
 // error, Far没有name属性，只有Foo以及Foo的子类才有
 class Far implements InterfaceFoo {
   getName() {
-    return this.name
+    return this.name;
   }
 }
 ```
 
-## 类
+## class
 
 ### 修饰符
 
@@ -309,9 +307,9 @@ class Far implements InterfaceFoo {
 ```ts
 // Boo，Far声明name属性的方式是一致的
 class Boo {
-  public name: string
+  public name: string;
   constructor(theName: string) {
-    this.name = theName
+    this.name = theName;
   }
 }
 class Far {
@@ -326,13 +324,13 @@ class Far {
 ```ts
 class Boo {
   // 控制_name的getters/setters行为
-  private _name: string
+  private _name: string;
   get name(): string {
-    return this._name
+    return this._name;
   }
   set name(newName): void {
     if (newName) {
-      this._name = newName
+      this._name = newName;
     }
   }
 }
@@ -344,13 +342,13 @@ class Boo {
 
 ```ts
 class Boo {
-  static lan: string = 'JAVA'
+  static lan: string = 'JAVA';
   static getLan() {
-    return Boo.lan
+    return Boo.lan;
   }
 }
 // JAVA
-console.log(Boo.getLan())
+console.log(Boo.getLan());
 ```
 
 ### 抽象类
@@ -359,13 +357,13 @@ console.log(Boo.getLan())
 
 ```ts
 abstract class Boo {
-  public name: string = 'boo'
-  public abstract getName(): string
+  public name: string = 'boo';
+  public abstract getName(): string;
 }
 class Bar extends Boo {
   // 子类必须实现抽象类的抽象方法
   getName() {
-    return this.name
+    return this.name;
   }
 }
 ```
@@ -376,31 +374,31 @@ class Bar extends Boo {
 
 ```ts
 class Bar {
-  static lan: string = 'Java'
+  static lan: string = 'Java';
   constructor(public age: number) {}
 }
-const a: Bar = new Bar(20)
+const a: Bar = new Bar(20);
 // typeof 类名，获取的是类本身的类型，包含了静态成员和构造函数
-const b: typeof Bar = Bar
+const b: typeof Bar = Bar;
 // Java
-console.log(b.lan)
+console.log(b.lan);
 ```
 
 ### private 与单例模式
 
 ```ts
 class Bar {
-  private static instance: Bar
+  private static instance: Bar;
   private constructor() {}
   public static create() {
     if (!Bar.instance) {
-      Bar.instance = new Bar()
+      Bar.instance = new Bar();
     }
-    return Bar.instance
+    return Bar.instance;
   }
 }
-let a = new Bar() // error，类的外部无法访问构造函数
-let b = Bar.create() // ok
+let a = new Bar(); // error，类的外部无法访问构造函数
+let b = Bar.create(); // ok
 ```
 
 ## 函数
@@ -409,16 +407,16 @@ let b = Bar.create() // ok
 
 ```ts
 // 函数类型
-const sum = (a: number, b: number): number => a + b
+const sum = (a: number, b: number): number => a + b;
 // 完整的函数类型，参数名可以不同
-const sum: (a: number, b: number) => number = (x: number, y: number) => x + y
+const sum: (a: number, b: number) => number = (x: number, y: number) => x + y;
 ```
 
 #### 推断类型
 
 ```ts
 // ts编译器会自动推断出x, y以及函数的返回值的类型
-const sum: (a: number, b: number) => number = (x, y) => x + y
+const sum: (a: number, b: number) => number = (x, y) => x + y;
 ```
 
 ### 可选参数、默认参数、剩余参数
@@ -427,17 +425,17 @@ const sum: (a: number, b: number) => number = (x, y) => x + y
 // 可选参数，在参数旁使用`?`实现可选参数功能，可选参数必须在必须参数的最后
 const sum = (a: number, b?: number): number => {
   if (b) {
-    return a
+    return a;
   } else {
-    return a + b
+    return a + b;
   }
-}
+};
 // 参数的默认值，当参数的值是undefined时，会时候默认的参数
-const sum = (a: number, b: number = 0): number => a + b
+const sum = (a: number, b: number = 0): number => a + b;
 // 剩余参数，使用省略号定义剩余参数的数组
 const sum = (...arguments: number[]) => {
-  return arguments[0] + arguments[1]
-}
+  return arguments[0] + arguments[1];
+};
 ```
 
 ### this 参数
@@ -446,17 +444,17 @@ this 出现在函数的对象字面量中，默认为 any 类型。可以为函�
 
 ```ts
 interface Bar {
-  name: string
+  name: string;
 }
 function foo() {
   return {
     name: this.name, // this为any类型
-  }
+  };
 }
 function bar(this: Bar) {
   return {
     name: this.name, // this为Bar类型
-  }
+  };
 }
 ```
 
@@ -465,14 +463,14 @@ function bar(this: Bar) {
 当我们需要根据参数的不同类型，返回不同类型的结果时，可以使用函数重载。为同一个函数提供多个函数类型定义来进行函数重载。编译器会根据这个列表去处理函数的调用。编译器会依次查找重载列表，找到匹配的函数定义。
 
 ```ts
-function foo(x: number): string
-function foo(x: string): number
+function foo(x: number): string;
+function foo(x: string): number;
 // function foo(x): any并不是函数重载的一部分
 function foo(x): any {
   if (typeof x === 'number') {
-    return x + ''
+    return x + '';
   } else if (x === 'string') {
-    return Number(x)
+    return Number(x);
   }
 }
 ```
@@ -484,12 +482,12 @@ function foo(x): any {
 ```ts
 // echo函数就是泛型
 function echo<T>(arg: T): T {
-  return arg
+  return arg;
 }
 // 明确传入类型参数
-echo<string>('Hello')
+echo<string>('Hello');
 // 使用ts的类型推论，编译器会根据参数自动确认T的类型
-echo('Hello')
+echo('Hello');
 ```
 
 ### 泛型变量
@@ -499,7 +497,7 @@ echo('Hello')
 ```ts
 function echo<T>(arg: T): number {
   // error。布尔，数字类型是没有length属性的
-  return arg.length
+  return arg.length;
 }
 ```
 
@@ -507,8 +505,8 @@ function echo<T>(arg: T): number {
 
 ```ts
 function getArrayLength<T>(arg: Array<T>) {
-  console.log((arg as Array<any>).length) // ok
-  return arg
+  console.log((arg as Array<any>).length); // ok
+  return arg;
 }
 ```
 
@@ -516,16 +514,16 @@ function getArrayLength<T>(arg: Array<T>) {
 
 ```ts
 interface Foo {
-  <T>(arg: T): T
+  <T>(arg: T): T;
 }
-const foo: Foo = <T>(arg: T): T => arg
+const foo: Foo = <T>(arg: T): T => arg;
 
 // 将泛型参数当作接口的一个参数，明确泛型类型
 interface Foo<T> {
-  (arg: T): T
+  (arg: T): T;
 }
 // arg将会被推导为number类型
-const foo: Foo<number> = (arg) => arg
+const foo: Foo<number> = (arg) => arg;
 ```
 
 ### 泛型类
@@ -534,16 +532,16 @@ const foo: Foo<number> = (arg) => arg
 
 ```ts
 class Foo<T, U> {
-  static name: T // error，静态成员不能泛型类型
+  static name: T; // error，静态成员不能泛型类型
   constructor(public x: T, public y: U) {}
   getY(): U {
-    return this.y
+    return this.y;
   }
   getX(): T {
-    return this.x
+    return this.x;
   }
 }
-const foo = new Foo('CyberpuCk', 2077)
+const foo = new Foo('CyberpuCk', 2077);
 ```
 
 ### 泛型约束
@@ -552,23 +550,23 @@ const foo = new Foo('CyberpuCk', 2077)
 
 ```ts
 interface NameConstraint {
-  name: string
+  name: string;
 }
 // 约束了泛型参数T，必须包含name属性，而不是任意类型
 function witcher<T extends NameConstraint>(people: T): T {
-  return people
+  return people;
 }
 // ok
-witcher({ name: 'geralt' })
+witcher({ name: 'geralt' });
 // error, 必须有name属性
-witcher('geralt')
+witcher('geralt');
 ```
 
 ### 泛型约束与索引类型
 
 ```ts
 function getValue(obj: object, key: string) {
-  return obj[key] // error
+  return obj[key]; // error
 }
 ```
 
@@ -576,7 +574,7 @@ function getValue(obj: object, key: string) {
 
 ```ts
 function getValue<T extends object>(obj: T, key: string) {
-  return obj[key] // error
+  return obj[key]; // error
 }
 ```
 
@@ -584,7 +582,7 @@ function getValue<T extends object>(obj: T, key: string) {
 
 ```ts
 function getValue<T extends object, U extends keyof T>(obj: T, key: U) {
-  return obj[key] // ok
+  return obj[key]; // ok
 }
 ```
 
@@ -592,19 +590,19 @@ function getValue<T extends object, U extends keyof T>(obj: T, key: U) {
 
 ```ts
 interface FirstInterface {
-  doSomething(): number
+  doSomething(): number;
 }
 
 interface SecondInterface {
-  doSomethingElse(): string
+  doSomethingElse(): string;
 }
 
 class Demo<T extends FirstInterface, SecondInterface> {
-  private genericProperty: T
+  private genericProperty: T;
 
   useT() {
-    this.genericProperty.doSomething()
-    this.genericProperty.doSomethingElse() // 类型“T”上不存在属性“doSomethingElse”
+    this.genericProperty.doSomething();
+    this.genericProperty.doSomethingElse(); // 类型“T”上不存在属性“doSomethingElse”
   }
 }
 ```
@@ -612,14 +610,13 @@ class Demo<T extends FirstInterface, SecondInterface> {
 正确的做法：
 
 ```ts
-interface ChildInterface extends FirstInterface, SecondInterface {
-}
+interface ChildInterface extends FirstInterface, SecondInterface {}
 class Demo<T extends ChildInterface> {
-  private genericProperty: T
+  private genericProperty: T;
 
   useT() {
-    this.genericProperty.doSomething()
-    this.genericProperty.doSomethingElse()
+    this.genericProperty.doSomething();
+    this.genericProperty.doSomethingElse();
   }
 }
 ```
@@ -628,19 +625,19 @@ class Demo<T extends ChildInterface> {
 
 ```ts
 interface FirstInterface {
-  doSomething(): number
+  doSomething(): number;
 }
 
 interface SecondInterface {
-  doSomethingElse(): string
+  doSomethingElse(): string;
 }
 
 class Demo<T extends FirstInterface & SecondInterface> {
-  private genericProperty: T
+  private genericProperty: T;
 
   useT() {
-    this.genericProperty.doSomething() // ok
-    this.genericProperty.doSomethingElse() // ok
+    this.genericProperty.doSomething(); // ok
+    this.genericProperty.doSomethingElse(); // ok
   }
 }
 ```
@@ -651,15 +648,15 @@ class Demo<T extends FirstInterface & SecondInterface> {
 
 ```ts
 function factory<T>(type: T): T {
-  return new type() // This expression is not constructable.
+  return new type(); // This expression is not constructable.
 }
 ```
 
 编译器会告诉我们这个表达式不能构造，因为我们没有声明这个泛型 T 是构造函数，这个时候就需要 new 的帮助了。
 
 ```ts
-function factory<T>(type: {new(): T}): T {
-  return new type() // ok
+function factory<T>(type: { new (): T }): T {
+  return new type(); // ok
 }
 ```
 
@@ -668,14 +665,14 @@ function factory<T>(type: {new(): T}): T {
 ### 合理的使用泛型（配合 Axios 使用的例子）
 
 ```ts
-import axios from 'axios'
+import axios from 'axios';
 
 // 通用的返回结构
 // 使用泛型，封装通用的返回的数据接口
 interface ResponseData<T = any> {
-  code: number
-  result: T
-  message: string
+  code: number;
+  result: T;
+  message: string;
 }
 
 // 封装的请求函数
@@ -684,28 +681,28 @@ function getUser<T>() {
   return axios
     .get<ResponseData<T>>('/user')
     .then((res) => {
-      return res.data
+      return res.data;
     })
-    .catch((error) => {})
+    .catch((error) => {});
 }
 // 请求一组用户数据
 function getUsers<T>() {
   return axios
     .get<ResponseData<T>>('/users')
     .then((res) => {
-      return res.data
+      return res.data;
     })
-    .catch((error) => {})
+    .catch((error) => {});
 }
 // 的接口
 interface User {
-  id: string
-  name: string
+  id: string;
+  name: string;
 }
 // 使用
 async function test() {
-  await getUser<User>()
-  await getUsers<User[]>()
+  await getUser<User>();
+  await getUsers<User[]>();
 }
 ```
 
@@ -733,9 +730,9 @@ enum Witcher {
   Geralt,
 }
 // ok
-let witcher: Witcher = Witcher.Ciri
+let witcher: Witcher = Witcher.Ciri;
 // error
-let witcher: Witcher = 'V'
+let witcher: Witcher = 'V';
 ```
 
 ### 运行时枚举
@@ -748,9 +745,9 @@ enum Witcher {
   Geralt = 'Geralt of Rivia',
 }
 function getGeraltMessage(arg: { [key: string]: string }): string {
-  return arg.Geralt
+  return arg.Geralt;
 }
-getGeraltMessage(Witcher) // Geralt of Rivia
+getGeraltMessage(Witcher); // Geralt of Rivia
 ```
 
 ### 编译时枚举
@@ -764,8 +761,8 @@ enum Witcher {
   Ciri = 'Queen',
   Geralt = 'Geralt of Rivia',
 }
-type keys = keyof Witcher // toString, charAt………………
-type keys = keyof typeof Witcher // Ciri, Geralt，所有的枚举类型
+type keys = keyof Witcher; // toString, charAt………………
+type keys = keyof typeof Witcher; // Ciri, Geralt，所有的枚举类型
 ```
 
 ### const 枚举
@@ -777,7 +774,7 @@ const enum Witcher {
   Ciri = 'Queen',
   Geralt = 'Geralt of Rivia',
 }
-const witchers: Witcher[] = [Witcher.Ciri, Witcher.Geralt]
+const witchers: Witcher[] = [Witcher.Ciri, Witcher.Geralt];
 // 编译后
 // const witchers = ['Queen', 'Geralt of Rivia']
 ```
@@ -794,12 +791,12 @@ enum Color {
 }
 namespace Color {
   export function print(color: Color): void {
-    alert(Color[color])
+    alert(Color[color]);
   }
-  export const name = 'colors'
+  export const name = 'colors';
 }
-Color.print(Color.Blue) // Blue
-alert(Color.name) // colors
+Color.print(Color.Blue); // Blue
+alert(Color.name); // colors
 ```
 
 ### 开放式枚举

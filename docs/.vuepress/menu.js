@@ -18,6 +18,7 @@ const getNav = () => {
       link: '/FrontEndTool/',
     },
     { text: 'NodeJS', link: '/NodeJS/' },
+    { text: 'TypeScript', link: '/TS/' },
     { text: 'Java', link: '/Java/' },
     { text: 'Notes', link: '/notes/' },
     { text: 'Reading', link: '/Reading/' },
@@ -170,6 +171,15 @@ const getSidebar = () => {
       'dev-server',
       'Nest.js入门',
     ],
+    '/TS/': [
+      '',
+      {
+        title: 'TS 基础',
+        collapsable: false,
+        children: ['TS1', 'TS2'],
+      },
+    ],
+
     '/JsFrame/': [
       '',
       'vue&react',
@@ -286,8 +296,6 @@ const getSidebar = () => {
           'docs1/对象静态方法总结分享',
           'docs1/regexp1',
           'docs1/regexp2',
-          'docs1/TS1',
-          'docs1/TS2',
         ],
       },
       {
