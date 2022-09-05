@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>nextTick | 朝花夕拾</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    <link rel="icon" href="/logo.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <meta name="description" content="朝花夕拾技术空间">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, minimum-scale=1">
+    <meta name="theme-color" content="#000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.b65e0cd9.css" as="style"><link rel="preload" href="/assets/js/app.d0ad182d.js" as="script"><link rel="preload" href="/assets/js/38.919c3cbe.js" as="script"><link rel="preload" href="/assets/js/3.d5fb71e9.js" as="script"><link rel="preload" href="/assets/js/196.fc852ad2.js" as="script"><link rel="prefetch" href="/assets/js/10.76de0564.js"><link rel="prefetch" href="/assets/js/100.8573b91f.js"><link rel="prefetch" href="/assets/js/101.08d5a183.js"><link rel="prefetch" href="/assets/js/102.bb53d85c.js"><link rel="prefetch" href="/assets/js/103.595d51d1.js"><link rel="prefetch" href="/assets/js/104.45defa66.js"><link rel="prefetch" href="/assets/js/105.46512c46.js"><link rel="prefetch" href="/assets/js/106.0d498655.js"><link rel="prefetch" href="/assets/js/107.3ef97212.js"><link rel="prefetch" href="/assets/js/108.7209153f.js"><link rel="prefetch" href="/assets/js/109.fe339e70.js"><link rel="prefetch" href="/assets/js/11.fce4a65a.js"><link rel="prefetch" href="/assets/js/110.17010454.js"><link rel="prefetch" href="/assets/js/111.4e0595e5.js"><link rel="prefetch" href="/assets/js/112.71f3d84c.js"><link rel="prefetch" href="/assets/js/113.3334f655.js"><link rel="prefetch" href="/assets/js/114.a7ae1499.js"><link rel="prefetch" href="/assets/js/115.e3a33639.js"><link rel="prefetch" href="/assets/js/116.a2c71745.js"><link rel="prefetch" href="/assets/js/117.0b1303dc.js"><link rel="prefetch" href="/assets/js/118.cc845349.js"><link rel="prefetch" href="/assets/js/119.c249a666.js"><link rel="prefetch" href="/assets/js/12.618952c1.js"><link rel="prefetch" href="/assets/js/120.3169cdf4.js"><link rel="prefetch" href="/assets/js/121.270a7b37.js"><link rel="prefetch" href="/assets/js/122.ff3e2b43.js"><link rel="prefetch" href="/assets/js/123.868985da.js"><link rel="prefetch" href="/assets/js/124.eb568d5f.js"><link rel="prefetch" href="/assets/js/125.2aa02105.js"><link rel="prefetch" href="/assets/js/126.6fc2ee8a.js"><link rel="prefetch" href="/assets/js/127.aced746f.js"><link rel="prefetch" href="/assets/js/128.6f73918a.js"><link rel="prefetch" href="/assets/js/129.bd25e12e.js"><link rel="prefetch" href="/assets/js/13.6bdb5752.js"><link rel="prefetch" href="/assets/js/130.a306e03e.js"><link rel="prefetch" href="/assets/js/131.802b3e19.js"><link rel="prefetch" href="/assets/js/132.0d25e43a.js"><link rel="prefetch" href="/assets/js/133.c1af1486.js"><link rel="prefetch" href="/assets/js/134.62277656.js"><link rel="prefetch" href="/assets/js/135.a0e2fea1.js"><link rel="prefetch" href="/assets/js/136.16257f86.js"><link rel="prefetch" href="/assets/js/137.65475e26.js"><link rel="prefetch" href="/assets/js/138.a765760a.js"><link rel="prefetch" href="/assets/js/139.7ef0d2ed.js"><link rel="prefetch" href="/assets/js/14.24ec02b8.js"><link rel="prefetch" href="/assets/js/140.ef273fca.js"><link rel="prefetch" href="/assets/js/141.d83be345.js"><link rel="prefetch" href="/assets/js/142.4fbea2c4.js"><link rel="prefetch" href="/assets/js/143.7a68ec87.js"><link rel="prefetch" href="/assets/js/144.fe9b8333.js"><link rel="prefetch" href="/assets/js/145.2c264e26.js"><link rel="prefetch" href="/assets/js/146.13f58bc2.js"><link rel="prefetch" href="/assets/js/147.634d7147.js"><link rel="prefetch" href="/assets/js/148.d44da5c6.js"><link rel="prefetch" href="/assets/js/149.87ed40f3.js"><link rel="prefetch" href="/assets/js/15.acd68880.js"><link rel="prefetch" href="/assets/js/150.d6075925.js"><link rel="prefetch" href="/assets/js/151.eaaf11a3.js"><link rel="prefetch" href="/assets/js/152.66c4ce7e.js"><link rel="prefetch" href="/assets/js/153.b870e658.js"><link rel="prefetch" href="/assets/js/154.2966aa09.js"><link rel="prefetch" href="/assets/js/155.105ff7fd.js"><link rel="prefetch" href="/assets/js/156.ffb1918e.js"><link rel="prefetch" href="/assets/js/157.3cbeb30c.js"><link rel="prefetch" href="/assets/js/158.276b7362.js"><link rel="prefetch" href="/assets/js/159.07e4e4eb.js"><link rel="prefetch" href="/assets/js/16.9a3c85b1.js"><link rel="prefetch" href="/assets/js/160.9ebb0ba2.js"><link rel="prefetch" href="/assets/js/161.4b89eb9f.js"><link rel="prefetch" href="/assets/js/162.9e5a72f3.js"><link rel="prefetch" href="/assets/js/163.d543cebe.js"><link rel="prefetch" href="/assets/js/164.f74fa7ef.js"><link rel="prefetch" href="/assets/js/165.63ab79f0.js"><link rel="prefetch" href="/assets/js/166.dd8a2352.js"><link rel="prefetch" href="/assets/js/167.374c3c1d.js"><link rel="prefetch" href="/assets/js/168.dbd0c7f8.js"><link rel="prefetch" href="/assets/js/169.51f31d07.js"><link rel="prefetch" href="/assets/js/17.41b3a688.js"><link rel="prefetch" href="/assets/js/170.9f4be02b.js"><link rel="prefetch" href="/assets/js/171.1200976b.js"><link rel="prefetch" href="/assets/js/172.4f642479.js"><link rel="prefetch" href="/assets/js/173.98930dac.js"><link rel="prefetch" href="/assets/js/174.f93a64b9.js"><link rel="prefetch" href="/assets/js/175.b3b314d0.js"><link rel="prefetch" href="/assets/js/176.6427148e.js"><link rel="prefetch" href="/assets/js/177.14ae1ecf.js"><link rel="prefetch" href="/assets/js/178.953b8111.js"><link rel="prefetch" href="/assets/js/179.0b7527c5.js"><link rel="prefetch" href="/assets/js/18.55165f7d.js"><link rel="prefetch" href="/assets/js/180.6c8b216b.js"><link rel="prefetch" href="/assets/js/181.ea52d62f.js"><link rel="prefetch" href="/assets/js/182.38bd17f2.js"><link rel="prefetch" href="/assets/js/183.70164a4c.js"><link rel="prefetch" href="/assets/js/184.b1957842.js"><link rel="prefetch" href="/assets/js/185.3b19203e.js"><link rel="prefetch" href="/assets/js/186.758a7385.js"><link rel="prefetch" href="/assets/js/187.7c16dbb7.js"><link rel="prefetch" href="/assets/js/188.1d6473fa.js"><link rel="prefetch" href="/assets/js/189.5792388f.js"><link rel="prefetch" href="/assets/js/19.972a0432.js"><link rel="prefetch" href="/assets/js/190.7fbfe7b1.js"><link rel="prefetch" href="/assets/js/191.889518f9.js"><link rel="prefetch" href="/assets/js/192.09b877ca.js"><link rel="prefetch" href="/assets/js/193.b92efd62.js"><link rel="prefetch" href="/assets/js/194.b089013b.js"><link rel="prefetch" href="/assets/js/195.a6c87015.js"><link rel="prefetch" href="/assets/js/197.aa673f1c.js"><link rel="prefetch" href="/assets/js/198.7ec0f21d.js"><link rel="prefetch" href="/assets/js/20.f713860c.js"><link rel="prefetch" href="/assets/js/21.ca887156.js"><link rel="prefetch" href="/assets/js/22.dba5cd0f.js"><link rel="prefetch" href="/assets/js/23.1db09c69.js"><link rel="prefetch" href="/assets/js/24.374c09cf.js"><link rel="prefetch" href="/assets/js/25.6a13cff7.js"><link rel="prefetch" href="/assets/js/26.19ddfb7f.js"><link rel="prefetch" href="/assets/js/27.2dece1df.js"><link rel="prefetch" href="/assets/js/28.2fed561a.js"><link rel="prefetch" href="/assets/js/29.8956bf84.js"><link rel="prefetch" href="/assets/js/30.5c20e9eb.js"><link rel="prefetch" href="/assets/js/31.2eee8158.js"><link rel="prefetch" href="/assets/js/32.2636ce8c.js"><link rel="prefetch" href="/assets/js/33.812d070e.js"><link rel="prefetch" href="/assets/js/34.654ba751.js"><link rel="prefetch" href="/assets/js/35.5754f59e.js"><link rel="prefetch" href="/assets/js/36.641c73b1.js"><link rel="prefetch" href="/assets/js/37.a08be63f.js"><link rel="prefetch" href="/assets/js/39.e280320c.js"><link rel="prefetch" href="/assets/js/4.1191347f.js"><link rel="prefetch" href="/assets/js/40.210358bc.js"><link rel="prefetch" href="/assets/js/41.c161e862.js"><link rel="prefetch" href="/assets/js/42.81184000.js"><link rel="prefetch" href="/assets/js/43.94255bf3.js"><link rel="prefetch" href="/assets/js/44.ae49857f.js"><link rel="prefetch" href="/assets/js/45.812e2f75.js"><link rel="prefetch" href="/assets/js/46.8d2d1299.js"><link rel="prefetch" href="/assets/js/47.bac2773f.js"><link rel="prefetch" href="/assets/js/48.5274d2c7.js"><link rel="prefetch" href="/assets/js/49.a0538c89.js"><link rel="prefetch" href="/assets/js/5.6d54fde4.js"><link rel="prefetch" href="/assets/js/50.fb83d225.js"><link rel="prefetch" href="/assets/js/51.4ca3f468.js"><link rel="prefetch" href="/assets/js/52.50b5df0d.js"><link rel="prefetch" href="/assets/js/53.f2787277.js"><link rel="prefetch" href="/assets/js/54.e4502939.js"><link rel="prefetch" href="/assets/js/55.8094ab60.js"><link rel="prefetch" href="/assets/js/56.62982621.js"><link rel="prefetch" href="/assets/js/57.d4a79f33.js"><link rel="prefetch" href="/assets/js/58.2316e6a9.js"><link rel="prefetch" href="/assets/js/59.1bfbed86.js"><link rel="prefetch" href="/assets/js/6.ffcdfbb7.js"><link rel="prefetch" href="/assets/js/60.1ff0db8e.js"><link rel="prefetch" href="/assets/js/61.c475165a.js"><link rel="prefetch" href="/assets/js/62.c0957e25.js"><link rel="prefetch" href="/assets/js/63.864bb745.js"><link rel="prefetch" href="/assets/js/64.d1abf13d.js"><link rel="prefetch" href="/assets/js/65.9560ff66.js"><link rel="prefetch" href="/assets/js/66.a405bd0b.js"><link rel="prefetch" href="/assets/js/67.99164499.js"><link rel="prefetch" href="/assets/js/68.1bcfea6e.js"><link rel="prefetch" href="/assets/js/69.7e2eac03.js"><link rel="prefetch" href="/assets/js/7.7b3175c4.js"><link rel="prefetch" href="/assets/js/70.78f407f0.js"><link rel="prefetch" href="/assets/js/71.377ec047.js"><link rel="prefetch" href="/assets/js/72.80f4c4b9.js"><link rel="prefetch" href="/assets/js/73.2f84d6e9.js"><link rel="prefetch" href="/assets/js/74.aac7ac4a.js"><link rel="prefetch" href="/assets/js/75.0da348b7.js"><link rel="prefetch" href="/assets/js/76.93f5ce63.js"><link rel="prefetch" href="/assets/js/77.60114f60.js"><link rel="prefetch" href="/assets/js/78.444e0f77.js"><link rel="prefetch" href="/assets/js/79.e58d1719.js"><link rel="prefetch" href="/assets/js/8.67731763.js"><link rel="prefetch" href="/assets/js/80.93794331.js"><link rel="prefetch" href="/assets/js/81.a4bd0d2a.js"><link rel="prefetch" href="/assets/js/82.f8eba14c.js"><link rel="prefetch" href="/assets/js/83.87c812a0.js"><link rel="prefetch" href="/assets/js/84.55a21591.js"><link rel="prefetch" href="/assets/js/85.78953750.js"><link rel="prefetch" href="/assets/js/86.9621a6fa.js"><link rel="prefetch" href="/assets/js/87.676dbb16.js"><link rel="prefetch" href="/assets/js/88.204d674e.js"><link rel="prefetch" href="/assets/js/89.1c5b5ea6.js"><link rel="prefetch" href="/assets/js/9.8502208a.js"><link rel="prefetch" href="/assets/js/90.f7498b43.js"><link rel="prefetch" href="/assets/js/91.78f7d118.js"><link rel="prefetch" href="/assets/js/92.644af8eb.js"><link rel="prefetch" href="/assets/js/93.cb4e5d74.js"><link rel="prefetch" href="/assets/js/94.ce4408fe.js"><link rel="prefetch" href="/assets/js/95.d7185b42.js"><link rel="prefetch" href="/assets/js/96.b9ed3345.js"><link rel="prefetch" href="/assets/js/97.d5b5b5a0.js"><link rel="prefetch" href="/assets/js/98.e21537de.js"><link rel="prefetch" href="/assets/js/99.eed15010.js"><link rel="prefetch" href="/assets/js/vendors~flowchart.eb7b5582.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b65e0cd9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">朝花夕拾</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/Introduction.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/FrontEnd/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Language Menu" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="Language Menu" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://vue3.tanyp.xyz" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/React/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/Vue/" class="nav-link">
+  Vue2
+</a></li><li class="dropdown-item"><!----> <a href="/AngularJS/" class="nav-link">
+  AngularJS
+</a></li></ul></div></div><div class="nav-item"><a href="/JsFrame/" class="nav-link">
+  技术方案
+</a></div><div class="nav-item"><a href="/FrontEndTool/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/NodeJS/" class="nav-link">
+  NodeJS
+</a></div><div class="nav-item"><a href="/TS/" class="nav-link">
+  TypeScript
+</a></div><div class="nav-item"><a href="/Java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  Notes
+</a></div><div class="nav-item"><a href="/Reading/" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><a href="/DSA/" class="nav-link">
+  数据结构与算法
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/Introduction.html" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/FrontEnd/" class="nav-link">
+  前端基础
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Language Menu" class="dropdown-title"><span class="title">前端框架</span> <span class="arrow down"></span></button> <button type="button" aria-label="Language Menu" class="mobile-dropdown-title"><span class="title">前端框架</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://vue3.tanyp.xyz" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue3
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="/React/" class="nav-link">
+  React
+</a></li><li class="dropdown-item"><!----> <a href="/Vue/" class="nav-link">
+  Vue2
+</a></li><li class="dropdown-item"><!----> <a href="/AngularJS/" class="nav-link">
+  AngularJS
+</a></li></ul></div></div><div class="nav-item"><a href="/JsFrame/" class="nav-link">
+  技术方案
+</a></div><div class="nav-item"><a href="/FrontEndTool/" class="nav-link">
+  前端工程化
+</a></div><div class="nav-item"><a href="/NodeJS/" class="nav-link">
+  NodeJS
+</a></div><div class="nav-item"><a href="/TS/" class="nav-link">
+  TypeScript
+</a></div><div class="nav-item"><a href="/Java/" class="nav-link">
+  Java
+</a></div><div class="nav-item"><a href="/notes/" class="nav-link">
+  Notes
+</a></div><div class="nav-item"><a href="/Reading/" class="nav-link">
+  Reading
+</a></div><div class="nav-item"><a href="/DSA/" class="nav-link">
+  数据结构与算法
+</a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="nexttick"><a href="#nexttick" class="header-anchor">#</a> nextTick</h1> <p>使用示例</p> <p>nextTick 函数接收一个回调函数 cb，在下一个 DOM 更新循环之后执行。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token operator">&lt;</span>template<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>p v<span class="token operator">-</span><span class="token keyword">if</span><span class="token operator">=</span><span class="token string">&quot;show&quot;</span> ref<span class="token operator">=</span><span class="token string">&quot;node&quot;</span><span class="token operator">&gt;</span>内容<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>button @click<span class="token operator">=</span><span class="token string">&quot;handleShow&quot;</span><span class="token operator">&gt;</span>显示<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+  <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>template<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    <span class="token function">data</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">show</span><span class="token operator">:</span> <span class="token boolean">false</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">methods</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token function">handleShow</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>show <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// undefined</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">$nextTick</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>$refs<span class="token punctuation">.</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// &lt;p&gt;内容&lt;/p&gt;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+</code></pre></div><p>当 show 被置为 true 时，这时 p 节点还未被渲染，因此打印出的是 undefined，而在 nextTick 的回调里，p 已经渲染好了，这时能正确打印出节点。</p> <p>实现机制：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">nextTick</span><span class="token punctuation">(</span><span class="token parameter">cb<span class="token operator">?</span><span class="token operator">:</span> Function<span class="token punctuation">,</span> ctx<span class="token operator">?</span><span class="token operator">:</span> Object</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> _resolve
+  callbacks<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cb<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token function">cb</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">handleError</span><span class="token punctuation">(</span>e<span class="token punctuation">,</span> ctx<span class="token punctuation">,</span> <span class="token string">'nextTick'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>_resolve<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">_resolve</span><span class="token punctuation">(</span>ctx<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token comment">// 检查上一个异步任务队列（即名为callbacks的任务数组）是否派发和执行完毕了。pending此处相当于一个锁</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>pending<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 若上一个异步任务队列已经执行完毕，则将pending设定为true（把锁锁上）</span>
+    pending <span class="token operator">=</span> <span class="token boolean">true</span>
+    <span class="token comment">// 是否要求一定要派发为macro任务</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>useMacroTask<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">macroTimerFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 如果不说明一定要macro 你们就全都是micro</span>
+      <span class="token function">microTimerFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// $flow-disable-line</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>cb <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> Promise <span class="token operator">!==</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      _resolve <span class="token operator">=</span> resolve
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"><!----><!----></div></div>
+    <script src="/assets/js/app.d0ad182d.js" defer></script><script src="/assets/js/38.919c3cbe.js" defer></script><script src="/assets/js/3.d5fb71e9.js" defer></script><script src="/assets/js/196.fc852ad2.js" defer></script>
+  </body>
+</html>
