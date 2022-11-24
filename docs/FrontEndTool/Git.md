@@ -158,8 +158,10 @@ git reset --soft HEAD^
 
 # 代码回退删除远程
 git log --oneline
+
 git reset --hard HEAD@{4}
 git reset --hard commit_hash
+
 git push -f 删除远程分支
 ```
 
@@ -220,7 +222,7 @@ git cherry-pick --continue
 第一次配置 Git
 
 ```bash
-git config --global user.name "linghuchong"
+git config --global user.name "xxx"
 git config --global user.email "xxxxxx@qq.com"
 ```
 
