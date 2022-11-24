@@ -46,6 +46,9 @@ git branch -vv
 
 # 查看本地和远程分支
 git branch -a
+
+# 查看所有远程分支
+git branch -r
 ```
 
 ```text
@@ -67,6 +70,8 @@ git push origin books
 ```sh
 git branch -d books
 git branch -D books # 有没有提交的merge
+
+# 删除远程分支
 git push origin -d books
 ```
 
@@ -83,6 +88,13 @@ git checkout develop4.0
 git merge --abort
 ```
 
+重命名分支
+
+```sh
+# 把本地的 master 分支重命名为 test
+git branch -m master test
+```
+
 ### 提交代码
 
 ```sh
@@ -91,6 +103,7 @@ git status
 
 # 提交代码
 git commit –a –m ""
+git commit –am ""
 
 # 修改commit信息
 git commit --amend -m "add new file"
@@ -108,6 +121,30 @@ git am # 同步path
 
 ```sh
 git checkout -
+```
+
+### 拉取和推送
+
+```sh
+# 拉取 remote origin 对应的远程仓库的 master 分支合并到本地的 test 分支
+git pull origin master:test
+
+# 不获取tags
+git fetch --no-tags
+git config remote.origin.tagopt --no-tags
+```
+
+`pull` 和 `fetch` 拉去新的更新，区别是 `pull` 会和当前分支合并，`fetch` 不会。
+
+```sh
+# 推送并设置默认远程分支
+git push -u origin master
+
+# 强制推送，就算本地和远程有差异也推上去
+git push -f origin master
+
+# 删除远程主机的 master 分支
+git push origin -d master
 ```
 
 ### 标签
@@ -144,10 +181,28 @@ git stash pop stash@{1}
 
 ```sh
 git remote -v
+
+git remote add <remote name> <url>
 git remote add upstream https://github.com/xxxxx/xxxx.git
+
+# 从远程存储库中获取更改，但不和本地的合并
 git fetch upstream
+# 从特定分支获取更改
+git fetch <remote name> <branch>
+
 git merge upstream/master
 git push origin master
+```
+
+```sh
+# 删除远程仓库
+git remote remove <remote name>
+
+# 重命名远程存储库
+git remote rename <old name> <new name>
+
+# 修改 url
+git remote set-url --add github https:/xxxx.git
 ```
 
 ### 回退到某次 commit
@@ -265,6 +320,17 @@ git push -f git@github.com:xxx/xxx.git master:gh-pages
 ```
 
 pull 根据不同的配置，可等于 fetch + merge 或 fetch + rebase
+
+### vim 基本操作
+
+vim 打开默认是不能输入的，要按 `a` 或者 `i` 进入编辑模式，输入完成后，再按 `Esc` 退出编辑模式，这时左下角会有输入框，输入如下英文字符，注意冒号别打成中文字符，回车即可退出 vim 回到终端:
+
+- `:w`：保存
+- `:q`：退出
+- `:wq`：保存并退出
+- `!`：强制的意思，不能保存时
+- `:w!` 强制保存，不能退出时
+- `:q!` 或 `:wq!` 强制退出
 
 ### 提交格式
 
