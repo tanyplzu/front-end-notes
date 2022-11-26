@@ -159,6 +159,12 @@ git tag -a v1.0
 git tag -a v0.9 85fc7e7
 ```
 
+提交
+
+```sh
+git push origin --tags
+```
+
 ### 暂存
 
 ```sh

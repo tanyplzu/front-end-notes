@@ -227,7 +227,12 @@ const getSidebar = () => {
       {
         title: 'Bable',
         collapsable: false,
-        children: ['babel/创建AST节点', 'babel/在前端脚手架中使用'],
+        children: [
+          'babel/创建AST节点',
+          'babel/在前端脚手架中使用',
+          'babel/user-handbook',
+          'babel/plugin-handbook',
+        ],
       },
       'rollup',
       'ESLint&Prettier',
