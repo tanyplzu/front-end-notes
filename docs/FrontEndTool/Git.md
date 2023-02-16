@@ -17,7 +17,7 @@ git log --all --grep='homepage'
 git log --grep="homepage"
 
 # 获取某人的提交日志
-git log --author="linghuchong"
+git log --author="tanyinping"
 
 # 查看今日的提交
 git log --since="0 am"
@@ -51,13 +51,6 @@ git branch -a
 git branch -r
 ```
 
-```text
-* master
-  remotes/origin/HEAD -> origin/master
-  remotes/origin/gh-pages
-  remotes/origin/master
-```
-
 新建分支
 
 ```sh
@@ -69,7 +62,8 @@ git push origin books
 
 ```sh
 git branch -d books
-git branch -D books # 有没有提交的merge
+# 删除没有被合并的分支要用 -D
+git branch -D books
 
 # 删除远程分支
 git push origin -d books
@@ -77,12 +71,15 @@ git push origin -d books
 
 合并分支
 
+将 `develop` 合入 `master`
+
 ```sh
-git checkout test4.0
-git pull origin test4.0
-git merge develop4.0
-git push origin test4.0
-git checkout develop4.0
+git pull origin develop
+git checkout master
+git pull origin master
+git merge develop
+git push origin master
+git checkout develop
 
 # 对没有合并成功的代码，撤销合并
 git merge --abort
@@ -112,9 +109,10 @@ git commit --amend # 直接编辑提交记录
 # 清除当前目录下所有没add的修改
 git checkout .
 
-# git format-patch 用来对某次提交生成patch，方便发送给其他人员进行参考或者同步
+# git format-patch 对某次提交生成patch，方便发送给其他人员进行参考或者同步
 git format-patch -n HEAD^ # 生成path
-git am # 同步path
+git am *.patch # 同步path
+git am --abort # 恢复原状
 ```
 
 切换到之前分支
@@ -143,8 +141,8 @@ git push -u origin master
 # 强制推送，就算本地和远程有差异也推上去
 git push -f origin master
 
-# 删除远程主机的 master 分支
-git push origin -d master
+# 删除远程主机的 develop 分支
+git push origin -d develop
 ```
 
 ### 标签
@@ -200,6 +198,15 @@ git merge upstream/master
 git push origin master
 ```
 
+同步远程代码也可以写成
+
+```sh
+$ git fetch upstream
+$ git merge upstream/master
+# 或者
+$ git pull upstream main
+```
+
 ```sh
 # 删除远程仓库
 git remote remove <remote name>
@@ -221,9 +228,9 @@ git reset --soft HEAD^
 git log --oneline
 
 git reset --hard HEAD@{4}
-git reset --hard commit_hash
+git reset --hard <commitHash>
 
-git push -f 删除远程分支
+git push -f 删除远程
 ```
 
 - `HEAD^`的意思是上一个版本，也可以写成`HEAD~1`。如果你进行了 2 次 commit，想都撤回，可以使用`HEAD~2`
@@ -232,7 +239,7 @@ git push -f 删除远程分支
 
 ```sh
 # revert 针对某一次commit的反向操作，会生成一次空的commit
-git revert -n commit_hash
+git revert -n <commitHash>
 ```
 
 ### 清理
@@ -271,7 +278,7 @@ git cherry-pick A^..B
 
 用户解决代码冲突后，第一步将修改的文件重新加入暂存区（git add .），第二步使用下面的命令，让 Cherry pick 过程继续执行。
 
-```
+```sh
 git cherry-pick --continue
 ```
 
@@ -282,20 +289,20 @@ git cherry-pick --continue
 
 第一次配置 Git
 
-```bash
+```sh
 git config --global user.name "xxx"
 git config --global user.email "xxxxxx@qq.com"
 ```
 
 克隆某个项目
 
-```bash
+```sh
 git clone ssh://git@code.xxxxxx.git
 ```
 
 如果代码已经准备好推送到仓库，请在终端中执行该命令
 
-```bash
+```sh
 cd existing-project
 git init
 git add --all
@@ -308,7 +315,7 @@ git push -u origin master
 
 如果你的代码已经由 Git 跟踪，然后设置这个仓库作为你的“origin”推送。
 
-```bash
+```sh
 cd existing-project
 git remote set-url origin ssh://git@code.xxxxxx.git
 git push -u origin --all
