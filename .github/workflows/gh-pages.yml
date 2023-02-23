@@ -9,8 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 # 拉去代码
-      - uses: actions/setup-node@v3 # 第三方
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm install
