@@ -1,5 +1,5 @@
 ---
-title: 'Scope 和 Digest'
+title: "Scope 和 Digest"
 sidebarDepth: 0
 ---
 
@@ -31,14 +31,17 @@ http://jsbin.com/UGOVUk/4/embed?js,console
 
 Angular 的 Scope 对象是 POJO（简单的 JavaScript 对象），在它们上面，可以像对其他对象一样添加属性。Scope 对象是用构造函数创建的，我们来写个最简单的版本：
 
-    function Scope() {
-    }
+```js
+function Scope() {}
+```
 
 现在我们就可以使用 new 操作符来创建一个 Scope 对象了。我们也可以在它上面附加一些属性：
 
-    var aScope = new Scope();
-    aScope.firstName = 'Jane';
-    aScope.lastName = 'Smith';
+```js
+var aScope = new Scope();
+aScope.firstName = "Jane";
+aScope.lastName = "Smith";
+```
 
 这些属性没什么特别的。不需要调用特别的设置器（setter），赋值的时候也没什么限制。相反，在两个特别的函数：$watch 和 $digest 之中发生了一些奇妙的事情。
 
@@ -55,29 +58,35 @@ $watch 和 $digest 是相辅相成的。两者一起，构成了 Angular 作用�
 
 为了实现 \$watch，我们需要存储注册过的所有监听器。我们在 Scope 构造函数上添加一个数组：
 
-    function Scope() {
-      this.$$watchers = [];
-    }
+```js
+function Scope() {
+  this.$$watchers = [];
+}
+```
 
 在 Angular 框架中，双美元符前缀 \$\$ 表示这个变量被当作私有的来考虑，不应当在外部代码中调用。
 
 现在我们可以定义 $watch 方法了。它接受两个函数作参数，把它们存储在 $\$watchers 数组中。我们需要在每个 Scope 实例上存储这些函数，所以要把它放在 Scope 的原型上：
 
-    Scope.prototype.$watch = function(watchFn, listenerFn) {
-      var watcher = {
-        watchFn: watchFn,
-        listenerFn: listenerFn
-      };
-      this.$$watchers.push(watcher);
-    };
+```js
+Scope.prototype.$watch = function (watchFn, listenerFn) {
+  var watcher = {
+    watchFn: watchFn,
+    listenerFn: listenerFn,
+  };
+  this.$$watchers.push(watcher);
+};
+```
 
 另外一面就是 \$digest 函数。它执行了所有在作用域上注册过的监听器。我们来实现一个它的简化版，遍历所有监听器，调用它们的监听函数：
 
-    Scope.prototype.$digest = function() {
-      _.forEach(this.$$watchers, function(watch) {
-        watch.listenerFn();
-      });
-    };
+```js
+Scope.prototype.$digest = function () {
+  _.forEach(this.$$watchers, function (watch) {
+    watch.listenerFn();
+  });
+};
+```
 
 现在我们可以添加监听器，然后运行 \$digest 了，这将会调用监听函数：
 
@@ -89,9 +98,11 @@ http://jsbin.com/oMaQoxa/2/embed?js,console
 
 如同上文所述，监听器的监听函数应当返回我们所关注的那部分数据的变化，通常，这部分数据就存在于作用域中。为了使得访问作用域更便利，在调用监控函数的时候，使用当前作用域作为实参。一个关注作用域上 fiestName 属性的监听器像这个样子：
 
-    function(scope) {
-      return scope.firstName;
-    }
+```js
+function(scope) {
+  return scope.firstName;
+}
+```
 
 这是监控函数的一般形式：从作用域获取一些值，然后返回。
 
@@ -99,17 +110,19 @@ http://jsbin.com/oMaQoxa/2/embed?js,console
 
 想要这么做，$digest 需要记住每个监控函数上次返回的值。既然我们现在已经为每个监听器创建过一个对象，只要把上一次的值存在这上面就行了。下面是检测每个监控函数值变更的 $digest 新实现：
 
-    Scope.prototype.$digest = function() {
-      var self = this;
-      _.forEach(this.$$watchers, function(watch) {
-        var newValue = watch.watchFn(self);
-        var oldValue = watch.last;
-        if (newValue !== oldValue) {
-          watch.listenerFn(newValue, oldValue, self);
-        }
-        watch.last = newValue;
-      });
-    };
+```js
+Scope.prototype.$digest = function () {
+  var self = this;
+  _.forEach(this.$$watchers, function (watch) {
+    var newValue = watch.watchFn(self);
+    var oldValue = watch.last;
+    if (newValue !== oldValue) {
+      watch.listenerFn(newValue, oldValue, self);
+    }
+    watch.last = newValue;
+  });
+};
+```
 
 对每个监听器，我们调用监控函数，把作用域自身当作实参传递进去，然后比较这个返回值和上次返回值，如果不同，就调用监听函数。方便起见，我们把新旧值和作用域都当作参数传递给监听函数。最终，我们把监听器的 last 属性设置成新返回的值，下一次可以用它来作比较。
 
@@ -131,13 +144,15 @@ http://jsbin.com/OsITIZu/3/embed?js,console
 
 想要支持这个用例，我们需要在 \$watch 里面检测是否监控函数被省略了，如果是这样，用个空函数来代替它：
 
-    Scope.prototype.$watch = function(watchFn, listenerFn) {
-      var watcher = {
-        watchFn: watchFn,
-        listenerFn: listenerFn || function() { }
-      };
-      this.$$watchers.push(watcher);
-    };
+```js
+Scope.prototype.$watch = function (watchFn, listenerFn) {
+  var watcher = {
+    watchFn: watchFn,
+    listenerFn: listenerFn || function () {},
+  };
+  this.$$watchers.push(watcher);
+};
+```
 
 如果用了这个模式，需要记住，即使没有 listenerFn，Angular 也会寻找 watchFn 的返回值。如果返回了一个值，这个值会提交给脏检查。想要采用这个用法又想避免多余的事情，只要监控函数不返回任何值就行了。在这个例子里，监听器的值始终会是未定义的。
 
@@ -155,29 +170,33 @@ http://jsbin.com/eTIpUyE/2/embed?js,console
 
 首先，我们把现在的 $digest 函数改名为 $\$digestOnce，它把所有的监听器运行一次，返回一个布尔值，表示是否还有变更了：
 
-    Scope.prototype.$$digestOnce = function() {
-      var self  = this;
-      var dirty;
-      _.forEach(this.$$watchers, function(watch) {
-        var newValue = watch.watchFn(self);
-        var oldValue = watch.last;
-        if (newValue !== oldValue) {
-          watch.listenerFn(newValue, oldValue, self);
-          dirty = true;
-        }
-        watch.last = newValue;
-      });
-      return dirty;
-    };
+```js
+Scope.prototype.$$digestOnce = function () {
+  var self = this;
+  var dirty;
+  _.forEach(this.$$watchers, function (watch) {
+    var newValue = watch.watchFn(self);
+    var oldValue = watch.last;
+    if (newValue !== oldValue) {
+      watch.listenerFn(newValue, oldValue, self);
+      dirty = true;
+    }
+    watch.last = newValue;
+  });
+  return dirty;
+};
+```
 
 然后，我们重新定义 $digest，它作为一个“外层循环”来运行，当有变更发生的时候，调用 $\$digestOnce：
 
-    Scope.prototype.$digest = function() {
-      var dirty;
-      do {
-        dirty = this.$$digestOnce();
-      } while (dirty);
-    };
+```js
+Scope.prototype.$digest = function () {
+  var dirty;
+  do {
+    dirty = this.$$digestOnce();
+  } while (dirty);
+};
+```
 
 \$digest 现在至少运行每个监听器一次了。如果第一次运行完，有监控值发生变更了，标记为 dirty，所有监听器再运行第二次。这会一直运行，直到所有监控的值都不再变化，整个局面稳定下来了。
 
@@ -205,16 +224,18 @@ JSBin 执行了一段时间之后就停止了（在我机器上大概跑了 100,
 
 我们继续，给外层 digest 循环添加一个循环计数器。如果达到了 TTL，就抛出异常：
 
-    Scope.prototype.$digest = function() {
-      var ttl = 10;
-      var dirty;
-      do {
-        dirty = this.$$digestOnce();
-        if (dirty && !(ttl--)) {
-          throw "10 digest iterations reached";
-        }
-      } while (dirty);
-    };
+```js
+Scope.prototype.$digest = function () {
+  var ttl = 10;
+  var dirty;
+  do {
+    dirty = this.$$digestOnce();
+    if (dirty && !ttl--) {
+      throw "10 digest iterations reached";
+    }
+  } while (dirty);
+};
+```
 
 下面是更新过的版本，可以让我们循环引用的监控例子抛出异常：
 
@@ -230,14 +251,16 @@ http://jsbin.com/uNapUWe/2/embed?js,console
 
 这类脏检查需要给 $watch 函数传入第三个布尔类型的可选参数当标志来开启。当这个标志为真的时候，基于值的检查开启。我们来重新定义 $watch，接受这个参数，并且把它存在监听器里：
 
-    Scope.prototype.$watch = function(watchFn, listenerFn, valueEq) {
-      var watcher = {
-        watchFn: watchFn,
-        listenerFn: listenerFn,
-        valueEq: !!valueEq
-      };
-      this.$$watchers.push(watcher);
-    };
+```js
+Scope.prototype.$watch = function (watchFn, listenerFn, valueEq) {
+  var watcher = {
+    watchFn: watchFn,
+    listenerFn: listenerFn,
+    valueEq: !!valueEq,
+  };
+  this.$$watchers.push(watcher);
+};
+```
 
 我们所做的一切是把这个标志加在监听器上，通过两次取反，强制转换为布尔类型。当用户调用 \$watch，没传入第三个参数的时候，valueEq 会是未定义的，在监听器对象里就变成了 false。
 
@@ -245,32 +268,36 @@ http://jsbin.com/uNapUWe/2/embed?js,console
 
 Angular 内置了自己的相等检测函数，但是我们会用 Lo-Dash 提供的那个。让我们定义一个新函数，取两个值和一个布尔标志，并比较相应的值：
 
-    Scope.prototype.$$areEqual = function(newValue, oldValue, valueEq) {
-      if (valueEq) {
-        return _.isEqual(newValue, oldValue);
-      } else {
-        return newValue === oldValue;
-      }
-    };
+```js
+Scope.prototype.$$areEqual = function (newValue, oldValue, valueEq) {
+  if (valueEq) {
+    return _.isEqual(newValue, oldValue);
+  } else {
+    return newValue === oldValue;
+  }
+};
+```
 
 为了提示值的变化，我们也需要改变之前在每个监听器上存储旧值的方式。只存储当前值的引用是不够的，因为在这个值内部发生的变更也会生效到它的引用上，\$\$areEqual 方法比较同一个值的两个引用始终为真，监控不到变化，因此，我们需要建立当前值的深拷贝，并且把它们储存起来。
 
 就像相等检测一样，Angular 也内置了自己的深拷贝函数，但我们还是用 Lo-Dash 提供的。我们修改一下 $digestOnce，在内部使用新的 $\$areEqual 函数，如果需要的话，也复制最后一次的引用：
 
-    Scope.prototype.$$digestOnce = function() {
-      var self  = this;
-      var dirty;
-      _.forEach(this.$$watchers, function(watch) {
-        var newValue = watch.watchFn(self);
-        var oldValue = watch.last;
-        if (!self.$$areEqual(newValue, oldValue, watch.valueEq)) {
-          watch.listenerFn(newValue, oldValue, self);
-          dirty = true;
-        }
-        watch.last = (watch.valueEq ? _.cloneDeep(newValue) : newValue);
-      });
-      return dirty;
-    };
+```js
+Scope.prototype.$$digestOnce = function () {
+  var self = this;
+  var dirty;
+  _.forEach(this.$$watchers, function (watch) {
+    var newValue = watch.watchFn(self);
+    var oldValue = watch.last;
+    if (!self.$$areEqual(newValue, oldValue, watch.valueEq)) {
+      watch.listenerFn(newValue, oldValue, self);
+      dirty = true;
+    }
+    watch.last = watch.valueEq ? _.cloneDeep(newValue) : newValue;
+  });
+  return dirty;
+};
+```
 
 现在我们可以看到两种脏检测方式的差异：
 
@@ -288,15 +315,21 @@ http://jsbin.com/ARiWENO/3/embed?js,console
 
 对于基于值的脏检测来说，这个事情已经被 Lo-Dash 的 isEqual 函数处理掉了。对于基于引用的脏检测来说，我们需要自己处理。来修改一下 \$\$areEqual 函数的代码：
 
-    Scope.prototype.$$areEqual = function(newValue, oldValue, valueEq) {
-      if (valueEq) {
-        return _.isEqual(newValue, oldValue);
-      } else {
-        return newValue === oldValue ||
-          (typeof newValue === 'number' && typeof oldValue === 'number' &&
-           isNaN(newValue) && isNaN(oldValue));
-      }
-    };
+```js
+Scope.prototype.$$areEqual = function (newValue, oldValue, valueEq) {
+  if (valueEq) {
+    return _.isEqual(newValue, oldValue);
+  } else {
+    return (
+      newValue === oldValue ||
+      (typeof newValue === "number" &&
+        typeof oldValue === "number" &&
+        isNaN(newValue) &&
+        isNaN(oldValue))
+    );
+  }
+};
+```
 
 现在有 NaN 的监听器也正常了：
 
@@ -310,9 +343,11 @@ http://jsbin.com/ijINaRA/2/embed?js,console
 
 \$eval 的实现很简单：
 
-    Scope.prototype.$eval = function(expr, locals) {
-      return expr(this, locals);
-    };
+```js
+Scope.prototype.$eval = function (expr, locals) {
+  return expr(this, locals);
+};
+```
 
 \$eval 的使用一样很简单：
 
@@ -328,13 +363,15 @@ http://jsbin.com/UzaWUC/1/embed?js,console
 
 $apply 使用函数作参数，它用 $eval 执行这个函数，然后通过 \$digest 触发 digest 循环。下面是一个简单的实现：
 
-    Scope.prototype.$apply = function(expr) {
-      try {
-        return this.$eval(expr);
-      } finally {
-        this.$digest();
-      }
-    };
+```js
+Scope.prototype.$apply = function (expr) {
+  try {
+    return this.$eval(expr);
+  } finally {
+    this.$digest();
+  }
+};
+```
 
 \$digest 的调用放置于 finally 块中，以确保即使函数抛出异常，也会执行 digest。
 
@@ -354,35 +391,41 @@ http://jsbin.com/UzaWUC/2/embed?js,console
 
 我们首先需要的是存储 \$evalAsync 列入计划的任务，可以在 Scope 构造函数中初始化一个数组来做这事：
 
-    function Scope() {
-      this.$$watchers = [];
-      this.$$asyncQueue = [];
-    }
+```js
+function Scope() {
+  this.$$watchers = [];
+  this.$$asyncQueue = [];
+}
+```
 
 我们再来定义 \$evalAsync，它添加将在这个队列上执行的函数：
 
-    Scope.prototype.$evalAsync = function(expr) {
-      this.$$asyncQueue.push({scope: this, expression: expr});
-    };
+```js
+Scope.prototype.$evalAsync = function (expr) {
+  this.$$asyncQueue.push({ scope: this, expression: expr });
+};
+```
 
 我们显式在放入队列的对象上设置当前作用域，是为了使用作用域的继承，在这个系列的下一篇文章中，我们会讨论这个。
 
 然后，我们在 $digest 中要做的第一件事就是从队列中取出每个东西，然后使用 $eval 来触发所有被延迟执行的函数：
 
-    Scope.prototype.$digest = function() {
-      var ttl = 10;
-      var dirty;
-      do {
-        while (this.$$asyncQueue.length) {
-          var asyncTask = this.$$asyncQueue.shift();
-          this.$eval(asyncTask.expression);
-        }
-        dirty = this.$$digestOnce();
-        if (dirty && !(ttl--)) {
-          throw "10 digest iterations reached";
-        }
-      } while (dirty);
-    };
+```js
+Scope.prototype.$digest = function () {
+  var ttl = 10;
+  var dirty;
+  do {
+    while (this.$$asyncQueue.length) {
+      var asyncTask = this.$$asyncQueue.shift();
+      this.$eval(asyncTask.expression);
+    }
+    dirty = this.$$digestOnce();
+    if (dirty && !ttl--) {
+      throw "10 digest iterations reached";
+    }
+  } while (dirty);
+};
+```
 
 这个实现保证了：如果当作用域还是脏的，就想把一个函数延迟执行，那这个函数会在稍后执行，但还处于同一个 digest 中。
 
@@ -398,123 +441,139 @@ $evalAsync 做的另外一件事情是：如果现在没有其他的 $digest 在
 
 在 Scope 的构造函数里，我们引入一个叫 \$\$phase 的字段，初始化为 null：
 
-    function Scope() {
-      this.$$watchers = [];
-      this.$$asyncQueue = [];
-      this.$$phase = null;
-    }
+```js
+function Scope() {
+  this.$$watchers = [];
+  this.$$asyncQueue = [];
+  this.$$phase = null;
+}
+```
 
 然后，我们定义一些方法用于控制这个阶段变量：一个用于设置，一个用于清除，也加个额外的检测，以确保不会把已经激活状态的阶段再设置一次：
 
-    Scope.prototype.$beginPhase = function(phase) {
-      if (this.$$phase) {
-        throw this.$$phase + ' already in progress.';
-      }
-      this.$$phase = phase;
-    };
+```js
+Scope.prototype.$beginPhase = function (phase) {
+  if (this.$$phase) {
+    throw this.$$phase + " already in progress.";
+  }
+  this.$$phase = phase;
+};
 
-    Scope.prototype.$clearPhase = function() {
-      this.$$phase = null;
-    };
+Scope.prototype.$clearPhase = function () {
+  this.$$phase = null;
+};
+```
 
 在 $digest 方法里，我们来从外层循环设置阶段属性为“$digest”：
 
-    Scope.prototype.$digest = function() {
-      var ttl = 10;
-      var dirty;
-      this.$beginPhase("$digest");
-      do {
-        while (this.$$asyncQueue.length) {
-          var asyncTask = this.$$asyncQueue.shift();
-          this.$eval(asyncTask.expression);
-        }
-        dirty = this.$$digestOnce();
-        if (dirty && !(ttl--)) {
-          this.$clearPhase();
-          throw "10 digest iterations reached";
-        }
-      } while (dirty);
+```js
+Scope.prototype.$digest = function () {
+  var ttl = 10;
+  var dirty;
+  this.$beginPhase("$digest");
+  do {
+    while (this.$$asyncQueue.length) {
+      var asyncTask = this.$$asyncQueue.shift();
+      this.$eval(asyncTask.expression);
+    }
+    dirty = this.$$digestOnce();
+    if (dirty && !ttl--) {
       this.$clearPhase();
-    };
+      throw "10 digest iterations reached";
+    }
+  } while (dirty);
+  this.$clearPhase();
+};
+```
 
 我们把 \$apply 也修改一下，在它里面也设置个跟自己一样的阶段。在调试的时候，这个会有些用：
 
-    Scope.prototype.$apply = function(expr) {
-      try {
-        this.$beginPhase("$apply");
-        return this.$eval(expr);
-      } finally {
-        this.$clearPhase();
-        this.$digest();
-      }
-    };
+```js
+Scope.prototype.$apply = function (expr) {
+  try {
+    this.$beginPhase("$apply");
+    return this.$eval(expr);
+  } finally {
+    this.$clearPhase();
+    this.$digest();
+  }
+};
+```
 
-最终，把对 $digest 的调度放进 $evalAsync。它会检测作用域上现有的阶段变量，如果没有（也没有已列入计划的异步任务），就把这个 digest 列入计划。
+最终，把对 `$digest` 的调度放进 `$evalAsync`。它会检测作用域上现有的阶段变量，如果没有（也没有已列入计划的异步任务），就把这个 digest 列入计划。
 
-    Scope.prototype.$evalAsync = function(expr) {
-      var self = this;
-      if (!self.$$phase && !self.$$asyncQueue.length) {
-        setTimeout(function() {
-          if (self.$$asyncQueue.length) {
-            self.$digest();
-          }
-        }, 0);
+```js
+Scope.prototype.$evalAsync = function (expr) {
+  var self = this;
+  if (!self.$$phase && !self.$$asyncQueue.length) {
+    setTimeout(function () {
+      if (self.$$asyncQueue.length) {
+        self.$digest();
       }
-      self.$$asyncQueue.push({scope: self, expression: expr});
-    };
+    }, 0);
+  }
+  self.$$asyncQueue.push({ scope: self, expression: expr });
+};
+```
 
 有了这个实现之后，不管何时、何地，调用 \$evalAsync，都可以确定有一个 digest 会在不远的将来发生。
 
 http://jsbin.com/iKeSaGi/1/embed?js,console
 
-# 在 digest 之后执行代码 - \$\$postDigest
+# 在 digest 之后执行代码 - `\$\$postDigest`
 
 还有一种方式可以把代码附加到 digest 循环中，那就是把一个 \$\$postDigest 函数列入计划。
 
 在 Angular 中，函数名字前面有双美元符号表示它是一个内部的东西，不是应用开发人员应该用的。但它确实存在，所以我们也要把它实现出来。
 
-就像 $evalAsync 一样，$$postDigest 也能把一个函数列入计划，让它“以后”运行。具体来说，这个函数将在下一次 digest 完成之后运行。将一个 $$postDigest 函数列入计划不会导致一个 digest 也被延后，所以这个函数的执行会被推迟到直到某些其他原因引起一次 digest。顾名思义，$$postDigest 函数是在 digest 之后运行的，如果你在 $$digest 里面修改了作用域，需要手动调用 $digest 或者 \$apply，以确保这些变更生效。
+就像 `$evalAsync` 一样，`$$postDigest` 也能把一个函数列入计划，让它“以后”运行。具体来说，这个函数将在下一次 digest 完成之后运行。将一个 $$postDigest 函数列入计划不会导致一个 digest 也被延后，所以这个函数的执行会被推迟到直到某些其他原因引起一次 digest。顾名思义，$$postDigest 函数是在 digest 之后运行的，如果你在 $$digest 里面修改了作用域，需要手动调用 $digest 或者 \$apply，以确保这些变更生效。
 
 首先，我们给 Scope 的构造函数加队列，这个队列给 \$\$postDigest 函数用：
 
-    function Scope() {
-      this.$$watchers = [];
-      this.$$asyncQueue = [];
-      this.$$postDigestQueue = [];
-      this.$$phase = null;
+```js
+function Scope() {
+  this.$$watchers = [];
+  this.$$asyncQueue = [];
+  this.$$postDigestQueue = [];
+  this.$$phase = null;
+}
+```
+
+然后，我们把 `\$\$postDigest` 也加上去，它所做的就是把给定的函数加到队列里：
+
+```js
+Scope.prototype.$$postDigest = function (fn) {
+  this.$$postDigestQueue.push(fn);
+};
+```
+
+最终，在 `\$digest` 里，当 digest 完成之后，就把队列里面的函数都执行掉。
+
+```js
+Scope.prototype.$digest = function () {
+  var ttl = 10;
+  var dirty;
+  this.$beginPhase("$digest");
+  do {
+    while (this.$$asyncQueue.length) {
+      var asyncTask = this.$$asyncQueue.shift();
+      this.$eval(asyncTask.expression);
     }
-
-然后，我们把 \$\$postDigest 也加上去，它所做的就是把给定的函数加到队列里：
-
-    Scope.prototype.$$postDigest = function(fn) {
-      this.$$postDigestQueue.push(fn);
-    };
-
-最终，在 \$digest 里，当 digest 完成之后，就把队列里面的函数都执行掉。
-
-    Scope.prototype.$digest = function() {
-      var ttl = 10;
-      var dirty;
-      this.$beginPhase("$digest");
-      do {
-        while (this.$$asyncQueue.length) {
-          var asyncTask = this.$$asyncQueue.shift();
-          this.$eval(asyncTask.expression);
-        }
-        dirty = this.$$digestOnce();
-        if (dirty && !(ttl--)) {
-          this.$clearPhase();
-          throw "10 digest iterations reached";
-        }
-      } while (dirty);
+    dirty = this.$$digestOnce();
+    if (dirty && !ttl--) {
       this.$clearPhase();
+      throw "10 digest iterations reached";
+    }
+  } while (dirty);
+  this.$clearPhase();
 
-      while (this.$$postDigestQueue.length) {
-        this.$$postDigestQueue.shift()();
-      }
-    };
+  while (this.$$postDigestQueue.length) {
+    this.$$postDigestQueue.shift()();
+  }
+};
+```
 
-下面是关于如何使用 \$\$postDigest 函数的：
+下面是关于如何使用 `\$\$postDigest` 函数的：
 
 http://jsbin.com/IMEhowO/1/embed?js,console
 
@@ -524,62 +583,66 @@ http://jsbin.com/IMEhowO/1/embed?js,console
 
 Angular 的作用域在遇到错误的时候是非常健壮的：当产生异常的时候，不管在监控函数中，在 $evalAsync 函数中，还是在 $$postDigest 函数中，都不会把 digest 终止掉。我们现在的实现里，在以上任何地方产生异常都会把整个 $digest 弄挂。
 
-我们可以很容易修复它，把上面三个调用包在 try...catch 中就好了。
+我们可以很容易修复它，把上面三个调用包在 `try...catch` 中就好了。
 
 > Angular 实际上是把这些异常抛给了它的 \$exceptionHandler 服务。既然我们现在还没有这东西，先扔到控制台上吧。
 
-$evalAsync 和 $$postDigest 的异常处理是在 $digest 函数里，在这些场景里，从已列入计划的程序中抛出的异常将被记录成日志，它后面的还是正常运行：
+`$evalAsync` 和 `$$postDigest` 的异常处理是在 $digest 函数里，在这些场景里，从已列入计划的程序中抛出的异常将被记录成日志，它后面的还是正常运行：
 
-    Scope.prototype.$digest = function() {
-      var ttl = 10;
-      var dirty;
-      this.$beginPhase("$digest");
-      do {
-        while (this.$$asyncQueue.length) {
-          try {
-            var asyncTask = this.$$asyncQueue.shift();
-            this.$eval(asyncTask.expression);
-          } catch (e) {
-            (console.error || console.log)(e);
-          }
-        }
-        dirty = this.$$digestOnce();
-        if (dirty && !(ttl--)) {
-          this.$clearPhase();
-          throw "10 digest iterations reached";
-        }
-      } while (dirty);
-      this.$clearPhase();
-
-      while (this.$$postDigestQueue.length) {
-        try {
-          this.$$postDigestQueue.shift()();
-        } catch (e) {
-          (console.error || console.log)(e);
-        }
+```js
+Scope.prototype.$digest = function () {
+  var ttl = 10;
+  var dirty;
+  this.$beginPhase("$digest");
+  do {
+    while (this.$$asyncQueue.length) {
+      try {
+        var asyncTask = this.$$asyncQueue.shift();
+        this.$eval(asyncTask.expression);
+      } catch (e) {
+        (console.error || console.log)(e);
       }
-    };
+    }
+    dirty = this.$$digestOnce();
+    if (dirty && !ttl--) {
+      this.$clearPhase();
+      throw "10 digest iterations reached";
+    }
+  } while (dirty);
+  this.$clearPhase();
 
-监听器的异常处理放在 \$\$digestOnce 里。
+  while (this.$$postDigestQueue.length) {
+    try {
+      this.$$postDigestQueue.shift()();
+    } catch (e) {
+      (console.error || console.log)(e);
+    }
+  }
+};
+```
 
-    Scope.prototype.$$digestOnce = function() {
-      var self  = this;
-      var dirty;
-      _.forEach(this.$$watchers, function(watch) {
-        try {
-          var newValue = watch.watchFn(self);
-          var oldValue = watch.last;
-          if (!self.$$areEqual(newValue, oldValue, watch.valueEq)) {
-            watch.listenerFn(newValue, oldValue, self);
-            dirty = true;
-          }
-          watch.last = (watch.valueEq ? _.cloneDeep(newValue) : newValue);
-        } catch (e) {
-          (console.error || console.log)(e);
-        }
-      });
-      return dirty;
-    };
+监听器的异常处理放在 `\$\$digestOnce` 里。
+
+```js
+Scope.prototype.$$digestOnce = function () {
+  var self = this;
+  var dirty;
+  _.forEach(this.$$watchers, function (watch) {
+    try {
+      var newValue = watch.watchFn(self);
+      var oldValue = watch.last;
+      if (!self.$$areEqual(newValue, oldValue, watch.valueEq)) {
+        watch.listenerFn(newValue, oldValue, self);
+        dirty = true;
+      }
+      watch.last = watch.valueEq ? _.cloneDeep(newValue) : newValue;
+    } catch (e) {
+      (console.error || console.log)(e);
+    }
+  });
+  return dirty;
+};
+```
 
 现在我们的 digest 循环碰到异常的时候健壮多了。
 
@@ -591,21 +654,23 @@ http://jsbin.com/IMEhowO/2/embed?js,console
 
 Angular 中的 $watch 函数是有返回值的，它是个函数，如果执行，就把刚注册的这个监听器销毁。想在我们这个版本里实现这功能，只要返回一个函数在里面把这个监控器从 $\$watchers 数组去除就可以了：
 
-    Scope.prototype.$watch = function(watchFn, listenerFn, valueEq) {
-      var self = this;
-      var watcher = {
-        watchFn: watchFn,
-        listenerFn: listenerFn,
-        valueEq: !!valueEq
-      };
-      self.$$watchers.push(watcher);
-      return function() {
-        var index = self.$$watchers.indexOf(watcher);
-        if (index >= 0) {
-          self.$$watchers.splice(index, 1);
-        }
-      };
-    };
+```js
+Scope.prototype.$watch = function (watchFn, listenerFn, valueEq) {
+  var self = this;
+  var watcher = {
+    watchFn: watchFn,
+    listenerFn: listenerFn,
+    valueEq: !!valueEq,
+  };
+  self.$$watchers.push(watcher);
+  return function () {
+    var index = self.$$watchers.indexOf(watcher);
+    if (index >= 0) {
+      self.$$watchers.splice(index, 1);
+    }
+  };
+};
+```
 
 现在我们就可以把 \$watch 的这个返回值存起来，以后调用它来移除这个监听器：
 

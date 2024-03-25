@@ -96,7 +96,7 @@ const getSidebar = () => {
         ],
       },
     ],
-    '/Vue/': [
+    '/vue/': [
       {
         title: 'Vue基础', // 必要的
         collapsable: false, // 可选的, 默认值是 true,
