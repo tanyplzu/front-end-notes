@@ -500,7 +500,7 @@ Scope.prototype.$apply = function (expr) {
 };
 ```
 
-最终，把对 `$digest` 的调度放进 `$evalAsync`。它会检测作用域上现有的阶段变量，如果没有（也没有已列入计划的异步任务），就把这个 digest 列入计划。
+最终，把对 $digest 的调度放进 $evalAsync。它会检测作用域上现有的阶段变量，如果没有（也没有已列入计划的异步任务），就把这个 digest 列入计划。
 
 ```js
 Scope.prototype.$evalAsync = function (expr) {
@@ -520,13 +520,13 @@ Scope.prototype.$evalAsync = function (expr) {
 
 http://jsbin.com/iKeSaGi/1/embed?js,console
 
-# 在 digest 之后执行代码 - `\$\$postDigest`
+# 在 digest 之后执行代码 - \$\$postDigest
 
 还有一种方式可以把代码附加到 digest 循环中，那就是把一个 \$\$postDigest 函数列入计划。
 
 在 Angular 中，函数名字前面有双美元符号表示它是一个内部的东西，不是应用开发人员应该用的。但它确实存在，所以我们也要把它实现出来。
 
-就像 `$evalAsync` 一样，`$$postDigest` 也能把一个函数列入计划，让它“以后”运行。具体来说，这个函数将在下一次 digest 完成之后运行。将一个 $$postDigest 函数列入计划不会导致一个 digest 也被延后，所以这个函数的执行会被推迟到直到某些其他原因引起一次 digest。顾名思义，$$postDigest 函数是在 digest 之后运行的，如果你在 $$digest 里面修改了作用域，需要手动调用 $digest 或者 \$apply，以确保这些变更生效。
+就像 $evalAsync 一样，\$\$postDigest 也能把一个函数列入计划，让它“以后”运行。具体来说，这个函数将在下一次 digest 完成之后运行。将一个 $$postDigest 函数列入计划不会导致一个 digest 也被延后，所以这个函数的执行会被推迟到直到某些其他原因引起一次 digest。顾名思义，$$postDigest 函数是在 digest 之后运行的，如果你在 $$digest 里面修改了作用域，需要手动调用 $digest 或者 \$apply，以确保这些变更生效。
 
 首先，我们给 Scope 的构造函数加队列，这个队列给 \$\$postDigest 函数用：
 
@@ -539,7 +539,7 @@ function Scope() {
 }
 ```
 
-然后，我们把 `\$\$postDigest` 也加上去，它所做的就是把给定的函数加到队列里：
+然后，我们把 \$\$postDigest 也加上去，它所做的就是把给定的函数加到队列里：
 
 ```js
 Scope.prototype.$$postDigest = function (fn) {
@@ -547,7 +547,7 @@ Scope.prototype.$$postDigest = function (fn) {
 };
 ```
 
-最终，在 `\$digest` 里，当 digest 完成之后，就把队列里面的函数都执行掉。
+最终，在 \$digest 里，当 digest 完成之后，就把队列里面的函数都执行掉。
 
 ```js
 Scope.prototype.$digest = function () {
@@ -573,7 +573,7 @@ Scope.prototype.$digest = function () {
 };
 ```
 
-下面是关于如何使用 `\$\$postDigest` 函数的：
+下面是关于如何使用 \$\$postDigest 函数的：
 
 http://jsbin.com/IMEhowO/1/embed?js,console
 
@@ -583,11 +583,11 @@ http://jsbin.com/IMEhowO/1/embed?js,console
 
 Angular 的作用域在遇到错误的时候是非常健壮的：当产生异常的时候，不管在监控函数中，在 $evalAsync 函数中，还是在 $$postDigest 函数中，都不会把 digest 终止掉。我们现在的实现里，在以上任何地方产生异常都会把整个 $digest 弄挂。
 
-我们可以很容易修复它，把上面三个调用包在 `try...catch` 中就好了。
+我们可以很容易修复它，把上面三个调用包在 try...catch 中就好了。
 
 > Angular 实际上是把这些异常抛给了它的 \$exceptionHandler 服务。既然我们现在还没有这东西，先扔到控制台上吧。
 
-`$evalAsync` 和 `$$postDigest` 的异常处理是在 $digest 函数里，在这些场景里，从已列入计划的程序中抛出的异常将被记录成日志，它后面的还是正常运行：
+\$evalAsync 和 \$\$postDigest 的异常处理是在 $digest 函数里，在这些场景里，从已列入计划的程序中抛出的异常将被记录成日志，它后面的还是正常运行：
 
 ```js
 Scope.prototype.$digest = function () {
@@ -621,7 +621,7 @@ Scope.prototype.$digest = function () {
 };
 ```
 
-监听器的异常处理放在 `\$\$digestOnce` 里。
+监听器的异常处理放在 \$\$digestOnce 里。
 
 ```js
 Scope.prototype.$$digestOnce = function () {
