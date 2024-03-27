@@ -336,7 +336,7 @@ const getSidebar = () => {
         ],
       },
     ],
-    '/AngularJS/': ['Scope和Digest', '指令', 'parse和eval'],
+    '/AngularJS/': ['Scope和Digest', 'DI', '指令', 'parse和eval', '笔记'],
     '/DSA/': [
       '',
       {
