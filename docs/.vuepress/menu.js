@@ -360,7 +360,6 @@ const getSidebar = () => {
           'LeetCode/LeetCode1',
           'LeetCode/LeetCode2',
           'LeetCode/LeetCode3',
-          'LeetCode/LeetCode3',
           'LeetCode/nowcoder',
         ],
       },
