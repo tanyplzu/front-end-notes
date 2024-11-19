@@ -6,11 +6,15 @@ sidebarDepth: 1
 
 [[toc]]
 
-## 1.两数之和
+## 1. 两数之和
 
 ::: tip 题目
 
-https://leetcode-cn.com/problems/two-sum
+<https://leetcode-cn.com/problems/two-sum>
+
+给定一个整数数组nums和一个整数目标值target，请你在该数组中找出和为目标值target的那两个整数，并返回它们的数组下标。
+
+你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。
 
 输入：nums = [2,7,11,15], target = 9  
 输出：[0,1]  
@@ -18,26 +22,25 @@ https://leetcode-cn.com/problems/two-sum
 
 :::
 
-```js
+```ts
 /**
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
-const twoSum = function(nums, target) {
-  const diffs = {};
+const twoSum = function(nums: number[], target: number): number[] {
+  const diffs: { [key: number]: number } = {};
   // 缓存数组长度
-  const len = nums.length;
+  const len: number = nums.length;
   // 遍历数组
-  for (let i = 0; i < len; i++) {
-    // 判断当前值对应的 target 差值是否存在（是否已遍历过）
+  for (let i: number = 0; i < len; i++) {
     if (diffs[target - nums[i]] !== undefined) {
-      // 若有对应差值，那么答案get！
       return [diffs[target - nums[i]], i];
     }
-    // 若没有对应差值，则记录当前值
+
     diffs[nums[i]] = i;
   }
+  return [];
 };
 ```
 
@@ -45,13 +48,65 @@ const twoSum = function(nums, target) {
 
 <span style="color:red">当发现自己的代码里有两层循环时，先反思一下，能不能用空间换时间，把它优化成一层循环。</span>
 
-## 2.两数相加
+优化一下，使用哈希表
+
+```js
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]} 
+ */
+const twoSum = function(nums: number[], target: number): number[] {
+    const map = new Map<number, number>();
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        if (map.has(complement)) {
+            return [map.get(complement)!, i];
+        }
+        map.set(nums[i], i);
+    }
+    return [];
+};
+```
+
+在 JavaScript 中，使用哈希表（即 Map 对象）相比使用普通对象（Object）有几个显著的优势：
+
+键的类型
+
+- Map 可以使用任意类型的值作为键，包括对象、数组等。
+- Object 的键默认为字符串类型。如果你尝试使用非字符串作为键，它会被转换为字符串，这可能导致键的冲突和意外的行为。
+
+内存和性能
+
+- Map 在频繁增加和删除键值对的场景下表现更好，因为它是为了高效的插入和删除优化的。
+- Object 在添加和删除属性时可能不如 Map 高效，特别是当对象属性非常多时。
+
+键的顺序
+
+- Map 保持键的插入顺序，可以直接按插入顺序进行迭代。
+- Object 在 ES6 之前并不保证属性的顺序，虽然现在大多数现代浏览器会按照属性创建的顺序来迭代对象，但这并不是所有情况。
+
+易用性
+
+- Map 提供了直接的方法来获取大小（.size 属性），以及 set, get, has, delete 等方法，这使得 Map 的使用更加直观和方便。
+- Object 需要使用间接的方法来获取大小（例如通过 Object.keys(obj).length），并且处理属性的方法（如 obj[key] = value 或 delete obj[key]）不如 Map 直接。
+
+迭代
+
+- Map 是可迭代的，可以直接使用 for...of 循环或 forEach 方法进行迭代。
+- Object 需要使用 Object.keys(), Object.values(), 或 Object.entries() 等方法来迭代键、值或键值对。
+
+因此，当你需要一个高效的、保持键顺序的、可以使用非字符串键的数据结构时，使用 Map 是一个更好的选择。对于简单的、少量的、以字符串为键的数据，使用 Object 可能更方便和直观。
+
+> 来源AI
+
+## 2. 两数相加
 
 ::: tip 题目
 
-https://leetcode-cn.com/problems/add-two-numbers/
+<https://leetcode-cn.com/problems/add-two-numbers/>
 
-给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。  
+给你两个非空的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。  
 请你将两个数相加，并以相同形式返回一个表示和的链表。
 
 输入：l1 = [2,4,3], l2 = [5,6,4]  
@@ -74,27 +129,51 @@ https://leetcode-cn.com/problems/add-two-numbers/
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-  const dummyNode = new ListNode();
-  let cur = dummyNode;
-  let extra = 0;
-  while (l1 || l2) {
-    let sum = extra;
-    if (l1) {
-      sum += l1.val;
-      l1 = l1.next;
+    let dummyHead = new ListNode(0);
+    let current = dummyHead;
+    let carry = 0; // 进位
+
+    while (l1 || l2) {
+        let x = (l1 != null) ? l1.val : 0;
+        let y = (l2 != null) ? l2.val : 0;
+        let sum = carry + x + y;
+        carry = Math.floor(sum / 10);
+        current.next = new ListNode(sum % 10);
+        current = current.next;
+        if (l1 != null) l1 = l1.next;
+        if (l2 != null) l2 = l2.next;
     }
-    if (l2) {
-      sum += l2.val;
-      l2 = l2.next;
+
+    if (carry > 0) {
+        current.next = new ListNode(carry);
     }
-    extra = Math.floor(sum / 10);
-    cur.next = new ListNode(sum % 10);
-    cur = cur.next;
-  }
-  if (extra) cur.next = new ListNode(extra);
-  return dummyNode.next;
+
+    return dummyHead.next;
 };
 ```
+
+这种解法主要用于处理数字非常大的情况，特别是当数字超出了标准数据类型（如整数或长整数）能够存储的范围时。在实际应用中，这种方法特别有用于以下几个方面：
+
+**大数运算**
+
+- 在金融领域，经常需要处理非常大的数字，例如大额交易或财务计算
+- 在科学计算中，也可能需要处理超出标准数值范围的大数
+
+**数据加密**  
+
+- 在加密算法中，如RSA加密，通常需要用到非常大的数和大数运算
+- 链表存储大数可以帮助实现这些算法
+
+**避免精度损失**  
+
+- 使用链表逐位存储数字可以避免在大数运算中常见的精度损失问题
+
+**灵活的内存管理**  
+
+- 相比于数组，链表结构在内存中不需要连续的空间
+- 这使得动态地增加和减少数字的位数变得更加灵活和高效
+
+通过链表来模拟数字的存储和运算，可以在处理超大或者精度要求很高的数值运算时，提供一个有效和灵活的解决方案。这种方法虽然在执行效率上可能不如使用数组或直接操作数值类型，但在处理特定问题如大数运算时，提供了一种可行的解决策略。
 
 ## 3.无重复字符的最长子串
 
@@ -305,6 +384,123 @@ var longestCommonPrefix = function(strs) {
   return re;
 };
 ```
+
+## 15. 三数之和
+
+::: tip 题目
+
+给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请你返回所有和为 0 且不重复的三元组。
+
+注意：答案中不可以包含重复的三元组。
+
+输入：nums = [-1,0,1,2,-1,-4]  
+输出：[[-1,-1,2],[-1,0,1]]
+
+:::
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+const threeSum = function(nums) {
+    // 排序
+    nums.sort((a, b) => a - b);
+    // 结果数组
+    const result = [];
+    // 缓存数组长度
+    const len = nums.length;
+    // 遍历到倒数第三个数即可
+    for(let i = 0; i < len-2; i++) {
+        // 跳过重复数字
+        if(i > 0 && nums[i] === nums[i-1]) continue;
+        // 定义左右指针
+        let left = i + 1;
+        let right = len - 1;
+        // 当左指针小于右指针时，执行循环
+        while(left < right) {
+            const sum = nums[i] + nums[left] + nums[right];
+            if(sum === 0) {
+                result.push([nums[i], nums[left], nums[right]]);
+                // 跳过重复数字
+                while(left < right && nums[left] === nums[left+1]) left++;
+                while(left < right && nums[right] === nums[right-1]) right--;
+                left++;
+                right--;
+            } else if(sum < 0) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+    }
+    return result;
+};
+```
+
+双指针法
+
+对于每个 nums[i]，设置两个指针，一个指向 i+1（即 nums[i] 后面的第一个元素），另一个指向数组的最后一个元素。这两个指针分别表示可能的加数。根据这两个指针所指元素的和与 -nums[i] 的比较，移动指针：
+
+- 如果和小于 -nums[i]，则将左指针向右移动，以增加和的大小。
+- 如果和大于 -nums[i]，则将右指针向左移动，以减少和的大小。
+- 如果和等于 -nums[i]，则记录这三个数，然后跳过所有重复的元素。
+
+::: tip 扩展题目
+
+加起来和为目标值的组合
+
+输入：[100,10,20,70,60,10,50], 80  
+返回值：[[10,10,60],[10,20,50], [10,70],[20,60]]
+
+:::
+
+```js
+function combinationSum2(nums, target) {
+    // 首先对数组进行排序，这有助于后续的剪枝操作
+    nums.sort((a, b) => a - b);
+
+    const results = []; // 用于存储所有符合条件的组合
+    const currentCombination = []; // 当前正在探索的组合
+
+    // 定义回溯函数
+    function backtrack(startIndex, remainingTarget) {
+        // 如果剩余目标值为0，说明当前组合是有效的，将其添加到结果数组中
+        if (remainingTarget === 0) {
+            results.push([...currentCombination]);
+            return;
+        }
+
+        // 从startIndex开始遍历数组
+        for (let i = startIndex; i < nums.length; i++) {
+            // 如果当前数字大于剩余目标值，由于数组已排序，后面的数字也不可能满足条件，直接返回
+            if (nums[i] > remainingTarget) break;
+
+            // 跳过重复的数字，以避免产生重复的组合
+            if (i > startIndex && nums[i] === nums[i - 1]) continue;
+
+            // 选择当前数字，加入到当前组合中
+            currentCombination.push(nums[i]);
+            // 递归调用，注意新的startIndex为i+1，remainingTarget减去当前数字
+            backtrack(i + 1, remainingTarget - nums[i]);
+            // 撤销选择
+            currentCombination.pop();
+        }
+    }
+
+    // 从数组的开始位置启动回溯
+    backtrack(0, target);
+
+    return results;
+}
+```
+
+- 回溯函数：backtrack 是一个递归函数，它尝试所有可能的组合。它接受两个参数：startIndex（从哪个索引开始考虑数组中的元素）和 remainingTarget（当前需要达到的目标值）。
+- 递归的终止条件：当 remainingTarget 为 0 时，说明找到了一个有效的组合，将其添加到结果列表中。
+- 循环和选择：从 startIndex 开始遍历数组，如果当前元素已经大于 remainingTarget，则终止循环。如果当前元素与前一个元素相同，则跳过以避免重复的组合。
+- 递归和回溯：选择当前元素，然后递归调用 backtrack，探索包含当前元素的所有组合。之后，撤销选择（即从当前组合中移除元素），以探索不包含当前元素的其他组合。
+
+这种方法有效地利用了递归和回溯，通过剪枝优化了搜索过程，能够高效地解决问题。
 
 ## 20. 有效的括号
 
