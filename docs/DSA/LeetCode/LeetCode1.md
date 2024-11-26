@@ -12,24 +12,20 @@ sidebarDepth: 1
 
 <https://leetcode-cn.com/problems/two-sum>
 
-给定一个整数数组nums和一个整数目标值target，请你在该数组中找出和为目标值target的那两个整数，并返回它们的数组下标。
-
-你可以假设每种输入只会对应一个答案，并且你不能使用两次相同的元素。
-
 输入：nums = [2,7,11,15], target = 9  
 输出：[0,1]  
 解释：因为 nums[0] + nums[1] == 9 ，返回 [0, 1] 。
 
 :::
 
-```ts
+```js
 /**
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
  */
-const twoSum = function(nums: number[], target: number): number[] {
-  const diffs: { [key: number]: number } = {};
+const twoSum = function (nums, target) {
+  const diffs = {};
   // 缓存数组长度
   const len: number = nums.length;
   // 遍历数组
@@ -54,10 +50,10 @@ const twoSum = function(nums: number[], target: number): number[] {
 /**
  * @param {number[]} nums
  * @param {number} target
- * @return {number[]} 
+ * @return {number[]}
  */
-const twoSum = function(nums: number[], target: number): number[] {
-    const map = new Map<number, number>();
+const twoSum = function(nums, target) {
+    const map = new Map();
     for (let i = 0; i < nums.length; i++) {
         const complement = target - nums[i];
         if (map.has(complement)) {
@@ -98,7 +94,7 @@ const twoSum = function(nums: number[], target: number): number[] {
 
 因此，当你需要一个高效的、保持键顺序的、可以使用非字符串键的数据结构时，使用 Map 是一个更好的选择。对于简单的、少量的、以字符串为键的数据，使用 Object 可能更方便和直观。
 
-> 来源AI
+> 来源 AI
 
 ## 2. 两数相加
 
@@ -128,27 +124,27 @@ const twoSum = function(nums: number[], target: number): number[] {
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var addTwoNumbers = function(l1, l2) {
-    let dummyHead = new ListNode(0);
-    let current = dummyHead;
-    let carry = 0; // 进位
+var addTwoNumbers = function (l1, l2) {
+  let dummyHead = new ListNode(0);
+  let current = dummyHead;
+  let carry = 0; // 进位
 
-    while (l1 || l2) {
-        let x = (l1 != null) ? l1.val : 0;
-        let y = (l2 != null) ? l2.val : 0;
-        let sum = carry + x + y;
-        carry = Math.floor(sum / 10);
-        current.next = new ListNode(sum % 10);
-        current = current.next;
-        if (l1 != null) l1 = l1.next;
-        if (l2 != null) l2 = l2.next;
-    }
+  while (l1 || l2) {
+    let x = l1 != null ? l1.val : 0;
+    let y = l2 != null ? l2.val : 0;
+    let sum = carry + x + y;
+    carry = Math.floor(sum / 10);
+    current.next = new ListNode(sum % 10);
+    current = current.next;
+    if (l1 != null) l1 = l1.next;
+    if (l2 != null) l2 = l2.next;
+  }
 
-    if (carry > 0) {
-        current.next = new ListNode(carry);
-    }
+  if (carry > 0) {
+    current.next = new ListNode(carry);
+  }
 
-    return dummyHead.next;
+  return dummyHead.next;
 };
 ```
 
@@ -159,16 +155,16 @@ var addTwoNumbers = function(l1, l2) {
 - 在金融领域，经常需要处理非常大的数字，例如大额交易或财务计算
 - 在科学计算中，也可能需要处理超出标准数值范围的大数
 
-**数据加密**  
+**数据加密**
 
-- 在加密算法中，如RSA加密，通常需要用到非常大的数和大数运算
+- 在加密算法中，如 RSA 加密，通常需要用到非常大的数和大数运算
 - 链表存储大数可以帮助实现这些算法
 
-**避免精度损失**  
+**避免精度损失**
 
 - 使用链表逐位存储数字可以避免在大数运算中常见的精度损失问题
 
-**灵活的内存管理**  
+**灵活的内存管理**
 
 - 相比于数组，链表结构在内存中不需要连续的空间
 - 这使得动态地增加和减少数字的位数变得更加灵活和高效
@@ -188,7 +184,7 @@ var addTwoNumbers = function(l1, l2) {
 :::
 
 ```js
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring = function (s) {
   // 哈希集合，记录每个字符是否出现过
   const occ = new Set();
   const n = s.length;
@@ -217,7 +213,7 @@ var lengthOfLongestSubstring = function(s) {
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring = function (s) {
   let len = s.length;
   // 左边界索引
   let l = 0;
@@ -251,8 +247,6 @@ var lengthOfLongestSubstring = function(s) {
 输出："bb"
 ```
 
-**题解：中心扩展算法——此题动态规划法的改进方法。**
-
 事实上，只需使用恒定的空间，我们可以在 O(n^2)的时间内解决这个问题。
 
 我们观察到回文中心的两侧互为镜像。因此，回文可以从它的中心展开，并且只有 2n - 1 个这样的中心。
@@ -264,7 +258,7 @@ var lengthOfLongestSubstring = function(s) {
 空间复杂度：O(1)。
 
 ```js
-const longestPalindrome = function(s) {
+const longestPalindrome = function (s) {
   let result = '';
   if (s === '') return '';
   if (s.length === 1) return s;
@@ -301,6 +295,52 @@ console.log("longestPalindrome('aabaa')", longestPalindrome('aabaa')); // aabaa
 console.log("longestPalindrome('cbbd')", longestPalindrome('cbbd')); //bb
 ```
 
+动态规划
+
+```js
+const longestPalindrome = function (s) {
+  const len = s.length;
+  if (len <= 1) return s;
+  const dp = new Array(len).fill(0).map(() => new Array(len).fill(false));
+  let maxLen = 1;
+  let start = 0;
+  // 单个字符是回文
+  for (let i = 0; i < len; i++) {
+    dp[i][i] = true;
+  }
+
+  // 填表格，逐步检查长度为 2 到 n 的子串
+  for (let length = 2; length <= len; length++) {
+    for (let i = 0; i <= len - length; i++) {
+      const j = i + length - 1; // 子串的结束位置
+
+      if (s[i] === s[j]) {
+        // 如果首尾字符相等，判断内部子串是否是回文
+        if (length === 2 || dp[i + 1][j - 1]) {
+          dp[i][j] = true;
+
+          // 更新最长回文子串的记录
+          if (length > maxLen) {
+            maxLen = length;
+            start = i;
+          }
+        }
+      }
+    }
+  }
+
+  // 返回最长回文子串
+  return s.substring(start, start + maxLen); // Corrected 'maxLength' to 'maxLen'
+};
+```
+
+动态规划表构建：
+
+- `dp[i][j]` = true 表示从 i 到 j 的子串是回文。初始情况下，所有 `dp[i][i]` 置为 true（单个字符总是回文）。
+- 如果 s[i] === s[j] 且子串 s[i+1..j-1] 是回文（即 `dp[i+1][j-1]` === true），则 `dp[i][j]` = true。
+- 从小到大填表：先处理长度为 2 的子串，再逐渐处理更长的子串，直到处理完整个字符串。
+- 在填表过程中，记录最长回文子串的起始位置和长度，最终输出子串。
+
 ## 9. 回文数
 
 ::: tip 题目
@@ -312,10 +352,7 @@ console.log("longestPalindrome('cbbd')", longestPalindrome('cbbd')); //bb
 ```js
 function isPalindrome(str) {
   // 先反转字符串
-  const reversedStr = str
-    .split('')
-    .reverse()
-    .join('');
+  const reversedStr = str.split('').reverse().join('');
   // 判断反转前后是否相等
   return reversedStr === str;
 }
@@ -337,7 +374,7 @@ function isPalindrome(str) {
 解一：逐位比较，比较全部通过时 re 增加当前字符，不通过时直接返回 re
 
 ```js
-var longestCommonPrefix = function(strs) {
+var longestCommonPrefix = function (strs) {
   var re = '';
   if (!strs.length) return re;
   for (var j = 0; j < strs[0].length; j++) {
@@ -355,7 +392,7 @@ var longestCommonPrefix = function(strs) {
 解二：解一的递归版本，需要增加一些判断语句。
 
 ```js
-var longestCommonPrefix = function(strs, re = '') {
+var longestCommonPrefix = function (strs, re = '') {
   if (!strs.length) return re;
   if (strs.length == 1) return strs[0];
   for (var i = 1; i < strs.length; i++) {
@@ -372,7 +409,7 @@ var longestCommonPrefix = function(strs, re = '') {
 解三：和解一恰好相反，re 初始化为数组中第一个元素，逐个比较，当比较通过时返回 re，否则削去末位直至比较通过。这里的比较使用了正则表达式。
 
 ```js
-var longestCommonPrefix = function(strs) {
+var longestCommonPrefix = function (strs) {
   var re = strs[0] ? strs[0] : '';
   for (var i = 1; i < strs.length; i++) {
     var regex = new RegExp('^' + re);
@@ -403,38 +440,38 @@ var longestCommonPrefix = function(strs) {
  * @param {number[]} nums
  * @return {number[][]}
  */
-const threeSum = function(nums) {
-    // 排序
-    nums.sort((a, b) => a - b);
-    // 结果数组
-    const result = [];
-    // 缓存数组长度
-    const len = nums.length;
-    // 遍历到倒数第三个数即可
-    for(let i = 0; i < len-2; i++) {
+const threeSum = function (nums) {
+  // 排序
+  nums.sort((a, b) => a - b);
+  // 结果数组
+  const result = [];
+  // 缓存数组长度
+  const len = nums.length;
+  // 遍历到倒数第三个数即可
+  for (let i = 0; i < len - 2; i++) {
+    // 跳过重复数字
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
+    // 定义左右指针
+    let left = i + 1;
+    let right = len - 1;
+    // 当左指针小于右指针时，执行循环
+    while (left < right) {
+      const sum = nums[i] + nums[left] + nums[right];
+      if (sum === 0) {
+        result.push([nums[i], nums[left], nums[right]]);
         // 跳过重复数字
-        if(i > 0 && nums[i] === nums[i-1]) continue;
-        // 定义左右指针
-        let left = i + 1;
-        let right = len - 1;
-        // 当左指针小于右指针时，执行循环
-        while(left < right) {
-            const sum = nums[i] + nums[left] + nums[right];
-            if(sum === 0) {
-                result.push([nums[i], nums[left], nums[right]]);
-                // 跳过重复数字
-                while(left < right && nums[left] === nums[left+1]) left++;
-                while(left < right && nums[right] === nums[right-1]) right--;
-                left++;
-                right--;
-            } else if(sum < 0) {
-                left++;
-            } else {
-                right--;
-            }
-        }
+        while (left < right && nums[left] === nums[left + 1]) left++;
+        while (left < right && nums[right] === nums[right - 1]) right--;
+        left++;
+        right--;
+      } else if (sum < 0) {
+        left++;
+      } else {
+        right--;
+      }
     }
-    return result;
+  }
+  return result;
 };
 ```
 
@@ -457,41 +494,41 @@ const threeSum = function(nums) {
 
 ```js
 function combinationSum2(nums, target) {
-    // 首先对数组进行排序，这有助于后续的剪枝操作
-    nums.sort((a, b) => a - b);
+  // 首先对数组进行排序，这有助于后续的剪枝操作
+  nums.sort((a, b) => a - b);
 
-    const results = []; // 用于存储所有符合条件的组合
-    const currentCombination = []; // 当前正在探索的组合
+  const results = []; // 用于存储所有符合条件的组合
+  const currentCombination = []; // 当前正在探索的组合
 
-    // 定义回溯函数
-    function backtrack(startIndex, remainingTarget) {
-        // 如果剩余目标值为0，说明当前组合是有效的，将其添加到结果数组中
-        if (remainingTarget === 0) {
-            results.push([...currentCombination]);
-            return;
-        }
-
-        // 从startIndex开始遍历数组
-        for (let i = startIndex; i < nums.length; i++) {
-            // 如果当前数字大于剩余目标值，由于数组已排序，后面的数字也不可能满足条件，直接返回
-            if (nums[i] > remainingTarget) break;
-
-            // 跳过重复的数字，以避免产生重复的组合
-            if (i > startIndex && nums[i] === nums[i - 1]) continue;
-
-            // 选择当前数字，加入到当前组合中
-            currentCombination.push(nums[i]);
-            // 递归调用，注意新的startIndex为i+1，remainingTarget减去当前数字
-            backtrack(i + 1, remainingTarget - nums[i]);
-            // 撤销选择
-            currentCombination.pop();
-        }
+  // 定义回溯函数
+  function backtrack(startIndex, remainingTarget) {
+    // 如果剩余目标值为0，说明当前组合是有效的，将其添加到结果数组中
+    if (remainingTarget === 0) {
+      results.push([...currentCombination]);
+      return;
     }
 
-    // 从数组的开始位置启动回溯
-    backtrack(0, target);
+    // 从startIndex开始遍历数组
+    for (let i = startIndex; i < nums.length; i++) {
+      // 如果当前数字大于剩余目标值，由于数组已排序，后面的数字也不可能满足条件，直接返回
+      if (nums[i] > remainingTarget) break;
 
-    return results;
+      // 跳过重复的数字，以避免产生重复的组合
+      if (i > startIndex && nums[i] === nums[i - 1]) continue;
+
+      // 选择当前数字，加入到当前组合中
+      currentCombination.push(nums[i]);
+      // 递归调用，注意新的startIndex为i+1，remainingTarget减去当前数字
+      backtrack(i + 1, remainingTarget - nums[i]);
+      // 撤销选择
+      currentCombination.pop();
+    }
+  }
+
+  // 从数组的开始位置启动回溯
+  backtrack(0, target);
+
+  return results;
 }
 ```
 
@@ -530,7 +567,7 @@ const leftToRight = {
  * @param {string} s
  * @return {boolean}
  */
-const isValid = function(s) {
+const isValid = function (s) {
   // 结合题意，空字符串无条件判断为 true
   if (!s) {
     return true;
@@ -571,7 +608,7 @@ const isValid = function(s) {
 一、双指针法
 
 ```js
-var removeDuplicates = function(nums) {
+var removeDuplicates = function (nums) {
   const n = nums.length;
   if (n === 0) {
     return 0;
@@ -612,7 +649,7 @@ function unique(arr) {
 采用动态规划。从当前位置作为起始和和不从当前位置作为起始，如果累计大于当前位置的值，就不从当前位置起，如果小于当前位置的值，就舍弃。
 
 ```js
-var maxSubArray = function(nums) {
+var maxSubArray = function (nums) {
   // 动态规划
   let len = nums.length;
   let max = nums[0];
@@ -623,6 +660,106 @@ var maxSubArray = function(nums) {
     max = Math.max(max, prevSum);
   }
   return max;
+};
+```
+
+## 62. 不同路径
+
+::: tip 题目
+
+<https://leetcode.cn/problems/unique-paths/?envType=study-plan-v2&envId=dynamic-programming>
+
+一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。
+机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。
+问总共有多少条不同的路径？
+
+示例 1：
+
+输入：m = 3, n = 7
+输出：28
+
+示例 2：
+
+输入：m = 3, n = 2
+输出：3
+解释：
+从左上角开始，总共有 3 条路径可以到达右下角。
+
+1. 向右 -> 向下 -> 向下
+2. 向下 -> 向下 -> 向右
+3. 向下 -> 向右 -> 向下
+
+:::
+
+```js
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+const uniquePaths = function (m, n) {
+  const dp = new Array(m).fill(new Array(n).fill(0));
+  // 初始化第一行和第一列
+  for (let i = 0; i < m; i++) {
+    dp[i][0] = 1;
+  }
+  for (let j = 0; j < n; j++) {
+    dp[0][j] = 1;
+  }
+
+  for (let i = 1; i < m; i++) {
+    for (let j = 1; j < n; j++) {
+      dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+    }
+  }
+  return dp[m - 1][n - 1];
+};
+```
+
+## 64. 最小路径和
+
+::: tip 题目
+
+给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+
+说明：每次只能向下或者向右移动一步。
+
+示例 1：
+输入：grid = [[1,3,1],[1,5,1],[4,2,1]]
+输出：7
+解释：因为路径 1→3→1→1→1 的总和最小。
+
+示例 2：
+输入：grid = [[1,2,3],[4,5,6]]
+输出：12
+
+:::
+
+```js
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+const minPathSum = function (grid) {
+  const m = grid.length;
+  const n = grid[0].length;
+  const dp = new Array(m).fill(new Array(n).fill(0));
+  dp[0][0] = grid[0][0];
+  // 初始化第一行
+  for (let i = 1; i < m; i++) {
+    dp[i][0] = dp[i - 1][0] + grid[i][0];
+  }
+  // 初始化第一列
+  for (let j = 1; j < n; j++) {
+    dp[0][j] = dp[0][j - 1] + grid[0][j];
+  }
+  // 更新 dp 数组
+  for (let i = 1; i < m; i++) {
+    for (let j = 1; j < n; j++) {
+      dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+    }
+  }
+  return dp[m - 1][n - 1];
 };
 ```
 
@@ -638,14 +775,14 @@ var maxSubArray = function(nums) {
 
 :::
 
-解法一
+解法一：递归回溯
 
 ```js
 /**
  * @param {number} n
  * @return {number}
  */
-const climbStairs = function(n) {
+const climbStairs = function (n) {
   // 处理递归边界
   if (n === 1) {
     return 1;
@@ -658,7 +795,7 @@ const climbStairs = function(n) {
 };
 ```
 
-解法二
+解法二：动态规划
 
 ```JS
 /**
@@ -697,7 +834,7 @@ const climbStairs = function(n) {
  * @param {string} t
  * @return {string}
  */
-var minWindow = function(source, target) {
+var minWindow = function (source, target) {
   if (source.length < target.length) {
     return '';
   }
@@ -832,6 +969,42 @@ function depth(root) {
 }
 ```
 
+## 120. 三角形最小路径和
+
+给定一个三角形 triangle ，找出自顶向下的最小路径和。
+
+每一步只能移动到下一行中相邻的结点上。相邻的结点 在这里指的是 下标 与 上一层结点下标 相同或者等于 上一层结点下标 + 1 的两个结点。也就是说，如果正位于当前行的下标 i ，那么下一步可以移动到下一行的下标 i 或 i + 1 。
+
+::: tip 题目
+
+示例 1：
+
+输入：triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+输出：11
+解释：如下面简图所示：
+2
+3 4
+6 5 7
+4 1 8 3
+自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）。
+示例 2：
+
+输入：triangle = [[-10]]
+输出：-10
+
+:::
+
+```js
+const minimumTotal = function (triangle) {
+  for (let i = triangle.length - 2; i >= 0; i--) {
+    for (let j = 0; j < triangle[i].length; j++) {
+      triangle[i][j] += Math.min(triangle[i + 1][j], triangle[i + 1][j + 1]);
+    }
+  }
+  return triangle[0][0];
+};
+```
+
 ## 121. 买卖股票的最佳时机
 
 你只能选择某一天买入这只股票，并选择在未来的某一个不同的日子卖出该股票。
@@ -897,7 +1070,7 @@ function maxProfit(prices = []) {
 ```js
 function wordBreak(s: string, wordDict: string[]): boolean {
   const n: number = s.length;
-  const wordDictSet: Set<string> =   Set(wordDict);
+  const wordDictSet: Set<string> = Set(wordDict);
   const dp: Array<boolean> = new Array(n + 1).fill(false);
   dp[0] = true;
   for (let i = 1; i <= n; i++) {
@@ -1004,26 +1177,26 @@ console.log('cache.get(4)', cache.get(4)); // 返回  4
 实现一：
 
 ```js
-const MinStack = function() {
+const MinStack = function () {
   this.stack = [];
 };
 
-MinStack.prototype.push = function(x) {
+MinStack.prototype.push = function (x) {
   this.stack.push(x);
 };
 
-MinStack.prototype.pop = function() {
+MinStack.prototype.pop = function () {
   this.stack.pop();
 };
 
-MinStack.prototype.top = function() {
+MinStack.prototype.top = function () {
   if (!this.stack || !this.stack.length) {
     return;
   }
   return this.stack[this.stack.length - 1];
 };
 
-MinStack.prototype.getMin = function() {
+MinStack.prototype.getMin = function () {
   let minValue = Infinity;
   const { stack } = this;
   for (let i = 0; i < stack.length; i++) {
@@ -1038,29 +1211,29 @@ MinStack.prototype.getMin = function() {
 实现二：
 
 ```js
-const MinStack = function() {
+const MinStack = function () {
   this.stack = [];
   this.stack2 = [];
 };
 
-MinStack.prototype.push = function(x) {
+MinStack.prototype.push = function (x) {
   this.stack.push(x);
   if (this.stack2.length == 0 || this.stack2[this.stack2.length - 1] >= x) {
     this.stack2.push(x);
   }
 };
 
-MinStack.prototype.pop = function() {
+MinStack.prototype.pop = function () {
   if (this.stack.pop() == this.stack2[this.stack2.length - 1]) {
     this.stack2.pop();
   }
 };
 
-MinStack.prototype.top = function() {
+MinStack.prototype.top = function () {
   return this.stack[this.stack.length - 1];
 };
 
-MinStack.prototype.getMin = function() {
+MinStack.prototype.getMin = function () {
   return this.stack2[this.stack2.length - 1];
 };
 ```
